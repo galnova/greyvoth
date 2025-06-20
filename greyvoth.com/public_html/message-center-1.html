@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Message Center</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+    .message-view {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-left: 1px solid #dee2e6;
+    }
+    .message-content-wrapper {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+    .message-thread {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      background-color: #fff;
+    }
+    .message-thread h6 {
+      margin-bottom: 0.5rem;
+    }
+    .message-thread small {
+      color: #666;
+    }
+    .fixed-editor, .mobile-editor {
+      background: #f8f9fa;
+      border-top: 1px solid #dee2e6;
+      padding: 1rem;
+    }
+    .edit-field {
+      display: none;
+    }
+    .edit-field.active {
+      display: block;
+    }
+    textarea.form-control {
+      resize: none;
+      overflow-y: auto;
+      max-height: 50vh;
+      min-height: 80px;
+    }
+    @media (max-width: 767.98px) {
+      .message-view-desktop {
+        display: none;
+      }
+      .message-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 160px;
+        z-index: 1050;
+        background: white;
+        display: none;
+        overflow-y: auto;
+        padding: 1rem;
+      }
+      .message-overlay.active {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row vh-100">
+    <div class="col-md-4 border-end d-flex flex-column">
+      <ul class="nav nav-tabs px-3 pt-3" id="messageTabs" role="tablist">
+        <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#inbox" type="button">Inbox</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#drafts" type="button">Drafts</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#sent" type="button">Sent</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#archived" type="button">Archived</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#trash" type="button">Trash</button></li>
+      </ul>
+      <div class="tab-content flex-grow-1 overflow-auto" id="tabContent">
+        <div class="tab-pane fade show active p-3" id="inbox"><ul class="list-group"><li class="list-group-item message-item" data-thread="thread1">Inbox: Campaign Feedback</li></ul></div>
+        <div class="tab-pane fade p-3" id="drafts"><ul class="list-group"><li class="list-group-item message-item" data-thread="thread2">Draft: New Onboarding</li></ul></div>
+        <div class="tab-pane fade p-3" id="sent"><ul class="list-group"><li class="list-group-item message-item" data-thread="thread1">Sent: Follow Up Notes</li></ul></div>
+        <div class="tab-pane fade p-3" id="archived"><ul class="list-group"><li class="list-group-item message-item" data-thread="thread2">Archived: Onboarding Notes</li></ul></div>
+        <div class="tab-pane fade p-3" id="trash"><ul class="list-group"><li class="list-group-item message-item" data-thread="thread1">Trashed: Feedback Thread</li></ul></div>
+      </div>
+    </div>
+    <div class="col-md-8 message-view-desktop message-view">
+      <div class="message-content-wrapper" id="desktopMessageContent">
+        <h5 id="message-title">Select a message</h5>
+        <div id="message-content"></div>
+      </div>
+      <div class="fixed-editor">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <strong>Message Actions</strong>
+          <div class="d-flex gap-2">
+            <button class="btn btn-sm btn-outline-primary" id="editBtn">Edit Last</button>
+            <button class="btn btn-sm btn-outline-secondary" id="replyBtn">Reply</button>
+          </div>
+        </div>
+        <div class="edit-field" id="editField">
+          <textarea class="form-control mb-2" id="editTextarea" rows="3"></textarea>
+          <button class="btn btn-sm btn-success float-end" id="saveBtn">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="message-overlay" id="messageOverlay">
+  <button class="btn btn-link text-danger mb-2" onclick="closeOverlay()">← Back</button>
+  <h5 id="mobile-message-title"></h5>
+  <div id="mobile-message-content"></div>
+</div>
+<div class="mobile-editor d-md-none position-fixed bottom-0 w-100">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <strong>Message Actions</strong>
+      <div class="d-flex gap-2">
+        <button class="btn btn-sm btn-outline-primary" onclick="showMobileEdit()">Edit Last</button>
+        <button class="btn btn-sm btn-outline-secondary" onclick="showMobileReply()">Reply</button>
+      </div>
+    </div>
+    <div class="edit-field" id="mobileEditField">
+      <textarea class="form-control mb-2" id="mobileEditTextarea" rows="3"></textarea>
+      <button class="btn btn-sm btn-success float-end" onclick="saveMobile()">Save</button>
+    </div>
+  </div>
+</div>
+<script>
+  const threads = {
+    thread1: [
+      { from: 'You', to: 'Marketing Team', subject: 'Campaign Feedback', time: 'Jul 12, 9:00 AM', body: 'CTA placement was strong. Let’s check mobile scaling.' },
+      { from: 'Maria', to: 'You', subject: 'RE: Campaign Feedback', time: 'Jul 12, 10:15 AM', body: 'Mobile images are off. I’ll review breakpoints.' }
+    ],
+    thread2: [
+      { from: 'PM', to: 'You', subject: 'New Onboarding', time: 'Jul 13, 2:45 PM', body: 'Each screen now shows one benefit and an icon.' },
+      { from: 'You', to: 'PM', subject: 'RE: New Onboarding', time: 'Jul 13, 3:00 PM', body: 'Tooltip-style guide could boost completion rates.' }
+    ]
+  };
+  let currentThreadId = null;
+  function renderThread(threadId, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    threads[threadId]?.forEach(msg => {
+      container.innerHTML += `
+        <div class="message-thread">
+          <h6>From: ${msg.from}</h6>
+          <small>To: ${msg.to}</small><br>
+          <small>Subject: ${msg.subject}</small><br>
+          <small>${msg.time}</small><hr>
+          <p>${msg.body}</p>
+        </div>`;
+    });
+  }
+  document.querySelectorAll('.message-item').forEach(item => {
+    item.addEventListener('click', () => {
+      currentThreadId = item.dataset.thread;
+      document.getElementById('message-title').textContent = item.textContent;
+      renderThread(currentThreadId, 'message-content');
+      renderThread(currentThreadId, 'mobile-message-content');
+      document.getElementById('messageOverlay').classList.add('active');
+    });
+  });
+  document.getElementById('editBtn').onclick = () => {
+    if (!currentThreadId) return;
+    document.getElementById('editField').classList.add('active');
+    document.getElementById('editTextarea').value = threads[currentThreadId].at(-1).body;
+  };
+  document.getElementById('replyBtn').onclick = () => {
+    if (!currentThreadId) return;
+    document.getElementById('editField').classList.add('active');
+    document.getElementById('editTextarea').value = '';
+  };
+  document.getElementById('saveBtn').onclick = () => {
+    if (!currentThreadId) return;
+    const txt = document.getElementById('editTextarea').value.trim();
+    if (!txt) return;
+    const last = threads[currentThreadId].at(-1);
+    if (txt === last.body) last.body = txt;
+    else threads[currentThreadId].push({ from: 'You', to: 'Team', subject: 'RE: Follow Up', time: new Date().toLocaleString(), body: txt });
+    renderThread(currentThreadId, 'message-content');
+    document.getElementById('editField').classList.remove('active');
+  };
+  function closeOverlay() {
+    document.getElementById('messageOverlay').classList.remove('active');
+  }
+  function showMobileEdit() {
+    if (!currentThreadId) return;
+    document.getElementById('mobileEditField').classList.add('active');
+    document.getElementById('mobileEditTextarea').value = threads[currentThreadId].at(-1).body;
+  }
+  function showMobileReply() {
+    if (!currentThreadId) return;
+    document.getElementById('mobileEditField').classList.add('active');
+    document.getElementById('mobileEditTextarea').value = '';
+  }
+  function saveMobile() {
+    if (!currentThreadId) return;
+    const txt = document.getElementById('mobileEditTextarea').value.trim();
+    if (!txt) return;
+    const last = threads[currentThreadId].at(-1);
+    if (txt === last.body) last.body = txt;
+    else threads[currentThreadId].push({ from: 'You', to: 'Team', subject: 'RE: Follow Up', time: new Date().toLocaleString(), body: txt });
+    renderThread(currentThreadId, 'mobile-message-content');
+    document.getElementById('mobileEditField').classList.remove('active');
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

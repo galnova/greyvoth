@@ -1,0 +1,65 @@
+<script type="text/javascript" src="https://www.gstatic.com/swiffy/v7.4/runtime.js"></script>
+
+<script src="../_master_includes/ani/tomco.js" type="text/javascript"></script>
+<script src="../_master_includes/ani/kennoth.js" type="text/javascript"></script>
+<script src="../_master_includes/ani/rich.js" type="text/javascript"></script>
+<script src="../_master_includes/ani/chuck.js" type="text/javascript"></script>
+<script src="../_master_includes/ani/ced.js" type="text/javascript"></script>
+
+    <style>
+	
+	.aniani { 
+		max-width: 600px;
+		height: 400px;
+		border: solid 1px #000;
+		margin: 10px auto;
+	}
+	
+    </style>
+    
+    <h4>Animation sketch of Rich from Gods V. Men</h4>
+    <div id="rich" class="aniani"></div>
+    <h4>Animation sketch of Kennoth from Gods V. Men</h4>
+    <div id="kenn" class="aniani"></div>
+    <h4>Animation sketch of Chuck from Gods V. Men</h4>
+    <div id="chuck" class="aniani"></div>
+    <h4>Animation sketch of Cedric from Gods V. Men</h4>
+    <div id="ced" class="aniani"></div>
+    <h4>Animation sketch of Sam V. Quose from Gods V. Men</h4>
+    <div id="samquose" class="aniani"></div>
+    <h4>Animation sketch of random fight sequence</h4>
+    <div id="tomco" class="aniani"></div>
+
+    <script>
+	
+    (function ($) {
+      setTimeout(function() {
+		   
+      var stage = new swiffy.Stage(document.getElementById('tomco'),
+          tomco, {});
+      stage.start();
+
+      var stage2 = new swiffy.Stage(document.getElementById('samquose'),
+          samquose, {});
+      stage2.start();
+	   
+      var stage3 = new swiffy.Stage(document.getElementById('rich'),
+          rich, {});
+      stage3.start();
+	  
+	  var stage4 = new swiffy.Stage(document.getElementById('kenn'),
+          kenn, {});
+      stage4.start();
+	  
+	  var stage5 = new swiffy.Stage(document.getElementById('chuck'),
+          chuck, {});
+      stage5.start();
+	  
+	  var stage6 = new swiffy.Stage(document.getElementById('ced'),
+          ced, {});
+      stage6.start();
+	  
+      }, 1000);
+    })(jQuery);
+	
+    </script>

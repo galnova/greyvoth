@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>Mega Menu Example</title>
+</head>
+<style>
+.navbar-toggle {
+  border: none;
+  background: transparent;
+}
+
+.navbar-toggle .icon-bar {
+  background: #fff;
+}
+
+.navbar-toggle.collapsed .icon-bar {
+  background: #333;
+}
+
+.mega-menu {
+  width: 600px;
+}
+
+.mega-menu ul {
+  padding: 0;
+  margin: 0;
+}
+
+.mega-menu ul li {
+  list-style: none;
+}
+
+.mega-menu ul li a {
+  color: #333;
+}
+
+.mega-menu ul li:hover {
+  background-color: #f5f5f5;
+}
+
+.mega-menu ul li:hover a {
+  color: #428bca;
+}
+</style>
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Your Logo</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu 1 <b class="caret"></b></a>
+            <ul class="dropdown-menu mega-menu">
+              <!-- Mega Menu Content for Menu 1 -->
+              <li class="col-sm-3">
+                <ul>
+                  <li class="dropdown-header">Section 1</li>
+                  <li><a href="#">Link 1.1</a></li>
+                  <li><a href="#">Link 1.2</a></li>
+                  <!-- Add more links as needed -->
+                </ul>
+              </li>
+              <!-- Add more sections as needed -->
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu 2 <b class="caret"></b></a>
+            <ul class="dropdown-menu mega-menu">
+              <!-- Mega Menu Content for Menu 2 -->
+              <li class="col-sm-3">
+                <ul>
+                  <li class="dropdown-header">Section 2</li>
+                  <li><a href="#">Link 2.1</a></li>
+                  <li><a href="#">Link 2.2</a></li>
+                  <!-- Add more links as needed -->
+                </ul>
+              </li>
+              <!-- Add more sections as needed -->
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script>
+	// Toggle hamburger icon on click
+$('.navbar-toggle').on('click', function() {
+  $(this).toggleClass('collapsed');
+});
+
+// Slide down from the top animation
+$('.navbar-collapse').on('show.bs.collapse', function() {
+  $(this).css('top', '0');
+});
+
+// Slide in from the right animation for mega menu
+$('.mega-menu').on('show.bs.dropdown', function() {
+  $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
+});
+
+$('.mega-menu').on('hide.bs.dropdown', function() {
+  $(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
+});</script>
+<!--  <script src="script.js"></script>-->
+</body>
+</html>

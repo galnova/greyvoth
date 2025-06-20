@@ -1,0 +1,165 @@
+<!-- Nav tabs -->
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+	  
+    <li class="nav-item">
+		
+      <a class="nav-link active" data-toggle="tab" href="#series"><icon class="fas fa-chess-bishop"></icon> Series</a>
+		
+    </li>
+
+<!--
+	<li class="nav-item">
+		
+      <a class="nav-link" data-toggle="tab" href="#chars"><icon class="fas fa-chess-knight"></icon> Characters</a>
+		
+    </li>
+	  
+    <li class="nav-item">
+		
+      <a class="nav-link" data-toggle="tab" href="#world"><icon class="fas fa-chess-rook"></icon> World</a>
+		
+    </li>
+-->
+	  
+  </ul>
+
+  <!-- Tab panes -->
+
+  <div class="tab-content">
+  
+    <div id="series" class="container-fluid tab-pane active"><br/>
+				         
+<div class="toop">
+	<div>Episode 1: Pilot</div>
+</div>
+                   
+<div class="col-lg-12 zero">
+<p class="cent">Jeph wakes up in a cage and has to deal with the afterlife in the place between heaven and hell, Asunderland.</p>
+<div class="row">
+
+<div ng-controller="pshItemController" class="kcontainer">
+	<div class="row" style="margin: 8px;">
+		<div class="itm item col-md-4 col-lg-2 grip_wrap gonzo" ng-repeat="pshItem in pshItems">
+			<div class="grip_hang_topp"></div>
+				<div class="col grip">
+					<h3>{{ pshItem.name }}</h3>
+					<a title="{{ pshItem.desc }}" class="fancybox zero" rel="gallery1" href="{{ pshItem.img }}">
+					<img alt="{{ pshItem.desc }}" src="{{ pshItem.img }}" />
+					</a>
+					<div class="col coat2 truncate bleww">{{ pshItem.desc }}</div>
+				</div>
+			<div class="grip_hang_bott"></div>
+		</div>
+	</div>
+</div>
+	
+</div>
+</div>
+		
+<div class="toop">
+	<div>Interlude</div>
+</div>
+		
+<div class="col-lg-12 zero">
+	<div class="row">
+		<div ng-controller="pshItemController" class="kcontainer">
+			<div class="row" style="margin: 8px;">
+				<div class="itm item col-md-4 col-lg-2 grip_wrap gonzo" ng-repeat="psh1Item in psh1Items">
+					<div class="grip_hang_topp"></div>
+					<div class="col grip">
+						<h3>{{ psh1Item.name }}</h3>
+						<a title="{{ psh1Item.desc }}" class="fancybox zero" rel="gallery1" href="{{ psh1Item.img }}">
+						<img alt="{{ psh1Item.desc }}" src="{{ psh1Item.img }}" />
+						</a>
+						<div class="col coat2 truncate bleww">{{ psh1Item.desc }}</div>
+					</div>
+					<div class="grip_hang_bott"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<div class="toop">
+		<div>Episode 2: Cort Vs. Jeph</div>
+	</div>
+
+<div class="col-lg-12 zero">
+<div class="col-lg-12 zero">
+<p class="cent">Cort confronts Jeph and they have a Cider Battle at the Safehouse</p>
+	
+	<div class="row">
+		<div ng-controller="pshItemController" class="kcontainer">
+			<div class="row" style="margin: 8px;">
+				<div class="itm item col-md-4 col-lg-2 grip_wrap gonzo" ng-repeat="psh2Item in psh2Items">
+					<div class="grip_hang_topp"></div>
+					<div class="col grip">
+						<h3>{{ psh2Item.name }}</h3>
+						<a title="{{ psh2Item.desc }}" class="fancybox zero" rel="gallery1" href="{{ psh2Item.img }}">
+						<img alt="{{ psh2Item.desc }}" src="{{ psh2Item.img }}" />
+						</a>
+						<div class="col coat2 truncate bleww">{{ psh2Item.desc }}</div>
+					</div>
+					<div class="grip_hang_bott"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+		
+</div>
+
+<div id="chars" class="container-fluid tab-pane fade"><br/>
+      <h2 class="text-center">Characters</h2>
+      <p class="text-center">Details about your favorite characters from Pshover</p>
+
+<div class="row">
+	
+Two
+	
+<!-- -- -->
+
+<!-- -- -->
+	
+</div>
+	
+<!-- -- -->
+
+</div>
+	  
+<div id="world" class="container-fluid tab-pane fade"><br/>
+      <h2 class="text-center">World</h2>
+      <p class="text-center">The world of Pshover</p>
+
+<div class="row">
+	
+Three
+	
+<!-- -- -->
+
+<!--
+<div ng-controller="portItemController" class="kcontainer">
+    <div class="row nill">
+      <div class="itm item col-sm-6 col-md-4 col-lg-2 grip_wrap gonzo" ng-repeat="portItem in portItems">
+        <div class="grip_hang_topp"></div>
+        <div class="col grip">
+          <h3>{{ portItem.name }}</h3>
+          <a title="{{ portItem.desc }}" class="fancybox zero" rel="gallery1" href="{{ portItem.img }}">
+      <img alt="{{ portItem.desc }}" src="{{ portItem.img }}" />
+      </a>
+          <div class="col coat2 truncate bleww">{{ portItem.desc }}</div>
+        </div>
+        <div class="grip_hang_bott"></div>
+      </div>
+    </div>
+-->
+</div>
+	
+<!-- -- -->
+	
+</div>
+	
+<!-- -- -->
+
+</div>
+</div>

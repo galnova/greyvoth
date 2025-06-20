@@ -1,0 +1,243 @@
+<!-- Nav tabs -->
+
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+
+	  
+
+    <li class="nav-item">
+
+		
+
+      <a class="nav-link active" data-toggle="tab" href="#ed"><icon class="fas fa-file-code"></icon> UI/UX Design</a>
+
+		
+
+    </li>
+
+
+
+	<li class="nav-item">
+
+		
+
+      <a class="nav-link" data-toggle="tab" href="#nd"><icon class="fas fa-gem"></icon> Print Design</a>
+
+		
+
+    </li>
+
+	  
+
+    <li class="nav-item">
+
+		
+
+      <a class="nav-link" data-toggle="tab" href="#td"><icon class="fas fa-pencil-alt"></icon> Characters</a>
+
+		
+
+    </li>
+
+	  
+
+  </ul>
+
+
+
+  <!-- Tab panes -->
+
+
+
+  <div class="tab-content">
+
+  
+
+    <div id="ed" class="container-fluid tab-pane active"><br/>
+
+		
+
+      <h2 class="text-center">UI/UX Design</h2>
+
+		
+
+      <p class="text-center">Digital protyping, Wireframing, Pattern Library samples, Flowcharts and User Testing.</p>
+
+
+
+<div class="row">
+
+
+
+<!-- -- -->
+
+	
+
+<div ng-controller="portItemController" class="kcontainer1">
+
+    <div class="row nill">
+
+      <div class="itm item col-sm-6 col-md-4 col-lg-2 grip_wrap gonzo" ng-repeat="port1Item in port1Items">
+
+        <div class="grip_hang_topp"></div>
+
+        <div class="col grip">
+
+          <h3>{{ port1Item.name }}</h3>
+
+          <a title="{{ port1Item.desc }}" class="fancybox zero" rel="gallery1" href="{{ port1Item.img }}">
+
+      <img alt="{{ port1Item.desc }}" src="{{ port1Item.img }}" />
+
+      </a>
+
+          <div class="col coat2 truncate bleww">{{ port1Item.desc }}</div>
+
+        </div>
+
+        <div class="grip_hang_bott"></div>
+
+      </div>
+
+    </div>
+
+</div>
+
+	
+
+<!-- -- -->
+
+
+
+</div>
+
+</div>
+
+
+
+<div id="nd" class="container-fluid tab-pane fade"><br/>
+
+      <h2 class="text-center">Print Designs</h2>
+
+      <p class="text-center">Digital Designs from the print end of Design</p>
+
+
+
+<div class="row">
+
+	
+
+<!-- -- -->
+
+
+
+<div ng-controller="portItemController" class="kcontainer">
+
+    <div class="row nill">
+
+      <div class="itm item col-sm-6 col-md-4 col-lg-2 grip_wrap gonzo" ng-repeat="port2Item in port2Items">
+
+        <div class="grip_hang_topp"></div>
+
+        <div class="col grip">
+
+          <h3>{{ port2Item.name }}</h3>
+
+          <a title="{{ port2Item.desc }}" class="fancybox zero" rel="gallery1" href="{{ port2Item.img }}">
+
+      <img alt="{{ portItem.desc }}" src="{{ port2Item.img }}" />
+
+      </a>
+
+          <div class="col coat2 truncate bleww">{{ port2Item.desc }}</div>
+
+        </div>
+
+        <div class="grip_hang_bott"></div>
+
+      </div>
+
+    </div>
+
+</div>
+
+	
+
+<!-- -- -->
+
+	
+
+</div>
+
+	
+
+<!-- -- -->
+
+
+
+</div>
+
+	  
+
+<div id="td" class="container-fluid tab-pane fade"><br/>
+
+      <h2 class="text-center">Character Designs</h2>
+
+      <p class="text-center">Digital and Traditional Character Designs</p>
+
+
+
+<div class="row">
+
+	
+
+<!-- -- -->
+
+
+
+<div ng-controller="portItemController" class="kcontainer">
+
+    <div class="row nill">
+
+      <div class="itm item col-sm-6 col-md-4 col-lg-2 grip_wrap gonzo" ng-repeat="portItem in portItems">
+
+        <div class="grip_hang_topp"></div>
+
+        <div class="col grip">
+
+          <h3>{{ portItem.name }}</h3>
+
+          <a title="{{ portItem.desc }}" class="fancybox zero" rel="gallery1" href="{{ portItem.img }}">
+
+      <img alt="{{ portItem.desc }}" src="{{ portItem.img }}" />
+
+      </a>
+
+          <div class="col coat2 truncate bleww">{{ portItem.desc }}</div>
+
+        </div>
+
+        <div class="grip_hang_bott"></div>
+
+      </div>
+
+    </div>
+
+</div>
+
+	
+
+<!-- -- -->
+
+	
+
+</div>
+
+	
+
+<!-- -- -->
+
+
+
+</div>
+
+</div>

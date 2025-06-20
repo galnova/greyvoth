@@ -1,0 +1,771 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreyVoth WebAwesome</title>
+
+  <style>
+    wa-page {
+    --menu-width: 15rem;
+    --aside-width: 15rem;
+    }
+    wa-page[view='desktop'] {
+    [slot*='navigation'] {
+      border-inline-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+    }
+    }
+    wa-page[view='mobile'] {
+    --menu-width: auto;
+    --aside-width: auto;
+    }
+    
+    [slot='banner'] {
+    --wa-color-text-link: var(--wa-color-neutral-on-loud);
+    background-color: var(--wa-color-neutral-fill-loud);
+    }
+    [slot='header'] {
+    --wa-link-decoration-default: none;
+    border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+    }
+    [slot*='header'] a {
+    font-weight: var(--wa-font-weight-action);
+    }
+    [slot='subheader'] {
+    background-color: var(--wa-color-surface-lowered);
+    border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+    }
+    [slot='navigation-header'] {
+    border-block-end: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+    }
+    
+    [slot*='navigation'] a {
+    --wa-color-text-link: var(--wa-color-text-normal);
+    }
+    [slot='navigation-footer'] {
+    border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+    
+    .wa-flank {
+      --flank-size: 1.25em;
+    }
+    }
+    [slot='main-header'],
+    main,
+    [slot='main-footer'] {
+    max-inline-size: 60rem;
+    margin-inline: auto;
+    }
+    [slot='main-footer'] {
+    border-block-start: var(--wa-border-width-s) var(--wa-border-style) var(--wa-color-surface-border);
+    }
+    [slot='footer'] {
+    --wa-color-text-link: var(--wa-color-text-quiet);
+    background-color: var(--wa-color-surface-lowered);
+    font-size: var(--wa-font-size-s);
+    }
+    </style>
+
+</head>
+<body>
+<link id="theme-stylesheet" rel="stylesheet" href="https://backers.webawesome.com/dist/styles/themes/default.css" render="blocking" fetchpriority="high">
+<link rel="stylesheet" href="https://backers.webawesome.com/dist/styles/webawesome.css">
+<link id="color-stylesheet" rel="stylesheet" href="https://backers.webawesome.com/dist/styles/utilities.css">
+<link rel="stylesheet" href="https://backers.webawesome.com/dist/styles/forms.css">
+
+<wa-page mobile-breakpoint="920" view="desktop" navigation-placement="start" disable-navigation-toggle="" style="--header-height: 66px; --subheader-height: 50px; --banner-height: 38.390625px; --footer-height: 227.96875px;"><div id="main-content" slot="skip-to-content-target"></div>
+
+<div slot="banner" class="wa-body-s">
+<a href="#" class="wa-cluster wa-align-items-baseline wa-gap-xs" style="flex-wrap: nowrap;">
+  <wa-icon name="gift" aria-hidden="true"></wa-icon>
+  <span>Give a Hoot for the Holidays: Donate now and double your impact.</span>
+</a>
+</div>
+
+<!-- <header slot="header" class="wa-split">
+<div class="wa-cluster">
+  <wa-icon name="feather-pointed" style="color: var(--wa-color-brand-fill-loud); font-size: 1.5em;" aria-hidden="true"></wa-icon>
+  <span id="brand-name" class="wa-heading-s wa-desktop-only">Audubon Worldwide</span>
+  <a href="#">Our Work</a>
+  <a href="#">About Us</a>
+  <a href="#">Discover</a>
+  <a href="#">Get Involved</a>
+</div>
+<div class="wa-cluster wa-gap-xs">
+  <wa-button size="small" variant="brand" appearance="outlined">Find Your Local Audubon</wa-button>
+  <wa-button size="small" variant="brand">Donate</wa-button>
+</div>
+</header> -->
+
+<!-- <nav slot="subheader">
+<div class="wa-cluster" style="flex-wrap: nowrap;">
+  <wa-icon-button data-toggle-nav="" name="bars" label="Menu"></wa-icon-button>
+  <wa-breadcrumb style="font-size: var(--wa-font-size-s);">
+    <wa-breadcrumb-item>Field Guides<wa-icon library="system" variant="solid" name="chevron-right" data-default="" slot="separator" aria-hidden="true"></wa-icon></wa-breadcrumb-item>
+    <wa-breadcrumb-item>Owls<wa-icon library="system" variant="solid" name="chevron-right" data-default="" slot="separator" aria-hidden="true"></wa-icon></wa-breadcrumb-item>
+    <wa-breadcrumb-item aria-current="page">Great Horned Owl<wa-icon library="system" variant="solid" name="chevron-right" data-default="" slot="separator" aria-hidden="true"></wa-icon></wa-breadcrumb-item>
+  </wa-breadcrumb>
+</div>
+<wa-input id="search" class="wa-desktop-only" placeholder="Search" size="small" style="max-inline-size: 12rem;" type="text" appearance="outlined">
+  <wa-icon slot="prefix" name="magnifying-glass" aria-hidden="true"></wa-icon>
+</wa-input>
+</nav> -->
+
+<!-- <nav slot="navigation-header">
+<div class="wa-flank">
+  <wa-avatar image="https://images.unsplash.com/photo-1544648720-132573cb590d?q=20" label="" shape="circle"></wa-avatar>
+  <div class="wa-stack wa-gap-3xs">
+    <span class="wa-heading-s">Great Horned Owl</span>
+    <span class="wa-caption-s" lang="la"><em>Bubo virginianus</em></span>
+  </div>
+</div>
+</nav> -->
+
+<!-- <nav slot="navigation">
+<a href="#identification" data-drawer="close">Identification</a>
+<a href="#range" data-drawer="close">Range and Habitat</a>
+<a href="#behavior" data-drawer="close">Behavior</a>
+<a href="#conservation" data-drawer="close">Conservation</a>
+</nav> -->
+
+<!-- <nav slot="navigation-footer">
+<a href="#" class="wa-flank" data-drawer="close">
+  <wa-icon name="camera" aria-hidden="true"></wa-icon>
+  <span>Photo Gallery</span>
+</a>
+
+<a href="#" class="wa-flank" data-drawer="close">
+  <wa-icon name="map-location-dot" aria-hidden="true"></wa-icon>
+  <span>Interactive Range Map</span>
+</a>
+</nav> -->
+
+<header slot="main-header">
+<div class="wa-flank:end wa-border-radius-l wa-dark" style="background-color: var(--wa-color-surface-lowered); --content-percentage: 35%; padding: var(--wa-space-m);">
+  <div class="wa-stack" style="margin: var(--wa-space-2xl);">
+
+    <h1>GreyVoth WebAwesome</h1>
+
+    <wa-divider role="separator" aria-orientation="horizontal"></wa-divider>
+
+    <div class="wa-cluster wa-gap-xs">
+      <wa-tag size="small" appearance="outlined filled">Owls</wa-tag>
+      <wa-tag size="small" appearance="outlined filled">Birds of Prey</wa-tag>
+      <wa-tag size="small" appearance="outlined filled">Pleistocene Birds</wa-tag>
+    </div>
+
+    <div class="wa-flank">
+      <wa-icon name="ruler" aria-hidden="true"></wa-icon>
+      <span class="wa-caption-m">L 21.5" | WS 48.5"</span>
+    </div>
+
+    <div class="wa-flank">
+      <wa-icon name="earth-americas" aria-hidden="true"></wa-icon>
+      <span class="wa-caption-m">North America (Widespread), Central America (Limited), South America (Limited)</span>
+    </div>
+
+    <div class="wa-flank">
+      <wa-icon name="shield-heart" aria-hidden="true"></wa-icon>
+      <span class="wa-caption-m">Least Concern</span>
+    </div>
+  </div>
+
+  <div class="wa-frame" style="border-radius: var(--wa-border-radius-l); max-inline-size: 40ch;">
+    <img src="https://images.unsplash.com/photo-1544648720-132573cb590d?q=20">
+  </div>
+</div>
+</header>
+
+<main class="wa-body-l">
+    <!-- Buttons and Badges -->
+  <h2 class="wa-heading-m">Buttons & Badges</h2>
+
+  <wa-button>
+    Requests
+    <wa-badge pill>30</wa-badge>
+  </wa-button>
+  
+  <wa-button style="margin-inline-start: 1rem;">
+    Warnings
+    <wa-badge variant="warning" pill>8</wa-badge>
+  </wa-button>
+  
+  <wa-button style="margin-inline-start: 1rem;">
+    Errors
+    <wa-badge variant="danger" pill>6</wa-badge>
+  </wa-button>
+  <!-- Buttons and Badges -->
+
+
+  <!-- Input Fields -->
+  <h2 class="wa-heading-m">Input Fields</h2>
+  <wa-input type="email" placeholder="Email"></wa-input>
+<br />
+<wa-input type="number" placeholder="Number"></wa-input>
+<br />
+<wa-input type="date" placeholder="Date"></wa-input>
+
+   <!-- Input Fields -->
+
+   <wa-card with-image with-footer class="card-overview">
+    <img
+      slot="image"
+      src="https://images.unsplash.com/photo-1559209172-0ff8f6d49ff7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+      alt="A kitten sits patiently between a terracotta pot and decorative grasses."
+    />
+  
+    <strong>Mittens</strong><br />
+    This kitten is as cute as he is playful. Bring him home today!<br />
+    <small class="wa-caption-m">6 weeks old</small>
+  
+    <div slot="footer" class="wa-split">
+      <wa-button variant="brand" pill>More Info</wa-button>
+      <wa-rating label="Rating"></wa-rating>
+    </div>
+  </wa-card>
+  
+  <style>
+    .card-overview {
+      width: 300px;
+    }
+  </style>
+  
+
+  <wa-copy-button
+  value="Custom labels are easy"
+  copy-label="Click to copy"
+  success-label="You did it!"
+  error-label="Whoops, your browser doesn't support this!"
+></wa-copy-button>
+
+
+
+<wa-callout variant="brand">
+  <wa-icon slot="icon" name="circle-info" variant="regular"></wa-icon>
+  <strong>This is super informative</strong><br />
+  You can tell by how pretty the callout is.
+</wa-callout>
+
+<br />
+
+<wa-callout variant="success">
+  <wa-icon slot="icon" name="circle-check" variant="regular"></wa-icon>
+  <strong>Your changes have been saved</strong><br />
+  You can safely exit the app now.
+</wa-callout>
+
+<br />
+
+<wa-callout variant="neutral">
+  <wa-icon slot="icon" name="gear" variant="regular"></wa-icon>
+  <strong>Your settings have been updated</strong><br />
+  Settings will take effect on next login.
+</wa-callout>
+
+<br />
+
+<wa-callout variant="warning">
+  <wa-icon slot="icon" name="triangle-exclamation" variant="regular"></wa-icon>
+  <strong>Your session has ended</strong><br />
+  Please login again to continue.
+</wa-callout>
+
+<br />
+
+<wa-callout variant="danger">
+  <wa-icon slot="icon" name="circle-exclamation" variant="regular"></wa-icon>
+  <strong>Your account has been deleted</strong><br />
+  We're very sorry to see you go!
+</wa-callout>
+
+
+<wa-button variant="brand" loading>Brand</wa-button>
+<wa-button variant="success" loading>Success</wa-button>
+<wa-button variant="neutral" loading>Neutral</wa-button>
+<wa-button variant="warning" loading>Warning</wa-button>
+<wa-button variant="danger" loading>Danger</wa-button>
+
+
+<wa-color-picker label="Select a color"></wa-color-picker>
+
+
+<div class="wa-stack">
+  <wa-details summary="Outlined (default)">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </wa-details>
+  <wa-details summary="Filled" appearance="filled">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </wa-details>
+  <wa-details summary="Filled + Outlined" appearance="filled outlined">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </wa-details>
+  <wa-details summary="Plain" appearance="plain">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </wa-details>
+  </div>
+
+  
+  <wa-dialog label="Dialog" with-header with-footer class="dialog-scrolling">
+    <div style="height: 150vh; border: dashed 2px var(--wa-color-surface-border); padding: 0 1rem;">
+      <p>Scroll down and give it a try! 👇</p>
+    </div>
+    <wa-button slot="footer" variant="brand" data-dialog="close">Close</wa-button>
+  </wa-dialog>
+  
+  <wa-button>Open Dialog</wa-button>
+  
+  <script>
+    const dialog = document.querySelector('.dialog-scrolling');
+    const openButton = dialog.nextElementSibling;
+  
+    openButton.addEventListener('click', () => dialog.open = true);
+  </script>
+
+
+<wa-drawer label="Drawer" light-dismiss with-header with-footer class="drawer-light-dismiss">
+  This drawer will close when you click on the overlay.
+  <wa-button slot="footer" variant="brand" data-drawer="close">Close</wa-button>
+</wa-drawer>
+
+<wa-button>Open Drawer</wa-button>
+
+<script>
+  const drawer = document.querySelector('.drawer-light-dismiss');
+  const openButton = drawer.nextElementSibling;
+
+  openButton.addEventListener('click', () => drawer.open = true);
+</script>
+
+
+<wa-dropdown>
+  <wa-button slot="trigger" caret>Dropdown</wa-button>
+  <wa-menu>
+    <wa-menu-item>Dropdown Item 1</wa-menu-item>
+    <wa-menu-item>Dropdown Item 2</wa-menu-item>
+    <wa-menu-item>Dropdown Item 3</wa-menu-item>
+    <wa-divider></wa-divider>
+    <wa-menu-item type="checkbox" checked>Checkbox</wa-menu-item>
+    <wa-menu-item disabled>Disabled</wa-menu-item>
+    <wa-divider></wa-divider>
+    <wa-menu-item>
+      Prefix
+      <wa-icon slot="prefix" name="gift" variant="solid"></wa-icon>
+    </wa-menu-item>
+    <wa-menu-item>
+      Suffix Icon
+      <wa-icon slot="suffix" name="heart" variant="solid"></wa-icon>
+    </wa-menu-item>
+  </wa-menu>
+</wa-dropdown>
+
+
+<!-- Web Awesome 2 release date 🎉 -->
+<wa-format-date date="2020-07-15T09:17:00-04:00"></wa-format-date>
+
+
+
+<wa-radio-group label="Select an option" name="a" value="1">
+  <wa-radio value="1" hint="What should the user know about radio 1?">Option 1</wa-radio>
+  <wa-radio value="2" hint="What should the user know about radio 2?">Option 2</wa-radio>
+  <wa-radio value="3" hint="What should the user know about radio 3?">Option 3</wa-radio>
+</wa-radio-group>
+
+
+
+<wa-select label="Select one">
+  <wa-option value="option-1">
+    <wa-icon slot="prefix" name="envelope" variant="solid"></wa-icon>
+    Email
+    <wa-icon slot="suffix" name="circle-check" variant="solid"></wa-icon>
+  </wa-option>
+
+  <wa-option value="option-2">
+    <wa-icon slot="prefix" name="phone" variant="solid"></wa-icon>
+    Phone
+    <wa-icon slot="suffix" name="circle-check" variant="solid"></wa-icon>
+  </wa-option>
+
+  <wa-option value="option-3">
+    <wa-icon slot="prefix" name="comment" variant="solid"></wa-icon>
+    Chat
+    <wa-icon slot="suffix" name="circle-check" variant="solid"></wa-icon>
+  </wa-option>
+</wa-select>
+
+
+
+<wa-spinner></wa-spinner>
+<wa-spinner style="font-size: 2rem;"></wa-spinner>
+<wa-spinner style="font-size: 3rem;"></wa-spinner>
+
+
+<wa-switch size="small">Small</wa-switch>
+<br />
+<wa-switch size="medium">Medium</wa-switch>
+<br />
+<wa-switch size="large">Large</wa-switch>
+
+
+
+<wa-tab-group placement="bottom">
+  <wa-tab panel="general">General</wa-tab>
+  <wa-tab panel="custom">Custom</wa-tab>
+  <wa-tab panel="advanced">Advanced</wa-tab>
+  <wa-tab panel="disabled" disabled>Disabled</wa-tab>
+
+  <wa-tab-panel name="general">This is the general tab panel.</wa-tab-panel>
+  <wa-tab-panel name="custom">This is the custom tab panel.</wa-tab-panel>
+  <wa-tab-panel name="advanced">This is the advanced tab panel.</wa-tab-panel>
+  <wa-tab-panel name="disabled">This is a disabled tab panel.</wa-tab-panel>
+</wa-tab-group>
+
+
+
+
+<div class="wa-stack">
+  <p>
+    <wa-tag variant="brand" appearance="outlined accent">Outlined accent</wa-tag>
+    <wa-tag variant="brand" appearance="accent">Accent</wa-tag>
+    <wa-tag variant="brand" appearance="outlined">Outlined</wa-tag>
+    <wa-tag variant="brand" appearance="filled">Filled</wa-tag>
+    <wa-tag variant="brand" appearance="outlined filled">Outlined Filled</wa-tag>
+  </p>
+  <p>
+    <wa-tag variant="success" appearance="outlined accent">Outlined accent</wa-tag>
+    <wa-tag variant="success" appearance="accent">Accent</wa-tag>
+    <wa-tag variant="success" appearance="outlined">Outlined</wa-tag>
+    <wa-tag variant="success" appearance="filled">Filled</wa-tag>
+    <wa-tag variant="success" appearance="outlined filled">Outlined Filled</wa-tag>
+  <p>
+    <wa-tag variant="neutral" appearance="outlined accent">Outlined accent</wa-tag>
+    <wa-tag variant="neutral" appearance="accent">Accent</wa-tag>
+    <wa-tag variant="neutral" appearance="outlined">Outlined</wa-tag>
+    <wa-tag variant="neutral" appearance="filled">Filled</wa-tag>
+    <wa-tag variant="neutral" appearance="outlined filled">Outlined Filled</wa-tag>
+  <p>
+    <wa-tag variant="warning" appearance="outlined accent">Outlined accent</wa-tag>
+    <wa-tag variant="warning" appearance="accent">Accent</wa-tag>
+    <wa-tag variant="warning" appearance="outlined">Outlined</wa-tag>
+    <wa-tag variant="warning" appearance="filled">Filled</wa-tag>
+    <wa-tag variant="warning" appearance="outlined filled">Outlined Filled</wa-tag>
+  <p>
+    <wa-tag variant="danger" appearance="outlined accent">Outlined accent</wa-tag>
+    <wa-tag variant="danger" appearance="accent">Accent</wa-tag>
+    <wa-tag variant="danger" appearance="outlined">Outlined</wa-tag>
+    <wa-tag variant="danger" appearance="filled">Filled</wa-tag>
+    <wa-tag variant="danger" appearance="outlined filled">Outlined Filled</wa-tag>
+  </div>
+
+  
+  <wa-tag size="small" pill>Small</wa-tag>
+<wa-tag size="medium" pill>Medium</wa-tag>
+<wa-tag size="large" pill>Large</wa-tag>
+
+
+
+<div class="tags-removable">
+  <wa-tag size="small" removable>Small</wa-tag>
+  <wa-tag size="medium" removable>Medium</wa-tag>
+  <wa-tag size="large" removable>Large</wa-tag>
+</div>
+
+<script>
+  const div = document.querySelector('.tags-removable');
+
+  div.addEventListener('wa-remove', event => {
+    const tag = event.target;
+    tag.style.opacity = '0';
+    setTimeout(() => (tag.style.opacity = '1'), 2000);
+  });
+</script>
+
+<style>
+  .tags-removable wa-tag {
+    transition: opacity var(--wa-transition-normal);
+  }
+</style>
+
+<wa-tooltip for="my-button">This is a tooltip</wa-tooltip>
+<wa-button id="my-button">Hover Me</wa-button>
+
+
+
+
+
+<div class="wa-grid" style="--min-column-size: 29ch;">
+  <wa-card with-footer>
+    <div class="wa-stack wa-align-items-center wa-gap-xs">
+      <div class="wa-frame wa-border-radius-circle">
+        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+         </div>
+        <h2 class="wa-heading-m">Scott Summers</h2>
+        <p class="wa-caption-l">DevOps</p>
+    </div>
+    <div slot="footer" class="wa-grid wa-gap-xs" style="--min-column-size: 10ch;">
+      <wa-button appearance="outlined">
+        <wa-icon slot="prefix" name="at"></wa-icon>
+        Email
+      </wa-button>
+      <wa-button appearance="outlined">
+        <wa-icon slot="prefix" name="phone"></wa-icon>
+        Phone
+      </wa-button>
+    </div>
+  </wa-card>
+  <wa-card with-footer>
+    <div class="wa-stack wa-align-items-center wa-gap-xs">
+      <div class="wa-frame wa-border-radius-circle">
+        <img src="https://images.unsplash.com/photo-1559188286-a173792c8340?q=80&w=2906&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+         </div>
+        <h2 class="wa-heading-m">Kaitlin Moore</h2>
+        <p class="wa-caption-l">Systems Engineer</p>
+    </div>
+    <div slot="footer" class="wa-grid wa-gap-xs" style="--min-column-size: 10ch;">
+      <wa-button appearance="outlined">
+        <wa-icon slot="prefix" name="at"></wa-icon>
+        Email
+      </wa-button>
+      <wa-button appearance="outlined">
+        <wa-icon slot="prefix" name="phone"></wa-icon>
+        Phone
+      </wa-button>
+    </div>
+  </wa-card>
+  <wa-card with-footer>
+    <div class="wa-stack wa-align-items-center wa-gap-xs">
+      <div class="wa-frame wa-border-radius-circle">
+        <img src="https://images.unsplash.com/photo-1613428800237-c86372070fab?q=80&w=3017&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+         </div>
+        <h2 class="wa-heading-m">Nessa Riley</h2>
+        <p class="wa-caption-l">Cloud Engineer</p>
+    </div>
+    <div slot="footer" class="wa-grid wa-gap-xs" style="--min-column-size: 10ch;">
+      <wa-button appearance="outlined">
+        <wa-icon slot="prefix" name="at"></wa-icon>
+        Email
+      </wa-button>
+      <wa-button appearance="outlined">
+        <wa-icon slot="prefix" name="phone"></wa-icon>
+        Phone
+      </wa-button>
+    </div>
+  </wa-card>
+<wa-card with-footer>
+    <div class="wa-stack wa-align-items-center wa-gap-xs">
+      <div class="wa-frame wa-border-radius-circle">
+        <img src="https://images.unsplash.com/photo-1645288059073-af3e9eb62a29?q=80&w=2936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+         </div>
+        <h2 class="wa-heading-m">Veronica Staley</h2>
+        <p class="wa-caption-l">Machine Learning Engineer</p>
+    </div>
+    <div slot="footer" class="wa-grid wa-gap-xs" style="--min-column-size: 10ch;">
+      <wa-button appearance="outlined">
+        <wa-icon slot="prefix" name="at"></wa-icon>
+        Email
+      </wa-button>
+      <wa-button appearance="outlined">
+        <wa-icon slot="prefix" name="phone"></wa-icon>
+        Phone
+      </wa-button>
+    </div>
+  </wa-card>
+</div>
+
+
+<div class="wa-stack">
+  <h2>Frequently Asked Questions</h2>
+  <wa-details appearance="plain">
+    <h3 slot="summary" class="wa-heading-m" style="margin: 0">Is Zion actually real, or just another Matrix?</h3>
+    Ah, the question that keeps redpills up at night. Sure, we escaped the first Matrix, but who’s to say Zion isn’t just another layer of the simulation?
+  </wa-details>
+  <wa-divider></wa-divider>
+  <wa-details appearance="plain">
+    <h3 slot="summary" class="wa-heading-m" style="margin: 0">Why do the Agents always wear suits?</h3>
+    Because nothing says "unstoppable digital enforcer" like a generic business professional aesthetic. Also, intimidation. You ever try fighting someone in sunglasses and a tie? It’s terrifying.
+  </wa-details>
+  <wa-divider></wa-divider>
+  <wa-details appearance="plain">
+    <h3 slot="summary" class="wa-heading-m" style="margin: 0">Can I go back into the Matrix once I’m out?</h3>
+    Technically, yes—via hacking in. Emotionally? That depends on how well you handle the knowledge that nothing around you is real.
+  </wa-details>
+</div>
+
+
+
+<div class="wa-grid">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+
+<div class="wa-grid">
+  <div class="wa-stack wa-gap-s">
+    <div class="wa-frame wa-border-radius-l">
+      <img src="https://images.unsplash.com/photo-1520763185298-1b434c919102?q=20" alt="" />
+    </div>
+    <h3 class="wa-heading-s">Tulip</h3>
+    <em>Tulipa gesneriana</em>
+  </div>
+  <div class="wa-stack wa-gap-s">
+    <div class="wa-frame wa-border-radius-l">
+      <img src="https://images.unsplash.com/photo-1591767134492-338e62f7b5a2?q=20" alt="" />
+    </div>
+    <h3 class="wa-heading-s">Peony</h3>
+    <em>Paeonia officinalis</em>
+  </div>
+  <div class="wa-stack wa-gap-s">
+    <div class="wa-frame wa-border-radius-l">
+      <img src="https://images.unsplash.com/photo-1590872000386-4348c6393115?q=20" alt="" />
+    </div>
+    <h3 class="wa-heading-s">Poppy</h3>
+    <em>Papaver rhoeas</em>
+  </div>
+  <div class="wa-stack wa-gap-s">
+    <div class="wa-frame wa-border-radius-l">
+      <img src="https://images.unsplash.com/photo-1516723338795-324c7c33f700?q=20" alt="" />
+    </div>
+    <h3 class="wa-heading-s">Sunflower</h3>
+    <em>Helianthus annuus</em>
+  </div>
+  <div class="wa-stack wa-gap-s">
+    <div class="wa-frame wa-border-radius-l">
+      <img src="https://images.unsplash.com/photo-1563601841845-74a0a8ab7c8a?q=20" alt="" />
+    </div>
+    <h3 class="wa-heading-s">Daisy</h3>
+    <em>Bellis perennis</em>
+  </div>
+</div>
+
+
+<div class="wa-cluster">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<!-- We'll vary the div sizes to show the flow of cluster elements -->
+<style>
+  .wa-cluster div:empty:nth-child(3n) {
+    min-inline-size: 6rem;
+  }
+  .wa-cluster div:empty:nth-child(3n + 2) {
+    min-inline-size: 8rem;
+  }
+</style>
+
+
+
+<h2 id="identification">Identification</h2>
+<p>Lorem ipsum odor amet, consectetuer adipiscing elit. Eget habitant scelerisque lectus ultrices nascetur aliquet sapien primis. Cursus sapien fusce semper nulla elit sociosqu lectus per sem. Sem ad porttitor dictum nisl pharetra tortor convallis. Sit molestie hendrerit porta dictum tortor posuere euismod magna. Mauris suspendisse pharetra finibus; eleifend etiam ridiculus.</p>
+<h2 id="range">Range and Habitat</h2>
+<p>Diam sed ipsum pretium porttitor class cubilia elementum. Blandit felis ligula habitant ultricies vulputate rutrum lacus commodo pulvinar. Nostra semper placerat lectus in dis eu. Sagittis ipsum placerat rhoncus lacus id eget. Erat pharetra aptent enim, augue accumsan ultricies inceptos habitasse. Senectus id maximus parturient tellus; fermentum posuere vulputate luctus. Ac tempus dapibus vehicula ligula ullamcorper sit duis.</p>
+<h2 id="behavior">Behavior</h2>
+<p>Erat vitae luctus arcu taciti malesuada pretium arcu justo primis. Cubilia vitae maecenas congue velit id netus arcu. Dictum vel pellentesque taciti fermentum risus consectetur amet. Faucibus commodo habitasse sem maximus praesent purus, dignissim tristique porta. Platea magna justo ipsum ut metus ac facilisi. Imperdiet laoreet pharetra maximus lacus tortor suscipit. Nam quisque iaculis orci porttitor pellentesque rhoncus. Molestie sagittis tincidunt quisque nisi non urna conubia.</p>
+<h2 id="conservation">Conservation</h2>
+<p>Nullam magna quam quisque eu varius integer. Inceptos donec facilisi risus himenaeos semper mollis habitasse. Vehicula lacus vivamus euismod pharetra mollis dictum. Ante ex tortor elementum eleifend habitasse orci aliquam. Fames erat senectus fames etiam dapibus cursus.</p>
+</main>
+
+<footer slot="main-footer">
+<!-- <section>
+  <h2 class="wa-heading-m">Sources</h2>
+  <ul class="wa-body-s">
+    <li><cite><a href="https://www.audubon.org/field-guide/bird/great-horned-owl" target="_blank" rel="noopener">Great Horned Owl</a></cite>, National Audubon Society. Retrieved 5 December 2024.</li>
+    <li><cite><a href="https://www.allaboutbirds.org/guide/Great_Horned_Owl/" target="_blank" rel="noopener">Great Horned Owl</a></cite>, All About Birds by CornellLab. Retrieved 5 December 2024.</li>
+    <li>Armistead, G. L. (2015). <cite>Field guide to birds of Pennsylvania</cite>. Scott &amp; Nix, Inc.</li>
+  </ul>
+</section> -->
+</footer>
+
+<!-- <aside slot="aside" class="wa-desktop-only">
+<h2 class="wa-heading-m">Discover More Birds</h2>
+
+<wa-card with-image="" appearance="outlined">
+  <div slot="image" class="wa-frame">
+    <img src="https://images.unsplash.com/photo-1635254859323-65b78408dcca?q=20" alt="">
+  </div>
+  <div class="wa-stack wa-gap-3xs">
+    <span class="wa-heading-s">Long-eared Owl</span>
+    <span class="wa-caption-s" lang="la"><em>Asio otus</em></span>
+  </div>
+</wa-card>
+
+<wa-card with-image="" appearance="outlined">
+  <div slot="image" class="wa-frame">
+    <img src="https://images.unsplash.com/photo-1661350356618-f5915c7b6a3c?q=20" alt="">
+  </div>
+  <div class="wa-stack wa-gap-3xs">
+    <span class="wa-heading-s">Northen Hawk Owl</span>
+    <span class="wa-caption-s" lang="la"><em>Surnia ulula</em></span>
+  </div>
+</wa-card>
+
+<wa-card with-image="" appearance="outlined">
+  <div slot="image" class="wa-frame">
+    <img src="https://images.unsplash.com/photo-1660307777355-f08bced145d3?q=20" alt="">
+  </div>
+  <div class="wa-stack wa-gap-3xs">
+    <span class="wa-heading-s">Golden Eagle</span>
+    <span class="wa-caption-s" lang="la"><em>Aquila chrysaetos</em></span>
+  </div>
+</wa-card>
+</aside> -->
+
+<footer slot="footer" class="wa-grid wa-gap-xl">
+
+<div class="wa-cluster" style="flex-wrap: nowrap;">
+  <wa-icon name="feather-pointed" aria-hidden="true"></wa-icon>
+  <span class="wa-heading-s">Audubon Worldwide</span>
+</div>
+
+<div class="wa-stack">
+  <h3 class="wa-heading-xs">Our Work</h3>
+  <a href="#">Habitat Restoration</a>
+  <a href="#">Migration Science</a>
+  <a href="#">Advocacy</a>
+</div>
+
+<div class="wa-stack">
+  <h3 class="wa-heading-xs">About Us</h3>
+  <a href="#">Our History</a>
+  <a href="#">Leadership</a>
+  <a href="#">Fiscal Reports</a>
+</div>
+
+<div class="wa-stack">
+  <h3 class="wa-heading-xs">Discover</h3>
+  <a href="#">Field Guides</a>
+  <a href="#">Photo Search</a>
+  <a href="#">Gear and Resources</a>
+</div>
+
+<div class="wa-stack">
+  <h3 class="wa-heading-xs">Get Involved</h3>
+  <a href="#">Adopt a Bird</a>
+  <a href="#">Your Local Audubon</a>
+  <a href="#">Youth Audubon Camps</a>
+</div>
+
+</footer>
+
+</wa-page>
+
+<script>
+const sectionAnchors = document.querySelectorAll("[slot*='navigation'] a[href*='#']");
+sectionAnchors.forEach((sectionAnchor) => sectionAnchor.setAttribute("data-drawer", "close"));
+</script>
+
+<script src="https://backers.webawesome.com/dist/webawesome.loader.js" type="module"></script>
+
+</body>
+</html>

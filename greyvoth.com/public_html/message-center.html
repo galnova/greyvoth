@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Message Center</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .message-view {
+      border-left: 1px solid #dee2e6;
+      padding: 1rem;
+      height: 100%;
+    }
+
+    .message-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 1050;
+      display: none;
+      overflow-y: auto;
+      padding: 1rem;
+    }
+
+    @media (max-width: 767.98px) {
+      .message-view-desktop {
+        display: none;
+      }
+
+      .message-overlay.active {
+        display: block;
+      }
+    }
+
+    .edit-field {
+      display: none;
+    }
+
+    .edit-field.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row vh-100">
+    <!-- Left Column: Tabs and Message List -->
+    <div class="col-md-4 border-end d-flex flex-column">
+      <!-- Tabs -->
+      <ul class="nav nav-tabs px-3 pt-3" id="messageTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#inbox" type="button">Inbox</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#trash" type="button">Trash</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#sent" type="button">Sent</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#drafts" type="button">Drafts</button>
+        </li>
+      </ul>
+
+      <!-- Message List -->
+      <div class="tab-content flex-grow-1 overflow-auto" id="tabContent">
+        <div class="tab-pane fade show active p-3" id="inbox">
+          <ul class="list-group">
+            <li class="list-group-item message-item" data-message="Hello from the Inbox!">Inbox Message 1</li>
+            <li class="list-group-item message-item" data-message="Another inbox message here.">Inbox Message 2</li>
+          </ul>
+        </div>
+        <div class="tab-pane fade p-3" id="trash">
+          <ul class="list-group">
+            <li class="list-group-item message-item" data-message="Trashed message.">Trash Message</li>
+          </ul>
+        </div>
+        <div class="tab-pane fade p-3" id="sent">
+          <ul class="list-group">
+            <li class="list-group-item message-item" data-message="Sent message content.">Sent Message</li>
+          </ul>
+        </div>
+        <div class="tab-pane fade p-3" id="drafts">
+          <ul class="list-group">
+            <li class="list-group-item message-item" data-message="Draft content here.">Draft Message</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Message View (Desktop only) -->
+    <div class="col-md-8 message-view-desktop message-view">
+      <h5 id="message-title">Select a message</h5>
+      <p id="message-content">Message preview will appear here.</p>
+      <button class="btn btn-outline-primary btn-sm" id="editBtn">Edit Message</button>
+      <div class="mt-3 edit-field" id="editField">
+        <textarea class="form-control" rows="5" id="editTextarea"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Message Overlay -->
+<div class="message-overlay" id="messageOverlay">
+  <button class="btn btn-link text-danger" onclick="closeOverlay()">Close</button>
+  <h5 id="mobile-message-title"></h5>
+  <p id="mobile-message-content"></p>
+  <button class="btn btn-outline-primary btn-sm" id="mobileEditBtn">Edit Message</button>
+  <div class="mt-3 edit-field" id="mobileEditField">
+    <textarea class="form-control" rows="5" id="mobileEditTextarea"></textarea>
+  </div>
+</div>
+
+<script>
+  // Handle message item clicks
+  document.querySelectorAll('.message-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const content = item.dataset.message;
+      const title = item.textContent;
+
+      // Desktop view
+      document.getElementById('message-title').textContent = title;
+      document.getElementById('message-content').textContent = content;
+      document.getElementById('editTextarea').value = content;
+
+      // Mobile view
+      document.getElementById('mobile-message-title').textContent = title;
+      document.getElementById('mobile-message-content').textContent = content;
+      document.getElementById('mobileEditTextarea').value = content;
+
+      if (window.innerWidth < 768) {
+        document.getElementById('messageOverlay').classList.add('active');
+      }
+    });
+  });
+
+  // Edit buttons
+  document.getElementById('editBtn').addEventListener('click', () => {
+    document.getElementById('editField').classList.toggle('active');
+  });
+
+  document.getElementById('mobileEditBtn').addEventListener('click', () => {
+    document.getElementById('mobileEditField').classList.toggle('active');
+  });
+
+  function closeOverlay() {
+    document.getElementById('messageOverlay').classList.remove('active');
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+	
+<script src="assets/vendor/jquery/jquery.min.js"></script> 
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script> 
+<script src="assets/vendor/php-email-form/validate.js"></script> 
+<script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script> 
+<script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script> 
+<script src="assets/vendor/counterup/counterup.min.js"></script> 
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script> 
+<script src="assets/vendor/venobox/venobox.min.js"></script> 
+<script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script> -->
+<script src="https://kit.fontawesome.com/a1b29a2366.js" crossorigin="anonymous"></script>
+<script src="assets/js/main.js"></script>
+<!--<script src="assets/js/caro.js"></script>-->
+</body>
+</html>
