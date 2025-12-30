@@ -59,7 +59,8 @@ footer .btn_wrap:hover span, footer .btn_wrap:hover i {
   font-size: 24px;
   position: absolute;
   top: 7px;
-  left: 5px;
+  /* left: 5px; */
+  margin-left: 5px;
 }
 .back-to-top:hover {
   color: #fff;
