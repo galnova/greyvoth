@@ -2877,9 +2877,9 @@ Copyright (c) 2014 Daniel Eden
   min-height: 300px;
 }
 
-.portfolio .back-to-top i {
+/* .portfolio .back-to-top i {
     left: 8px;
-}
+} */
 
 @media (min-width: 100px) and (max-width: 500px) {
 
