@@ -21,9 +21,23 @@
   const indicators = carouselEl.querySelector(".carousel-indicators");
   if (!inner || !indicators) return;
 
-  const original = {
-    innerHTML: inner.innerHTML,
-    indicatorsHTML: indicators.innerHTML
+  const TRANSIENT_ITEM_CLASSES = [
+    "active",
+    "carousel-item-start",
+    "carousel-item-end",
+    "carousel-item-next",
+    "carousel-item-prev"
+  ];
+
+  const disposeCarousel = () => {
+    const inst = bootstrap.Carousel.getInstance(carouselEl);
+    if (inst) inst.dispose();
+  };
+
+  const stripTransientClasses = (root) => {
+    root.querySelectorAll(".carousel-item").forEach((it) => {
+      TRANSIENT_ITEM_CLASSES.forEach((c) => it.classList.remove(c));
+    });
   };
 
   const buildIndicators = (count, activeIndex) => {
@@ -48,53 +62,85 @@
     return idx >= 0 ? idx : 0;
   };
 
-  const disposeCarousel = () => {
-    const inst = bootstrap.Carousel.getInstance(carouselEl);
-    if (inst) inst.dispose();
+  const initCarousel = (activeIndex) => {
+    const inst = bootstrap.Carousel.getOrCreateInstance(carouselEl, {
+      interval: 9000,
+      ride: false,
+      touch: true
+    });
+
+    if (typeof inst.to === "function") inst.to(activeIndex);
+    return inst;
   };
 
-  const initCarousel = () => {
-    bootstrap.Carousel.getOrCreateInstance(carouselEl);
+  const normalizeInitialState = () => {
+    disposeCarousel();
+
+    stripTransientClasses(inner);
+
+    const items = Array.from(inner.querySelectorAll(".carousel-item"));
+    if (items.length) items[0].classList.add("active");
+
+    indicators.querySelectorAll("button").forEach((b) => {
+      b.classList.remove("active");
+      b.removeAttribute("aria-current");
+    });
+
+    const firstBtn = indicators.querySelector("button");
+    if (firstBtn) {
+      firstBtn.classList.add("active");
+      firstBtn.setAttribute("aria-current", "true");
+    }
+  };
+
+  normalizeInitialState();
+
+  const original = {
+    innerHTML: inner.innerHTML
   };
 
   const snapshotCardsFromOriginal = () => {
     const temp = document.createElement("div");
     temp.innerHTML = original.innerHTML;
-    const cols = Array.from(temp.querySelectorAll(".carousel-item .col-12.col-md-6.col-lg-4"));
+    stripTransientClasses(temp);
+
+    const cols = Array.from(
+      temp.querySelectorAll(".carousel-item .col-12.col-md-6.col-lg-4")
+    );
     return cols.map((col) => col.innerHTML);
   };
 
-  const setDesktopMode = (preferIndex = null) => {
+  const setDesktopMode = (preferIndex = 0) => {
     disposeCarousel();
 
     inner.innerHTML = original.innerHTML;
 
+    stripTransientClasses(inner);
+
     const items = Array.from(inner.querySelectorAll(".carousel-item"));
-    let activeIndex = preferIndex ?? 0;
-    if (activeIndex >= items.length) activeIndex = 0;
+    const max = Math.max(0, items.length - 1);
+    const activeIndex = Math.min(Math.max(preferIndex, 0), max);
 
     items.forEach((it, i) => it.classList.toggle("active", i === activeIndex));
 
     buildIndicators(items.length, activeIndex);
-    initCarousel();
+    initCarousel(activeIndex);
   };
 
-  const setMobileMode = () => {
+  const setMobileMode = (preferIndex = 0) => {
     disposeCarousel();
 
-    const activeDesktopIndex = getActiveIndex();
-
     const cards = snapshotCardsFromOriginal();
-    const perDesktopSlide = 3;
-    const startIndex = Math.min(activeDesktopIndex * perDesktopSlide, Math.max(0, cards.length - 1));
+    const max = Math.max(0, cards.length - 1);
+    const activeIndex = Math.min(Math.max(preferIndex, 0), max);
 
     inner.innerHTML = "";
 
     cards.forEach((cardHTML, i) => {
       const item = document.createElement("div");
-      item.className = "carousel-item" + (i === startIndex ? " active" : "");
-      item.innerHTML =
-        `<div class="row g-4">
+      item.className = "carousel-item" + (i === activeIndex ? " active" : "");
+      item.innerHTML = `
+        <div class="row g-4">
           <div class="col-12">
             ${cardHTML}
           </div>
@@ -102,21 +148,30 @@
       inner.appendChild(item);
     });
 
-    buildIndicators(cards.length, startIndex);
-    initCarousel();
+    buildIndicators(cards.length, activeIndex);
+    initCarousel(activeIndex);
   };
+
+  let hasInitialized = false;
 
   const applyMode = () => {
     const isMobile = window.matchMedia("(max-width: 991.98px)").matches;
 
-    if (isMobile) {
-      setMobileMode();
+    if (!hasInitialized) {
+      hasInitialized = true;
+      if (isMobile) setMobileMode(0);
+      else setDesktopMode(0);
       return;
     }
 
     const currentIndex = getActiveIndex();
-    const desktopIndex = Math.floor(currentIndex / 3);
-    setDesktopMode(desktopIndex);
+
+    if (isMobile) {
+      setMobileMode(currentIndex * 3);
+      return;
+    }
+
+    setDesktopMode(Math.floor(currentIndex / 3));
   };
 
   let t = null;
@@ -142,24 +197,19 @@
     const filter = target.getAttribute("data-filter");
     if (!filter) return;
 
-    // Active state
-    filters.querySelectorAll("li").forEach(li =>
+    filters.querySelectorAll("li").forEach((li) =>
       li.classList.remove("filter-active")
     );
     target.classList.add("filter-active");
 
-    // Filtering logic
-    items.forEach(item => {
+    items.forEach((item) => {
       if (filter === "*") {
         item.style.display = "";
         return;
       }
 
-      if (item.matches(filter)) {
-        item.style.display = "";
-      } else {
-        item.style.display = "none";
-      }
+      if (item.matches(filter)) item.style.display = "";
+      else item.style.display = "none";
     });
   });
 })();
