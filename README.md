@@ -1,2 +1,2 @@
 # greyvoth
-This is my base website
+My Name is Keith Jeter and I created Greyvoth.com to practice my HTML CSS and JS skills and also display my artwork. This site was built with HTML, CSS, JS with the Bootstrap 5 Framework. All art is original work by me.
