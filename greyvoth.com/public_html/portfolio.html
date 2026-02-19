@@ -1,663 +1,835 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Greyvoth - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="keywords" content="greyvoth, Keith Jeter, keith jeter, keith h jeter, online comics, graphic design, graphic arts, design, art, web art, web design, illustration, painting, drawing, resume, portfolio, university of michigan alumni, the academy of art university, cass tech">
 
-<html lang="en" ng-app>
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 
-  <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
 
-    <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css?v=2">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="_css/style-nu.css" rel="stylesheet">
+  <link href="_css/alt.css" rel="stylesheet">
+</head>
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-capable" content="yes" />
+<body class="alt">
 
-    <title>Greyvoth - Portfolio</title>
+<a class="skip-link" href="#main">Skip to content</a>
 
-    <meta content="" name="description">
+<header id="header" class="site-header">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark site-nav">
+      <a class="navbar-brand m-0" href="" aria-label="Go to homepage">
+        <span class="gn-logo">
+          <img alt="galaxy supernova logo" src="2020/nu_logo.png">
+        </span>
+      </a>
 
-    <meta name="KeyWords" content="greyvoth, Keith Jeter, keith jeter, keith h jeter, ai, llm, online art, design, art, user experience design,user interface design, illustration, painting, drawing, resume, portfolio, university of michigan alumni, the academy of art university alumni, cass tech alumni" />
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Favicons -->
+      <div class="collapse navbar-collapse" id="primaryNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="about.html#resume">Resume</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
 
-    <link href="assets/img/favicon.png" rel="icon">
+<main id="main">
 
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <section class="section-bg gv-section">
+    <div class="container hero gv-container">
+      <h1 class="mb-2">Projects Portfolio</h1>
+      <p class="m-0">
+        Here are a few of my most recent projects with a brief explanation of the thought process behind the creation and implementation.
+      </p>
+    </div>
+  </section>
 
+  <section class="section-bg gv-section">
+    <div class="container gv-container py-4 py-md-5">
 
+      <ul class="nav nav-tabs justify-content-center" id="portfolioTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="tab-ed" data-bs-toggle="tab" data-bs-target="#panel-ed" type="button" role="tab" aria-controls="panel-ed" aria-selected="true">
+            <i class="fa-solid fa-file-code me-2" aria-hidden="true"></i>BCBSM UX Desktop
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-td" data-bs-toggle="tab" data-bs-target="#panel-td" type="button" role="tab" aria-controls="panel-td" aria-selected="false">
+            <i class="fa-solid fa-file-code me-2" aria-hidden="true"></i>BCBSM UX App
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-md2" data-bs-toggle="tab" data-bs-target="#panel-md2" type="button" role="tab" aria-controls="panel-md2" aria-selected="false">
+            <i class="fa-solid fa-file-code me-2" aria-hidden="true"></i>BCBSM UI Desktop
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tab-md" data-bs-toggle="tab" data-bs-target="#panel-md" type="button" role="tab" aria-controls="panel-md" aria-selected="false">
+            <i class="fa-solid fa-file-code me-2" aria-hidden="true"></i>BCBSM UI App
+          </button>
+        </li>
+      </ul>
 
-    <!-- Google Fonts -->
+      <div class="tab-content pt-4" id="portfolioTabsContent">
 
-    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i&subset=cyrillic" rel="stylesheet"> -->
+        <div class="tab-pane fade show active" id="panel-ed" role="tabpanel" aria-labelledby="tab-ed" tabindex="0">
+          <div class="mb-3">
+            <h2 class="gv-section-title mb-2">BCBSM UX Desktop</h2>
+            <p class="gv-section-sub mb-0">UX work with components and patterns for the desktop site (Figma).</p>
+          </div>
 
+          <div class="row g-3 g-md-4">
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-bcbsm-components.png" data-title="UX DT Comp 1" aria-label="Open UX DT Comp 1">
+                  <img src="2024/ux/figma-bcbsm-components.png" class="img-fluid" alt="Desktop UX - Components 1" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX DT Comp 1</h3>
+                  <div class="text-muted small">Desktop - UX</div>
+                </div>
+              </div>
+            </div>
 
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-bcbsm-components-2.png" data-title="UX DT Comp 2" aria-label="Open UX DT Comp 2">
+                  <img src="2024/ux/figma-bcbsm-components-2.png" class="img-fluid" alt="Desktop UX - Components 2" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX DT Comp 2</h3>
+                  <div class="text-muted small">Desktop - UX</div>
+                </div>
+              </div>
+            </div>
 
-    <!-- Nu Font -->
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-bcbsm-components-full-design-mode.png" data-title="UX DT Comp 3" aria-label="Open UX DT Comp 3">
+                  <img src="2024/ux/figma-bcbsm-components-full-design-mode.png" class="img-fluid" alt="Desktop UX - Full design mode" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX DT Comp 3</h3>
+                  <div class="text-muted small">Desktop - UX</div>
+                </div>
+              </div>
+            </div>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-bcbsm-ux-full.png" data-title="UX DT Comp 4" aria-label="Open UX DT Comp 4">
+                  <img src="2024/ux/figma-bcbsm-ux-full.png" class="img-fluid" alt="Desktop UX - Full" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX DT Comp 4</h3>
+                  <div class="text-muted small">Desktop - UX</div>
+                </div>
+              </div>
+            </div>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-bcbsm-ux-claims-form.png" data-title="UX DT Comp 5" aria-label="Open UX DT Comp 5">
+                  <img src="2024/ux/figma-bcbsm-ux-claims-form.png" class="img-fluid" alt="Desktop UX - Claims form" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX DT Comp 5</h3>
+                  <div class="text-muted small">Desktop - UX</div>
+                </div>
+              </div>
+            </div>
 
-    <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-bcbsm-ux-referrals.png" data-title="UX DT Comp 6" aria-label="Open UX DT Comp 6">
+                  <img src="2024/ux/figma-bcbsm-ux-referrals.png" class="img-fluid" alt="Desktop UX - Referrals" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX DT Comp 6</h3>
+                  <div class="text-muted small">Desktop - UX</div>
+                </div>
+              </div>
+            </div>
 
-
-
-    <!-- Vendor CSS Files -->
-
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-
-    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-
-    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css" rel="stylesheet" />
-
-    <link href="assets/css/style.css" rel="stylesheet">
-
-
-
-
-
-  </head>
-
-
-
-  <body>
-
-
-    <!-- ======= Header ======= -->
-
-    <header id="header">
-
-      <div class="container d-flex align-items-center">
-
-
-
-        <div class="logo mr-auto">
-
-          <h1 class="text-light"><a href="index.html"><span>Greyvoth</span></a></h1>
-
-          <!-- Uncomment below if you prefer to use an image logo -->
-
-          <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
+          </div>
         </div>
 
+        <div class="tab-pane fade" id="panel-td" role="tabpanel" aria-labelledby="tab-td" tabindex="0">
+          <div class="mb-3">
+            <h2 class="gv-section-title mb-2">BCBSM UX Mobile App</h2>
+            <p class="gv-section-sub mb-0">UX work with components and patterns for the mobile app (Figma).</p>
+          </div>
 
+          <div class="row g-3 g-md-4">
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-app-components.png" data-title="UX Comp 1" aria-label="Open UX Comp 1">
+                  <img src="2024/ux/figma-app-components.png" class="img-fluid" alt="App UX - Components 1" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX Comp 1</h3>
+                  <div class="text-muted small">App - UX</div>
+                </div>
+              </div>
+            </div>
 
-        <nav class="nav-menu d-none d-lg-block">
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-app-components-2.png" data-title="UX Comp 2" aria-label="Open UX Comp 2">
+                  <img src="2024/ux/figma-app-components-2.png" class="img-fluid" alt="App UX - Components 2" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX Comp 2</h3>
+                  <div class="text-muted small">App - UX</div>
+                </div>
+              </div>
+            </div>
 
-          <ul>
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-app-ux-full.png" data-title="UX Comp 3" aria-label="Open UX Comp 3">
+                  <img src="2024/ux/figma-app-ux-full.png" class="img-fluid" alt="App UX - Full" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX Comp 3</h3>
+                  <div class="text-muted small">App - UX</div>
+                </div>
+              </div>
+            </div>
 
-            <li class="active"><a href="index.html">Home</a></li>
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-app-ux-full-design-mode.png" data-title="UX Comp 4" aria-label="Open UX Comp 4">
+                  <img src="2024/ux/figma-app-ux-full-design-mode.png" class="img-fluid" alt="App UX - Full design mode" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX Comp 4</h3>
+                  <div class="text-muted small">App - UX</div>
+                </div>
+              </div>
+            </div>
 
-            <li><a href="#about">About</a></li>
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-app-ux-forms.png" data-title="UX Comp 5" aria-label="Open UX Comp 5">
+                  <img src="2024/ux/figma-app-ux-forms.png" class="img-fluid" alt="App UX - Forms" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX Comp 5</h3>
+                  <div class="text-muted small">App - UX</div>
+                </div>
+              </div>
+            </div>
 
-            <li><a href="#resume">Resume</a></li>
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-app-ux-registration.png" data-title="UX Comp 6" aria-label="Open UX Comp 6">
+                  <img src="2024/ux/figma-app-ux-registration.png" class="img-fluid" alt="App UX - Registration" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX Comp 6</h3>
+                  <div class="text-muted small">App - UX</div>
+                </div>
+              </div>
+            </div>
 
-            <li><a href="#services">Services</a></li>
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="2024/ux/figma-app-ux-health-and-well-being.png" data-title="UX Comp 7" aria-label="Open UX Comp 7">
+                  <img src="2024/ux/figma-app-ux-health-and-well-being.png" class="img-fluid" alt="App UX - Health and well-being" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">UX Comp 7</h3>
+                  <div class="text-muted small">App - UX</div>
+                </div>
+              </div>
+            </div>
 
-            <li><a href="#portfolio">Portfolio</a></li>
+          </div>
+        </div>
 
-            <li><a href="#contact">Contact</a></li>
+        <div class="tab-pane fade" id="panel-md2" role="tabpanel" aria-labelledby="tab-md2" tabindex="0">
+          <div class="mb-3">
+            <h2 class="gv-section-title mb-2">BCBSM Chat, Claims and ID Card Design</h2>
+            <p class="gv-section-sub mb-0">Prototyping of chat, ID Card and Claims Reimbursement for the Member Portal (HTML, CSS &amp; Bootstrap).</p>
+          </div>
 
-          </ul>
+          <div class="row g-3 g-md-4">
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/prototype-claim-reimbursement-landing-page.png" data-title="Claims - Reimbursement Landing" aria-label="Open Claims - Reimbursement Landing">
+                  <img src="portfolio-20x/prototype-claim-reimbursement-landing-page.png" class="img-fluid" alt="Claims UI - Reimbursement landing" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Claims - UI</h3>
+                  <div class="text-muted small">Reimbursement - Landing</div>
+                </div>
+              </div>
+            </div>
 
-        </nav><!-- .nav-menu -->
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/claim-reimbursement-form-step-1.png" data-title="Claims - Contact Info" aria-label="Open Claims - Contact Info">
+                  <img src="portfolio-20x/claim-reimbursement-form-step-1.png" class="img-fluid" alt="Claims UI - Contact info" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Claims - UI</h3>
+                  <div class="text-muted small">Reimbursement - Contact Info</div>
+                </div>
+              </div>
+            </div>
 
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/claim-reimbursement-form-step-2.png" data-title="Claims - Step 1" aria-label="Open Claims - Step 1">
+                  <img src="portfolio-20x/claim-reimbursement-form-step-2.png" class="img-fluid" alt="Claims UI - Step 1" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Claims - UI</h3>
+                  <div class="text-muted small">Reimbursement - Step 1</div>
+                </div>
+              </div>
+            </div>
 
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/claim-reimbursement-form-step-3.png" data-title="Claims - Step 2" aria-label="Open Claims - Step 2">
+                  <img src="portfolio-20x/claim-reimbursement-form-step-3.png" class="img-fluid" alt="Claims UI - Step 2" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Claims - UI</h3>
+                  <div class="text-muted small">Reimbursement - Step 2</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/claim-reimbursement-form-step-4.png" data-title="Claims - Review" aria-label="Open Claims - Review">
+                  <img src="portfolio-20x/claim-reimbursement-form-step-4.png" class="img-fluid" alt="Claims UI - Review" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Claims - UI</h3>
+                  <div class="text-muted small">Reimbursement - Review</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <hr class="my-2 my-md-3">
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/id-card.png" data-title="ID Card - Desktop" aria-label="Open ID Card - Desktop">
+                  <img src="portfolio-20x/id-card.png" class="img-fluid" alt="ID Card - Desktop" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">ID Card - UI</h3>
+                  <div class="text-muted small">ID Card - Desktop</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/id-card-modal.png" data-title="ID Card - Modal" aria-label="Open ID Card - Modal">
+                  <img src="portfolio-20x/id-card-modal.png" class="img-fluid" alt="ID Card - Modal" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">ID Card - UI</h3>
+                  <div class="text-muted small">ID Card - Desktop (Modal)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/id-card-mobile-home.png" data-title="ID Card - Mobile Home" aria-label="Open ID Card - Mobile Home">
+                  <img src="portfolio-20x/id-card-mobile-home.png" class="img-fluid" alt="ID Card - Mobile home" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">ID Card - UI</h3>
+                  <div class="text-muted small">ID Card - Mobile</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/id-card-mobile-vertical.png" data-title="ID Card - Mobile Vertical" aria-label="Open ID Card - Mobile Vertical">
+                  <img src="portfolio-20x/id-card-mobile-vertical.png" class="img-fluid" alt="ID Card - Mobile vertical" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">ID Card - UI</h3>
+                  <div class="text-muted small">ID Card - Mobile</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/id-card-html-overlay.png" data-title="ID Card - Overlay" aria-label="Open ID Card - Overlay">
+                  <img src="portfolio-20x/id-card-html-overlay.png" class="img-fluid" alt="ID Card - Overlay" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">ID Card - UI</h3>
+                  <div class="text-muted small">ID Card - Overlay</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/id-card-mobile-landscape.png" data-title="ID Card - Mobile Landscape" aria-label="Open ID Card - Mobile Landscape">
+                  <img src="portfolio-20x/id-card-mobile-landscape.png" class="img-fluid" alt="ID Card - Mobile landscape" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">ID Card - UI</h3>
+                  <div class="text-muted small">ID Card - Mobile</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/id-card-mobile-modal-landscape.png" data-title="ID Card - Mobile Modal Landscape" aria-label="Open ID Card - Mobile Modal Landscape">
+                  <img src="portfolio-20x/id-card-mobile-modal-landscape.png" class="img-fluid" alt="ID Card - Mobile modal landscape" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">ID Card - UI</h3>
+                  <div class="text-muted small">ID Card - Mobile</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <hr class="my-2 my-md-3">
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/bot/bot-1.jpg" data-title="Chatbot - Button" aria-label="Open Chatbot - Button">
+                  <img src="portfolio-20x/bot/bot-1.jpg" class="img-fluid" alt="Chatbot UI - Button" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Chat - UI</h3>
+                  <div class="text-muted small">Chatbot - Button</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/bot/bot-2.jpg" data-title="Chatbot - Intro Message" aria-label="Open Chatbot - Intro Message">
+                  <img src="portfolio-20x/bot/bot-2.jpg" class="img-fluid" alt="Chatbot UI - Intro message" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Chat - UI</h3>
+                  <div class="text-muted small">Chatbot - Intro Message</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/bot/bot-3.jpg" data-title="Chatbot - Options" aria-label="Open Chatbot - Options">
+                  <img src="portfolio-20x/bot/bot-3.jpg" class="img-fluid" alt="Chatbot UI - Options" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Chat - UI</h3>
+                  <div class="text-muted small">Chatbot - Options</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/bot/bot-4.jpg" data-title="Chatbot - Sub Options" aria-label="Open Chatbot - Sub Options">
+                  <img src="portfolio-20x/bot/bot-4.jpg" class="img-fluid" alt="Chatbot UI - Sub options" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Chat - UI</h3>
+                  <div class="text-muted small">Chatbot - Sub Options</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/bot/bot-5.jpg" data-title="Chatbot - Design" aria-label="Open Chatbot - Design">
+                  <img src="portfolio-20x/bot/bot-5.jpg" class="img-fluid" alt="Chatbot UI - Design" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Chat - UI</h3>
+                  <div class="text-muted small">Chatbot - Design</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/bot/bot-6.jpg" data-title="Chatbot - More Options" aria-label="Open Chatbot - More Options">
+                  <img src="portfolio-20x/bot/bot-6.jpg" class="img-fluid" alt="Chatbot UI - More options" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Chat - UI</h3>
+                  <div class="text-muted small">Chatbot - More Options</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/bot/bot-7.jpg" data-title="Chatbot - Various" aria-label="Open Chatbot - Various">
+                  <img src="portfolio-20x/bot/bot-7.jpg" class="img-fluid" alt="Chatbot UI - Various" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Chat - UI</h3>
+                  <div class="text-muted small">Chatbot - Various</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/bot/bot-8.jpg" data-title="Chatbot - Exit Option" aria-label="Open Chatbot - Exit Option">
+                  <img src="portfolio-20x/bot/bot-8.jpg" class="img-fluid" alt="Chatbot UI - Exit option" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Chat - UI</h3>
+                  <div class="text-muted small">Chatbot - Exit Option</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/bot/bot-9.jpg" data-title="Chatbot - Exit" aria-label="Open Chatbot - Exit">
+                  <img src="portfolio-20x/bot/bot-9.jpg" class="img-fluid" alt="Chatbot UI - Exit" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Chat - UI</h3>
+                  <div class="text-muted small">Chatbot - Exit</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="panel-md" role="tabpanel" aria-labelledby="tab-md" tabindex="0">
+          <div class="mb-3">
+            <h2 class="gv-section-title mb-2">BCBSM UI Mobile App</h2>
+            <p class="gv-section-sub mb-0">Prototyping of the Member Portal Mobile App (Ionic/Angular).</p>
+          </div>
+
+          <div class="row g-3 g-md-4">
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_login.jpg" data-title="Login - UI" aria-label="Open Login - UI">
+                  <img src="portfolio-20x/mpa/mpa_login.jpg" class="img-fluid" alt="Mobile App UI - Login" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Login - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_home.jpg" data-title="Home - UI" aria-label="Open Home - UI">
+                  <img src="portfolio-20x/mpa/mpa_home.jpg" class="img-fluid" alt="Mobile App UI - Home" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Home - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_menu.jpg" data-title="Menu - UI" aria-label="Open Menu - UI">
+                  <img src="portfolio-20x/mpa/mpa_menu.jpg" class="img-fluid" alt="Mobile App UI - Menu" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Menu - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_overview.jpg" data-title="Overview - UI" aria-label="Open Overview - UI">
+                  <img src="portfolio-20x/mpa/mpa_overview.jpg" class="img-fluid" alt="Mobile App UI - Overview" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Overview - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_mycoverage.jpg" data-title="Coverage - UI" aria-label="Open Coverage - UI">
+                  <img src="portfolio-20x/mpa/mpa_mycoverage.jpg" class="img-fluid" alt="Mobile App UI - Coverage" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Coverage - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_medical_whatscovered.jpg" data-title="Medical - UI" aria-label="Open Medical - UI">
+                  <img src="portfolio-20x/mpa/mpa_medical_whatscovered.jpg" class="img-fluid" alt="Mobile App UI - Medical" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Medical - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_dental_whatscovered.jpg" data-title="Dental - UI" aria-label="Open Dental - UI">
+                  <img src="portfolio-20x/mpa/mpa_dental_whatscovered.jpg" class="img-fluid" alt="Mobile App UI - Dental" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Dental - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_vision_whatscovered.jpg" data-title="Vision - UI" aria-label="Open Vision - UI">
+                  <img src="portfolio-20x/mpa/mpa_vision_whatscovered.jpg" class="img-fluid" alt="Mobile App UI - Vision" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Vision - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_rx.jpg" data-title="RX - UI" aria-label="Open RX - UI">
+                  <img src="portfolio-20x/mpa/mpa_rx.jpg" class="img-fluid" alt="Mobile App UI - RX" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">RX - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_refs.jpg" data-title="Referral - UI" aria-label="Open Referral - UI">
+                  <img src="portfolio-20x/mpa/mpa_refs.jpg" class="img-fluid" alt="Mobile App UI - Referrals" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Referral - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_permissions.jpg" data-title="Permissions - UI" aria-label="Open Permissions - UI">
+                  <img src="portfolio-20x/mpa/mpa_permissions.jpg" class="img-fluid" alt="Mobile App UI - Permissions" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Permissions - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_nurseline.jpg" data-title="Nurseline - UI" aria-label="Open Nurseline - UI">
+                  <img src="portfolio-20x/mpa/mpa_nurseline.jpg" class="img-fluid" alt="Mobile App UI - Nurseline" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Nurseline - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_messages.jpg" data-title="Messages - UI" aria-label="Open Messages - UI">
+                  <img src="portfolio-20x/mpa/mpa_messages.jpg" class="img-fluid" alt="Mobile App UI - Messages" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Messages - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_about.jpg" data-title="About - UI" aria-label="Open About - UI">
+                  <img src="portfolio-20x/mpa/mpa_about.jpg" class="img-fluid" alt="Mobile App UI - About" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">About - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_myaccount.jpg" data-title="Account - UI" aria-label="Open Account - UI">
+                  <img src="portfolio-20x/mpa/mpa_myaccount.jpg" class="img-fluid" alt="Mobile App UI - Account" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Account - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_find_a_doctor.jpg" data-title="Find a Doctor - UI" aria-label="Open Find a Doctor - UI">
+                  <img src="portfolio-20x/mpa/mpa_find_a_doctor.jpg" class="img-fluid" alt="Mobile App UI - Find a doctor" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Find a Doctor - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_estimates.jpg" data-title="Estimates - UI" aria-label="Open Estimates - UI">
+                  <img src="portfolio-20x/mpa/mpa_estimates.jpg" class="img-fluid" alt="Mobile App UI - Estimates" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Estimates - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_biometrics.jpg" data-title="Biometrics - UI" aria-label="Open Biometrics - UI">
+                  <img src="portfolio-20x/mpa/mpa_biometrics.jpg" class="img-fluid" alt="Mobile App UI - Biometrics" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Biometrics - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_forms.jpg" data-title="Forms - UI" aria-label="Open Forms - UI">
+                  <img src="portfolio-20x/mpa/mpa_forms.jpg" class="img-fluid" alt="Mobile App UI - Forms" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">Forms - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_idcard_home.jpg" data-title="ID Card Home - UI" aria-label="Open ID Card Home - UI">
+                  <img src="portfolio-20x/mpa/mpa_idcard_home.jpg" class="img-fluid" alt="Mobile App UI - ID Card home" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">ID Card Home - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-4">
+              <div class="card h-100 portfolio-card">
+                <button type="button" class="portfolio-media js-lightbox" data-src="portfolio-20x/mpa/mpa_idcard.jpg" data-title="ID Card - UI" aria-label="Open ID Card - UI">
+                  <img src="portfolio-20x/mpa/mpa_idcard.jpg" class="img-fluid" alt="Mobile App UI - ID Card" loading="lazy" decoding="async">
+                </button>
+                <div class="card-body">
+                  <h3 class="h6 mb-1 fw-bold">ID Card - UI</h3>
+                  <div class="text-muted small">MPA - App</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div>
 
-    </header><!-- End Header -->
+    </div>
+  </section>
 
+</main>
 
+<footer class="site-footer" id="footer">
+  <div class="container py-3">
+    <div class="copyright">
+      © Copyright <strong><span>Greyvoth</span> <span id="year">2026</span></strong>. All Rights Reserved
+    </div>
+  </div>
+</footer>
 
-    <main id="main">
+<a href="#main" class="back-to-top" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+</a>
 
-		    <!-- ======= Breadcrumbs Section ======= -->
-
-    <section class="breadcrumbs">
-
-      <div class="container">
-
-
-
-        <div class="d-flex justify-content-between align-items-center">
-
-          <h2>Portfolio Details</h2>
-
-          <ol>
-
-            <li><a href="/index.html">Home</a></li>
-
-            <li>Portfolio</li>
-
-          </ol>
-
-        </div>
-
-
-
+<div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true" aria-label="Image viewer">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content lightbox-modal">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="lightboxTitle"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
-    </section><!-- Breadcrumbs Section -->
-
-
-      <!-- ======= Portfolio Section ======= -->
-
-      <section id="portfolio" class="portfolio section-bg">
-
-        <div class="container">
-
-
-
-          <div class="section-title">
-
-            <h2>Portfolio</h2>
-
-            <p>Here are examples of my full range of work. Below you will see Illustrations, UI Designs and some other concepts as well.</p>
-
-          </div>
-
-
-
-          <div class="row">
-
-            <div class="col-lg-12 d-flex justify-content-center">
-
-              <ul id="portfolio-flters">
-
-                <li data-filter="*" class="filter-active">All</li>
-
-                <li data-filter=".filter-app">App UI</li>
-
-                <li data-filter=".filter-card">Design</li>
-
-                <li data-filter=".filter-web">Illustration</li>
-
-              </ul>
-
-            </div>
-
-          </div>
-
-
-
-          <div class="row portfolio-container">
-
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-
-              <div class="portfolio-wrap">
-
-                <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-
-                <div class="portfolio-info">
-
-                  <h4>App 1</h4>
-
-                  <p>App</p>
-
-                </div>
-
-                <div class="portfolio-links">
-
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
-
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-
-              <div class="portfolio-wrap">
-
-                <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-
-                <div class="portfolio-info">
-
-                  <h4>Web 3</h4>
-
-                  <p>Web</p>
-
-                </div>
-
-                <div class="portfolio-links">
-
-                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-
-              <div class="portfolio-wrap">
-
-                <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-
-                <div class="portfolio-info">
-
-                  <h4>App 2</h4>
-
-                  <p>App</p>
-
-                </div>
-
-                <div class="portfolio-links">
-
-                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox" title="App 2"><i class="bx bx-plus"></i></a>
-
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-
-              <div class="portfolio-wrap">
-
-                <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-
-                <div class="portfolio-info">
-
-                  <h4>Card 2</h4>
-
-                  <p>Card</p>
-
-                </div>
-
-                <div class="portfolio-links">
-
-                  <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox" title="Card 2"><i class="bx bx-plus"></i></a>
-
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-
-              <div class="portfolio-wrap">
-
-                <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-
-                <div class="portfolio-info">
-
-                  <h4>Web 2</h4>
-
-                  <p>Web</p>
-
-                </div>
-
-                <div class="portfolio-links">
-
-                  <a href="assets/img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox" title="Web 2"><i class="bx bx-plus"></i></a>
-
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-
-              <div class="portfolio-wrap">
-
-                <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-
-                <div class="portfolio-info">
-
-                  <h4>App 3</h4>
-
-                  <p>App</p>
-
-                </div>
-
-                <div class="portfolio-links">
-
-                  <a href="assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox" title="App 3"><i class="bx bx-plus"></i></a>
-
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-
-              <div class="portfolio-wrap">
-
-                <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-
-                <div class="portfolio-info">
-
-                  <h4>Card 1</h4>
-
-                  <p>Card</p>
-
-                </div>
-
-                <div class="portfolio-links">
-
-                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox" title="Card 1"><i class="bx bx-plus"></i></a>
-
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-
-              <div class="portfolio-wrap">
-
-                <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-
-                <div class="portfolio-info">
-
-                  <h4>Card 3</h4>
-
-                  <p>Card</p>
-
-                </div>
-
-                <div class="portfolio-links">
-
-                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox" title="Card 3"><i class="bx bx-plus"></i></a>
-
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-
-              <div class="portfolio-wrap">
-
-                <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-
-                <div class="portfolio-info">
-
-                  <h4>Web 3</h4>
-
-                  <p>Web</p>
-
-                </div>
-
-                <div class="portfolio-links">
-
-                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-          </div>
-
-
-
-        </div>
-
-      </section><!-- End Portfolio Section -->
-
-
-      <!-- ======= Contact Section ======= -->
-
-      <section id="contact" class="contact section-bg">
-
-        <div class="container">
-
-
-
-          <div class="section-title">
-
-            <h2>Contact</h2>
-
-            <p>Thank you so much for visiting my page. I look forward to collaborating with you to make great things!</p>
-
-          </div>
-
-
-
-          <div class="row">
-
-
-
-            <div class="col-lg-6 col-md-6">
-
-              <div class="contact-about">
-
-                <h3>Find Me</h3>
-
-                <p>Below are the usual ways.</p>
-
-                <div class="social-links">
-
-                  <a href="https://opensea.io/greyvoth" class="opensea" target="blank"><i class="icofont-disc"></i></a>
-                  <!--                <a href="https://twitter.com/galnova" class="twitter" target="blank"><i class="icofont-twitter"></i></a>-->
-
-                  <a href="https://www.youtube.com/user/riotgear2007" class="youtube" target="blank"><i class="icofont-youtube-play"></i></a>
-
-                  <a href="https://www.instagram.com/greyvoth" class="instagram" target="blank"><i class="icofont-instagram"></i></a>
-
-                  <a href="https://www.linkedin.com/pub/keith-jeter/15/326/1a6" class="linkedin" target="blank"><i class="icofont-linkedin"></i></a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            <div class="col-lg-6 col-md-6">
-
-              <div class="info">
-
-                <div>
-
-                  <i class="icofont-google-map"></i>
-
-                  <p>Someplace, USA 90210</p>
-
-                </div>
-
-
-
-                <div>
-
-                  <i class="icofont-envelope"></i>
-
-                  <p>galnova@gmail.com</p>
-
-                </div>
-
-
-
-                <div>
-
-                  <i class="icofont-phone"></i>
-
-                  <p>Just email me</p>
-
-                </div>
-
-
-
-              </div>
-
-            </div>
-
-
-
-            <!-- <div class="col-lg-5 col-md-8">
-
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-
-              <div class="form-group">
-
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-
-                <div class="validate"></div>
-
-              </div>
-
-              <div class="form-group">
-
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-
-                <div class="validate"></div>
-
-              </div>
-
-              <div class="form-group">
-
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-
-                <div class="validate"></div>
-
-              </div>
-
-              <div class="form-group">
-
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-
-                <div class="validate"></div>
-
-              </div>
-
-              <div class="mb-3">
-
-                <div class="loading">Loading</div>
-
-                <div class="error-message"></div>
-
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-
-              </div>
-
-              <div class="text-center"><button type="submit">Send Message</button></div>
-
-            </form>
-
-          </div> -->
-
-
-
-          </div>
-
-
-
-        </div>
-
-      </section><!-- End Contact Section -->
-
-
-
-    </main><!-- End #main -->
-
-
-    <!-- ======= Footer ======= -->
-
-    <footer id="footer">
-
-      <div class="container">
-
-        <div class="copyright">
-
-          &copy; Copyright <strong><span>Greyvoth</span> <span id="year"></span></strong>. All Rights Reserved
-
-        </div>
-
+      <div class="modal-body pt-0">
+        <img id="lightboxImg" class="img-fluid w-100" alt="">
       </div>
+    </div>
+  </div>
+</div>
 
-    </footer><!-- End  Footer -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="_js/global.js"></script>
 
-
-
-    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
-
-
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-
-    <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
-
-    <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-
-    <script src="assets/vendor/counterup/counterup.min.js"></script>
-
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-    <script src="assets/vendor/venobox/venobox.min.js"></script>
-
-    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-
-
-
-    <script src="assets/js/main.js"></script>
-
-
-
-  </body>
-
-
-
+</body>
 </html>
