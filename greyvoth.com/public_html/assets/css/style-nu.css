@@ -248,6 +248,7 @@ a:hover{ text-decoration:none; }
   background:linear-gradient(135deg,rgba(255,154,74,.32),rgba(122,167,199,.26),rgba(255,211,90,.20),rgba(139,111,107,.22));
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite:exclude;
   pointer-events:none;
   opacity:.55;
