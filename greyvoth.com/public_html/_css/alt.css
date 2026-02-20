@@ -580,3 +580,7 @@ body.alt .portfolio-media img{
   body.alt .modal{ z-index:99999; }
   body.alt .modal-backdrop{ z-index:99998; }
 }
+
+#galleryStatus {
+  display: none;
+}
