@@ -1,4 +1,57 @@
 (() => {
+  const PASSWORD = "PORT";
+  const KEY = "gv_portfolio_unlocked_v1";
+
+  const html = document.documentElement;
+  const gate = document.getElementById("pwGate");
+  const form = document.getElementById("pwForm");
+  const input = document.getElementById("pwInput");
+  const err = document.getElementById("pwErr");
+  const reset = document.getElementById("pwReset");
+  const content = document.getElementById("pageContent");
+
+  if (!gate || !form || !input || !content) return;
+
+  const isUnlocked = () => localStorage.getItem(KEY) === "1";
+
+  const lock = () => {
+    localStorage.removeItem(KEY);
+    html.classList.add("pw-locked");
+    gate.setAttribute("aria-hidden", "false");
+    if (err) err.style.display = "none";
+    input.value = "";
+    setTimeout(() => input.focus(), 50);
+  };
+
+  const unlock = () => {
+    localStorage.setItem(KEY, "1");
+    html.classList.remove("pw-locked");
+    gate.setAttribute("aria-hidden", "true");
+    if (err) err.style.display = "none";
+  };
+
+  if (isUnlocked()) unlock();
+  else lock();
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const val = String(input.value || "").trim();
+    if (val === PASSWORD) unlock();
+    else {
+      if (err) err.style.display = "block";
+      input.select();
+      input.focus();
+    }
+  });
+
+  if (reset) reset.addEventListener("click", lock);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !html.classList.contains("pw-locked")) lock();
+  });
+})();
+
+(() => {
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
