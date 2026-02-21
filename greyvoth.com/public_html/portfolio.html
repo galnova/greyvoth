@@ -24,12 +24,35 @@
 
 <body class="alt">
 
+<div id="pwGate" class="pw-gate" aria-hidden="true">
+  <div class="pw-card" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
+    <h1 id="pwTitle" class="pw-title">Please enter password</h1>
+    <p class="pw-sub small mb-3">This page is locked.</p>
+
+    <form id="pwForm" class="d-grid gap-2" autocomplete="off">
+      <label class="visually-hidden" for="pwInput">Password</label>
+      <input id="pwInput" type="password" class="form-control form-control-lg" placeholder="Password" required>
+      <button type="submit" class="btn btn-primary btn-lg w-100">Unlock</button>
+
+      <div id="pwErr" class="alert alert-danger py-2 px-3 mb-0" role="alert" style="display: none;">
+        Wrong password.
+      </div>
+
+      <button type="button" id="pwReset" class="btn btn-link text-decoration-none small">
+        Clear saved unlock
+      </button>
+    </form>
+  </div>
+</div>
+
+<div id="pageContent">
+
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header id="header" class="site-header">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark site-nav">
-      <a class="navbar-brand m-0" href="" aria-label="Go to homepage">
+      <a class="navbar-brand m-0" href="/" aria-label="Go to homepage">
         <span class="gn-logo">
           <img alt="galaxy supernova logo" src="2020/nu_logo.png">
         </span>
@@ -830,6 +853,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="_js/global.js"></script>
+
+</div>
 
 </body>
 </html>

@@ -515,3 +515,37 @@ a:hover{ text-decoration:none; }
 section{ background:transparent; }
 
 .fully{ background:#1e406b; }
+
+html.pw-locked body{ overflow:hidden; }
+html.pw-locked #pageContent{ visibility:hidden; }
+html.pw-locked #pwGate{ display:flex; }
+#pwGate{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:1.25rem;
+  background:rgba(0,0,0,.86);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+}
+#pwGate .pw-card{
+  width:100%;
+  max-width:440px;
+  border-radius:1rem;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(20,20,24,.88);
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+  padding:1.25rem;
+  color:#fff;
+}
+#pwGate .pw-title{
+  font-size:1.25rem;
+  margin:0 0 .25rem 0;
+}
+#pwGate .pw-sub{
+  margin:0 0 1rem 0;
+  opacity:.85;
+}
