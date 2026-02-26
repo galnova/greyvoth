@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Greyvoth | Concept Images</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="greyvoth, Keith Jeter, keith jeter, keith h jeter, ai, llm, online art, design, art, user experience design,user interface design, illustration, painting, drawing, resume, portfolio, university of michigan alumni, the academy of art university alumni, cass tech alumni">
+
+  <link rel="icon" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&amp;display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css?v=2">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="_css/style-nu.css" rel="stylesheet">
+  <link href="_css/alt.css" rel="stylesheet">
+</head>
+
+<body class="alt">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header id="header" class="site-header">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark site-nav">
+        <a class="navbar-brand m-0" href="/" aria-label="Go to homepage">
+          <span class="gn-logo">
+            <img alt="galaxy supernova logo" src="2020/nu_logo.png">
+          </span>
+        </a>
+
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#primaryNav" aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="primaryNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#gallery" aria-current="page">Concept Images</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section-bg gv-section">
+      <div class="container hero gv-container py-4 py-md-5">
+        <h1 class="mb-1">CONCEPTS</h1>
+        <p class="m-0">My concept WIP artwork</p>
+      </div>
+    </section>
+
+    <section id="gallery" class="portfolio section-bg gv-section">
+      <div class="container gv-container pb-4 pb-md-5">
+        <div class="section-title gv-section-head mb-2 mb-md-3">
+          <h2 class="gv-section-title mb-3">Gallery</h2>
+          <p class="gv-section-sub mb-0">Some good and great things!</p>
+        </div>
+
+        <div id="galleryStatus" class="small mb-3" aria-live="polite">Loading…</div>
+
+        <div id="galleryGrid" class="row g-3 g-md-4">
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 portfolio-card">
+              <button type="button" class="portfolio-media js-lightbox" data-src="concept_images/digital-agony.PNG" data-title="digital-agony.PNG" aria-label="Open digital-agony.PNG">
+                <img src="concept_images/digital-agony.PNG" class="img-fluid" alt="digital-agony.PNG" loading="lazy" decoding="async">
+              </button>
+              <div class="card-body">
+                <h3 class="h6 mb-1 fw-bold">digital agon</h3>
+                <div class="text-muted small">Concept</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true" aria-label="Image viewer">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content lightbox-modal">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="lightboxTitle"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body pt-0">
+            <img id="lightboxImg" class="img-fluid w-100" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="container py-3">
+      <div class="copyright">
+        © Copyright <strong><span>Greyvoth</span> <span id="year">2026</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer>
+
+  <a href="#main" class="back-to-top show" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="_js/global.js"></script>
+  <script src="_js/concept-images.js"></script>
+
+</body>
+</html>
