@@ -41,12 +41,23 @@
     return a;
   };
 
+  const prettyTitle = (filename) =>
+    String(filename || "")
+      .split("?")[0]
+      .split("#")[0]
+      .split("/")
+      .pop()
+      .replace(/\.[^/.]+$/i, "")
+      .replace(/[-_]+/g, " ")
+      .trim();
+
   const loadImages = async () => {
     const res = await fetch(IMAGES_URL, { cache: "no-store" });
     if (!res.ok) throw new Error(`Request failed (${res.status})`);
     const data = await res.json();
     const list = normalize(data);
-    if (!Array.isArray(list) || list.length === 0) throw new Error("images.json is empty or not an array");
+    if (!Array.isArray(list) || list.length === 0)
+      throw new Error("images.json is empty or not an array");
     return list
       .map((x) => (typeof x === "string" ? x : x?.file))
       .filter((x) => typeof x === "string" && x.trim().length)
@@ -55,15 +66,22 @@
 
   const cardHTML = (filename) => {
     const src = IMAGE_BASE + filename;
-    const title = filename;
+    const title = prettyTitle(filename);
+
     return `
       <div class="col-6 col-md-4 col-lg-3 portfolio-item">
         <div class="portfolio-card h-100">
-          <button type="button" class="portfolio-media js-lightbox" data-src="${esc(src)}" data-title="${esc(title)}" aria-label="Open ${esc(title)}">
-            <img src="${esc(src)}" alt="${esc(title)}" loading="lazy" decoding="async">
+          <button type="button"
+                  class="portfolio-media js-lightbox"
+                  data-src="${esc(src)}"
+                  aria-label="${esc(title)}">
+            <img src="${esc(src)}"
+                 alt="${esc(title)}"
+                 loading="lazy"
+                 decoding="async">
           </button>
           <div class="card-body">
-            <h4 class="mb-0">${esc(filename)}</h4>
+            <h4 class="mb-0">${esc(title)}</h4>
           </div>
         </div>
       </div>
@@ -86,19 +104,25 @@
     grid.addEventListener("click", (e) => {
       const btn = e.target.closest(".js-lightbox");
       if (!btn) return;
+
       const src = btn.getAttribute("data-src") || "";
-      const title = btn.getAttribute("data-title") || "";
+      const title = prettyTitle(src);
+
       if (titleEl) titleEl.textContent = title;
+
       if (imgEl) {
         imgEl.src = src;
         imgEl.alt = title;
       }
+
       modal.show();
     });
 
     modalEl.addEventListener("hidden.bs.modal", () => {
-      if (imgEl) imgEl.removeAttribute("src");
-      if (imgEl) imgEl.setAttribute("alt", "");
+      if (imgEl) {
+        imgEl.removeAttribute("src");
+        imgEl.setAttribute("alt", "");
+      }
       if (titleEl) titleEl.textContent = "";
     });
   };
@@ -111,7 +135,9 @@
       render(randomFiles);
       initLightbox();
     } catch (err) {
-      setStatus(`Could not load images. Check ${IMAGES_URL} exists + is valid JSON. (${err?.message || err})`);
+      setStatus(
+        `Could not load images. Check ${IMAGES_URL} exists + is valid JSON. (${err?.message || err})`
+      );
     }
   })();
 })();
