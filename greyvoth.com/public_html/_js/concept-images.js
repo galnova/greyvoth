@@ -76,7 +76,7 @@
                   class="portfolio-media js-lightbox"
                   data-src="${esc(src)}"
                   data-name="${esc(filename)}"
-                  aria-label="Open ${esc(title)}">
+                  aria-label="${esc(title)}">
             <img src="${esc(src)}"
                  alt="${esc(title)}"
                  loading="lazy"
