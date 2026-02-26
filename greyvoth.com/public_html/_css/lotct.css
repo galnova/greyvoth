@@ -9,20 +9,6 @@ body.lotct .portfolio-media img{
   object-fit:contain;
 }
 
-body.lotct .modal-content{
-  border-radius:18px;
-  overflow:hidden;
-}
-
-body.lotct .modal-header{
-  background:rgba(255,255,255,.92);
-  border-bottom:1px solid rgba(15,18,32,.10);
-}
-
-body.lotct .modal-body{
-  background:#000;
-}
-
 body.lotct #lightboxImg{
   max-height:80vh;
   width:100%;
