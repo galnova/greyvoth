@@ -13,6 +13,8 @@ body.alt{
   --tab-muted:rgba(15,18,32,.72);
   --tab-border:rgba(15,18,32,.18);
   --tab-outline:rgba(11,95,255,.55);
+  --gv-line-color:#315788;
+  --gv-line-size:10px;
 }
 
 body.alt{
@@ -41,10 +43,6 @@ body.alt .site-footer{
 }
 
 body.alt .gv-container{ padding-left:12px; padding-right:12px; }
-
-/* @media (min-width:992px){
-  body.alt .gv-container{ padding-left:0; padding-right:0; }
-} */
 
 body.alt .gv-section{ background:#dff6fd; }
 
@@ -491,20 +489,28 @@ body.alt .tab-content{
 body.alt .portfolio-card{
   border-radius:18px;
   overflow:hidden;
-  border:1px solid rgba(15,18,32,.10);
+  border:3px solid #315788;
   background:rgba(255,255,255,.86);
   box-shadow:var(--gv-shadow2);
+}
+
+body.alt .portfolio-card:hover{
+  background:#315788;
 }
 
 body.alt .portfolio-card .card-body{
   border-top:1px solid rgba(15,18,32,.08);
 }
 
-body.alt .portfolio-card .card-body h4 {
-    color: #000;
-    font-size: 1em;
-    padding: 16px;
-    text-align: center;
+body.alt .portfolio-card .card-body h4{
+  color:#000;
+  font-size:1em;
+  padding:16px;
+  text-align:center;
+}
+
+body.alt .portfolio-card:hover .card-body h4{
+  color:#fff;
 }
 
 body.alt .portfolio-media{
@@ -589,37 +595,33 @@ body.alt .portfolio-media img{
   body.alt .modal-backdrop{ z-index:99998; }
 }
 
-body.alt .modal h5.modal-title {
-    color: #000;
-    padding: 0 16px;
-    text-align: center;
+body.alt .modal h5.modal-title{
+  color:#000;
+  padding:0 16px;
+  text-align:center;
 }
 
-body.alt #galleryStatus {
-  display: none;
+body.alt #galleryStatus{
+  display:none;
 }
 
-body.alt .modal img {
-  max-width: 100% !important;
-  width: auto !important;
-  height: auto !important;
-  max-height: 80vh !important;
-  object-fit: contain !important;
-  display: block;
-  margin: 0 auto;
+body.alt .modal img{
+  max-width:100% !important;
+  width:auto !important;
+  height:auto !important;
+  max-height:80vh !important;
+  object-fit:contain !important;
+  display:block;
+  margin:0 auto;
 }
 
-body.alt .modal-dialog {
-  max-width: min(96vw, 1200px);
+body.alt .modal-dialog{
+  max-width:min(96vw, 1200px);
 }
 
-body.alt .modal-content {
-  max-height: calc(100vh - 2rem);
+body.alt .modal-content{
+  max-height:calc(100vh - 2rem);
 }
-
-/* .modal-body {
-  overflow: auto;
-} */
 
 body.alt .modal-content{
   border-radius:18px;
@@ -633,5 +635,68 @@ body.alt .modal-header{
 
 body.alt .modal-body{
   background:#000;
-  padding: 0;
+  padding:0;
+}
+
+body.alt #galleryGrid{
+  position:relative;
+  --gv-line-color:#315788;
+  --gv-line-size:10px;
+}
+
+body.alt #galleryGrid > [class*="col-"]{
+  position:relative;
+}
+
+body.alt #galleryGrid > [class*="col-"]::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  right:calc(var(--bs-gutter-x, 1rem) / -2);
+  width:var(--bs-gutter-x, 1rem);
+  height:var(--gv-line-size);
+  background:var(--gv-line-color);
+  transform:translateY(-50%);
+  pointer-events:none;
+  z-index:0;
+}
+
+body.alt #galleryGrid > [class*="col-"]:last-child::after{
+  display:none;
+}
+
+@media (min-width:576px) and (max-width:767.98px){
+  body.alt #galleryGrid > .col-sm-6:nth-child(2n)::after{ display:none; }
+  body.alt #galleryGrid > .col-sm-4:nth-child(3n)::after{ display:none; }
+  body.alt #galleryGrid > .col-sm-3:nth-child(4n)::after{ display:none; }
+}
+
+@media (min-width:768px) and (max-width:991.98px){
+  body.alt #galleryGrid > .col-md-6:nth-child(2n)::after{ display:none; }
+  body.alt #galleryGrid > .col-md-4:nth-child(3n)::after{ display:none; }
+  body.alt #galleryGrid > .col-md-3:nth-child(4n)::after{ display:none; }
+}
+
+@media (min-width:992px){
+  body.alt #galleryGrid > .col-lg-6:nth-child(2n)::after{ display:none; }
+  body.alt #galleryGrid > .col-lg-4:nth-child(3n)::after{ display:none; }
+  body.alt #galleryGrid > .col-lg-3:nth-child(4n)::after{ display:none; }
+}
+
+body.alt #galleryGrid > [class*="col-"]::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:calc(var(--bs-gutter-y, 1rem) / -1);
+  width:var(--gv-line-size);
+  height:var(--bs-gutter-y, 1rem);
+  background:var(--gv-line-color);
+  transform:translateX(-50%);
+  pointer-events:none;
+  z-index:0;
+}
+
+body.alt #galleryGrid > [class*="col-"] > *{
+  position:relative;
+  z-index:1;
 }
