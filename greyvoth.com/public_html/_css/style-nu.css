@@ -198,13 +198,17 @@ a:hover{ text-decoration:none; }
 }
 .navbar-dark .navbar-nav .nav-link.btn{ text-decoration:none; }
 
-.dropdown-menu{
+.navbar-nav .dropdown-menu{
   background:rgba(10,10,14,.92);
   border:1px solid rgba(255,255,255,.14);
   box-shadow:var(--gv-shadow2);
   border-radius:14px;
   padding:.4rem;
+  position: absolute;
+  left: 0;
+  z-index: 4200;
 }
+
 .dropdown-item{
   color:rgba(255,255,255,.92);
   border-radius:12px;
