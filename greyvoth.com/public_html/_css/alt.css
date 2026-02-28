@@ -509,7 +509,7 @@ body.alt .portfolio-card .card-body h4{
   text-align:center;
 }
 
-body.alt .portfolio-card:hover .card-body h4{
+body.alt .portfolio-card:hover .card-body{
   color:#fff;
 }
 
