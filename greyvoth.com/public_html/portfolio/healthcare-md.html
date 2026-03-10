@@ -113,7 +113,7 @@
 
 <!-- PAGE HEADER -->
 <div class="page-title">Healthcare App – Material Design Wireframes</div>
-<p class="page-subtitle">31 screens · WCAG 2.1 AA · Material Design 3 · HTML/CSS editable</p>
+<p class="page-subtitle">40 screens · WCAG 2.1 AA · Material Design 3 · HTML/CSS editable</p>
 
 <div class="legend" role="list" aria-label="Screen categories">
   <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--primary);"></div>Auth</div>
@@ -121,6 +121,7 @@
   <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--warning);"></div>Recovery</div>
   <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--success);"></div>Main Flows</div>
   <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--error);"></div>System States</div>
+  <div class="chip" role="listitem"><div class="chip-dot" style="background:#1565C0;"></div>Chat AI</div>
 </div>
 
 <button id="ctrl-toggle" aria-label="Toggle design controls" aria-expanded="true" aria-controls="ctrl-panel">
@@ -2478,6 +2479,595 @@
         <button type="button" class="nav-item active" aria-current="page" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
         <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">favorite</span><span class="nav-label">Care</span></button>
         <button type="button" class="nav-item" aria-label="Claims"><span class="material-icons" aria-hidden="true">description</span><span class="nav-label">Claims</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       CHAT · 01 — AI Assistant Home
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label" style="color:#1565C0;">CHAT · 01</div>
+    <div class="screen-title">AI Assistant Home</div>
+    <article class="phone-frame" aria-label="AI Assistant home screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <h1 class="app-bar-title app-bar-title-padded">HealthBot</h1>
+        <button type="button" class="icon-btn" aria-label="About HealthBot"><span class="material-icons" aria-hidden="true">info_outline</span></button>
+      </div>
+      <div class="screen-content" style="padding:0;">
+        <div class="chat-hero">
+          <div class="chat-hero-avatar" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+          <p class="chat-hero-name">HealthBot</p>
+          <p class="chat-hero-status"><span class="chat-hero-dot"></span>Online · AI-powered</p>
+          <p style="color:rgba(255,255,255,0.82);font-size:11px;text-align:center;margin-top:2px;line-height:1.5;">Hi Sarah! I can answer questions about<br>your health, coverage &amp; care.</p>
+        </div>
+        <div class="scrollable">
+          <div style="padding:12px 12px 6px;"><p class="section-label">SUGGESTED TOPICS</p></div>
+          <div class="chat-suggestion-grid">
+            <div class="chat-suggestion-card" role="button" tabindex="0">
+              <div class="chat-suggestion-icon" style="background:#E3F2FD;"><span class="material-icons" style="color:var(--primary);">person_search</span></div>
+              <p class="chat-suggestion-label">Find a Doctor</p>
+            </div>
+            <div class="chat-suggestion-card" role="button" tabindex="0">
+              <div class="chat-suggestion-icon" style="background:#E0F7FA;"><span class="material-icons" style="color:var(--secondary);">medication</span></div>
+              <p class="chat-suggestion-label">Refill Prescription</p>
+            </div>
+            <div class="chat-suggestion-card" role="button" tabindex="0">
+              <div class="chat-suggestion-icon" style="background:#E8F5E9;"><span class="material-icons" style="color:var(--success);">description</span></div>
+              <p class="chat-suggestion-label">Understand My Claim</p>
+            </div>
+            <div class="chat-suggestion-card" role="button" tabindex="0">
+              <div class="chat-suggestion-icon" style="background:#F3E5F5;"><span class="material-icons" style="color:#7B1FA2;">shield</span></div>
+              <p class="chat-suggestion-label">Check My Benefits</p>
+            </div>
+            <div class="chat-suggestion-card" role="button" tabindex="0">
+              <div class="chat-suggestion-icon" style="background:#FFF3E0;"><span class="material-icons" style="color:#E65100;">calendar_today</span></div>
+              <p class="chat-suggestion-label">Book Appointment</p>
+            </div>
+            <div class="chat-suggestion-card" role="button" tabindex="0">
+              <div class="chat-suggestion-icon" style="background:var(--error-light);"><span class="material-icons" style="color:var(--error);">health_and_safety</span></div>
+              <p class="chat-suggestion-label">Symptom Checker</p>
+            </div>
+          </div>
+          <div style="padding:6px 12px 6px;"><p class="section-label">RECENT CONVERSATIONS</p></div>
+          <div style="background:var(--surface);border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);">
+            <div class="chat-history-item">
+              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-body">
+                <p class="chat-history-title">Prescription refill help</p>
+                <p class="chat-history-preview">Your refill was sent to CVS...</p>
+              </div>
+              <span class="item-meta">2h</span>
+            </div>
+            <div class="chat-history-item" style="border-bottom:none;">
+              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-body">
+                <p class="chat-history-title">Claim status inquiry</p>
+                <p class="chat-history-preview">Claim #CLM-0244 is processing...</p>
+              </div>
+              <span class="item-meta">Yesterday</span>
+            </div>
+          </div>
+          <p class="body-xs" style="text-align:center;padding:10px 18px;color:var(--on-surface-3);line-height:1.5;">HealthBot provides guidance only. Always consult your provider for medical decisions.</p>
+        </div>
+        <div class="chat-input-bar">
+          <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
+          <div class="chat-input" role="textbox" aria-label="Message HealthBot"><span style="color:var(--on-surface-3);font-size:12px;">Ask me anything...</span></div>
+          <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item active" aria-label="Chat, active" aria-current="page"><span class="material-icons" aria-hidden="true">smart_toy</span><span class="nav-label">Chat</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CHAT · 02 — Active Conversation
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label" style="color:#1565C0;">CHAT · 02</div>
+    <div class="screen-title">Active Conversation</div>
+    <article class="phone-frame" aria-label="Active chat screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
+          </div>
+          <div>
+            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
+            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;display:flex;align-items:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#69F0AE;"></span>Online · AI-powered</p>
+          </div>
+        </div>
+        <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+      </div>
+      <div class="screen-content" style="padding:0;">
+        <div class="scrollable">
+          <div class="chat-messages">
+            <div class="chat-date-divider">TODAY · 10:42 AM</div>
+            <p class="chat-sender-name">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">Hi Sarah! How can I help you today?</div>
+            </div>
+            <div class="chat-bubble-row user">
+              <div class="chat-bubble chat-bubble-user">I need to refill my Lisinopril prescription.</div>
+            </div>
+            <p class="chat-sender-name" style="margin-top:6px;">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">Sure! Lisinopril 10mg was last filled Feb 1 at CVS Caremark. You have <strong>3 refills</strong> remaining. Shall I request one now?</div>
+            </div>
+            <div class="chat-bubble-row user">
+              <div class="chat-bubble chat-bubble-user">Yes please!</div>
+            </div>
+            <p class="chat-sender-name" style="margin-top:6px;">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">Done! Your refill has been sent to CVS Caremark. It should be ready for pickup in 1–2 business days.</div>
+            </div>
+            <div style="display:flex;justify-content:flex-start;padding-left:29px;margin-top:3px;">
+              <span style="font-size:10px;color:var(--on-surface-3);">10:43 AM · Delivered</span>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-bar">
+          <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
+          <div class="chat-input" role="textbox" aria-label="Type a message"><span style="color:var(--on-surface-3);font-size:12px;">Type a message...</span></div>
+          <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CHAT · 03 — Typing Indicator
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label" style="color:#1565C0;">CHAT · 03</div>
+    <div class="screen-title">Typing Indicator</div>
+    <article class="phone-frame" aria-label="Bot typing indicator screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
+          </div>
+          <div>
+            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
+            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;">typing...</p>
+          </div>
+        </div>
+        <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+      </div>
+      <div class="screen-content" style="padding:0;">
+        <div class="scrollable">
+          <div class="chat-messages">
+            <div class="chat-date-divider">TODAY · 2:18 PM</div>
+            <p class="chat-sender-name">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">Hi Sarah! What can I help you with today?</div>
+            </div>
+            <div class="chat-bubble-row user" style="margin-top:6px;">
+              <div class="chat-bubble chat-bubble-user">What's the status of my claim CLM-2026-0244?</div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:2px;margin-bottom:8px;">
+              <span style="font-size:10px;color:var(--on-surface-3);">2:18 PM · Sent</span>
+            </div>
+            <!-- Typing indicator -->
+            <p class="chat-sender-name">HealthBot</p>
+            <div class="chat-bubble-row bot" aria-label="HealthBot is typing" aria-live="polite">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-typing-bubble">
+                <span class="chat-typing-dot"></span>
+                <span class="chat-typing-dot"></span>
+                <span class="chat-typing-dot"></span>
+              </div>
+            </div>
+            <p class="chat-typing-label">HealthBot is looking up your claim...</p>
+          </div>
+        </div>
+        <div class="chat-input-bar">
+          <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
+          <div class="chat-input" role="textbox" aria-label="Type a message"><span style="color:var(--on-surface-3);font-size:12px;">Type a message...</span></div>
+          <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message" disabled><span class="material-icons">send</span></button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CHAT · 04 — Rich Card Response
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label" style="color:#1565C0;">CHAT · 04</div>
+    <div class="screen-title">Rich Card Response</div>
+    <article class="phone-frame" aria-label="Rich card response in chat">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
+          </div>
+          <div>
+            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
+            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;display:flex;align-items:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#69F0AE;"></span>Online</p>
+          </div>
+        </div>
+        <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+      </div>
+      <div class="screen-content" style="padding:0;">
+        <div class="scrollable">
+          <div class="chat-messages">
+            <div class="chat-date-divider">TODAY · 9:05 AM</div>
+            <div class="chat-bubble-row user">
+              <div class="chat-bubble chat-bubble-user">Book an appointment with Dr. Chen</div>
+            </div>
+            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
+            <div class="chat-bubble-row bot" style="margin-bottom:4px;">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">I found an available slot with Dr. Chen. Here's the appointment option:</div>
+            </div>
+            <!-- Rich card -->
+            <div style="margin-left:29px;margin-bottom:4px;">
+              <div class="chat-rich-card" role="article" aria-label="Appointment option with Dr. Maria Chen">
+                <div class="chat-rich-card-header">
+                  <span class="material-icons">event</span>
+                  <div>
+                    <p class="chat-rich-card-title">Dr. Maria Chen</p>
+                    <p class="chat-rich-card-sub">Primary Care · In-Network</p>
+                  </div>
+                </div>
+                <div class="chat-rich-card-body">
+                  <div class="chat-rich-card-row"><span class="material-icons">calendar_today</span>Mar 18, 2026 · 10:30 AM</div>
+                  <div class="chat-rich-card-row"><span class="material-icons">location_on</span>450 Sutter St · In-Person</div>
+                  <div class="chat-rich-card-row"><span class="material-icons">payments</span>$25 copay · In-Network</div>
+                  <div style="margin-top:2px;"><span class="chip-sm chip-success">Available</span></div>
+                </div>
+                <div class="chat-rich-card-action" role="button" tabindex="0" aria-label="Book this appointment slot">BOOK THIS SLOT</div>
+              </div>
+            </div>
+            <div style="margin-left:29px;margin-bottom:4px;">
+              <p class="chat-sender-name" style="margin-left:0;">HealthBot</p>
+              <div class="chat-bubble chat-bubble-bot" style="border-radius:16px;border-bottom-left-radius:4px;max-width:190px;padding:8px 11px;font-size:12px;line-height:1.5;">Would you like to confirm this time, or see other available slots?</div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-bar">
+          <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
+          <div class="chat-input" role="textbox" aria-label="Type a message"><span style="color:var(--on-surface-3);font-size:12px;">Type a message...</span></div>
+          <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CHAT · 05 — Quick Replies
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label" style="color:#1565C0;">CHAT · 05</div>
+    <div class="screen-title">Quick Replies</div>
+    <article class="phone-frame" aria-label="Quick reply chips in chat">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
+          </div>
+          <div>
+            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
+            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;display:flex;align-items:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#69F0AE;"></span>Online</p>
+          </div>
+        </div>
+        <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+      </div>
+      <div class="screen-content" style="padding:0;">
+        <div class="scrollable">
+          <div class="chat-messages">
+            <div class="chat-date-divider">TODAY · 11:30 AM</div>
+            <p class="chat-sender-name">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">Hello Sarah! What can I help you with today?</div>
+            </div>
+            <div class="chat-bubble-row user" style="margin-top:6px;">
+              <div class="chat-bubble chat-bubble-user">I need to see a doctor</div>
+            </div>
+            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">I can help you find the right care. What type of visit are you looking for?</div>
+            </div>
+          </div>
+        </div>
+        <!-- Quick reply chips -->
+        <div class="chat-quick-replies" role="group" aria-label="Quick reply options">
+          <button type="button" class="chat-quick-reply">Primary Care</button>
+          <button type="button" class="chat-quick-reply">Urgent Care</button>
+          <button type="button" class="chat-quick-reply">Specialist</button>
+          <button type="button" class="chat-quick-reply">Mental Health</button>
+          <button type="button" class="chat-quick-reply">Virtual Visit</button>
+        </div>
+        <div class="chat-input-bar">
+          <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
+          <div class="chat-input" role="textbox" aria-label="Type a message or choose a reply above"><span style="color:var(--on-surface-3);font-size:12px;">Or type your own...</span></div>
+          <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CHAT · 06 — Image Attachment
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label" style="color:#1565C0;">CHAT · 06</div>
+    <div class="screen-title">Image Attachment</div>
+    <article class="phone-frame" aria-label="Chat with image attachment">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
+          </div>
+          <div>
+            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
+            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;display:flex;align-items:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#69F0AE;"></span>Online</p>
+          </div>
+        </div>
+        <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+      </div>
+      <div class="screen-content" style="padding:0;">
+        <div class="scrollable">
+          <div class="chat-messages">
+            <div class="chat-date-divider">TODAY · 3:15 PM</div>
+            <p class="chat-sender-name">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">Hi Sarah! You can share a photo of your insurance card or a prescription label and I'll help you read the details.</div>
+            </div>
+            <!-- User sends image -->
+            <div class="chat-bubble-row user" style="margin-top:6px;" aria-label="You sent an image">
+              <div class="chat-img-bubble" role="img" aria-label="Insurance card photo">
+                <span class="material-icons">photo</span>
+              </div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:2px;">
+              <span style="font-size:10px;color:var(--on-surface-3);">Insurance_Card.jpg · 3:16 PM</span>
+            </div>
+            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">I can see your Red Cross Red Shield Medical card. What would you like to know about your coverage?</div>
+            </div>
+            <div class="chat-bubble-row user" style="margin-top:6px;">
+              <div class="chat-bubble chat-bubble-user">What's my specialist copay?</div>
+            </div>
+            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">Your specialist visit copay is <strong>$40</strong> per visit for in-network providers. Need help finding a specialist?</div>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input-bar">
+          <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Take photo or attach file"><span class="material-icons">add_photo_alternate</span></button>
+          <div class="chat-input" role="textbox" aria-label="Type a message"><span style="color:var(--on-surface-3);font-size:12px;">Type a message...</span></div>
+          <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CHAT · 07 — Escalation to Human Agent
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label" style="color:#1565C0;">CHAT · 07</div>
+    <div class="screen-title">Escalation to Live Agent</div>
+    <article class="phone-frame" aria-label="Escalation to human agent">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
+          </div>
+          <div>
+            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
+            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;">Connecting to agent...</p>
+          </div>
+        </div>
+        <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+      </div>
+      <!-- Chat behind the modal (dimmed) -->
+      <div class="screen-content" style="padding:0;position:relative;">
+        <div class="scrollable" style="opacity:0.35;" aria-hidden="true">
+          <div class="chat-messages">
+            <div class="chat-date-divider">TODAY · 4:02 PM</div>
+            <p class="chat-sender-name">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">Hi Sarah! How can I help you?</div>
+            </div>
+            <div class="chat-bubble-row user" style="margin-top:6px;">
+              <div class="chat-bubble chat-bubble-user">I want to dispute a claim denial</div>
+            </div>
+            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
+            <div class="chat-bubble-row bot">
+              <div class="chat-bot-icon"><span class="material-icons">smart_toy</span></div>
+              <div class="chat-bubble chat-bubble-bot">I understand. Claim disputes are best handled by a live agent who can review your file directly. Would you like me to connect you?</div>
+            </div>
+          </div>
+        </div>
+        <!-- Escalation modal overlay -->
+        <div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="escalation-title" style="align-items:flex-end;padding:0;">
+          <div class="chat-escalation-card" style="border-radius:20px 20px 0 0;">
+            <div class="chat-agent-avatar" aria-hidden="true">JS</div>
+            <h2 class="modal-title" id="escalation-title" style="font-size:16px;margin-bottom:2px;">Connect with a Live Agent</h2>
+            <p class="body-sm" style="text-align:center;color:var(--on-surface-2);line-height:1.5;">A care advocate can review your claim and assist with the dispute process.</p>
+            <div class="chat-wait-badge" aria-label="Estimated wait time 5 minutes">
+              <span class="material-icons">schedule</span>~5 min wait
+            </div>
+            <div style="width:100%;display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+              <button type="button" class="btn btn-primary">CONNECT NOW</button>
+              <button type="button" class="btn btn-outlined">Schedule a Callback</button>
+              <button type="button" class="btn-text" style="color:var(--on-surface-2);">Continue with HealthBot</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CHAT · 08 — Conversation Feedback
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label" style="color:#1565C0;">CHAT · 08</div>
+    <div class="screen-title">Conversation Feedback</div>
+    <article class="phone-frame" aria-label="End of chat feedback screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <h1 class="app-bar-title app-bar-title-padded">Rate Your Experience</h1>
+      </div>
+      <div class="screen-content" style="padding:0;">
+        <div class="chat-feedback-wrap">
+          <div class="chat-feedback-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+          <h2 class="h2" style="margin-bottom:2px;">How did we do?</h2>
+          <p class="body-sm" style="color:var(--on-surface-2);line-height:1.5;text-align:center;">Your conversation with HealthBot has ended. Let us know how it went.</p>
+          <!-- Conversation summary chip -->
+          <div style="background:var(--surface-var);border:1px solid var(--divider);border-radius:var(--radius-lg);padding:10px 14px;width:100%;margin-top:6px;">
+            <p class="body-xs" style="color:var(--on-surface-2);margin-bottom:4px;">TOPIC</p>
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span class="material-icons" style="font-size:16px;color:var(--secondary);">medication</span>
+              <p class="body-sm text-bold">Prescription Refill</p>
+            </div>
+            <p class="body-xs" style="margin-top:4px;">Duration: 4 min · 8 messages</p>
+          </div>
+          <!-- Star rating -->
+          <div style="margin-top:6px;">
+            <p class="section-label" style="text-align:center;margin-bottom:8px;">TAP TO RATE</p>
+            <div class="chat-stars" role="group" aria-label="Star rating">
+              <span class="chat-star" role="radio" aria-label="1 star" aria-checked="false">★</span>
+              <span class="chat-star" role="radio" aria-label="2 stars" aria-checked="false">★</span>
+              <span class="chat-star" role="radio" aria-label="3 stars" aria-checked="false">★</span>
+              <span class="chat-star" role="radio" aria-label="4 stars, selected" aria-checked="true">★</span>
+              <span class="chat-star-empty" role="radio" aria-label="5 stars" aria-checked="false">★</span>
+            </div>
+            <p class="body-sm" style="text-align:center;color:var(--on-surface-2);margin-top:2px;">Good</p>
+          </div>
+          <!-- Comment -->
+          <div style="width:100%;margin-top:4px;">
+            <label class="tf-label" for="feedback-comment">ADD A COMMENT (OPTIONAL)</label>
+            <div class="text-field" style="min-height:56px;align-items:flex-start;padding-top:10px;" id="feedback-comment">
+              <span class="tf-placeholder">What could we improve?</span>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary w-full" style="margin-top:8px;">SUBMIT FEEDBACK</button>
+          <button type="button" class="btn-text" style="margin-top:2px;">Start New Conversation</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       CHAT · 09 — Chat History
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label" style="color:#1565C0;">CHAT · 09</div>
+    <div class="screen-title">Chat History</div>
+    <article class="phone-frame" aria-label="Chat history screen" style="position:relative;">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <h1 class="app-bar-title app-bar-title-padded">Conversations</h1>
+        <button type="button" class="icon-btn" aria-label="Search conversations"><span class="material-icons" aria-hidden="true">search</span></button>
+      </div>
+      <div class="screen-content" style="padding:0;">
+        <div class="scrollable">
+          <div style="padding:10px 12px 6px;background:var(--bg);">
+            <div class="search-bar" role="search" style="margin:0;">
+              <span class="material-icons" aria-hidden="true">search</span>
+              <span class="search-placeholder">Search conversations...</span>
+            </div>
+          </div>
+          <div style="padding:8px 12px 4px;"><p class="section-label">TODAY</p></div>
+          <div style="background:var(--surface);border-top:1px solid var(--divider);">
+            <div class="chat-history-item">
+              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-body">
+                <p class="chat-history-title">Prescription refill — Lisinopril</p>
+                <p class="chat-history-preview">Refill sent to CVS Caremark</p>
+              </div>
+              <div class="msg-trailing"><span class="item-meta">2h</span><span class="unread-dot" aria-label="Unread"></span></div>
+            </div>
+            <div class="chat-history-item">
+              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-body">
+                <p class="chat-history-title">Claim status inquiry</p>
+                <p class="chat-history-preview">Claim #CLM-0244 is in review</p>
+              </div>
+              <span class="item-meta">5h</span>
+            </div>
+          </div>
+          <div style="padding:8px 12px 4px;background:var(--bg);"><p class="section-label">YESTERDAY</p></div>
+          <div style="background:var(--surface);border-top:1px solid var(--divider);">
+            <div class="chat-history-item">
+              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-body">
+                <p class="chat-history-title">Appointment booking</p>
+                <p class="chat-history-preview">Booked Dr. Chen for Mar 18</p>
+              </div>
+              <span class="item-meta">Yesterday</span>
+            </div>
+            <div class="chat-history-item">
+              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">support_agent</span></div>
+              <div class="chat-history-body">
+                <p class="chat-history-title">Live Agent — Claim dispute</p>
+                <p class="chat-history-preview">Dispute submitted for CLM-0198</p>
+              </div>
+              <span class="item-meta">Yesterday</span>
+            </div>
+          </div>
+          <div style="padding:8px 12px 4px;background:var(--bg);"><p class="section-label">LAST WEEK</p></div>
+          <div style="background:var(--surface);border-top:1px solid var(--divider);">
+            <div class="chat-history-item">
+              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-body">
+                <p class="chat-history-title">Benefits explanation</p>
+                <p class="chat-history-preview">Explained deductible vs. copay</p>
+              </div>
+              <span class="item-meta">Mar 4</span>
+            </div>
+            <div class="chat-history-item" style="border-bottom:none;">
+              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-body">
+                <p class="chat-history-title">Find a doctor — Cardiology</p>
+                <p class="chat-history-preview">3 in-network cardiologists found</p>
+              </div>
+              <span class="item-meta">Mar 2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- FAB -->
+      <button type="button" class="chat-fab" aria-label="Start a new chat">
+        <span class="material-icons" aria-hidden="true">add_comment</span>
+      </button>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item active" aria-label="Chat, active" aria-current="page"><span class="material-icons" aria-hidden="true">smart_toy</span><span class="nav-label">Chat</span></button>
         <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
       </nav>
     </article>
