@@ -1325,6 +1325,426 @@
 </section>
 
 
+
+<!-- ══════════════════════════════════════
+     18. CHAT & AI COMPONENTS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-chat">
+  <h2 class="pat-section-title" id="sec-chat">Chat &amp; AI Components</h2>
+  <p class="body-sm" style="margin-bottom:20px;color:var(--on-surface-2);">Components for the HealthBot AI assistant. All chat screens are accessible via the <strong>Chat</strong> bottom-nav tab (CHAT · 01–09). Category color: <span style="display:inline-block;width:10px;height:10px;background:#1565C0;border-radius:50%;vertical-align:middle;margin:0 3px;"></span><strong>#1565C0</strong>.</p>
+
+  <!-- 18a – Chat Bubbles -->
+  <div class="pat-subsection-title">18a – Chat Bubbles</div>
+  <div class="pat-row" style="align-items:flex-start;flex-wrap:wrap;gap:32px;">
+
+    <!-- Bot bubble -->
+    <div class="pat-cell" style="min-width:240px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Bot (Incoming)</div>
+      <div style="display:flex;flex-direction:column;gap:3px;padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--divider);">
+        <p style="font-size:10px;font-weight:700;color:var(--on-surface-2);margin-left:29px;margin-bottom:2px;letter-spacing:0.3px;">HealthBot</p>
+        <div style="display:flex;align-items:flex-end;gap:5px;max-width:88%;">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--primary);flex-shrink:0;display:flex;align-items:center;justify-content:center;" aria-hidden="true">
+            <span class="material-icons" style="font-size:13px;color:white;">smart_toy</span>
+          </div>
+          <div style="padding:8px 11px;border-radius:16px;border-bottom-left-radius:4px;font-size:12px;line-height:1.5;max-width:190px;background:var(--surface);border:1px solid var(--divider);color:var(--on-surface);">
+            Hi Sarah! How can I help you today?
+          </div>
+        </div>
+      </div>
+      <span class="pat-label">.chat-bubble-row.bot · .chat-bot-icon · .chat-bubble.chat-bubble-bot · border-bottom-left-radius:4px</span>
+    </div>
+
+    <!-- User bubble -->
+    <div class="pat-cell" style="min-width:240px;">
+      <div class="pat-subsection-title" style="margin-top:0;">User (Outgoing)</div>
+      <div style="display:flex;flex-direction:column;gap:3px;padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--divider);">
+        <div style="display:flex;align-items:flex-end;justify-content:flex-end;max-width:88%;align-self:flex-end;">
+          <div style="padding:8px 11px;border-radius:16px;border-bottom-right-radius:4px;font-size:12px;line-height:1.5;max-width:190px;background:var(--primary);color:white;">
+            I need to refill my Lisinopril prescription.
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;">
+          <span style="font-size:10px;color:var(--on-surface-3);">10:43 AM · Delivered</span>
+        </div>
+      </div>
+      <span class="pat-label">.chat-bubble-row.user · flex-direction:row-reverse · .chat-bubble.chat-bubble-user · bg:var(--primary) · color:white · border-bottom-right-radius:4px</span>
+    </div>
+
+    <!-- Date divider -->
+    <div class="pat-cell" style="min-width:200px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Date Divider</div>
+      <div style="padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--divider);">
+        <div style="text-align:center;font-size:10px;color:var(--on-surface-3);margin:6px 0 4px;letter-spacing:0.4px;font-weight:500;">TODAY · 10:42 AM</div>
+      </div>
+      <span class="pat-label">.chat-date-divider · font-size:10px · color:var(--on-surface-3) · letter-spacing:0.4px</span>
+    </div>
+  </div>
+
+  <!-- 18b – Typing Indicator -->
+  <div class="pat-subsection-title">18b – Typing Indicator</div>
+  <div class="pat-row" style="align-items:flex-start;gap:32px;flex-wrap:wrap;">
+    <div class="pat-cell" style="min-width:240px;">
+      <div style="display:flex;flex-direction:column;gap:3px;padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--divider);">
+        <p style="font-size:10px;font-weight:700;color:var(--on-surface-2);margin-left:29px;margin-bottom:2px;letter-spacing:0.3px;">HealthBot</p>
+        <div style="display:flex;align-items:flex-end;gap:5px;" aria-label="HealthBot is typing" aria-live="polite">
+          <div style="width:24px;height:24px;border-radius:50%;background:var(--primary);flex-shrink:0;display:flex;align-items:center;justify-content:center;" aria-hidden="true">
+            <span class="material-icons" style="font-size:13px;color:white;">smart_toy</span>
+          </div>
+          <div class="chat-typing-bubble">
+            <span class="chat-typing-dot"></span>
+            <span class="chat-typing-dot"></span>
+            <span class="chat-typing-dot"></span>
+          </div>
+        </div>
+        <p style="font-size:10px;color:var(--on-surface-3);margin-left:29px;margin-top:3px;font-style:italic;">HealthBot is looking up your claim...</p>
+      </div>
+      <span class="pat-label">.chat-typing-bubble · 3× .chat-typing-dot · dot opacity: 1 / 0.55 / 0.25 · aria-live="polite" · send button disabled</span>
+    </div>
+    <div class="pat-cell" style="flex:1;min-width:200px;">
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <tr style="background:var(--surface-var);"><th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);">Rule</th><th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);">Value</th></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Dot sizes</td><td style="padding:6px 10px;">6×6px · border-radius:50% · bg:var(--on-surface-3)</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Opacity cascade</td><td style="padding:6px 10px;">dot 1: 1.0 · dot 2: 0.55 · dot 3: 0.25</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">App bar status</td><td style="padding:6px 10px;">Replace "Online" with "typing..."</td></tr>
+        <tr><td style="padding:6px 10px;color:var(--on-surface-2);">Send button</td><td style="padding:6px 10px;">disabled attr · bg:var(--divider)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 18c – Chat Input Bar -->
+  <div class="pat-subsection-title">18c – Chat Input Bar</div>
+  <div class="pat-row" style="align-items:flex-start;gap:24px;flex-wrap:wrap;">
+    <div class="pat-cell" style="min-width:260px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Default (empty)</div>
+      <div style="display:flex;align-items:center;gap:6px;padding:8px;background:var(--surface);border:1px solid var(--divider);border-radius:10px;">
+        <div style="width:34px;height:34px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;color:var(--on-surface-3);flex-shrink:0;">
+          <span class="material-icons" style="font-size:19px;">attach_file</span>
+        </div>
+        <div style="flex:1;height:34px;border-radius:17px;border:1px solid var(--border);padding:0 12px;font-size:12px;color:var(--on-surface-3);background:var(--bg);display:flex;align-items:center;">
+          Ask me anything...
+        </div>
+        <div style="width:34px;height:34px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <span class="material-icons" style="font-size:17px;color:white;">send</span>
+        </div>
+      </div>
+      <span class="pat-label">.chat-input-bar · .chat-input-btn-ghost · .chat-input · .chat-input-btn-send</span>
+    </div>
+    <div class="pat-cell" style="min-width:260px;">
+      <div class="pat-subsection-title" style="margin-top:0;">With active text</div>
+      <div style="display:flex;align-items:center;gap:6px;padding:8px;background:var(--surface);border:1px solid var(--divider);border-radius:10px;">
+        <div style="width:34px;height:34px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;color:var(--on-surface-3);flex-shrink:0;">
+          <span class="material-icons" style="font-size:19px;">attach_file</span>
+        </div>
+        <div style="flex:1;height:34px;border-radius:17px;border:1.5px solid var(--primary);padding:0 12px;font-size:12px;color:var(--on-surface);background:var(--bg);display:flex;align-items:center;">
+          Book with Dr. Chen tomorrow
+        </div>
+        <div style="width:34px;height:34px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <span class="material-icons" style="font-size:17px;color:white;">send</span>
+        </div>
+      </div>
+      <span class="pat-label">Active state: .chat-input border:1.5px solid var(--primary)</span>
+    </div>
+    <div class="pat-cell" style="min-width:260px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Image/File variant</div>
+      <div style="display:flex;align-items:center;gap:6px;padding:8px;background:var(--surface);border:1px solid var(--divider);border-radius:10px;">
+        <div style="width:34px;height:34px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;color:var(--on-surface-3);flex-shrink:0;">
+          <span class="material-icons" style="font-size:19px;">add_photo_alternate</span>
+        </div>
+        <div style="flex:1;height:34px;border-radius:17px;border:1px solid var(--border);padding:0 12px;font-size:12px;color:var(--on-surface-3);background:var(--bg);display:flex;align-items:center;">
+          Type a message...
+        </div>
+        <div style="width:34px;height:34px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <span class="material-icons" style="font-size:17px;color:white;">send</span>
+        </div>
+      </div>
+      <span class="pat-label">Photo-first context: add_photo_alternate icon replaces attach_file</span>
+    </div>
+  </div>
+
+  <!-- 18d – Quick Reply Chips -->
+  <div class="pat-subsection-title">18d – Quick Reply Chips</div>
+  <div class="pat-row" style="align-items:flex-start;gap:24px;flex-wrap:wrap;">
+    <div class="pat-cell" style="min-width:320px;">
+      <div style="border:1px solid var(--divider);border-radius:10px;overflow:hidden;">
+        <div style="background:var(--bg);padding:8px 10px;border-bottom:1px solid var(--divider);">
+          <p class="body-xs" style="color:var(--on-surface-3);">Chat area above</p>
+        </div>
+        <div class="chat-quick-replies" role="group" aria-label="Quick reply options" style="background:var(--bg);">
+          <button type="button" class="chat-quick-reply">Primary Care</button>
+          <button type="button" class="chat-quick-reply">Urgent Care</button>
+          <button type="button" class="chat-quick-reply">Specialist</button>
+          <button type="button" class="chat-quick-reply">Mental Health</button>
+          <button type="button" class="chat-quick-reply">Virtual Visit</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;padding:8px;background:var(--surface);border-top:1px solid var(--divider);">
+          <div style="width:34px;height:34px;border-radius:50%;background:transparent;display:flex;align-items:center;justify-content:center;color:var(--on-surface-3);">
+            <span class="material-icons" style="font-size:19px;">attach_file</span>
+          </div>
+          <div style="flex:1;height:34px;border-radius:17px;border:1px solid var(--border);padding:0 12px;font-size:12px;color:var(--on-surface-3);background:var(--bg);display:flex;align-items:center;">Or type your own...</div>
+          <div style="width:34px;height:34px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;">
+            <span class="material-icons" style="font-size:17px;color:white;">send</span>
+          </div>
+        </div>
+      </div>
+      <span class="pat-label">.chat-quick-replies (overflow-x:auto, flex-shrink:0) · .chat-quick-reply · border:1.5px solid var(--primary) · sits between chat area and input bar · role="group"</span>
+    </div>
+  </div>
+
+  <!-- 18e – Rich Card Response -->
+  <div class="pat-subsection-title">18e – Rich Card Response</div>
+  <div class="pat-row" style="align-items:flex-start;gap:32px;flex-wrap:wrap;">
+    <div class="pat-cell">
+      <div class="pat-subsection-title" style="margin-top:0;">Appointment card</div>
+      <div class="chat-rich-card" role="article" aria-label="Appointment option">
+        <div class="chat-rich-card-header">
+          <span class="material-icons">event</span>
+          <div><p class="chat-rich-card-title">Dr. Maria Chen</p><p class="chat-rich-card-sub">Primary Care · In-Network</p></div>
+        </div>
+        <div class="chat-rich-card-body">
+          <div class="chat-rich-card-row"><span class="material-icons">calendar_today</span>Mar 18, 2026 · 10:30 AM</div>
+          <div class="chat-rich-card-row"><span class="material-icons">location_on</span>450 Sutter St · In-Person</div>
+          <div class="chat-rich-card-row"><span class="material-icons">payments</span>$25 copay · In-Network</div>
+          <div style="margin-top:2px;"><span class="chip-sm chip-success">Available</span></div>
+        </div>
+        <div class="chat-rich-card-action" role="button" tabindex="0">BOOK THIS SLOT</div>
+      </div>
+      <span class="pat-label">.chat-rich-card · .chat-rich-card-header (gradient) · .chat-rich-card-body · .chat-rich-card-row · .chat-rich-card-action · max-width:210px · margin-left:29px (aligns with bubble text)</span>
+    </div>
+    <div class="pat-cell" style="flex:1;min-width:200px;">
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <tr style="background:var(--surface-var);"><th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);">Element</th><th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);">Style</th></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Card radius</td><td style="padding:6px 10px;">border-radius:16px · border-bottom-left-radius:4px (matches bot bubble)</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Header bg</td><td style="padding:6px 10px;">linear-gradient(135deg, var(--primary), var(--primary-dark))</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Row icons</td><td style="padding:6px 10px;">font-size:12px · color:var(--secondary)</td></tr>
+        <tr><td style="padding:6px 10px;color:var(--on-surface-2);">Action strip</td><td style="padding:6px 10px;">bg:var(--surface-var) · color:var(--primary) · border-top:1px solid var(--divider)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 18f – Image Bubble -->
+  <div class="pat-subsection-title">18f – Image Attachment Bubble</div>
+  <div class="pat-row" style="align-items:flex-start;gap:24px;flex-wrap:wrap;">
+    <div class="pat-cell">
+      <div style="display:flex;flex-direction:column;gap:4px;padding:12px;background:var(--bg);border-radius:10px;border:1px solid var(--divider);">
+        <div style="display:flex;align-items:flex-end;justify-content:flex-end;">
+          <div class="chat-img-bubble" role="img" aria-label="Uploaded insurance card photo">
+            <span class="material-icons">photo</span>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;">
+          <span style="font-size:10px;color:var(--on-surface-3);">Insurance_Card.jpg · 3:16 PM</span>
+        </div>
+      </div>
+      <span class="pat-label">.chat-img-bubble · 140×88px · border-bottom-right-radius:4px · bg:var(--surface-var) · role="img" with aria-label</span>
+    </div>
+    <div class="pat-cell" style="max-width:260px;">
+      <p class="body-sm" style="color:var(--on-surface-2);line-height:1.6;">Accepted file types shown in caption below bubble. Bot response should acknowledge the attachment and extract relevant information. For wirframes use the <code style="background:var(--surface-var);padding:2px 5px;border-radius:3px;font-size:11px;">photo</code> Material icon as a placeholder.</p>
+    </div>
+  </div>
+
+  <!-- 18g – Bot App Bar States -->
+  <div class="pat-subsection-title">18g – Bot App Bar States</div>
+  <div class="pat-row" style="align-items:flex-start;gap:16px;flex-wrap:wrap;">
+    <div class="pat-cell" style="min-width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Online</div>
+      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--divider);">
+        <div class="app-bar">
+          <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+          <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
+            </div>
+            <div>
+              <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
+              <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;display:flex;align-items:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#69F0AE;"></span>Online · AI-powered</p>
+            </div>
+          </div>
+          <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+        </div>
+      </div>
+      <span class="pat-label">Online: green dot #69F0AE · subtitle "Online · AI-powered"</span>
+    </div>
+    <div class="pat-cell" style="min-width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Typing</div>
+      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--divider);">
+        <div class="app-bar">
+          <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+          <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
+            </div>
+            <div>
+              <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
+              <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;">typing...</p>
+            </div>
+          </div>
+          <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+        </div>
+      </div>
+      <span class="pat-label">Typing: no dot · subtitle "typing..." · italic recommended</span>
+    </div>
+    <div class="pat-cell" style="min-width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Connecting to Agent</div>
+      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--divider);">
+        <div class="app-bar">
+          <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+          <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
+            <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
+            </div>
+            <div>
+              <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
+              <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;">Connecting to agent...</p>
+            </div>
+          </div>
+          <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+        </div>
+      </div>
+      <span class="pat-label">Escalation: no dot · subtitle "Connecting to agent..."</span>
+    </div>
+  </div>
+
+  <!-- 18h – Escalation Modal -->
+  <div class="pat-subsection-title">18h – Escalation to Live Agent</div>
+  <div class="pat-row" style="align-items:flex-start;gap:32px;flex-wrap:wrap;">
+    <div class="pat-cell" style="min-width:240px;">
+      <div class="chat-escalation-card" style="max-width:260px;box-shadow:0 4px 24px rgba(0,0,0,0.12);" role="dialog" aria-modal="true" aria-labelledby="pat-escalation-title">
+        <div class="chat-agent-avatar" aria-hidden="true">JS</div>
+        <h2 class="modal-title" id="pat-escalation-title" style="font-size:15px;margin-bottom:2px;">Connect with a Live Agent</h2>
+        <p class="body-sm" style="text-align:center;color:var(--on-surface-2);line-height:1.5;">A care advocate can review your case and help resolve the issue.</p>
+        <div class="chat-wait-badge" aria-label="Estimated wait time 5 minutes">
+          <span class="material-icons">schedule</span>~5 min wait
+        </div>
+        <div style="width:100%;display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+          <button type="button" class="btn btn-primary">CONNECT NOW</button>
+          <button type="button" class="btn btn-outlined">Schedule a Callback</button>
+          <button type="button" class="btn-text" style="color:var(--on-surface-2);">Continue with HealthBot</button>
+        </div>
+      </div>
+      <span class="pat-label">.chat-escalation-card · agent avatar .chat-agent-avatar (bg:var(--secondary)) · .chat-wait-badge (bg:var(--success-light)) · 3-action stack · bottom-sheet border-radius:20px 20px 0 0</span>
+    </div>
+    <div class="pat-cell" style="flex:1;min-width:200px;">
+      <p class="body-sm" style="color:var(--on-surface-2);line-height:1.6;margin-bottom:12px;">The escalation sheet is a <strong>bottom sheet modal</strong> — slides up from the bottom of the phone frame. The conversation behind it is dimmed (opacity:0.35) and set to aria-hidden="true".</p>
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <tr style="background:var(--surface-var);"><th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);">Element</th><th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);">Value</th></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Agent avatar</td><td style="padding:6px 10px;">52px · bg:var(--secondary) · initials</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Wait badge</td><td style="padding:6px 10px;">.chat-wait-badge · bg:var(--success-light) · schedule icon</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Live agent icon</td><td style="padding:6px 10px;">support_agent (Material) for history items</td></tr>
+        <tr><td style="padding:6px 10px;color:var(--on-surface-2);">Background</td><td style="padding:6px 10px;">opacity:0.35 · aria-hidden="true"</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 18i – Feedback / Star Rating -->
+  <div class="pat-subsection-title">18i – Conversation Feedback</div>
+  <div class="pat-row" style="align-items:flex-start;gap:32px;flex-wrap:wrap;">
+    <div class="pat-cell" style="min-width:220px;">
+      <div style="max-width:240px;border:1px solid var(--divider);border-radius:12px;overflow:hidden;background:var(--surface);">
+        <div class="chat-feedback-wrap" style="padding:20px 16px 16px;">
+          <div class="chat-feedback-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
+          <h2 class="h2" style="margin-bottom:2px;">How did we do?</h2>
+          <p class="body-sm" style="color:var(--on-surface-2);text-align:center;line-height:1.5;">Rate your conversation with HealthBot.</p>
+          <!-- Stars: 4 filled, 1 empty -->
+          <div class="chat-stars" role="group" aria-label="Star rating, 4 out of 5">
+            <span class="chat-star">★</span>
+            <span class="chat-star">★</span>
+            <span class="chat-star">★</span>
+            <span class="chat-star">★</span>
+            <span class="chat-star-empty">★</span>
+          </div>
+          <p class="body-sm" style="color:var(--on-surface-2);">Good</p>
+          <button type="button" class="btn btn-primary w-full" style="margin-top:8px;font-size:12px;height:40px;">SUBMIT FEEDBACK</button>
+        </div>
+      </div>
+      <span class="pat-label">.chat-feedback-icon · .chat-stars · .chat-star (color:#F59E0B) · .chat-star-empty (color:var(--divider)) · role="group" with aria-label</span>
+    </div>
+    <div class="pat-cell" style="flex:1;min-width:200px;">
+      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+        <tr style="background:var(--surface-var);"><th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);">Rating</th><th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);">Label</th></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;">★☆☆☆☆</td><td style="padding:6px 10px;">Poor</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;">★★☆☆☆</td><td style="padding:6px 10px;">Fair</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;">★★★☆☆</td><td style="padding:6px 10px;">Okay</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;">★★★★☆</td><td style="padding:6px 10px;">Good</td></tr>
+        <tr><td style="padding:6px 10px;">★★★★★</td><td style="padding:6px 10px;">Excellent</td></tr>
+      </table>
+      <span class="pat-label" style="margin-top:8px;display:block;">Star color: #F59E0B · empty: color:var(--divider) · font-size:26px · gap:5px</span>
+    </div>
+  </div>
+
+  <!-- 18j – Chat History List Item -->
+  <div class="pat-subsection-title">18j – Chat History List Items</div>
+  <div style="max-width:380px;border:1px solid var(--divider);border-radius:12px;overflow:hidden;">
+    <!-- AI conversation -->
+    <div class="chat-history-item">
+      <div class="chat-history-icon"><span class="material-icons" style="font-size:19px;color:white;">smart_toy</span></div>
+      <div class="chat-history-body">
+        <p class="chat-history-title">Prescription refill — Lisinopril</p>
+        <p class="chat-history-preview">Refill sent to CVS Caremark · 4 min</p>
+      </div>
+      <div class="msg-trailing"><span class="item-meta">2h</span><span class="unread-dot" aria-label="Unread"></span></div>
+    </div>
+    <!-- Live agent conversation -->
+    <div class="chat-history-item">
+      <div class="chat-history-icon" style="background:var(--secondary);"><span class="material-icons" style="font-size:19px;color:white;">support_agent</span></div>
+      <div class="chat-history-body">
+        <p class="chat-history-title">Live Agent — Claim dispute</p>
+        <p class="chat-history-preview">Dispute submitted for CLM-0198</p>
+      </div>
+      <span class="item-meta">Yesterday</span>
+    </div>
+    <!-- Read AI conversation -->
+    <div class="chat-history-item" style="border-bottom:none;">
+      <div class="chat-history-icon"><span class="material-icons" style="font-size:19px;color:white;">smart_toy</span></div>
+      <div class="chat-history-body">
+        <p class="chat-history-title">Find a doctor — Cardiology</p>
+        <p class="chat-history-preview">3 in-network cardiologists found</p>
+      </div>
+      <span class="item-meta">Mar 2</span>
+    </div>
+  </div>
+  <span class="pat-label">AI conversations: .chat-history-icon bg:var(--primary) · smart_toy icon / Live agent: bg:var(--secondary) · support_agent icon · Unread: .unread-dot in .msg-trailing</span>
+
+  <!-- 18k – Chat FAB -->
+  <div class="pat-subsection-title">18k – Chat FAB</div>
+  <div class="pat-row" style="align-items:center;">
+    <div class="pat-cell" style="position:relative;height:80px;width:80px;">
+      <div style="position:absolute;bottom:10px;right:10px;width:44px;height:44px;border-radius:50%;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(67,24,67,0.45);">
+        <span class="material-icons" style="font-size:22px;">add_comment</span>
+      </div>
+    </div>
+    <div class="pat-cell">
+      <span class="pat-label">.chat-fab · position:absolute · bottom:66px (above bottom-nav) · right:14px · add_comment icon · box-shadow:0 4px 14px rgba(67,24,67,0.45)</span>
+    </div>
+  </div>
+
+  <!-- 18l – Conversation Flow Decision Map -->
+  <div class="pat-subsection-title">18l – Screen Flow Order</div>
+  <div class="pat-frame" style="overflow-x:auto;">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:480px;">
+      <thead>
+        <tr style="background:var(--surface-var);">
+          <th style="padding:7px 10px;text-align:left;color:var(--on-surface-2);">Screen</th>
+          <th style="padding:7px 10px;text-align:left;color:var(--on-surface-2);">Role</th>
+          <th style="padding:7px 10px;text-align:left;color:var(--on-surface-2);">Triggers From</th>
+          <th style="padding:7px 10px;text-align:left;color:var(--on-surface-2);">Leads To</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;font-weight:500;">CHAT · 01</td><td style="padding:6px 10px;color:var(--on-surface-2);">AI Assistant Home</td><td style="padding:6px 10px;color:var(--on-surface-2);">Chat tab in bottom nav</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (tap any topic/input)</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;font-weight:500;">CHAT · 02</td><td style="padding:6px 10px;color:var(--on-surface-2);">Active Conversation</td><td style="padding:6px 10px;color:var(--on-surface-2);">01 or 09</td><td style="padding:6px 10px;color:var(--on-surface-2);">03, 04, 05, 06, 07, 08</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;font-weight:500;">CHAT · 03</td><td style="padding:6px 10px;color:var(--on-surface-2);">Typing Indicator</td><td style="padding:6px 10px;color:var(--on-surface-2);">After user sends message</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (bot responds)</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;font-weight:500;">CHAT · 04</td><td style="padding:6px 10px;color:var(--on-surface-2);">Rich Card Response</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (structured answer)</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 or MAIN · 09 (book)</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;font-weight:500;">CHAT · 05</td><td style="padding:6px 10px;color:var(--on-surface-2);">Quick Replies</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (bot asks branching question)</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (chip selected)</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;font-weight:500;">CHAT · 06</td><td style="padding:6px 10px;color:var(--on-surface-2);">Image Attachment</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (attachment icon tapped)</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (bot reads image)</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;font-weight:500;">CHAT · 07</td><td style="padding:6px 10px;color:var(--on-surface-2);">Escalation to Human</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (complex query detected)</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 or live agent queue</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;font-weight:500;">CHAT · 08</td><td style="padding:6px 10px;color:var(--on-surface-2);">Conversation Feedback</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (user ends / bot wraps up)</td><td style="padding:6px 10px;color:var(--on-surface-2);">01 or 09 after submit</td></tr>
+        <tr><td style="padding:6px 10px;font-weight:500;">CHAT · 09</td><td style="padding:6px 10px;color:var(--on-surface-2);">Chat History</td><td style="padding:6px 10px;color:var(--on-surface-2);">01 (view all) or back button</td><td style="padding:6px 10px;color:var(--on-surface-2);">02 (resume any conversation)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
 </div><!-- /pat-page -->
 
 <script src="healthcare-md.js"></script>
