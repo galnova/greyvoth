@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare App – Pattern Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="healthcare-md.css">
+<link rel="stylesheet" href="patterns.css">
+</head>
+<body>
+
+<a href="#pat-main" class="skip-link">Skip to main content</a>
+
+<!-- CONTROL PANEL -->
+<div id="ctrl-panel" role="complementary" aria-label="Design controls">
+  <header>Design Controls <span>Live — updates all screens</span></header>
+  <div class="ctrl-section">
+    <div class="ctrl-section-label">Colors</div>
+    <div class="ctrl-row"><label>Primary</label><input type="color" value="#431843" oninput="setVar('--primary', this)"><div class="ctrl-hex">#431843</div></div>
+    <div class="ctrl-row"><label>Primary Dark</label><input type="color" value="#003c8f" oninput="setVar('--primary-dark', this)"><div class="ctrl-hex">#003c8f</div></div>
+    <div class="ctrl-row"><label>Primary Light</label><input type="color" value="#E3F2FD" oninput="setVar('--primary-light', this)"><div class="ctrl-hex">#E3F2FD</div></div>
+    <div class="ctrl-row"><label>Secondary</label><input type="color" value="#00838F" oninput="setVar('--secondary', this)"><div class="ctrl-hex">#00838F</div></div>
+    <div class="ctrl-row"><label>Error</label><input type="color" value="#B00020" oninput="setVar('--error', this)"><div class="ctrl-hex">#B00020</div></div>
+    <div class="ctrl-row"><label>Error Light</label><input type="color" value="#FFDAD6" oninput="setVar('--error-light', this)"><div class="ctrl-hex">#FFDAD6</div></div>
+    <div class="ctrl-row"><label>Success</label><input type="color" value="#2E7D32" oninput="setVar('--success', this)"><div class="ctrl-hex">#2E7D32</div></div>
+    <div class="ctrl-row"><label>On Surface</label><input type="color" value="#1A1C2E" oninput="setVar('--on-surface', this)"><div class="ctrl-hex">#1A1C2E</div></div>
+    <div class="ctrl-row"><label>On Surface 2</label><input type="color" value="#5C6070" oninput="setVar('--on-surface-2', this)"><div class="ctrl-hex">#5C6070</div></div>
+    <div class="ctrl-row"><label>On Surface 3</label><input type="color" value="#767676" oninput="setVar('--on-surface-3', this)"><div class="ctrl-hex">#767676</div></div>
+    <div class="ctrl-row"><label>Page BG</label><input type="color" value="#E8EAF6" oninput="setVar('--page-bg', this)"><div class="ctrl-hex">#E8EAF6</div></div>
+  </div>
+  <button class="ctrl-btn" onclick="location.reload()">Reset to Defaults</button>
+</div>
+
+<!-- PAGE HEADER -->
+<div id="pat-main" class="pat-page">
+
+<div class="page-title">Design System &amp; Pattern Library</div>
+<p class="page-subtitle">Healthcare App &mdash; Material Design 3 &middot; Color tokens, typography, and component inventory</p>
+
+<div class="legend" role="list" aria-label="Navigation">
+  <a href="healthcare-md.html" class="chip" style="text-decoration:none;" role="listitem"><div class="chip-dot" style="background:var(--secondary);"></div>Wireframes</a>
+  <div class="chip" role="listitem" style="background:var(--primary);color:white;border-color:var(--primary);"><div class="chip-dot" style="background:white;"></div>Pattern Library</div>
+</div>
+
+<button id="ctrl-toggle" aria-label="Toggle design controls" aria-expanded="true" aria-controls="ctrl-panel">
+  <span class="material-icons" aria-hidden="true">tune</span>
+  <span id="ctrl-toggle-label">Hide Controls</span>
+</button>
+
+<div class="pat-divider"></div>
+
+
+<!-- ══════════════════════════════════════
+     1. COLOR SYSTEM
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-color">
+  <h2 class="pat-section-title" id="sec-color">Color System</h2>
+
+  <div class="pat-subsection-title">Brand &amp; Semantic Tokens</div>
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--primary);"></div>
+      <div class="swatch-info"><p class="swatch-name">Primary</p><p class="swatch-hex">--primary · #431843</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--primary-dark);"></div>
+      <div class="swatch-info"><p class="swatch-name">Primary Dark</p><p class="swatch-hex">--primary-dark · #003c8f</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--primary-light); border:1px solid var(--divider);"></div>
+      <div class="swatch-info"><p class="swatch-name">Primary Light</p><p class="swatch-hex">--primary-light · #E3F2FD</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--secondary);"></div>
+      <div class="swatch-info"><p class="swatch-name">Secondary</p><p class="swatch-hex">--secondary · #00838F</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--success);"></div>
+      <div class="swatch-info"><p class="swatch-name">Success</p><p class="swatch-hex">--success · #2E7D32</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--success-light); border:1px solid var(--divider);"></div>
+      <div class="swatch-info"><p class="swatch-name">Success Light</p><p class="swatch-hex">--success-light</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--warning);"></div>
+      <div class="swatch-info"><p class="swatch-name">Warning</p><p class="swatch-hex">--warning · #BF4400</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--warning-light); border:1px solid var(--divider);"></div>
+      <div class="swatch-info"><p class="swatch-name">Warning Light</p><p class="swatch-hex">--warning-light</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--error);"></div>
+      <div class="swatch-info"><p class="swatch-name">Error</p><p class="swatch-hex">--error · #B00020</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--error-light); border:1px solid var(--divider);"></div>
+      <div class="swatch-info"><p class="swatch-name">Error Light</p><p class="swatch-hex">--error-light</p></div>
+    </div>
+  </div>
+
+  <div class="pat-subsection-title" style="margin-top:28px;">Surface &amp; Text Tokens</div>
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--on-surface);"></div>
+      <div class="swatch-info"><p class="swatch-name">On Surface</p><p class="swatch-hex">--on-surface · #1A1C2E</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--on-surface-2);"></div>
+      <div class="swatch-info"><p class="swatch-name">On Surface 2</p><p class="swatch-hex">--on-surface-2 · #5C6070</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--on-surface-3);"></div>
+      <div class="swatch-info"><p class="swatch-name">On Surface 3</p><p class="swatch-hex">--on-surface-3 · #767676</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFFFF; border:1px solid var(--divider);"></div>
+      <div class="swatch-info"><p class="swatch-name">Surface</p><p class="swatch-hex">--surface · #FFFFFF</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--surface-var); border:1px solid var(--divider);"></div>
+      <div class="swatch-info"><p class="swatch-name">Surface Variant</p><p class="swatch-hex">--surface-var · #EEF2FF</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--page-bg); border:1px solid var(--divider);"></div>
+      <div class="swatch-info"><p class="swatch-name">Page BG</p><p class="swatch-hex">--page-bg · #E8EAF6</p></div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:var(--divider); border:1px solid var(--border);"></div>
+      <div class="swatch-info"><p class="swatch-name">Divider</p><p class="swatch-hex">--divider · #E2E8F0</p></div>
+    </div>
+  </div>
+
+  <div class="pat-subsection-title" style="margin-top:28px;">WCAG 2.1 AA Contrast Ratios</div>
+  <div class="pat-frame">
+    <table style="width:100%;border-collapse:collapse;font-size:12px;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--divider);">
+          <th style="text-align:left;padding:6px 10px;color:var(--on-surface-2);">Foreground</th>
+          <th style="text-align:left;padding:6px 10px;color:var(--on-surface-2);">Background</th>
+          <th style="text-align:right;padding:6px 10px;color:var(--on-surface-2);">Ratio</th>
+          <th style="text-align:center;padding:6px 10px;color:var(--on-surface-2);">AA Normal</th>
+          <th style="text-align:center;padding:6px 10px;color:var(--on-surface-2);">AA Large</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--divider);">
+          <td style="padding:6px 10px;">--on-surface <span style="display:inline-block;width:12px;height:12px;background:#1A1C2E;border-radius:3px;vertical-align:middle;margin-left:4px;"></span></td>
+          <td style="padding:6px 10px;">--surface (white)</td>
+          <td style="padding:6px 10px;text-align:right;font-family:monospace;">16.81:1</td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--divider);">
+          <td style="padding:6px 10px;">--on-surface-2 <span style="display:inline-block;width:12px;height:12px;background:#5C6070;border-radius:3px;vertical-align:middle;margin-left:4px;"></span></td>
+          <td style="padding:6px 10px;">--surface (white)</td>
+          <td style="padding:6px 10px;text-align:right;font-family:monospace;">6.25:1</td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--divider);">
+          <td style="padding:6px 10px;">--on-surface-3 <span style="display:inline-block;width:12px;height:12px;background:#767676;border-radius:3px;vertical-align:middle;margin-left:4px;"></span></td>
+          <td style="padding:6px 10px;">--surface (white)</td>
+          <td style="padding:6px 10px;text-align:right;font-family:monospace;">4.54:1</td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--divider);">
+          <td style="padding:6px 10px;">white on --primary <span style="display:inline-block;width:12px;height:12px;background:#431843;border-radius:3px;vertical-align:middle;margin-left:4px;"></span></td>
+          <td style="padding:6px 10px;">--primary #431843</td>
+          <td style="padding:6px 10px;text-align:right;font-family:monospace;">14.48:1</td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--divider);">
+          <td style="padding:6px 10px;">--success on --success-light <span style="display:inline-block;width:12px;height:12px;background:#2E7D32;border-radius:3px;vertical-align:middle;margin-left:4px;"></span></td>
+          <td style="padding:6px 10px;">--success-light #E8F5E9</td>
+          <td style="padding:6px 10px;text-align:right;font-family:monospace;">4.56:1</td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--divider);">
+          <td style="padding:6px 10px;">--warning on --warning-light <span style="display:inline-block;width:12px;height:12px;background:#BF4400;border-radius:3px;vertical-align:middle;margin-left:4px;"></span></td>
+          <td style="padding:6px 10px;">--warning-light #FFF3E0</td>
+          <td style="padding:6px 10px;text-align:right;font-family:monospace;">4.74:1</td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+        </tr>
+        <tr>
+          <td style="padding:6px 10px;">--error on --error-light <span style="display:inline-block;width:12px;height:12px;background:#B00020;border-radius:3px;vertical-align:middle;margin-left:4px;"></span></td>
+          <td style="padding:6px 10px;">--error-light #FFDAD6</td>
+          <td style="padding:6px 10px;text-align:right;font-family:monospace;">5.67:1</td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+          <td style="padding:6px 10px;text-align:center;"><span class="chip-sm chip-success">Pass</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     2. TYPOGRAPHY
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-type">
+  <h2 class="pat-section-title" id="sec-type">Typography</h2>
+  <p class="body-sm" style="margin-bottom:16px;">Typeface: <strong>Roboto</strong> &nbsp;&middot;&nbsp; Weights: 300 / 400 / 500 / 700</p>
+
+  <div class="pat-frame">
+    <div class="type-row">
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.h1</span>
+          <span class="type-specs">20px &middot; Bold 700 &middot; tight</span>
+        </div>
+        <div class="type-sample"><span class="h1">Heading One</span></div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.h2</span>
+          <span class="type-specs">18px &middot; Bold 700 &middot; tight</span>
+        </div>
+        <div class="type-sample"><span class="h2">Heading Two</span></div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.h3</span>
+          <span class="type-specs">16px &middot; Bold 700 &middot; tight</span>
+        </div>
+        <div class="type-sample"><span class="h3">Heading Three</span></div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.body-lg</span>
+          <span class="type-specs">16px &middot; Regular 400</span>
+        </div>
+        <div class="type-sample"><span class="body-lg">Body large — The quick brown fox jumps over the lazy dog</span></div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.body-base</span>
+          <span class="type-specs">14px &middot; Regular 400</span>
+        </div>
+        <div class="type-sample"><span class="body-base">Body base — The quick brown fox jumps over the lazy dog</span></div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.body-sm</span>
+          <span class="type-specs">13px &middot; Regular 400 &middot; on-surface-2</span>
+        </div>
+        <div class="type-sample"><span class="body-sm">Body small — The quick brown fox jumps over the lazy dog</span></div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.body-xs</span>
+          <span class="type-specs">11px &middot; Regular 400 &middot; on-surface-3</span>
+        </div>
+        <div class="type-sample"><span class="body-xs">Body extra small — The quick brown fox jumps over the lazy dog</span></div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.section-label</span>
+          <span class="type-specs">11px &middot; Bold 700 &middot; uppercase &middot; tracked</span>
+        </div>
+        <div class="type-sample"><div class="section-label" style="margin:0;">Section Label</div></div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.item-title</span>
+          <span class="type-specs">14px &middot; Medium 500</span>
+        </div>
+        <div class="type-sample"><div class="item-title">List Item Title</div></div>
+      </div>
+      <div class="type-specimen">
+        <div class="type-meta">
+          <span class="type-class">.item-subtitle</span>
+          <span class="type-specs">13px &middot; Regular 400 &middot; on-surface-2</span>
+        </div>
+        <div class="type-sample"><div class="item-subtitle">List Item Subtitle — supporting text</div></div>
+      </div>
+      <div class="type-specimen" style="border-bottom:none;">
+        <div class="type-meta">
+          <span class="type-class">.link</span>
+          <span class="type-specs">Inherits size &middot; Medium 500 &middot; primary</span>
+        </div>
+        <div class="type-sample"><a href="#" class="link">Anchor link example</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     3. BUTTONS & ACTIONS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-btn">
+  <h2 class="pat-section-title" id="sec-btn">Buttons &amp; Actions</h2>
+
+  <div class="pat-subsection-title">Filled &amp; Outlined</div>
+  <div class="pat-row">
+    <div class="pat-cell">
+      <button type="button" class="btn btn-primary" style="min-width:140px;">PRIMARY</button>
+      <span class="pat-label">.btn.btn-primary</span>
+    </div>
+    <div class="pat-cell">
+      <button type="button" class="btn btn-outlined" style="min-width:140px;">OUTLINED</button>
+      <span class="pat-label">.btn.btn-outlined</span>
+    </div>
+    <div class="pat-cell">
+      <button type="button" class="btn btn-tonal" style="min-width:140px;">TONAL</button>
+      <span class="pat-label">.btn.btn-tonal</span>
+    </div>
+    <div class="pat-cell">
+      <button type="button" class="btn btn-danger" style="min-width:140px;">DANGER</button>
+      <span class="pat-label">.btn.btn-danger</span>
+    </div>
+  </div>
+
+  <div class="pat-subsection-title">Text &amp; Icon Buttons</div>
+  <div class="pat-row" style="align-items:center;">
+    <div class="pat-cell">
+      <button type="button" class="btn-text">Text Button</button>
+      <span class="pat-label">.btn-text</span>
+    </div>
+    <div class="pat-cell">
+      <button type="button" class="icon-btn" style="background:var(--primary);border-radius:50%;"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+      <span class="pat-label">.icon-btn (on app-bar)</span>
+    </div>
+    <div class="pat-cell">
+      <button type="button" class="compose-send-btn"><span class="material-icons" aria-hidden="true" style="font-size:16px;">send</span>Send</button>
+      <span class="pat-label">.compose-send-btn</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     4. CHIPS & BADGES
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-chip">
+  <h2 class="pat-section-title" id="sec-chip">Chips &amp; Badges</h2>
+
+  <div class="pat-subsection-title">Status Chips</div>
+  <div class="pat-row" style="align-items:center;">
+    <div class="pat-cell"><span class="chip-sm chip-success">Paid</span><span class="pat-label">.chip-sm.chip-success</span></div>
+    <div class="pat-cell"><span class="chip-sm chip-warning">Processing</span><span class="pat-label">.chip-sm.chip-warning</span></div>
+    <div class="pat-cell"><span class="chip-sm chip-error">Denied</span><span class="pat-label">.chip-sm.chip-error</span></div>
+    <div class="pat-cell"><span class="chip-sm chip-primary">Active</span><span class="pat-label">.chip-sm.chip-primary</span></div>
+    <div class="pat-cell" style="background:var(--primary);padding:8px;border-radius:8px;"><span class="chip-sm chip-white">Active</span><span class="pat-label" style="color:rgba(255,255,255,0.6);">.chip-sm.chip-white</span></div>
+  </div>
+
+  <div class="pat-subsection-title">Legend Chips</div>
+  <div class="pat-row">
+    <div class="pat-cell">
+      <div class="chip"><div class="chip-dot" style="background:var(--primary);"></div>Auth</div>
+      <span class="pat-label">.chip + .chip-dot</span>
+    </div>
+    <div class="pat-cell">
+      <div class="chip"><div class="chip-dot" style="background:var(--secondary);"></div>Onboarding</div>
+    </div>
+    <div class="pat-cell">
+      <div class="chip"><div class="chip-dot" style="background:var(--success);"></div>Main Flows</div>
+    </div>
+    <div class="pat-cell">
+      <div class="chip"><div class="chip-dot" style="background:var(--error);"></div>System States</div>
+    </div>
+  </div>
+
+  <div class="pat-subsection-title">Nav Badge</div>
+  <div class="pat-row" style="align-items:center;">
+    <div class="pat-cell" style="position:relative;display:inline-flex;">
+      <span class="material-icons" style="font-size:24px;color:var(--on-surface-3);">mail</span>
+      <span class="nav-badge" aria-label="3 unread" style="position:absolute;top:-4px;right:-4px;">3</span>
+      <span class="pat-label" style="margin-top:28px;">.nav-badge</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     5. AVATARS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-avatar">
+  <h2 class="pat-section-title" id="sec-avatar">Avatars</h2>
+
+  <div class="pat-subsection-title">Color Variants (40px)</div>
+  <div class="pat-row" style="align-items:center;">
+    <div class="pat-cell"><div class="avatar avatar-primary avatar-40">MC</div><span class="pat-label">.avatar-primary</span></div>
+    <div class="pat-cell"><div class="avatar avatar-teal avatar-40">NP</div><span class="pat-label">.avatar-teal</span></div>
+    <div class="pat-cell"><div class="avatar avatar-orange avatar-40">LA</div><span class="pat-label">.avatar-orange</span></div>
+    <div class="pat-cell"><div class="avatar avatar-success avatar-40">AP</div><span class="pat-label">.avatar-success</span></div>
+    <div class="pat-cell"><div class="avatar avatar-purple avatar-40">HP</div><span class="pat-label">.avatar-purple</span></div>
+    <div class="pat-cell"><div class="avatar avatar-error avatar-40">ER</div><span class="pat-label">.avatar-error</span></div>
+  </div>
+
+  <div class="pat-subsection-title">Sizes</div>
+  <div class="pat-row" style="align-items:center;">
+    <div class="pat-cell"><div class="avatar avatar-primary" style="width:22px;height:22px;font-size:9px;">SJ</div><span class="pat-label">22px</span></div>
+    <div class="pat-cell"><div class="avatar avatar-primary avatar-40">SJ</div><span class="pat-label">40px (.avatar-40)</span></div>
+    <div class="pat-cell"><div class="avatar avatar-primary avatar-52">SJ</div><span class="pat-label">52px (.avatar-52)</span></div>
+    <div class="pat-cell"><div class="avatar-sm">SJ</div><span class="pat-label">.avatar-sm (app-bar)</span></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     6. FORM ELEMENTS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-form">
+  <h2 class="pat-section-title" id="sec-form">Form Elements</h2>
+
+  <div class="pat-row" style="align-items:flex-start;flex-wrap:wrap;gap:24px;">
+    <div class="pat-cell" style="min-width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Default Field</div>
+      <div class="field-group" style="width:220px;">
+        <label class="tf-label" for="demo-field">Email Address</label>
+        <div class="text-field"><span class="tf-value" id="demo-field">sarah@email.com</span></div>
+      </div>
+      <span class="pat-label">.text-field</span>
+    </div>
+    <div class="pat-cell" style="min-width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Error State</div>
+      <div class="field-group" style="width:220px;">
+        <label class="tf-label" for="demo-err">Username</label>
+        <div class="text-field error"><span class="tf-value" id="demo-err">sarah.johnsonn</span></div>
+        <div class="field-error"><span class="material-icons" aria-hidden="true">error</span>Username not found</div>
+      </div>
+      <span class="pat-label">.text-field.error</span>
+    </div>
+    <div class="pat-cell" style="min-width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">With Icon</div>
+      <div class="field-group" style="width:220px;">
+        <label class="tf-label" for="demo-icon">Password</label>
+        <div class="text-field"><span class="tf-value" id="demo-icon">••••••••</span><span class="tf-icon material-icons" aria-hidden="true">visibility</span></div>
+      </div>
+      <span class="pat-label">.text-field + .tf-icon</span>
+    </div>
+    <div class="pat-cell" style="min-width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Placeholder</div>
+      <div class="field-group" style="width:220px;">
+        <label class="tf-label" for="demo-ph">Search</label>
+        <div class="text-field"><span class="tf-placeholder" id="demo-ph">Enter search term</span></div>
+      </div>
+      <span class="pat-label">.tf-placeholder</span>
+    </div>
+  </div>
+
+  <div class="pat-subsection-title">Toggle Switch</div>
+  <div class="pat-row" style="align-items:center;">
+    <div class="pat-cell">
+      <button type="button" class="toggle on" role="switch" aria-checked="true" aria-label="Feature enabled"></button>
+      <span class="pat-label">.toggle.on</span>
+    </div>
+    <div class="pat-cell">
+      <button type="button" class="toggle" role="switch" aria-checked="false" aria-label="Feature disabled"></button>
+      <span class="pat-label">.toggle (off)</span>
+    </div>
+  </div>
+
+  <div class="pat-subsection-title">OTP Input</div>
+  <div class="pat-cell">
+    <div class="otp-row">
+      <div class="otp-box filled">3</div>
+      <div class="otp-box filled">8</div>
+      <div class="otp-box filled">2</div>
+      <div class="otp-box"></div>
+      <div class="otp-box"></div>
+      <div class="otp-box"></div>
+    </div>
+    <span class="pat-label">.otp-box / .otp-box.filled</span>
+  </div>
+
+  <div class="pat-subsection-title">Search Bar</div>
+  <div class="pat-cell" style="width:300px;">
+    <div class="search-bar" role="search">
+      <span class="material-icons" aria-hidden="true">search</span>
+      <span class="search-placeholder">Search messages...</span>
+    </div>
+    <span class="pat-label">.search-bar</span>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     7. NAVIGATION
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-nav">
+  <h2 class="pat-section-title" id="sec-nav">Navigation</h2>
+
+  <div class="pat-subsection-title">Bottom Navigation Bar</div>
+  <div style="width:320px;border-radius:12px;overflow:hidden;border:1px solid var(--divider);">
+    <div style="height:40px;background:var(--surface);border-bottom:1px solid var(--divider);display:flex;align-items:center;padding:0 12px;"><span class="body-sm">App screen content</span></div>
+    <nav class="bottom-nav" aria-label="Main navigation demo" style="border-radius:0;">
+      <button type="button" class="nav-item active" aria-current="page"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+      <button type="button" class="nav-item"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+      <button type="button" class="nav-item"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+      <button type="button" class="nav-item nav-item-rel"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+      <button type="button" class="nav-item"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+    </nav>
+  </div>
+  <div class="pat-label" style="margin-top:6px;">.bottom-nav &gt; .nav-item / .nav-item.active / .nav-item-rel + .nav-badge</div>
+
+  <div class="pat-subsection-title">Tabs</div>
+  <div style="width:320px;">
+    <div class="tabs" role="tablist" aria-label="Demo tabs">
+      <button type="button" class="tab active" role="tab" aria-selected="true">All</button>
+      <button type="button" class="tab" role="tab" aria-selected="false">Processing</button>
+      <button type="button" class="tab" role="tab" aria-selected="false">Paid</button>
+      <button type="button" class="tab" role="tab" aria-selected="false">Denied</button>
+    </div>
+  </div>
+  <span class="pat-label">.tabs &gt; .tab / .tab.active</span>
+
+  <div class="pat-subsection-title">App Bar</div>
+  <div style="width:320px;border-radius:12px;overflow:hidden;border:1px solid var(--divider);">
+    <div class="app-bar">
+      <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+      <h1 class="app-bar-title">Screen Title</h1>
+      <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
+    </div>
+  </div>
+  <span class="pat-label">.app-bar &gt; .icon-btn / .app-bar-title</span>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     8. LIST ITEMS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-list">
+  <h2 class="pat-section-title" id="sec-list">List Items</h2>
+
+  <div style="width:360px;border:1px solid var(--divider);border-radius:12px;overflow:hidden;">
+    <div class="list-item">
+      <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+      <div class="item-body">
+        <p class="item-title text-bold">Dr. Maria Chen</p>
+        <p class="item-subtitle">Results look normal, follow up in...</p>
+      </div>
+      <div class="msg-trailing"><span class="item-meta">2h</span><span class="unread-dot" aria-label="Unread"></span></div>
+    </div>
+    <div class="list-item">
+      <div class="avatar avatar-teal avatar-40" aria-hidden="true">NP</div>
+      <div class="item-body">
+        <p class="item-title">Nurse Practitioner</p>
+        <p class="item-subtitle">Your prescription has been renewed</p>
+      </div>
+      <span class="item-meta">Yesterday</span>
+    </div>
+    <div class="list-item" tabindex="0" aria-label="Personal Information">
+      <div class="item-body"><div class="item-title">Personal Information</div></div>
+      <span class="material-icons chevron" aria-hidden="true">chevron_right</span>
+    </div>
+    <div class="list-item border-none">
+      <div class="item-body"><div class="item-title">Two-Factor Auth</div></div>
+      <button type="button" class="toggle on" role="switch" aria-checked="true" aria-label="Two-Factor Auth"></button>
+    </div>
+  </div>
+  <span class="pat-label">.list-item / .item-body / .item-title / .item-subtitle / .item-meta / .msg-trailing / .unread-dot / .chevron</span>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     9. CARDS & SURFACES
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-card">
+  <h2 class="pat-section-title" id="sec-card">Cards &amp; Surfaces</h2>
+
+  <div class="pat-row" style="align-items:flex-start;flex-wrap:wrap;">
+
+    <div class="pat-cell" style="width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Standard Card</div>
+      <div class="card card-padded">
+        <div class="row-item">
+          <div class="avatar avatar-teal avatar-40">MC</div>
+          <div class="flex-1">
+            <p class="body-base text-bold">Dr. Maria Chen</p>
+            <p class="body-sm">Primary Care</p>
+          </div>
+          <span class="chip-sm chip-success">Confirmed</span>
+        </div>
+        <div class="meta-row">
+          <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
+          <span class="body-sm">Mar 15 &middot; 10:30 AM</span>
+        </div>
+      </div>
+      <span class="pat-label">.card.card-padded</span>
+    </div>
+
+    <div class="pat-cell" style="width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Alert Card</div>
+      <div class="card card-padded alert-card" role="alert">
+        <div class="alert-card-inner">
+          <span class="material-icons icon-md alert-icon" aria-hidden="true">warning_amber</span>
+          <div class="flex-1">
+            <p class="body-base text-bold">Lab results ready</p>
+            <p class="body-sm">Reviewed by Dr. Chen</p>
+          </div>
+          <a href="#" class="link link-sm">View</a>
+        </div>
+      </div>
+      <span class="pat-label">.card.alert-card</span>
+    </div>
+
+    <div class="pat-cell" style="width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Insurance Card</div>
+      <div class="insurance-card" role="region" style="margin:0;">
+        <p class="ins-plan">Red Cross Red Shield PPO</p>
+        <p class="ins-meta">Group #: BCB-2024-887234</p>
+        <p class="ins-meta">Policy #: POL-SJ-20190314</p>
+        <div class="ins-footer">
+          <span class="ins-member">Sarah Johnson</span>
+          <span class="chip-sm chip-white">Active</span>
+        </div>
+      </div>
+      <span class="pat-label">.insurance-card</span>
+    </div>
+
+    <div class="pat-cell" style="width:220px;">
+      <div class="pat-subsection-title" style="margin-top:0;">Hero Card</div>
+      <div class="hero-card" role="region" style="margin:0;border-radius:10px;">
+        <p class="hero-greeting">Good morning, Sarah &#128075;</p>
+        <p class="hero-sub">Member since 2019 &middot; Red Cross PPO</p>
+      </div>
+      <span class="pat-label">.hero-card</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     10. FEEDBACK & OVERLAYS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-feedback">
+  <h2 class="pat-section-title" id="sec-feedback">Feedback &amp; Overlays</h2>
+
+  <div class="pat-subsection-title">Error Banner</div>
+  <div style="max-width:360px;">
+    <div class="error-banner" role="alert">
+      <span class="material-icons" aria-hidden="true">error_outline</span>
+      <p>Unable to sign in. Please check your username and password.</p>
+    </div>
+  </div>
+  <span class="pat-label">.error-banner</span>
+
+  <div class="pat-subsection-title">Toast</div>
+  <div style="max-width:360px;">
+    <div class="toast" style="position:static;" role="status">
+      <span class="material-icons toast-icon" aria-hidden="true">check_circle</span>
+      <p class="toast-text">Appointment scheduled successfully!</p>
+      <button type="button" class="toast-action">Undo</button>
+    </div>
+  </div>
+  <span class="pat-label">.toast / .toast-icon / .toast-text / .toast-action</span>
+
+  <div class="pat-subsection-title">Modal Card</div>
+  <div style="max-width:280px;">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" style="position:static;box-shadow:0 8px 32px rgba(0,0,0,0.15);">
+      <div class="modal-icon" aria-hidden="true"><div class="modal-icon-circle"><span class="material-icons icon-lg text-error" aria-hidden="true">error_outline</span></div></div>
+      <h2 class="modal-title" id="demo-modal-title">Something Went Wrong</h2>
+      <p class="modal-body">We couldn&apos;t process your request. Please try again.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary">TRY AGAIN</button>
+        <button type="button" class="btn btn-outlined">Go Back</button>
+      </div>
+    </div>
+  </div>
+  <span class="pat-label">.modal-card</span>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     11. PROGRESS & STEPPERS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-progress">
+  <h2 class="pat-section-title" id="sec-progress">Progress &amp; Steppers</h2>
+
+  <div class="pat-subsection-title">Registration Progress Bar</div>
+  <div style="max-width:320px;">
+    <div class="reg-progress" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="3" aria-label="Step 2 of 3">
+      <div class="reg-progress-seg on"></div>
+      <div class="reg-progress-seg on"></div>
+      <div class="reg-progress-seg off"></div>
+    </div>
+  </div>
+  <span class="pat-label">.reg-progress &gt; .reg-progress-seg.on / .off</span>
+
+  <div class="pat-subsection-title">Step Indicator</div>
+  <div style="max-width:360px;padding:16px;background:var(--surface);border-radius:10px;border:1px solid var(--divider);">
+    <div class="step-row" role="list" aria-label="Steps">
+      <div class="step-item" role="listitem"><div class="step-circle active">1</div><div class="step-label active">Email</div></div>
+      <div class="step-line" aria-hidden="true"></div>
+      <div class="step-item" role="listitem"><div class="step-circle">2</div><div class="step-label">Verify</div></div>
+      <div class="step-line" aria-hidden="true"></div>
+      <div class="step-item" role="listitem"><div class="step-circle">3</div><div class="step-label">New</div></div>
+    </div>
+  </div>
+  <span class="pat-label">.step-row / .step-item / .step-circle.active / .step-line</span>
+
+  <div class="pat-subsection-title">Deductible Progress Bar</div>
+  <div style="max-width:280px;padding:16px;background:var(--surface);border-radius:10px;border:1px solid var(--divider);">
+    <div class="stat-label">Deductible</div>
+    <div class="stat-value">$250</div>
+    <div class="stat-total">of $1,500</div>
+    <div class="progress-bar-track mt-2" role="progressbar" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100" aria-label="17% met">
+      <div class="progress-bar-fill" style="width:17%;"></div>
+    </div>
+  </div>
+  <span class="pat-label">.progress-bar-track / .progress-bar-fill</span>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     12. CARE & COVERAGE COMPONENTS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-domain">
+  <h2 class="pat-section-title" id="sec-domain">Domain Components</h2>
+
+  <div class="pat-subsection-title">Care Grid Cards</div>
+  <div class="care-grid" role="list" style="max-width:400px;">
+    <div class="care-card" role="listitem"><div class="care-icon care-icon-blue"><span class="material-icons">local_hospital</span></div><div><p class="care-name">Primary Care</p><p class="care-sub">In-network</p></div></div>
+    <div class="care-card" role="listitem"><div class="care-icon care-icon-orange"><span class="material-icons">emergency</span></div><div><p class="care-name">Urgent Care</p><p class="care-sub">Open now</p></div></div>
+    <div class="care-card" role="listitem"><div class="care-icon care-icon-green"><span class="material-icons">videocam</span></div><div><p class="care-name">Virtual Visit</p><p class="care-sub">On-demand</p></div></div>
+    <div class="care-card" role="listitem"><div class="care-icon care-icon-purple"><span class="material-icons">self_improvement</span></div><div><p class="care-name">Mental Health</p><p class="care-sub">In-network</p></div></div>
+  </div>
+  <span class="pat-label">.care-grid &gt; .care-card / .care-icon.care-icon-{blue|orange|green|purple|teal|red}</span>
+
+  <div class="pat-subsection-title">Benefit Row</div>
+  <div style="max-width:360px;border:1px solid var(--divider);border-radius:10px;overflow:hidden;">
+    <dl>
+      <div class="benefit-row"><dt class="benefit-name">Preventive Care</dt><dd><span class="chip-sm chip-success">100% Covered</span></dd></div>
+      <div class="benefit-row"><dt class="benefit-name">Specialist Visit</dt><dd class="benefit-val">$40 copay</dd></div>
+      <div class="benefit-row" style="border-bottom:none;"><dt class="benefit-name">Emergency Room</dt><dd class="benefit-val">$250 deductible</dd></div>
+    </dl>
+  </div>
+  <span class="pat-label">.benefit-row / .benefit-name / .benefit-val</span>
+
+  <div class="pat-subsection-title">Claim Key-Value Row</div>
+  <div style="max-width:360px;border:1px solid var(--divider);border-radius:10px;overflow:hidden;">
+    <div class="claim-detail-section" style="border-bottom:none;">
+      <div class="claim-kv"><span class="claim-kv-label">Amount Billed</span><span class="claim-kv-value">$180.00</span></div>
+      <div class="claim-kv"><span class="claim-kv-label">Plan Paid</span><span class="claim-kv-value" style="color:var(--success);">$130.00</span></div>
+      <div class="claim-kv" style="border-bottom:none;"><span class="claim-kv-label">Deductible Applied</span><span class="claim-kv-value">$0.00</span></div>
+    </div>
+    <div class="claim-total-row"><span class="claim-total-label">Your Cost</span><span class="claim-total-value">$25.00</span></div>
+  </div>
+  <span class="pat-label">.claim-detail-section / .claim-kv / .claim-total-row</span>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     13. PROVIDER COMPONENTS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-provider">
+  <h2 class="pat-section-title" id="sec-provider">Provider Components</h2>
+
+  <div class="pat-subsection-title">Star Rating</div>
+  <div class="pat-row" style="align-items:center;">
+    <div class="pat-cell">
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span style="color:#F59E0B;font-size:14px;" aria-label="5 stars">★★★★★</span>
+        <span class="body-sm" style="color:var(--on-surface-2);">4.9 (127)</span>
+      </div>
+      <span class="pat-label">unicode ★ · color #F59E0B · .body-sm</span>
+    </div>
+    <div class="pat-cell">
+      <div style="display:flex;align-items:center;gap:6px;">
+        <span style="color:#F59E0B;font-size:14px;" aria-label="4 stars">★★★★☆</span>
+        <span class="body-sm" style="color:var(--on-surface-2);">4.7 (89)</span>
+      </div>
+      <span class="pat-label">partial — ☆ for empty</span>
+    </div>
+  </div>
+
+  <div class="pat-subsection-title">Filter Chips (Scrollable Row)</div>
+  <div style="display:flex;gap:8px;padding:10px 14px;background:var(--surface);border:1px solid var(--divider);border-radius:10px;overflow-x:auto;scrollbar-width:none;max-width:420px;" role="group" aria-label="Filter chips demo">
+    <button type="button" class="chip-sm chip-success" style="white-space:nowrap;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;" aria-pressed="true">
+      <span class="material-icons" style="font-size:12px;" aria-hidden="true">check</span>In-Network
+    </button>
+    <button type="button" class="chip-sm" style="white-space:nowrap;border:1px solid var(--border);background:var(--surface);cursor:pointer;" aria-pressed="false">Distance</button>
+    <button type="button" class="chip-sm" style="white-space:nowrap;border:1px solid var(--border);background:var(--surface);cursor:pointer;" aria-pressed="false">Rating</button>
+    <button type="button" class="chip-sm" style="white-space:nowrap;border:1px solid var(--border);background:var(--surface);cursor:pointer;" aria-pressed="false">Available Today</button>
+  </div>
+  <span class="pat-label">active: .chip-sm.chip-success + check icon / inactive: border:1px solid var(--border) · aria-pressed</span>
+
+  <div class="pat-subsection-title">Provider Result Card</div>
+  <div style="width:360px;border:1px solid var(--divider);border-radius:12px;overflow:hidden;">
+    <!-- In-network -->
+    <div class="list-item" style="align-items:flex-start;padding:12px 16px;">
+      <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+      <div class="item-body">
+        <p class="item-title text-bold">Dr. Maria Chen</p>
+        <p class="item-subtitle">Primary Care · 0.3 mi</p>
+        <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
+          <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★★</span>
+          <span class="body-xs" style="color:var(--on-surface-2);">4.9 (127)</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+        <span class="chip-sm chip-success">In-Network</span>
+        <button type="button" class="btn btn-primary" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+      </div>
+    </div>
+    <!-- Out-of-network -->
+    <div class="list-item border-none" style="align-items:flex-start;padding:12px 16px;">
+      <div class="avatar avatar-purple avatar-40" aria-hidden="true">AP</div>
+      <div class="item-body">
+        <p class="item-title text-bold">Dr. Aisha Patel</p>
+        <p class="item-subtitle">Internal Medicine · 1.2 mi</p>
+        <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
+          <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★★</span>
+          <span class="body-xs" style="color:var(--on-surface-2);">4.8 (203)</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+        <span class="chip-sm chip-warning">Out-of-Net</span>
+        <button type="button" class="btn btn-outlined" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+      </div>
+    </div>
+  </div>
+  <span class="pat-label">.list-item align-items:flex-start · trailing column: network chip + Book button · in-net → .btn-primary / out-of-net → .btn-outlined</span>
+
+  <div class="pat-subsection-title">Provider Hero</div>
+  <div style="width:300px;border:1px solid var(--divider);border-radius:12px;overflow:hidden;">
+    <div style="display:flex;flex-direction:column;align-items:center;padding:20px 16px 16px;background:var(--surface);border-bottom:1px solid var(--divider);">
+      <div class="avatar avatar-primary" style="width:64px;height:64px;font-size:22px;margin-bottom:12px;" aria-label="Dr. Maria Chen" role="img">MC</div>
+      <p class="h2" style="margin-bottom:2px;">Dr. Maria Chen</p>
+      <p class="body-sm" style="color:var(--on-surface-2);margin-bottom:6px;">Primary Care Physician</p>
+      <div style="display:flex;align-items:center;gap:4px;margin-bottom:10px;">
+        <span style="color:#F59E0B;font-size:13px;" aria-hidden="true">★★★★★</span>
+        <span class="body-sm" style="color:var(--on-surface-2);">4.9 · 127 reviews</span>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <span class="chip-sm chip-success">In-Network</span>
+        <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Accepting Patients</span>
+      </div>
+    </div>
+    <div class="stat-row" style="padding:12px 16px;">
+      <div class="stat-box" style="flex:1;text-align:center;"><div class="stat-value" style="font-size:18px;">15+</div><div class="stat-label">Years Exp.</div></div>
+      <div class="stat-box" style="flex:1;text-align:center;border-left:1px solid var(--divider);border-right:1px solid var(--divider);"><div class="stat-value" style="font-size:18px;">$25</div><div class="stat-label">Copay</div></div>
+      <div class="stat-box" style="flex:1;text-align:center;"><div class="stat-value" style="font-size:18px;">0.3 mi</div><div class="stat-label">Distance</div></div>
+    </div>
+  </div>
+  <span class="pat-label">avatar 64×64 · .h2 name · .body-sm specialty · star rating · network + status chips · .stat-row stats bar</span>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     14. BOOKING & SCHEDULING
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-booking">
+  <h2 class="pat-section-title" id="sec-booking">Booking &amp; Scheduling</h2>
+
+  <div class="pat-subsection-title">Segmented Button (Visit Type)</div>
+  <div style="display:flex;gap:8px;max-width:280px;" role="group" aria-label="Visit type">
+    <button type="button" style="flex:1;padding:10px;border-radius:8px;border:2px solid var(--primary);background:var(--primary-light);color:var(--primary);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;" aria-pressed="true">
+      <span class="material-icons" style="font-size:16px;" aria-hidden="true">person</span>In-Person
+    </button>
+    <button type="button" style="flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;" aria-pressed="false">
+      <span class="material-icons" style="font-size:16px;" aria-hidden="true">videocam</span>Video
+    </button>
+  </div>
+  <span class="pat-label">active: border:2px solid var(--primary) · bg:var(--primary-light) · color:var(--primary) / inactive: border:1px solid var(--border) · bg:var(--surface) · aria-pressed</span>
+
+  <div class="pat-subsection-title">Calendar Date Picker</div>
+  <div style="max-width:280px;padding:16px;background:var(--surface);border:1px solid var(--divider);border-radius:12px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <button type="button" class="icon-btn" aria-label="Previous month"><span class="material-icons" aria-hidden="true">chevron_left</span></button>
+      <span class="body-base text-bold">March 2026</span>
+      <button type="button" class="icon-btn" aria-label="Next month"><span class="material-icons" aria-hidden="true">chevron_right</span></button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;gap:2px;" role="grid" aria-label="Calendar">
+      <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">S</div>
+      <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">M</div>
+      <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">T</div>
+      <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">W</div>
+      <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">T</div>
+      <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">F</div>
+      <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">S</div>
+      <!-- Past / unavailable -->
+      <div role="gridcell"></div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">1</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">2</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">3</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">4</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">5</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">6</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">7</div>
+      <!-- Available -->
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">8</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">9</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">10</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">11</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">12</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">13</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">14</div>
+      <!-- Selected -->
+      <div role="gridcell" aria-selected="true" aria-label="March 15, selected" style="padding:4px 2px;font-size:12px;font-weight:700;color:#fff;background:var(--primary);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;margin:auto;">15</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">16</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">17</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">18</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">19</div>
+      <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);" aria-disabled="true">20</div>
+    </div>
+  </div>
+  <div class="pat-row" style="margin-top:8px;">
+    <div class="pat-cell"><div style="width:26px;height:26px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;">15</div><span class="pat-label">Selected — bg:var(--primary) · white text · 50% radius</span></div>
+    <div class="pat-cell"><div style="padding:6px 2px;font-size:12px;color:var(--on-surface);">16</div><span class="pat-label">Available — color:var(--on-surface)</span></div>
+    <div class="pat-cell"><div style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">1</div><span class="pat-label">Past / unavailable — color:var(--on-surface-3) · aria-disabled</span></div>
+  </div>
+
+  <div class="pat-subsection-title">Time Slot Chips</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;max-width:360px;" role="group" aria-label="Time slots">
+    <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 14px;" aria-pressed="false">9:00 AM</button>
+    <button type="button" class="chip-sm chip-success" style="cursor:pointer;padding:6px 14px;" aria-pressed="true" aria-label="10:30 AM, selected">10:30 AM</button>
+    <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 14px;" aria-pressed="false">11:00 AM</button>
+    <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface-var);color:var(--on-surface-3);cursor:not-allowed;padding:6px 14px;" disabled aria-label="2:00 PM, unavailable">2:00 PM</button>
+    <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 14px;" aria-pressed="false">3:30 PM</button>
+  </div>
+  <div class="pat-row" style="margin-top:8px;">
+    <div class="pat-cell"><span class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);padding:6px 14px;">9:00 AM</span><span class="pat-label">Available</span></div>
+    <div class="pat-cell"><span class="chip-sm chip-success" style="padding:6px 14px;">10:30 AM</span><span class="pat-label">Selected — .chip-sm.chip-success · aria-pressed=true</span></div>
+    <div class="pat-cell"><span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-3);padding:6px 14px;">2:00 PM</span><span class="pat-label">Unavailable — bg:var(--surface-var) · disabled attr</span></div>
+  </div>
+
+  <div class="pat-subsection-title">Appointment Card with Actions</div>
+  <div style="max-width:360px;display:flex;flex-direction:column;gap:12px;">
+    <!-- Confirmed -->
+    <div>
+      <div class="card card-padded">
+        <div class="row-item" style="margin-bottom:8px;">
+          <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+          <div class="flex-1">
+            <p class="body-base text-bold">Dr. Maria Chen</p>
+            <p class="body-sm">Primary Care</p>
+          </div>
+          <span class="chip-sm chip-success">Confirmed</span>
+        </div>
+        <div class="meta-row" style="margin-bottom:4px;">
+          <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
+          <span class="body-sm">Mar 15, 2026 · 10:30 AM</span>
+        </div>
+        <div class="meta-row" style="margin-bottom:12px;">
+          <span class="material-icons icon-sm text-secondary" aria-hidden="true">location_on</span>
+          <span class="body-sm">450 Sutter St · In-Person</span>
+        </div>
+        <div style="display:flex;gap:8px;border-top:1px solid var(--divider);padding-top:10px;">
+          <button type="button" class="btn btn-outlined" style="flex:1;padding:6px;font-size:12px;height:auto;">Reschedule</button>
+          <button type="button" class="btn-text" style="flex:1;font-size:12px;color:var(--error);">Cancel</button>
+        </div>
+      </div>
+      <span class="pat-label">Upcoming · Confirmed — .chip-success · actions: .btn-outlined + .btn-text (error color)</span>
+    </div>
+    <!-- Pending -->
+    <div>
+      <div class="card card-padded">
+        <div class="row-item" style="margin-bottom:8px;">
+          <div class="avatar avatar-teal avatar-40" aria-hidden="true">JP</div>
+          <div class="flex-1">
+            <p class="body-base text-bold">Dr. James Park</p>
+            <p class="body-sm">Primary Care</p>
+          </div>
+          <span class="chip-sm chip-warning">Pending</span>
+        </div>
+        <div class="meta-row" style="margin-bottom:4px;">
+          <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
+          <span class="body-sm">Apr 2, 2026 · 2:00 PM</span>
+        </div>
+        <div class="meta-row" style="margin-bottom:12px;">
+          <span class="material-icons icon-sm text-secondary" aria-hidden="true">videocam</span>
+          <span class="body-sm">Video Visit</span>
+        </div>
+        <div style="display:flex;gap:8px;border-top:1px solid var(--divider);padding-top:10px;">
+          <button type="button" class="btn btn-outlined" style="flex:1;padding:6px;font-size:12px;height:auto;">Reschedule</button>
+          <button type="button" class="btn-text" style="flex:1;font-size:12px;color:var(--error);">Cancel</button>
+        </div>
+      </div>
+      <span class="pat-label">Upcoming · Pending — .chip-warning · video icon instead of location</span>
+    </div>
+    <!-- Completed -->
+    <div>
+      <div class="card card-padded" style="opacity:0.75;">
+        <div class="row-item">
+          <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+          <div class="flex-1">
+            <p class="body-base text-bold">Dr. Maria Chen</p>
+            <p class="body-sm">Primary Care</p>
+          </div>
+          <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Completed</span>
+        </div>
+        <div class="meta-row" style="margin-top:8px;">
+          <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
+          <span class="body-sm">Feb 10, 2026 · 9:00 AM</span>
+        </div>
+      </div>
+      <span class="pat-label">Past · Completed — opacity:0.75 · neutral chip · no action buttons</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     15. HEALTH RECORDS
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-health">
+  <h2 class="pat-section-title" id="sec-health">Health Records</h2>
+
+  <div class="pat-subsection-title">Lab Result List Item</div>
+  <div style="width:360px;border:1px solid var(--divider);border-radius:12px;overflow:hidden;">
+    <div class="list-item" style="align-items:flex-start;padding:12px 16px;">
+      <div class="avatar avatar-error avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+      <div class="item-body">
+        <p class="item-title text-bold">Comprehensive Metabolic Panel</p>
+        <p class="item-subtitle">Feb 28, 2026 · Dr. Maria Chen</p>
+      </div>
+      <span class="chip-sm chip-error">1 Abnormal</span>
+    </div>
+    <div class="list-item" style="align-items:flex-start;padding:12px 16px;">
+      <div class="avatar avatar-success avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+      <div class="item-body">
+        <p class="item-title text-bold">Lipid Panel</p>
+        <p class="item-subtitle">Feb 15, 2026 · Dr. Maria Chen</p>
+      </div>
+      <span class="chip-sm chip-success">Normal</span>
+    </div>
+    <div class="list-item border-none" style="align-items:flex-start;padding:12px 16px;">
+      <div class="avatar avatar-orange avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+      <div class="item-body">
+        <p class="item-title text-bold">Complete Blood Count</p>
+        <p class="item-subtitle">Mar 5, 2026 · Dr. Maria Chen</p>
+      </div>
+      <span class="chip-sm chip-warning">Pending</span>
+    </div>
+  </div>
+  <span class="pat-label">avatar-{error|success|orange} · science icon (font-size:0 on wrapper, 20px on icon) · trailing: .chip-{error|success|warning}</span>
+
+  <div class="pat-subsection-title">Result Range Indicator (Abnormal Row)</div>
+  <div style="max-width:320px;padding:12px 16px;background:var(--error-light);border-radius:10px;border:1px solid var(--divider);">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+      <div>
+        <p class="body-sm text-bold">Cholesterol Total</p>
+        <p class="body-xs" style="color:var(--on-surface-2);">Ref: &lt;200 mg/dL</p>
+      </div>
+      <div style="text-align:right;">
+        <p class="body-base text-bold" style="color:var(--error);">215 mg/dL ↑</p>
+        <span class="chip-sm chip-error">High</span>
+      </div>
+    </div>
+    <div style="position:relative;height:6px;border-radius:3px;background:linear-gradient(to right,var(--success) 0%,var(--success) 66%,var(--error) 66%,var(--error) 100%);">
+      <div style="position:absolute;top:50%;left:71%;transform:translate(-50%,-50%);width:12px;height:12px;background:var(--error);border-radius:50%;border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,0.25);"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--on-surface-2);margin-top:4px;">
+      <span>0</span><span>Normal &lt;200</span><span>300 mg/dL</span>
+    </div>
+  </div>
+  <span class="pat-label">abnormal row bg: var(--error-light) · gradient bar: var(--success) → var(--error) split at threshold % · marker: 12px circle at value%, border:2px solid white · value ↑ in var(--error)</span>
+
+  <div class="pat-subsection-title">Prescription Card — Refill States</div>
+  <div style="max-width:360px;display:flex;flex-direction:column;gap:12px;">
+    <div>
+      <div class="card card-padded">
+        <div class="row-item" style="margin-bottom:8px;">
+          <div class="avatar avatar-teal avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">medication</span></div>
+          <div class="flex-1"><p class="body-base text-bold">Lisinopril 10mg</p><p class="body-sm">Once daily · Blood Pressure</p></div>
+          <span class="chip-sm chip-success">3 Refills</span>
+        </div>
+        <div class="meta-row" style="margin-bottom:4px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
+        <div class="meta-row" style="margin-bottom:10px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Feb 1 · CVS Caremark</span></div>
+        <button type="button" class="btn btn-primary w-full" style="font-size:12px;padding:8px;">REQUEST REFILL</button>
+      </div>
+      <span class="pat-label">Many refills — .chip-success · .btn-primary</span>
+    </div>
+    <div>
+      <div class="card card-padded">
+        <div class="row-item" style="margin-bottom:8px;">
+          <div class="avatar avatar-purple avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">medication</span></div>
+          <div class="flex-1"><p class="body-base text-bold">Atorvastatin 20mg</p><p class="body-sm">Once daily · Cholesterol</p></div>
+          <span class="chip-sm chip-warning">1 Refill</span>
+        </div>
+        <div class="meta-row" style="margin-bottom:4px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
+        <div class="meta-row" style="margin-bottom:10px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Jan 15 · CVS Caremark</span></div>
+        <button type="button" class="btn btn-primary w-full" style="font-size:12px;padding:8px;">REQUEST REFILL</button>
+      </div>
+      <span class="pat-label">Low refills — .chip-warning · still .btn-primary (action still possible)</span>
+    </div>
+    <div>
+      <div class="card card-padded">
+        <div class="row-item" style="margin-bottom:8px;">
+          <div class="avatar avatar-orange avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">medication</span></div>
+          <div class="flex-1"><p class="body-base text-bold">Metformin 500mg</p><p class="body-sm">Twice daily · Diabetes</p></div>
+          <span class="chip-sm chip-error">No Refills</span>
+        </div>
+        <div class="meta-row" style="margin-bottom:4px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
+        <div class="meta-row" style="margin-bottom:10px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Dec 10 · CVS Caremark</span></div>
+        <button type="button" class="btn btn-outlined w-full" style="font-size:12px;padding:8px;">REQUEST RENEWAL</button>
+      </div>
+      <span class="pat-label">No refills — .chip-error · .btn-outlined (different action: renewal, not refill)</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     16. EMPTY STATE
+══════════════════════════════════════ -->
+<section class="pat-section" aria-labelledby="sec-empty">
+  <h2 class="pat-section-title" id="sec-empty">Empty State</h2>
+
+  <p class="body-sm" style="margin-bottom:20px;color:var(--on-surface-2);">Use when a list or view has no content. Always provide an illustration, a clear reason, and a primary action to resolve the state.</p>
+
+  <div style="max-width:300px;border:1px solid var(--divider);border-radius:12px;overflow:hidden;background:var(--surface);">
+    <div style="background:var(--page-bg);padding:0 0 0 0;border-bottom:1px solid var(--divider);">
+      <div class="tabs" style="margin:0;" role="tablist">
+        <button type="button" class="tab active" role="tab" aria-selected="true">Upcoming</button>
+        <button type="button" class="tab" role="tab" aria-selected="false">Past</button>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;padding:32px 24px;text-align:center;" role="status" aria-label="No upcoming appointments">
+      <div class="illus-circle" aria-hidden="true" style="margin-bottom:20px;">
+        <span class="material-icons" aria-hidden="true">calendar_today</span>
+      </div>
+      <h2 class="h2" style="margin-bottom:8px;">No Upcoming Appointments</h2>
+      <p class="body-sm" style="color:var(--on-surface-2);line-height:1.6;margin-bottom:24px;">You don't have any scheduled appointments. Book a provider to get started.</p>
+      <button type="button" class="btn btn-primary w-full">SCHEDULE APPOINTMENT</button>
+      <button type="button" class="btn-text" style="margin-top:10px;">Browse Care Options</button>
+    </div>
+  </div>
+
+  <div class="pat-divider"></div>
+
+  <div class="pat-subsection-title" style="margin-top:0;">Anatomy</div>
+  <div class="pat-row" style="align-items:flex-start;">
+    <div class="pat-cell">
+      <div class="illus-circle" aria-hidden="true"><span class="material-icons" aria-hidden="true">calendar_today</span></div>
+      <span class="pat-label">.illus-circle + icon</span>
+    </div>
+    <div class="pat-cell" style="max-width:320px;">
+      <table style="border-collapse:collapse;font-size:12px;width:100%;">
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);white-space:nowrap;">Illustration</td><td style="padding:6px 10px;">.illus-circle + Material icon · centered</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);white-space:nowrap;">Title</td><td style="padding:6px 10px;">.h2 · describes what's missing</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);white-space:nowrap;">Body</td><td style="padding:6px 10px;">.body-sm · on-surface-2 · explains why + what to do</td></tr>
+        <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);white-space:nowrap;">Primary CTA</td><td style="padding:6px 10px;">.btn-primary · w-full · direct action to fill the state</td></tr>
+        <tr><td style="padding:6px 10px;color:var(--on-surface-2);white-space:nowrap;">Secondary</td><td style="padding:6px 10px;">.btn-text · optional escape hatch</td></tr>
+      </table>
+    </div>
+  </div>
+  <span class="pat-label">Container: role="status" · Tabs above empty content retain context · text-align:center on container</span>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     17. AUTH & ONBOARDING STATES
+══════════════════════════════════════════ -->
+<section class="pat-section">
+  <h2 class="pat-section-title">17. Auth &amp; Onboarding States</h2>
+
+  <!-- 17a – Biometric Auth Prompt -->
+  <div class="pat-subsection">
+    <h3 class="pat-subsection-title">17a – Biometric Auth Prompt</h3>
+    <div class="pat-row" style="align-items:flex-start;flex-wrap:wrap;gap:24px;">
+      <!-- Visual example -->
+      <div class="pat-cell" style="min-width:200px;">
+        <div class="pat-frame" style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 16px;">
+          <div class="avatar avatar-primary avatar-52" aria-hidden="true">JD</div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+            <p class="body-sm" style="font-weight:600;margin:0;">Jane Doe</p>
+            <p class="body-sm" style="color:var(--on-surface-2);margin:0;">jane.doe@email.com</p>
+          </div>
+          <button type="button"
+            style="width:72px;height:72px;border-radius:50%;background:var(--primary-light);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;"
+            aria-label="Authenticate with biometrics">
+            <span class="material-icons" style="font-size:36px;color:var(--primary);" aria-hidden="true">fingerprint</span>
+          </button>
+          <p class="body-sm" style="text-align:center;color:var(--on-surface-2);">Touch the sensor or look at your camera</p>
+          <button type="button" class="btn btn-primary" style="width:100%;">USE FACE ID</button>
+          <button type="button" class="btn-text">Sign in with Password</button>
+        </div>
+        <span class="pat-label">AUTH · 03 — Biometric Login</span>
+      </div>
+
+      <!-- Anatomy notes -->
+      <div class="pat-cell" style="flex:1;min-width:220px;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:var(--surface-var);">
+              <th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);font-weight:600;">Element</th>
+              <th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);font-weight:600;">Spec</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">User avatar</td><td style="padding:6px 10px;">.avatar-primary.avatar-52 — confirms identity context</td></tr>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Biometric button</td><td style="padding:6px 10px;">72×72px circle · bg: var(--primary-light) · border: 2px solid var(--primary) · icon: fingerprint 36px</td></tr>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Primary CTA</td><td style="padding:6px 10px;">.btn-primary · full-width · "USE FACE ID" or "USE TOUCH ID"</td></tr>
+            <tr><td style="padding:6px 10px;color:var(--on-surface-2);">Escape hatch</td><td style="padding:6px 10px;">.btn-text · "Sign in with Password"</td></tr>
+          </tbody>
+        </table>
+        <span class="pat-label">aria-label on button describes method · no redundant visible text on icon</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 17b – Registration / Celebration Success State -->
+  <div class="pat-subsection" style="margin-top:28px;">
+    <h3 class="pat-subsection-title">17b – Celebration Success State</h3>
+    <div class="pat-row" style="align-items:flex-start;flex-wrap:wrap;gap:24px;">
+      <!-- Visual example -->
+      <div class="pat-cell" style="min-width:200px;">
+        <div class="pat-frame" style="padding:0;overflow:hidden;">
+          <!-- Primary top band -->
+          <div style="background:var(--primary);display:flex;flex-direction:column;align-items:center;padding:24px 16px 20px;gap:10px;">
+            <div style="width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;">
+              <span class="material-icons" style="font-size:32px;color:#fff;" aria-hidden="true">check_circle</span>
+            </div>
+            <p style="font-size:18px;font-weight:700;color:#fff;margin:0;text-align:center;">You're all set!</p>
+            <p class="body-sm" style="color:rgba(255,255,255,0.85);margin:0;text-align:center;">Your account is ready.</p>
+          </div>
+          <!-- White lower section -->
+          <div style="background:#fff;padding:16px;display:flex;flex-direction:column;gap:12px;">
+            <p class="section-label" style="margin:0;">WHAT YOU CAN DO</p>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <span class="material-icons" style="font-size:18px;color:var(--primary);" aria-hidden="true">medical_services</span>
+              </div>
+              <p class="body-sm" style="font-weight:600;margin:0;">Find Care</p>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div style="width:36px;height:36px;border-radius:8px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <span class="material-icons" style="font-size:18px;color:var(--primary);" aria-hidden="true">verified_user</span>
+              </div>
+              <p class="body-sm" style="font-weight:600;margin:0;">View Coverage</p>
+            </div>
+            <button type="button" class="btn btn-primary" style="width:100%;margin-top:4px;">GET STARTED</button>
+          </div>
+        </div>
+        <span class="pat-label">ONBOARDING · 04 — Registration Success</span>
+      </div>
+
+      <!-- Anatomy notes -->
+      <div class="pat-cell" style="flex:1;min-width:220px;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:var(--surface-var);">
+              <th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);font-weight:600;">Element</th>
+              <th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);font-weight:600;">Spec</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Top band</td><td style="padding:6px 10px;">bg: var(--primary) · text: #ffffff · flex-col center</td></tr>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Icon circle</td><td style="padding:6px 10px;">80×80px · bg: rgba(255,255,255,0.2) · icon: check_circle 48px white</td></tr>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Feature tile</td><td style="padding:6px 10px;">44×44px · border-radius:10px · bg: var(--primary-light) · icon 22px var(--primary)</td></tr>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Container</td><td style="padding:6px 10px;">role="status" · aria-live="polite" on article</td></tr>
+            <tr><td style="padding:6px 10px;color:var(--on-surface-2);">CTA</td><td style="padding:6px 10px;">.btn-primary · full-width · "GET STARTED"</td></tr>
+          </tbody>
+        </table>
+        <span class="pat-label">No app bar — full-screen celebration removes chrome distraction</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 17c – Skeleton Loading -->
+  <div class="pat-subsection" style="margin-top:28px;">
+    <h3 class="pat-subsection-title">17c – Skeleton Loading</h3>
+    <div class="pat-row" style="align-items:flex-start;flex-wrap:wrap;gap:24px;">
+      <!-- Visual example -->
+      <div class="pat-cell" style="min-width:200px;">
+        <div class="pat-frame" style="display:flex;flex-direction:column;gap:12px;padding:16px;">
+          <!-- Hero skeleton -->
+          <div style="height:60px;border-radius:12px;background:var(--divider);"></div>
+          <!-- Quick action skeletons -->
+          <div style="display:flex;gap:12px;justify-content:space-around;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:var(--divider);"></div>
+              <div style="width:36px;height:9px;border-radius:3px;background:var(--divider);"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:var(--divider);"></div>
+              <div style="width:36px;height:9px;border-radius:3px;background:var(--divider);"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div style="width:40px;height:40px;border-radius:50%;background:var(--divider);"></div>
+              <div style="width:36px;height:9px;border-radius:3px;background:var(--divider);"></div>
+            </div>
+          </div>
+          <!-- Section label skeleton -->
+          <div style="height:10px;width:80px;border-radius:3px;background:var(--divider);"></div>
+          <!-- Card skeleton -->
+          <div style="border-radius:10px;border:1px solid var(--border);padding:12px;display:flex;gap:10px;">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--divider);flex-shrink:0;"></div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:7px;">
+              <div style="height:12px;width:70%;border-radius:3px;background:var(--divider);"></div>
+              <div style="height:10px;width:50%;border-radius:3px;background:var(--divider);"></div>
+              <div style="height:20px;width:60px;border-radius:16px;background:var(--divider);"></div>
+            </div>
+          </div>
+        </div>
+        <span class="pat-label">SYSTEM · 04 — Skeleton Loading</span>
+      </div>
+
+      <!-- Rules table -->
+      <div class="pat-cell" style="flex:1;min-width:220px;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead>
+            <tr style="background:var(--surface-var);">
+              <th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);font-weight:600;">Rule</th>
+              <th style="padding:6px 10px;text-align:left;color:var(--on-surface-2);font-weight:600;">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Skeleton color</td><td style="padding:6px 10px;">background: var(--divider) — consistent neutral gray</td></tr>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Shape mirroring</td><td style="padding:6px 10px;">Match target element shape: circles for avatars, rounded rects for text/cards</td></tr>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Text bars</td><td style="padding:6px 10px;">Height 10–14px · border-radius 3px · vary widths (50–80%) for realism</td></tr>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Chips / badges</td><td style="padding:6px 10px;">height 20–22px · border-radius 16px · width ~60px</td></tr>
+            <tr style="border-bottom:1px solid var(--divider);"><td style="padding:6px 10px;color:var(--on-surface-2);">Accessibility</td><td style="padding:6px 10px;">aria-busy="true" · aria-live="polite" on article</td></tr>
+            <tr><td style="padding:6px 10px;color:var(--on-surface-2);">No animation</td><td style="padding:6px 10px;">Wireframe fidelity — omit shimmer in HTML prototype</td></tr>
+          </tbody>
+        </table>
+        <span class="pat-label">Mirror real layout exactly — skeleton should be 1:1 with loaded state</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</div><!-- /pat-page -->
+
+<script src="healthcare-md.js"></script>
+</body>
+</html>

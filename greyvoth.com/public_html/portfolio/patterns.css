@@ -1,0 +1,43 @@
+/* ══════════════════════════════════════════
+   Pattern page layout
+══════════════════════════════════════════ */
+.pat-page       { max-width: 1100px; }
+.pat-section    { margin-bottom: 56px; }
+.pat-section-title {
+  font-size: 22px; font-weight: 700; color: var(--primary);
+  border-bottom: 2px solid var(--primary); padding-bottom: 8px;
+  margin-bottom: 24px; letter-spacing: -0.2px;
+}
+.pat-subsection-title {
+  font-size: 13px; font-weight: 700; color: var(--on-surface-2);
+  text-transform: uppercase; letter-spacing: 0.9px;
+  margin: 20px 0 12px;
+}
+.pat-row   { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; margin-bottom: 12px; }
+.pat-cell  { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+.pat-label { font-size: 11px; color: var(--on-surface-3); font-family: monospace; }
+.pat-divider { height: 1px; background: var(--divider); margin: 32px 0; }
+
+/* ── Color swatches ── */
+.swatch-grid  { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; }
+.swatch       { border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.10); }
+.swatch-color { height: 56px; }
+.swatch-info  { background: var(--surface); padding: 7px 10px; }
+.swatch-name  { font-size: 12px; font-weight: 600; color: var(--on-surface); }
+.swatch-hex   { font-size: 11px; color: var(--on-surface-2); font-family: monospace; }
+
+/* ── Type specimen ── */
+.type-row              { display: flex; flex-direction: column; gap: 0; }
+.type-specimen         { display: flex; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--divider); }
+.type-specimen:last-child { border-bottom: none; }
+.type-meta             { flex-shrink: 0; width: 180px; }
+.type-class            {
+  font-size: 11px; font-family: monospace; color: var(--on-surface-2);
+  background: var(--surface-var); padding: 2px 6px; border-radius: 4px;
+  display: block; margin-bottom: 3px;
+}
+.type-specs { font-size: 11px; color: var(--on-surface-3); }
+.type-sample { flex: 1; }
+
+/* ── Component frames ── */
+.pat-frame { background: var(--surface); border: 1px solid var(--divider); border-radius: 12px; padding: 20px; }
