@@ -116,12 +116,12 @@
 <p class="page-subtitle">40 screens · WCAG 2.1 AA · Material Design 3 · HTML/CSS editable</p>
 
 <div class="legend" role="list" aria-label="Screen categories">
-  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--primary);"></div>Auth</div>
-  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--secondary);"></div>Onboarding</div>
-  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--warning);"></div>Recovery</div>
-  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--success);"></div>Main Flows</div>
-  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--error);"></div>System States</div>
-  <div class="chip" role="listitem"><div class="chip-dot" style="background:#1565C0;"></div>Chat AI</div>
+  <div class="chip" role="listitem"><div class="chip-dot chip-dot-primary"></div>Auth</div>
+  <div class="chip" role="listitem"><div class="chip-dot chip-dot-secondary"></div>Onboarding</div>
+  <div class="chip" role="listitem"><div class="chip-dot chip-dot-warning"></div>Recovery</div>
+  <div class="chip" role="listitem"><div class="chip-dot chip-dot-success"></div>Main Flows</div>
+  <div class="chip" role="listitem"><div class="chip-dot chip-dot-error"></div>System States</div>
+  <div class="chip" role="listitem"><div class="chip-dot chip-dot-chat"></div>Chat AI</div>
 </div>
 
 <button id="ctrl-toggle" aria-label="Toggle design controls" aria-expanded="true" aria-controls="ctrl-panel">
@@ -236,24 +236,22 @@
       <header class="app-bar">
         <button class="icon-btn" aria-label="Back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
         <span class="app-bar-title">Sign In</span>
-        <span style="width:40px"></span>
+        <span class="app-bar-spacer"></span>
       </header>
-      <div class="screen-content" style="display:flex;flex-direction:column;align-items:center;padding:40px 24px 24px;">
+      <div class="screen-content screen-content-centered">
         <!-- User avatar + name -->
         <div class="avatar avatar-primary avatar-52" aria-hidden="true">JD</div>
-        <p class="body-sm" style="margin:8px 0 0;font-weight:600;color:var(--on-surface);">Jane Doe</p>
-        <p class="body-sm" style="margin:2px 0 32px;color:var(--on-surface-2);">jane.doe@email.com</p>
+        <p class="auth-user-name">Jane Doe</p>
+        <p class="auth-user-email">jane.doe@email.com</p>
 
         <!-- Fingerprint / Face ID button -->
-        <button type="button"
-          style="width:72px;height:72px;border-radius:50%;background:var(--primary-light);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:16px;"
-          aria-label="Authenticate with biometrics">
-          <span class="material-icons" style="font-size:36px;color:var(--primary);" aria-hidden="true">fingerprint</span>
+        <button type="button" class="bio-btn" aria-label="Authenticate with biometrics">
+          <span class="material-icons" aria-hidden="true">fingerprint</span>
         </button>
-        <p class="body-sm" style="text-align:center;color:var(--on-surface-2);margin-bottom:32px;">Touch the sensor or look at your camera</p>
+        <p class="bio-hint">Touch the sensor or look at your camera</p>
 
         <!-- CTAs -->
-        <button type="button" class="btn btn-primary" style="width:100%;margin-bottom:12px;">USE FACE ID</button>
+        <button type="button" class="btn btn-primary mb-3">USE FACE ID</button>
         <button type="button" class="btn-text" aria-label="Sign in with password instead">Sign in with Password</button>
       </div>
     </article>
@@ -440,52 +438,46 @@
     <div class="screen-label">ONBOARDING · 04</div>
     <div class="screen-title">Registration Success</div>
     <article class="phone-frame" aria-label="Registration success screen" role="status" aria-live="polite">
-      <div class="screen-content" style="display:flex;flex-direction:column;overflow:hidden;">
+      <div class="screen-content">
         <!-- Celebration top section -->
-        <div style="background:var(--primary);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px 40px;flex:0 0 auto;">
-          <div style="width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
-            <span class="material-icons" style="font-size:48px;color:#ffffff;" aria-hidden="true">check_circle</span>
+        <div class="success-hero">
+          <div class="success-icon-wrap">
+            <span class="material-icons" aria-hidden="true">check_circle</span>
           </div>
-          <h1 style="font-size:22px;font-weight:700;color:#ffffff;text-align:center;margin:0 0 8px;">You're all set!</h1>
-          <p class="body-sm" style="color:rgba(255,255,255,0.85);text-align:center;margin:0;">Your account is ready. Start managing your health today.</p>
+          <h1 class="success-title">You're all set!</h1>
+          <p class="success-sub">Your account is ready. Start managing your health today.</p>
         </div>
 
         <!-- Feature tiles section -->
-        <div style="flex:1;background:#ffffff;padding:24px;overflow-y:auto;">
-          <p class="section-label" style="margin-bottom:16px;">WHAT YOU CAN DO</p>
-          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+        <div class="success-body">
+          <p class="section-label mb-4">WHAT YOU CAN DO</p>
+          <div class="stack-3 mb-8">
             <!-- Tile 1 -->
-            <div style="display:flex;align-items:center;gap:16px;">
-              <div style="width:44px;height:44px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <span class="material-icons" style="font-size:22px;color:var(--primary);" aria-hidden="true">medical_services</span>
-              </div>
+            <div class="feature-row">
+              <div class="feature-icon"><span class="material-icons" aria-hidden="true">medical_services</span></div>
               <div>
-                <p class="body-sm" style="font-weight:600;color:var(--on-surface);margin:0;">Find Care</p>
-                <p class="body-sm" style="color:var(--on-surface-2);margin:0;">Search doctors & facilities</p>
+                <p class="feature-title">Find Care</p>
+                <p class="feature-sub">Search doctors &amp; facilities</p>
               </div>
             </div>
             <!-- Tile 2 -->
-            <div style="display:flex;align-items:center;gap:16px;">
-              <div style="width:44px;height:44px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <span class="material-icons" style="font-size:22px;color:var(--primary);" aria-hidden="true">verified_user</span>
-              </div>
+            <div class="feature-row">
+              <div class="feature-icon"><span class="material-icons" aria-hidden="true">verified_user</span></div>
               <div>
-                <p class="body-sm" style="font-weight:600;color:var(--on-surface);margin:0;">View Coverage</p>
-                <p class="body-sm" style="color:var(--on-surface-2);margin:0;">Check benefits & deductibles</p>
+                <p class="feature-title">View Coverage</p>
+                <p class="feature-sub">Check benefits &amp; deductibles</p>
               </div>
             </div>
             <!-- Tile 3 -->
-            <div style="display:flex;align-items:center;gap:16px;">
-              <div style="width:44px;height:44px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                <span class="material-icons" style="font-size:22px;color:var(--primary);" aria-hidden="true">receipt_long</span>
-              </div>
+            <div class="feature-row">
+              <div class="feature-icon"><span class="material-icons" aria-hidden="true">receipt_long</span></div>
               <div>
-                <p class="body-sm" style="font-weight:600;color:var(--on-surface);margin:0;">Track Claims</p>
-                <p class="body-sm" style="color:var(--on-surface-2);margin:0;">Monitor status & history</p>
+                <p class="feature-title">Track Claims</p>
+                <p class="feature-sub">Monitor status &amp; history</p>
               </div>
             </div>
           </div>
-          <button type="button" class="btn btn-primary" style="width:100%;">GET STARTED</button>
+          <button type="button" class="btn btn-primary">GET STARTED</button>
         </div>
       </div>
     </article>
@@ -796,8 +788,8 @@
           <p class="hero-sub">Member since 2019 · Red Cross PPO</p>
         </div>
         <div class="dimmed p-4 stack-2" aria-hidden="true">
-          <div style="height:52px; background:var(--surface); border-radius:10px; border:1px solid var(--divider);"></div>
-          <div style="height:52px; background:var(--surface); border-radius:10px; border:1px solid var(--divider);"></div>
+          <div class="placeholder-card"></div>
+          <div class="placeholder-card"></div>
         </div>
         <!-- Overlay -->
         <div class="drawer-overlay" aria-hidden="true"></div>
@@ -1106,84 +1098,84 @@
       <div class="screen-content">
         <div class="search-bar" role="search">
           <span class="material-icons" aria-hidden="true">search</span>
-          <span class="search-placeholder" style="color:var(--on-surface);">Primary Care near 94105</span>
-          <button type="button" style="background:none;border:none;padding:0;cursor:pointer;" aria-label="Clear search">
-            <span class="material-icons" style="font-size:18px;color:var(--on-surface-3);" aria-hidden="true">close</span>
+          <span class="search-placeholder search-placeholder-active">Primary Care near 94105</span>
+          <button type="button" class="btn-clear" aria-label="Clear search">
+            <span class="material-icons" aria-hidden="true">close</span>
           </button>
         </div>
         <!-- Filter chips -->
-        <div style="display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none;" role="group" aria-label="Active filters">
-          <button type="button" class="chip-sm chip-success" style="white-space:nowrap;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;" aria-pressed="true">
-            <span class="material-icons" style="font-size:12px;" aria-hidden="true">check</span>In-Network
+        <div class="filter-chips" role="group" aria-label="Active filters">
+          <button type="button" class="chip-sm chip-success filter-chip-active" aria-pressed="true">
+            <span class="material-icons" aria-hidden="true">check</span>In-Network
           </button>
-          <button type="button" class="chip-sm" style="white-space:nowrap;border:1px solid var(--border);background:var(--surface);cursor:pointer;" aria-pressed="false">Distance</button>
-          <button type="button" class="chip-sm" style="white-space:nowrap;border:1px solid var(--border);background:var(--surface);cursor:pointer;" aria-pressed="false">Rating</button>
-          <button type="button" class="chip-sm" style="white-space:nowrap;border:1px solid var(--border);background:var(--surface);cursor:pointer;" aria-pressed="false">Available Today</button>
+          <button type="button" class="chip-sm filter-chip" aria-pressed="false">Distance</button>
+          <button type="button" class="chip-sm filter-chip" aria-pressed="false">Rating</button>
+          <button type="button" class="chip-sm filter-chip" aria-pressed="false">Available Today</button>
         </div>
-        <div class="section-label" style="padding:0 16px 8px;">12 providers found</div>
+        <div class="section-label section-label-flush">12 providers found</div>
         <div class="scrollable bg-surface">
           <!-- Provider 1 -->
-          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" role="article" aria-label="Dr. Maria Chen, Primary Care, in-network, 4.9 stars, 0.3 miles">
+          <div class="list-item list-item-top" tabindex="0" role="article" aria-label="Dr. Maria Chen, Primary Care, in-network, 4.9 stars, 0.3 miles">
             <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
             <div class="item-body">
               <p class="item-title text-bold">Dr. Maria Chen</p>
               <p class="item-subtitle">Primary Care · 0.3 mi</p>
-              <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
-                <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★★</span>
-                <span class="body-xs" style="color:var(--on-surface-2);">4.9 (127)</span>
+              <div class="rating-row">
+                <span class="star-rating" aria-hidden="true">★★★★★</span>
+                <span class="body-xs review-count">4.9 (127)</span>
               </div>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+            <div class="provider-action-col">
               <span class="chip-sm chip-success">In-Network</span>
-              <button type="button" class="btn btn-primary" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+              <button type="button" class="btn btn-primary btn-xs">Book</button>
             </div>
           </div>
           <!-- Provider 2 -->
-          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" role="article" aria-label="Dr. James Park, Primary Care, in-network, 4.7 stars, 0.7 miles">
+          <div class="list-item list-item-top" tabindex="0" role="article" aria-label="Dr. James Park, Primary Care, in-network, 4.7 stars, 0.7 miles">
             <div class="avatar avatar-teal avatar-40" aria-hidden="true">JP</div>
             <div class="item-body">
               <p class="item-title text-bold">Dr. James Park</p>
               <p class="item-subtitle">Primary Care · 0.7 mi</p>
-              <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
-                <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★☆</span>
-                <span class="body-xs" style="color:var(--on-surface-2);">4.7 (89)</span>
+              <div class="rating-row">
+                <span class="star-rating" aria-hidden="true">★★★★☆</span>
+                <span class="body-xs review-count">4.7 (89)</span>
               </div>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+            <div class="provider-action-col">
               <span class="chip-sm chip-success">In-Network</span>
-              <button type="button" class="btn btn-primary" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+              <button type="button" class="btn btn-primary btn-xs">Book</button>
             </div>
           </div>
           <!-- Provider 3 -->
-          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" role="article" aria-label="Dr. Aisha Patel, Internal Medicine, out-of-network, 4.8 stars, 1.2 miles">
+          <div class="list-item list-item-top" tabindex="0" role="article" aria-label="Dr. Aisha Patel, Internal Medicine, out-of-network, 4.8 stars, 1.2 miles">
             <div class="avatar avatar-purple avatar-40" aria-hidden="true">AP</div>
             <div class="item-body">
               <p class="item-title text-bold">Dr. Aisha Patel</p>
               <p class="item-subtitle">Internal Medicine · 1.2 mi</p>
-              <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
-                <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★★</span>
-                <span class="body-xs" style="color:var(--on-surface-2);">4.8 (203)</span>
+              <div class="rating-row">
+                <span class="star-rating" aria-hidden="true">★★★★★</span>
+                <span class="body-xs review-count">4.8 (203)</span>
               </div>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+            <div class="provider-action-col">
               <span class="chip-sm chip-warning">Out-of-Net</span>
-              <button type="button" class="btn btn-outlined" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+              <button type="button" class="btn btn-outlined btn-xs">Book</button>
             </div>
           </div>
           <!-- Provider 4 -->
-          <div class="list-item border-none" style="align-items:flex-start;padding:12px 16px;" tabindex="0" role="article" aria-label="Dr. Robert Kim, Family Medicine, in-network, 4.6 stars, 1.8 miles">
+          <div class="list-item list-item-top border-none" tabindex="0" role="article" aria-label="Dr. Robert Kim, Family Medicine, in-network, 4.6 stars, 1.8 miles">
             <div class="avatar avatar-orange avatar-40" aria-hidden="true">RK</div>
             <div class="item-body">
               <p class="item-title text-bold">Dr. Robert Kim</p>
               <p class="item-subtitle">Family Medicine · 1.8 mi</p>
-              <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
-                <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★☆</span>
-                <span class="body-xs" style="color:var(--on-surface-2);">4.6 (54)</span>
+              <div class="rating-row">
+                <span class="star-rating" aria-hidden="true">★★★★☆</span>
+                <span class="body-xs review-count">4.6 (54)</span>
               </div>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+            <div class="provider-action-col">
               <span class="chip-sm chip-success">In-Network</span>
-              <button type="button" class="btn btn-primary" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+              <button type="button" class="btn btn-primary btn-xs">Book</button>
             </div>
           </div>
         </div>
@@ -1217,31 +1209,31 @@
       <div class="screen-content">
         <div class="scrollable">
           <!-- Provider hero -->
-          <div style="display:flex;flex-direction:column;align-items:center;padding:20px 16px 16px;background:var(--surface);border-bottom:1px solid var(--divider);">
-            <div class="avatar avatar-primary" style="width:64px;height:64px;font-size:22px;margin-bottom:12px;" aria-label="Dr. Maria Chen" role="img">MC</div>
-            <p class="h2" style="margin-bottom:2px;">Dr. Maria Chen</p>
-            <p class="body-sm" style="color:var(--on-surface-2);margin-bottom:6px;">Primary Care Physician</p>
-            <div style="display:flex;align-items:center;gap:4px;margin-bottom:10px;">
-              <span style="color:#F59E0B;font-size:13px;" aria-hidden="true">★★★★★</span>
-              <span class="body-sm" style="color:var(--on-surface-2);">4.9 · 127 reviews</span>
+          <div class="provider-hero">
+            <div class="avatar avatar-primary avatar-64" aria-label="Dr. Maria Chen" role="img">MC</div>
+            <p class="h2 mb-2px">Dr. Maria Chen</p>
+            <p class="provider-specialty">Primary Care Physician</p>
+            <div class="rating-row mb-3">
+              <span class="star-rating-lg" aria-hidden="true">★★★★★</span>
+              <span class="body-sm">4.9 · 127 reviews</span>
             </div>
-            <div style="display:flex;gap:8px;">
+            <div class="chip-row">
               <span class="chip-sm chip-success">In-Network</span>
-              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Accepting Patients</span>
+              <span class="chip-sm chip-neutral">Accepting Patients</span>
             </div>
           </div>
           <!-- Quick stats -->
-          <div class="stat-row" style="padding:12px 16px;" role="region" aria-label="Provider summary">
-            <div class="stat-box" style="flex:1;text-align:center;">
-              <div class="stat-value" style="font-size:18px;">15+</div>
+          <div class="stat-row stat-row-padded" role="region" aria-label="Provider summary">
+            <div class="stat-box stat-box-center">
+              <div class="stat-value stat-value-lg">15+</div>
               <div class="stat-label">Years Exp.</div>
             </div>
-            <div class="stat-box" style="flex:1;text-align:center;border-left:1px solid var(--divider);border-right:1px solid var(--divider);">
-              <div class="stat-value" style="font-size:18px;">$25</div>
+            <div class="stat-box stat-box-center stat-box-bordered">
+              <div class="stat-value stat-value-lg">$25</div>
               <div class="stat-label">Copay</div>
             </div>
-            <div class="stat-box" style="flex:1;text-align:center;">
-              <div class="stat-value" style="font-size:18px;">0.3 mi</div>
+            <div class="stat-box stat-box-center">
+              <div class="stat-value stat-value-lg">0.3 mi</div>
               <div class="stat-label">Distance</div>
             </div>
           </div>
@@ -1252,28 +1244,28 @@
             <button type="button" class="tab" role="tab" aria-selected="false">Availability</button>
           </div>
           <!-- About content -->
-          <div style="padding:16px;" role="region" aria-label="About Dr. Maria Chen">
-            <h2 class="section-label" style="margin-bottom:8px;">ABOUT</h2>
-            <p class="body-sm" style="line-height:1.6;color:var(--on-surface-2);margin-bottom:16px;">Board-certified in Internal Medicine with a focus on preventive care and chronic disease management. Graduated from UCSF School of Medicine.</p>
-            <h2 class="section-label" style="margin-bottom:8px;">OFFICE</h2>
-            <div class="meta-row" style="margin-bottom:4px;">
+          <div class="content-pad" role="region" aria-label="About Dr. Maria Chen">
+            <h2 class="section-label mb-2">ABOUT</h2>
+            <p class="provider-bio">Board-certified in Internal Medicine with a focus on preventive care and chronic disease management. Graduated from UCSF School of Medicine.</p>
+            <h2 class="section-label mb-2">OFFICE</h2>
+            <div class="meta-row mb-1">
               <span class="material-icons icon-sm text-secondary" aria-hidden="true">location_on</span>
               <span class="body-sm">450 Sutter St, Suite 1108, San Francisco, CA</span>
             </div>
-            <div class="meta-row" style="margin-bottom:16px;">
+            <div class="meta-row mb-4">
               <span class="material-icons icon-sm text-secondary" aria-hidden="true">schedule</span>
               <span class="body-sm">Mon–Fri · 8:00 AM – 5:00 PM</span>
             </div>
-            <h2 class="section-label" style="margin-bottom:8px;">INSURANCE ACCEPTED</h2>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <h2 class="section-label mb-2">INSURANCE ACCEPTED</h2>
+            <div class="chip-list">
               <span class="chip-sm chip-success">Red Cross PPO</span>
-              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Medicare</span>
-              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Aetna</span>
-              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Cigna</span>
+              <span class="chip-sm chip-neutral">Medicare</span>
+              <span class="chip-sm chip-neutral">Aetna</span>
+              <span class="chip-sm chip-neutral">Cigna</span>
             </div>
           </div>
           <!-- Book CTA -->
-          <div style="padding:0 16px 16px;">
+          <div class="p-action-bottom">
             <button type="button" class="btn btn-primary w-full">BOOK APPOINTMENT</button>
           </div>
         </div>
@@ -1304,7 +1296,7 @@
       <div class="screen-content">
         <div class="scrollable">
           <!-- Provider summary -->
-          <div class="card card-padded" style="margin:12px 16px 0;display:flex;align-items:center;gap:12px;">
+          <div class="card card-provider-summary">
             <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
             <div class="flex-1">
               <p class="body-base text-bold">Dr. Maria Chen</p>
@@ -1313,69 +1305,69 @@
             <span class="chip-sm chip-success">In-Network</span>
           </div>
           <!-- Visit type -->
-          <div style="padding:16px 16px 8px;">
-            <h2 class="section-label" style="margin-bottom:10px;">VISIT TYPE</h2>
-            <div style="display:flex;gap:8px;" role="group" aria-label="Visit type">
-              <button type="button" style="flex:1;padding:10px;border-radius:8px;border:2px solid var(--primary);background:var(--primary-light);color:var(--primary);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;" aria-pressed="true">
-                <span class="material-icons" style="font-size:16px;" aria-hidden="true">person</span>In-Person
+          <div class="section-pad">
+            <h2 class="newt section-label mb-3">VISIT TYPE</h2>
+            <div class="visit-type-group" role="group" aria-label="Visit type">
+              <button type="button" class="visit-type-btn visit-type-btn-active" aria-pressed="true">
+                <span class="material-icons" aria-hidden="true">person</span>In-Person
               </button>
-              <button type="button" style="flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;" aria-pressed="false">
-                <span class="material-icons" style="font-size:16px;" aria-hidden="true">videocam</span>Video
+              <button type="button" class="visit-type-btn" aria-pressed="false">
+                <span class="material-icons" aria-hidden="true">videocam</span>Video
               </button>
             </div>
           </div>
           <!-- Calendar -->
-          <div style="padding:0 16px 8px;">
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <div class="cal-wrapper">
+            <div class="calendar-nav">
               <button type="button" class="icon-btn" aria-label="Previous month"><span class="material-icons" aria-hidden="true">chevron_left</span></button>
               <h2 class="body-base text-bold" aria-live="polite">March 2026</h2>
               <button type="button" class="icon-btn" aria-label="Next month"><span class="material-icons" aria-hidden="true">chevron_right</span></button>
             </div>
-            <div style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;gap:2px;" role="grid" aria-label="March 2026 calendar">
-              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">S</div>
-              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">M</div>
-              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">T</div>
-              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">W</div>
-              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">T</div>
-              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">F</div>
-              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">S</div>
+            <div class="calendar-grid" role="grid" aria-label="March 2026 calendar">
+              <div class="cal-day-header" aria-hidden="true">S</div>
+              <div class="cal-day-header" aria-hidden="true">M</div>
+              <div class="cal-day-header" aria-hidden="true">T</div>
+              <div class="cal-day-header" aria-hidden="true">W</div>
+              <div class="cal-day-header" aria-hidden="true">T</div>
+              <div class="cal-day-header" aria-hidden="true">F</div>
+              <div class="cal-day-header" aria-hidden="true">S</div>
               <div role="gridcell"></div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">1</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">2</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">3</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">4</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">5</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">6</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">7</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">8</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">9</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">10</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">11</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">12</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">13</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">14</div>
-              <div role="gridcell" aria-selected="true" aria-label="March 15, selected" style="padding:4px 2px;font-size:12px;font-weight:700;color:#fff;background:var(--primary);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;margin:auto;">15</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">16</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">17</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">18</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">19</div>
-              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">20</div>
+              <div role="gridcell" class="cal-day">1</div>
+              <div role="gridcell" class="cal-day">2</div>
+              <div role="gridcell" class="cal-day">3</div>
+              <div role="gridcell" class="cal-day">4</div>
+              <div role="gridcell" class="cal-day">5</div>
+              <div role="gridcell" class="cal-day">6</div>
+              <div role="gridcell" class="cal-day">7</div>
+              <div role="gridcell" class="cal-day cal-day-available" tabindex="0">8</div>
+              <div role="gridcell" class="cal-day cal-day-available" tabindex="0">9</div>
+              <div role="gridcell" class="cal-day cal-day-available" tabindex="0">10</div>
+              <div role="gridcell" class="cal-day cal-day-available" tabindex="0">11</div>
+              <div role="gridcell" class="cal-day cal-day-available" tabindex="0">12</div>
+              <div role="gridcell" class="cal-day">13</div>
+              <div role="gridcell" class="cal-day">14</div>
+              <div role="gridcell" class="cal-day-selected" aria-selected="true" aria-label="March 15, selected">15</div>
+              <div role="gridcell" class="cal-day cal-day-available" tabindex="0">16</div>
+              <div role="gridcell" class="cal-day cal-day-available" tabindex="0">17</div>
+              <div role="gridcell" class="cal-day cal-day-available" tabindex="0">18</div>
+              <div role="gridcell" class="cal-day cal-day-available" tabindex="0">19</div>
+              <div role="gridcell" class="cal-day">20</div>
             </div>
           </div>
           <!-- Time slots -->
-          <div style="padding:0 16px 16px;">
-            <h2 class="section-label" style="margin-bottom:10px;">AVAILABLE TIMES · MARCH 15</h2>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;" role="group" aria-label="Available appointment times">
-              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 12px;" aria-pressed="false">9:00 AM</button>
-              <button type="button" class="chip-sm chip-success" style="cursor:pointer;padding:6px 12px;" aria-pressed="true" aria-label="10:30 AM, selected">10:30 AM</button>
-              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 12px;" aria-pressed="false">11:00 AM</button>
-              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface-var);color:var(--on-surface-3);cursor:not-allowed;padding:6px 12px;" disabled aria-label="2:00 PM, unavailable">2:00 PM</button>
-              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 12px;" aria-pressed="false">3:30 PM</button>
-              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 12px;" aria-pressed="false">4:00 PM</button>
+          <div class="p-action-bottom">
+            <h2 class="newt section-label mb-3">AVAILABLE TIMES · MARCH 15</h2>
+            <div class="time-slot-group" role="group" aria-label="Available appointment times">
+              <button type="button" class="chip-sm time-slot" aria-pressed="false">9:00 AM</button>
+              <button type="button" class="chip-sm chip-success time-slot-selected" aria-pressed="true" aria-label="10:30 AM, selected">10:30 AM</button>
+              <button type="button" class="chip-sm time-slot" aria-pressed="false">11:00 AM</button>
+              <button type="button" class="chip-sm time-slot-disabled" disabled aria-label="2:00 PM, unavailable">2:00 PM</button>
+              <button type="button" class="chip-sm time-slot" aria-pressed="false">3:30 PM</button>
+              <button type="button" class="chip-sm time-slot" aria-pressed="false">4:00 PM</button>
             </div>
           </div>
           <!-- Confirm -->
-          <div style="padding:0 16px 16px;">
+          <div class="p-action-bottom">
             <button type="button" class="btn btn-primary w-full">CONFIRM APPOINTMENT</button>
           </div>
         </div>
@@ -1413,8 +1405,8 @@
         </div>
         <div class="scrollable bg-surface" id="appt-upcoming">
           <!-- Upcoming 1 — Confirmed -->
-          <div class="card card-padded" style="margin:12px 16px 8px;" role="article" aria-label="Appointment with Dr. Maria Chen, March 15 at 10:30 AM, confirmed">
-            <div class="row-item" style="margin-bottom:8px;">
+          <div class="card card-padded card-list-item mt-3" role="article" aria-label="Appointment with Dr. Maria Chen, March 15 at 10:30 AM, confirmed">
+            <div class="row-item mb-2">
               <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
               <div class="flex-1">
                 <p class="body-base text-bold">Dr. Maria Chen</p>
@@ -1422,22 +1414,22 @@
               </div>
               <span class="chip-sm chip-success">Confirmed</span>
             </div>
-            <div class="meta-row" style="margin-bottom:4px;">
+            <div class="meta-row mb-1">
               <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
               <span class="body-sm">Mar 15, 2026 · 10:30 AM</span>
             </div>
-            <div class="meta-row" style="margin-bottom:12px;">
+            <div class="meta-row mb-3">
               <span class="material-icons icon-sm text-secondary" aria-hidden="true">location_on</span>
               <span class="body-sm">450 Sutter St, Suite 1108 · In-Person</span>
             </div>
-            <div style="display:flex;gap:8px;border-top:1px solid var(--divider);padding-top:10px;">
-              <button type="button" class="btn btn-outlined" style="flex:1;padding:6px;font-size:12px;height:auto;">Reschedule</button>
-              <button type="button" class="btn-text" style="flex:1;font-size:12px;color:var(--error);">Cancel</button>
+            <div class="appt-actions">
+              <button type="button" class="btn btn-outlined btn-sm">Reschedule</button>
+              <button type="button" class="btn-text btn-text-danger">Cancel</button>
             </div>
           </div>
           <!-- Upcoming 2 — Pending -->
-          <div class="card card-padded" style="margin:0 16px 8px;" role="article" aria-label="Appointment with Dr. James Park, April 2 at 2:00 PM, pending">
-            <div class="row-item" style="margin-bottom:8px;">
+          <div class="card card-padded card-list-item" role="article" aria-label="Appointment with Dr. James Park, April 2 at 2:00 PM, pending">
+            <div class="row-item mb-2">
               <div class="avatar avatar-teal avatar-40" aria-hidden="true">JP</div>
               <div class="flex-1">
                 <p class="body-base text-bold">Dr. James Park</p>
@@ -1445,34 +1437,34 @@
               </div>
               <span class="chip-sm chip-warning">Pending</span>
             </div>
-            <div class="meta-row" style="margin-bottom:4px;">
+            <div class="meta-row mb-1">
               <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
               <span class="body-sm">Apr 2, 2026 · 2:00 PM</span>
             </div>
-            <div class="meta-row" style="margin-bottom:12px;">
+            <div class="meta-row mb-3">
               <span class="material-icons icon-sm text-secondary" aria-hidden="true">videocam</span>
               <span class="body-sm">Video Visit</span>
             </div>
-            <div style="display:flex;gap:8px;border-top:1px solid var(--divider);padding-top:10px;">
-              <button type="button" class="btn btn-outlined" style="flex:1;padding:6px;font-size:12px;height:auto;">Reschedule</button>
-              <button type="button" class="btn-text" style="flex:1;font-size:12px;color:var(--error);">Cancel</button>
+            <div class="appt-actions">
+              <button type="button" class="btn btn-outlined btn-sm">Reschedule</button>
+              <button type="button" class="btn-text btn-text-danger">Cancel</button>
             </div>
           </div>
           <!-- Past header -->
-          <div class="section-header" style="padding:12px 16px 4px;">
-            <h2 class="section-title" style="color:var(--on-surface-2);">Past</h2>
+          <div class="section-header-compact">
+            <h2 class="section-title section-title-muted">Past</h2>
           </div>
           <!-- Past 1 — Completed -->
-          <div class="card card-padded" style="margin:0 16px 8px;opacity:0.75;" role="article" aria-label="Past appointment with Dr. Maria Chen, February 10, completed">
+          <div class="card card-padded card-list-item past-appt" role="article" aria-label="Past appointment with Dr. Maria Chen, February 10, completed">
             <div class="row-item">
               <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
               <div class="flex-1">
                 <p class="body-base text-bold">Dr. Maria Chen</p>
                 <p class="body-sm">Primary Care</p>
               </div>
-              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Completed</span>
+              <span class="chip-sm chip-neutral">Completed</span>
             </div>
-            <div class="meta-row" style="margin-top:8px;">
+            <div class="meta-row mt-2">
               <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
               <span class="body-sm">Feb 10, 2026 · 9:00 AM</span>
             </div>
@@ -1698,16 +1690,16 @@
         </button>
         <h1 class="app-bar-title">New Message</h1>
         <button type="button" class="compose-send-btn" aria-label="Send message">
-          <span class="material-icons" aria-hidden="true" style="font-size:16px">send</span>
+          <span class="material-icons" aria-hidden="true">send</span>
           Send
         </button>
       </div>
-      <div class="screen-content" style="display:flex;flex-direction:column;overflow:hidden;">
+      <div class="screen-content">
         <div class="compose-field" role="group" aria-label="To field">
           <span class="compose-field-label">To:</span>
           <div class="compose-field-value">
             <span class="compose-recipient-chip" aria-label="Recipient: Dr. Maria Chen">
-              <div class="avatar avatar-primary" style="width:22px;height:22px;font-size:9px;" aria-hidden="true">MC</div>
+              <div class="avatar avatar-primary avatar-22" aria-hidden="true">MC</div>
               Dr. Maria Chen
             </span>
           </div>
@@ -1716,20 +1708,20 @@
           <span class="compose-field-label">Subject:</span>
           <div class="compose-field-value">Follow-up question about test results</div>
         </div>
-        <div style="display:flex;align-items:center;gap:6px;padding:6px 16px;background:var(--success-light);border-bottom:1px solid var(--divider);">
-          <span class="material-icons" aria-hidden="true" style="font-size:14px;color:var(--success);">lock</span>
-          <span style="font-size:11px;color:var(--success);font-weight:500;">Secure, HIPAA-compliant message</span>
+        <div class="secure-banner">
+          <span class="material-icons" aria-hidden="true">lock</span>
+          <span class="secure-text">Secure, HIPAA-compliant message</span>
         </div>
         <div class="compose-body-area">
           <p class="compose-body-text">Hi Dr. Chen,<br><br>I had a question about the lab results from my visit last week. The report mentioned my cholesterol levels were slightly elevated &mdash; could you clarify what that means for my treatment plan?<br><br>Thank you,<br>Sarah<span class="compose-cursor" aria-hidden="true"></span></p>
         </div>
         <div class="compose-toolbar" role="toolbar" aria-label="Formatting options">
-          <button type="button" class="compose-toolbar-btn" aria-label="Attach file"><span class="material-icons" aria-hidden="true" style="font-size:20px;">attach_file</span></button>
-          <button type="button" class="compose-toolbar-btn" aria-label="Add image"><span class="material-icons" aria-hidden="true" style="font-size:20px;">image</span></button>
-          <button type="button" class="compose-toolbar-btn" aria-label="Bold"><span class="material-icons" aria-hidden="true" style="font-size:20px;">format_bold</span></button>
-          <button type="button" class="compose-toolbar-btn" aria-label="Bullet list"><span class="material-icons" aria-hidden="true" style="font-size:20px;">format_list_bulleted</span></button>
+          <button type="button" class="compose-toolbar-btn" aria-label="Attach file"><span class="material-icons" aria-hidden="true">attach_file</span></button>
+          <button type="button" class="compose-toolbar-btn" aria-label="Add image"><span class="material-icons" aria-hidden="true">image</span></button>
+          <button type="button" class="compose-toolbar-btn" aria-label="Bold"><span class="material-icons" aria-hidden="true">format_bold</span></button>
+          <button type="button" class="compose-toolbar-btn" aria-label="Bullet list"><span class="material-icons" aria-hidden="true">format_list_bulleted</span></button>
           <div class="compose-toolbar-spacer"></div>
-          <button type="button" class="compose-toolbar-btn" aria-label="More options"><span class="material-icons" aria-hidden="true" style="font-size:20px;">more_vert</span></button>
+          <button type="button" class="compose-toolbar-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
         </div>
       </div>
       <nav class="bottom-nav" aria-label="Main navigation">
@@ -1854,14 +1846,14 @@
       <div class="screen-content">
         <div class="scrollable">
           <div class="claim-status-banner claim-status-banner-success" role="status" aria-label="Claim paid">
-            <span class="material-icons" aria-hidden="true" style="font-size:28px;">check_circle</span>
+            <span class="material-icons claim-status-icon" aria-hidden="true">check_circle</span>
             <div>
               <p class="claim-status-title">Claim Paid</p>
               <p class="claim-status-sub">Payment issued Feb 28, 2026</p>
             </div>
           </div>
           <div class="claim-detail-section">
-            <h2 class="section-label" style="margin-bottom:8px;">PROVIDER</h2>
+            <h2 class="section-label mb-2">PROVIDER</h2>
             <div class="claim-kv">
               <span class="claim-kv-label">Provider</span>
               <span class="claim-kv-value">Dr. Maria Chen</span>
@@ -1876,11 +1868,11 @@
             </div>
             <div class="claim-kv">
               <span class="claim-kv-label">Claim #</span>
-              <span class="claim-kv-value" style="font-size:11px;font-family:monospace;">CLM-2026-0228-4491</span>
+              <span class="claim-kv-value mono-value">CLM-2026-0228-4491</span>
             </div>
           </div>
           <div class="claim-detail-section">
-            <h2 class="section-label" style="margin-bottom:8px;">COST BREAKDOWN</h2>
+            <h2 class="section-label mb-2">COST BREAKDOWN</h2>
             <div class="claim-kv">
               <span class="claim-kv-label">Amount Billed</span>
               <span class="claim-kv-value">$180.00</span>
@@ -1891,7 +1883,7 @@
             </div>
             <div class="claim-kv">
               <span class="claim-kv-label">Plan Paid</span>
-              <span class="claim-kv-value" style="color:var(--success);">$130.00</span>
+              <span class="claim-kv-value text-success">$130.00</span>
             </div>
             <div class="claim-kv">
               <span class="claim-kv-label">Deductible Applied</span>
@@ -1902,9 +1894,9 @@
             <span class="claim-total-label">Your Cost</span>
             <span class="claim-total-value">$25.00</span>
           </div>
-          <div class="claim-detail-section" style="display:flex;flex-direction:column;gap:8px;">
+          <div class="claim-detail-section claim-action-section">
             <button type="button" class="btn btn-secondary w-full">View Explanation of Benefits</button>
-            <button type="button" class="btn-text" style="font-size:13px;">Report an Issue with This Claim</button>
+            <button type="button" class="btn-text btn-text-base">Report an Issue with This Claim</button>
           </div>
         </div>
       </div>
@@ -2093,14 +2085,14 @@
 
           <!-- Member info section -->
           <div class="claim-detail-section">
-            <h2 class="section-label" style="margin-bottom:8px;">PLAN DETAILS</h2>
+            <h2 class="section-label mb-2">PLAN DETAILS</h2>
             <div class="claim-kv">
               <span class="claim-kv-label">Plan Name</span>
               <span class="claim-kv-value">Red Cross Red Shield PPO</span>
             </div>
             <div class="claim-kv">
               <span class="claim-kv-label">Policy #</span>
-              <span class="claim-kv-value" style="font-size:11px;font-family:monospace;">POL-SJ-20190314</span>
+              <span class="claim-kv-value mono-value">POL-SJ-20190314</span>
             </div>
             <div class="claim-kv">
               <span class="claim-kv-label">Network</span>
@@ -2147,32 +2139,32 @@
           <button type="button" class="tab" role="tab" aria-selected="false">Pending</button>
         </div>
         <div class="scrollable bg-surface">
-          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" aria-label="Comprehensive Metabolic Panel, Feb 28, 1 abnormal result">
-            <div class="avatar avatar-error avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+          <div class="list-item list-item-top" tabindex="0" aria-label="Comprehensive Metabolic Panel, Feb 28, 1 abnormal result">
+            <div class="avatar avatar-error avatar-40 avatar-icon" aria-hidden="true"><span class="material-icons" aria-hidden="true">science</span></div>
             <div class="item-body">
               <p class="item-title text-bold">Comprehensive Metabolic Panel</p>
               <p class="item-subtitle">Feb 28, 2026 · Dr. Maria Chen</p>
             </div>
             <span class="chip-sm chip-error">1 Abnormal</span>
           </div>
-          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" aria-label="Lipid Panel, Feb 15, normal">
-            <div class="avatar avatar-success avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+          <div class="list-item list-item-top" tabindex="0" aria-label="Lipid Panel, Feb 15, normal">
+            <div class="avatar avatar-success avatar-40 avatar-icon" aria-hidden="true"><span class="material-icons" aria-hidden="true">science</span></div>
             <div class="item-body">
               <p class="item-title text-bold">Lipid Panel</p>
               <p class="item-subtitle">Feb 15, 2026 · Dr. Maria Chen</p>
             </div>
             <span class="chip-sm chip-success">Normal</span>
           </div>
-          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" aria-label="Complete Blood Count, Mar 5, pending">
-            <div class="avatar avatar-orange avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+          <div class="list-item list-item-top" tabindex="0" aria-label="Complete Blood Count, Mar 5, pending">
+            <div class="avatar avatar-orange avatar-40 avatar-icon" aria-hidden="true"><span class="material-icons" aria-hidden="true">science</span></div>
             <div class="item-body">
               <p class="item-title text-bold">Complete Blood Count</p>
               <p class="item-subtitle">Mar 5, 2026 · Dr. Maria Chen</p>
             </div>
             <span class="chip-sm chip-warning">Pending</span>
           </div>
-          <div class="list-item border-none" style="align-items:flex-start;padding:12px 16px;" tabindex="0" aria-label="Thyroid Panel, Jan 10, normal">
-            <div class="avatar avatar-success avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+          <div class="list-item list-item-top border-none" tabindex="0" aria-label="Thyroid Panel, Jan 10, normal">
+            <div class="avatar avatar-success avatar-40 avatar-icon" aria-hidden="true"><span class="material-icons" aria-hidden="true">science</span></div>
             <div class="item-body">
               <p class="item-title text-bold">Thyroid Panel (TSH)</p>
               <p class="item-subtitle">Jan 10, 2026 · Dr. Maria Chen</p>
@@ -2210,62 +2202,62 @@
       <div class="screen-content">
         <div class="scrollable">
           <!-- Status banner -->
-          <div class="claim-status-banner" style="background:var(--error-light);color:var(--error);" role="status" aria-label="1 abnormal result">
-            <span class="material-icons" aria-hidden="true" style="font-size:28px;">warning_amber</span>
+          <div class="claim-status-banner claim-status-banner-error" role="status" aria-label="1 abnormal result">
+            <span class="material-icons claim-status-icon" aria-hidden="true">warning_amber</span>
             <div>
-              <p class="claim-status-title" style="color:var(--error);">1 Abnormal Result</p>
-              <p class="claim-status-sub" style="color:var(--error);">Reviewed by Dr. Chen · Feb 28</p>
+              <p class="claim-status-title">1 Abnormal Result</p>
+              <p class="claim-status-sub">Reviewed by Dr. Chen · Feb 28</p>
             </div>
           </div>
           <!-- Test info -->
           <div class="claim-detail-section">
-            <h2 class="section-label" style="margin-bottom:8px;">TEST INFO</h2>
+            <h2 class="section-label mb-2">TEST INFO</h2>
             <div class="claim-kv"><span class="claim-kv-label">Test</span><span class="claim-kv-value">Comprehensive Metabolic Panel</span></div>
             <div class="claim-kv"><span class="claim-kv-label">Date</span><span class="claim-kv-value">Feb 28, 2026</span></div>
             <div class="claim-kv"><span class="claim-kv-label">Ordered by</span><span class="claim-kv-value">Dr. Maria Chen</span></div>
-            <div class="claim-kv" style="border-bottom:none;"><span class="claim-kv-label">Lab</span><span class="claim-kv-value">Quest Diagnostics</span></div>
+            <div class="claim-kv border-none"><span class="claim-kv-label">Lab</span><span class="claim-kv-value">Quest Diagnostics</span></div>
           </div>
           <!-- Results -->
-          <div class="claim-detail-section" style="padding:0;">
-            <h2 class="section-label" style="margin:0 16px 8px;">RESULTS</h2>
+          <div class="claim-detail-section claim-detail-section-flush">
+            <h2 class="section-label section-label-inline">RESULTS</h2>
             <!-- Normal -->
-            <div style="padding:10px 16px;border-bottom:1px solid var(--divider);display:flex;justify-content:space-between;align-items:center;">
+            <div class="result-row">
               <div>
                 <p class="body-sm text-bold">Glucose</p>
-                <p class="body-xs" style="color:var(--on-surface-2);">Ref: 70–100 mg/dL</p>
+                <p class="body-xs ref-range">Ref: 70–100 mg/dL</p>
               </div>
-              <div style="text-align:right;">
+              <div class="text-right">
                 <p class="body-base text-bold">95 mg/dL</p>
                 <span class="chip-sm chip-success">Normal</span>
               </div>
             </div>
             <!-- Abnormal with range bar -->
-            <div style="padding:10px 16px;border-bottom:1px solid var(--divider);background:var(--error-light);">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+            <div class="result-row-abnormal">
+              <div class="result-row-header">
                 <div>
                   <p class="body-sm text-bold">Cholesterol Total</p>
-                  <p class="body-xs" style="color:var(--on-surface-2);">Ref: &lt;200 mg/dL</p>
+                  <p class="body-xs ref-range">Ref: &lt;200 mg/dL</p>
                 </div>
-                <div style="text-align:right;">
-                  <p class="body-base text-bold" style="color:var(--error);">215 mg/dL ↑</p>
+                <div class="text-right">
+                  <p class="body-base text-bold text-error">215 mg/dL ↑</p>
                   <span class="chip-sm chip-error">High</span>
                 </div>
               </div>
               <!-- Range indicator -->
-              <div style="position:relative;height:6px;border-radius:3px;background:linear-gradient(to right,var(--success) 0%,var(--success) 66%,var(--error) 66%,var(--error) 100%);">
-                <div style="position:absolute;top:50%;left:71%;transform:translate(-50%,-50%);width:12px;height:12px;background:var(--error);border-radius:50%;border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,0.25);"></div>
+              <div class="result-range-bar">
+                <div class="result-range-dot" style="left:71%;"></div>
               </div>
-              <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--on-surface-2);margin-top:4px;">
+              <div class="result-range-labels">
                 <span>0</span><span>Normal &lt;200</span><span>300 mg/dL</span>
               </div>
             </div>
             <!-- Normal -->
-            <div style="padding:10px 16px;display:flex;justify-content:space-between;align-items:center;">
+            <div class="result-row-last">
               <div>
                 <p class="body-sm text-bold">Creatinine</p>
-                <p class="body-xs" style="color:var(--on-surface-2);">Ref: 0.6–1.2 mg/dL</p>
+                <p class="body-xs ref-range">Ref: 0.6–1.2 mg/dL</p>
               </div>
-              <div style="text-align:right;">
+              <div class="text-right">
                 <p class="body-base text-bold">0.9 mg/dL</p>
                 <span class="chip-sm chip-success">Normal</span>
               </div>
@@ -2273,19 +2265,19 @@
           </div>
           <!-- Provider note -->
           <div class="claim-detail-section">
-            <h2 class="section-label" style="margin-bottom:8px;">PROVIDER NOTE</h2>
-            <div class="card card-padded" style="margin:0;">
-              <div class="row-item" style="margin-bottom:6px;">
+            <h2 class="section-label mb-2">PROVIDER NOTE</h2>
+            <div class="card card-padded card-flush">
+              <div class="row-item mb-sm">
                 <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
                 <div class="flex-1">
                   <p class="body-sm text-bold">Dr. Maria Chen</p>
-                  <p class="body-xs" style="color:var(--on-surface-2);">Feb 28, 2026</p>
+                  <p class="body-xs dimmed">Feb 28, 2026</p>
                 </div>
               </div>
-              <p class="body-sm" style="color:var(--on-surface-2);line-height:1.5;">Cholesterol slightly elevated. Recommend dietary changes and follow-up in 3 months.</p>
+              <p class="body-sm dimmed leading-normal">Cholesterol slightly elevated. Recommend dietary changes and follow-up in 3 months.</p>
             </div>
           </div>
-          <div style="padding:0 16px 16px;">
+          <div class="p-action-bottom">
             <button type="button" class="btn btn-outlined w-full">MESSAGE DR. CHEN</button>
           </div>
         </div>
@@ -2320,46 +2312,46 @@
         </div>
         <div class="scrollable">
           <!-- Rx 1 — 3 refills -->
-          <div class="card card-padded" style="margin:12px 16px 8px;" role="article" aria-label="Lisinopril 10mg, 3 refills remaining">
-            <div class="row-item" style="margin-bottom:8px;">
-              <div class="avatar avatar-teal avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">medication</span></div>
+          <div class="card card-padded card-list-item mt-3" role="article" aria-label="Lisinopril 10mg, 3 refills remaining">
+            <div class="row-item mb-2">
+              <div class="avatar avatar-teal avatar-40 avatar-icon" aria-hidden="true"><span class="material-icons" aria-hidden="true">medication</span></div>
               <div class="flex-1">
                 <p class="body-base text-bold">Lisinopril 10mg</p>
                 <p class="body-sm">Once daily · Blood Pressure</p>
               </div>
               <span class="chip-sm chip-success">3 Refills</span>
             </div>
-            <div class="meta-row" style="margin-bottom:4px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
-            <div class="meta-row" style="margin-bottom:10px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Feb 1 · CVS Caremark</span></div>
-            <button type="button" class="btn btn-primary w-full" style="font-size:12px;padding:8px;">REQUEST REFILL</button>
+            <div class="meta-row mb-1"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
+            <div class="meta-row mb-3"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Feb 1 · CVS Caremark</span></div>
+            <button type="button" class="btn btn-primary w-full btn-sm-rx">REQUEST REFILL</button>
           </div>
           <!-- Rx 2 — 1 refill -->
-          <div class="card card-padded" style="margin:0 16px 8px;" role="article" aria-label="Atorvastatin 20mg, 1 refill remaining">
-            <div class="row-item" style="margin-bottom:8px;">
-              <div class="avatar avatar-purple avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">medication</span></div>
+          <div class="card card-padded card-list-item" role="article" aria-label="Atorvastatin 20mg, 1 refill remaining">
+            <div class="row-item mb-2">
+              <div class="avatar avatar-purple avatar-40 avatar-icon" aria-hidden="true"><span class="material-icons" aria-hidden="true">medication</span></div>
               <div class="flex-1">
                 <p class="body-base text-bold">Atorvastatin 20mg</p>
                 <p class="body-sm">Once daily · Cholesterol</p>
               </div>
               <span class="chip-sm chip-warning">1 Refill</span>
             </div>
-            <div class="meta-row" style="margin-bottom:4px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
-            <div class="meta-row" style="margin-bottom:10px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Jan 15 · CVS Caremark</span></div>
-            <button type="button" class="btn btn-primary w-full" style="font-size:12px;padding:8px;">REQUEST REFILL</button>
+            <div class="meta-row mb-1"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
+            <div class="meta-row mb-3"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Jan 15 · CVS Caremark</span></div>
+            <button type="button" class="btn btn-primary w-full btn-sm-rx">REQUEST REFILL</button>
           </div>
           <!-- Rx 3 — no refills -->
-          <div class="card card-padded" style="margin:0 16px 8px;" role="article" aria-label="Metformin 500mg, no refills, renewal needed">
-            <div class="row-item" style="margin-bottom:8px;">
-              <div class="avatar avatar-orange avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">medication</span></div>
+          <div class="card card-padded card-list-item" role="article" aria-label="Metformin 500mg, no refills, renewal needed">
+            <div class="row-item mb-2">
+              <div class="avatar avatar-orange avatar-40 avatar-icon" aria-hidden="true"><span class="material-icons" aria-hidden="true">medication</span></div>
               <div class="flex-1">
                 <p class="body-base text-bold">Metformin 500mg</p>
                 <p class="body-sm">Twice daily · Diabetes</p>
               </div>
               <span class="chip-sm chip-error">No Refills</span>
             </div>
-            <div class="meta-row" style="margin-bottom:4px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
-            <div class="meta-row" style="margin-bottom:10px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Dec 10 · CVS Caremark</span></div>
-            <button type="button" class="btn btn-outlined w-full" style="font-size:12px;padding:8px;">REQUEST RENEWAL</button>
+            <div class="meta-row mb-1"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
+            <div class="meta-row mb-3"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Dec 10 · CVS Caremark</span></div>
+            <button type="button" class="btn btn-outlined w-full btn-sm-rx">REQUEST RENEWAL</button>
           </div>
         </div>
       </div>
@@ -2389,19 +2381,19 @@
           <span class="material-icons" aria-hidden="true">add</span>
         </button>
       </div>
-      <div class="screen-content" style="display:flex;flex-direction:column;overflow:hidden;">
+      <div class="screen-content">
         <div class="tabs" role="tablist" aria-label="Appointment filters">
           <button type="button" class="tab active" role="tab" aria-selected="true">Upcoming</button>
           <button type="button" class="tab" role="tab" aria-selected="false">Past</button>
         </div>
-        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center;background:var(--surface);" role="status" aria-label="No upcoming appointments">
-          <div class="illus-circle" aria-hidden="true" style="margin-bottom:20px;">
+        <div class="empty-state" role="status" aria-label="No upcoming appointments">
+          <div class="illus-circle mb-5" aria-hidden="true">
             <span class="material-icons" aria-hidden="true">calendar_today</span>
           </div>
-          <h2 class="h2" style="margin-bottom:8px;">No Upcoming Appointments</h2>
-          <p class="body-sm" style="color:var(--on-surface-2);line-height:1.6;margin-bottom:24px;">You don't have any scheduled appointments. Book a provider to get started.</p>
+          <h2 class="h2 mb-2">No Upcoming Appointments</h2>
+          <p class="body-sm dimmed leading-relaxed mb-6">You don't have any scheduled appointments. Book a provider to get started.</p>
           <button type="button" class="btn btn-primary w-full">SCHEDULE APPOINTMENT</button>
-          <button type="button" class="btn-text" style="margin-top:10px;">Browse Care Options</button>
+          <button type="button" class="btn-text mt-sm">Browse Care Options</button>
         </div>
       </div>
       <nav class="bottom-nav" aria-label="Main navigation">
@@ -2422,56 +2414,56 @@
     <div class="screen-title">Skeleton Loading</div>
     <article class="phone-frame" aria-label="Skeleton loading state" aria-busy="true" aria-live="polite">
       <header class="app-bar">
-        <span style="width:40px"></span>
+        <span class="app-bar-spacer"></span>
         <!-- Skeleton title bar -->
-        <div style="height:16px;width:120px;border-radius:4px;background:var(--divider);"></div>
-        <div style="width:40px;height:40px;border-radius:50%;background:var(--divider);"></div>
+        <div class="skel-title-bar"></div>
+        <div class="skel-avatar-bar"></div>
       </header>
-      <div class="screen-content" style="padding:16px;display:flex;flex-direction:column;gap:16px;">
+      <div class="screen-content screen-content-padded">
         <!-- Hero card skeleton -->
-        <div style="border-radius:16px;overflow:hidden;background:var(--divider);height:76px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;">
-          <div style="height:10px;width:60%;border-radius:3px;background:rgba(255,255,255,0.35);"></div>
-          <div style="height:14px;width:45%;border-radius:3px;background:rgba(255,255,255,0.25);"></div>
+        <div class="skel-hero">
+          <div class="skel-hero-line"></div>
+          <div class="skel-hero-sub"></div>
         </div>
 
         <!-- Quick-action skeletons -->
-        <div style="display:flex;gap:12px;">
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:var(--divider);"></div>
-            <div style="height:10px;width:40px;border-radius:3px;background:var(--divider);"></div>
+        <div class="skel-row">
+          <div class="skel-action">
+            <div class="skel-icon"></div>
+            <div class="skel-label"></div>
           </div>
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:var(--divider);"></div>
-            <div style="height:10px;width:40px;border-radius:3px;background:var(--divider);"></div>
+          <div class="skel-action">
+            <div class="skel-icon"></div>
+            <div class="skel-label"></div>
           </div>
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;">
-            <div style="width:44px;height:44px;border-radius:50%;background:var(--divider);"></div>
-            <div style="height:10px;width:40px;border-radius:3px;background:var(--divider);"></div>
+          <div class="skel-action">
+            <div class="skel-icon"></div>
+            <div class="skel-label"></div>
           </div>
         </div>
 
         <!-- Section label skeleton -->
-        <div style="height:11px;width:90px;border-radius:3px;background:var(--divider);"></div>
+        <div class="skel-section" style="width:90px;"></div>
 
         <!-- Appointment card skeleton -->
-        <div style="border-radius:12px;border:1px solid var(--border);padding:16px;display:flex;gap:12px;">
-          <div style="width:40px;height:40px;border-radius:50%;background:var(--divider);flex-shrink:0;"></div>
-          <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
-            <div style="height:13px;width:70%;border-radius:3px;background:var(--divider);"></div>
-            <div style="height:11px;width:50%;border-radius:3px;background:var(--divider);"></div>
-            <div style="height:22px;width:72px;border-radius:20px;background:var(--divider);margin-top:4px;"></div>
+        <div class="skel-card-wrap">
+          <div class="skel-avatar-sm"></div>
+          <div class="skel-content">
+            <div class="skel-line" style="height:13px;width:70%;"></div>
+            <div class="skel-line" style="height:11px;width:50%;"></div>
+            <div class="skel-chip"></div>
           </div>
         </div>
 
         <!-- Second section label skeleton -->
-        <div style="height:11px;width:70px;border-radius:3px;background:var(--divider);"></div>
+        <div class="skel-section" style="width:70px;"></div>
 
         <!-- Alert card skeleton -->
-        <div style="border-radius:12px;border:1px solid var(--border);padding:16px;display:flex;gap:12px;">
-          <div style="width:40px;height:40px;border-radius:50%;background:var(--divider);flex-shrink:0;"></div>
-          <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
-            <div style="height:13px;width:80%;border-radius:3px;background:var(--divider);"></div>
-            <div style="height:11px;width:55%;border-radius:3px;background:var(--divider);"></div>
+        <div class="skel-card-wrap">
+          <div class="skel-avatar-sm"></div>
+          <div class="skel-content">
+            <div class="skel-line" style="height:13px;width:80%;"></div>
+            <div class="skel-line" style="height:11px;width:55%;"></div>
           </div>
         </div>
       </div>
@@ -2485,11 +2477,12 @@
   </div>
 
 
+
   <!-- ═══════════════════════════════════════
        CHAT · 01 — AI Assistant Home
   ═══════════════════════════════════════ -->
   <div class="screen-cell">
-    <div class="screen-label" style="color:#1565C0;">CHAT · 01</div>
+    <div class="screen-label screen-label-chat">CHAT · 01</div>
     <div class="screen-title">AI Assistant Home</div>
     <article class="phone-frame" aria-label="AI Assistant home screen">
       <div class="app-bar">
@@ -2497,53 +2490,53 @@
         <h1 class="app-bar-title app-bar-title-padded">HealthBot</h1>
         <button type="button" class="icon-btn" aria-label="About HealthBot"><span class="material-icons" aria-hidden="true">info_outline</span></button>
       </div>
-      <div class="screen-content" style="padding:0;">
+      <div class="screen-content">
         <div class="chat-hero">
           <div class="chat-hero-avatar" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
           <p class="chat-hero-name">HealthBot</p>
           <p class="chat-hero-status"><span class="chat-hero-dot"></span>Online · AI-powered</p>
-          <p style="color:rgba(255,255,255,0.82);font-size:11px;text-align:center;margin-top:2px;line-height:1.5;">Hi Sarah! I can answer questions about<br>your health, coverage &amp; care.</p>
+          <p class="chat-hero-tagline">Hi Sarah! I can answer questions about<br>your health, coverage &amp; care.</p>
         </div>
         <div class="scrollable">
-          <div style="padding:12px 12px 6px;"><p class="section-label">SUGGESTED TOPICS</p></div>
+          <div class="chat-section-header"><p class="section-label">SUGGESTED TOPICS</p></div>
           <div class="chat-suggestion-grid">
             <div class="chat-suggestion-card" role="button" tabindex="0">
-              <div class="chat-suggestion-icon" style="background:#E3F2FD;"><span class="material-icons" style="color:var(--primary);">person_search</span></div>
+              <div class="chat-suggestion-icon chat-si-blue"><span class="material-icons">person_search</span></div>
               <p class="chat-suggestion-label">Find a Doctor</p>
             </div>
             <div class="chat-suggestion-card" role="button" tabindex="0">
-              <div class="chat-suggestion-icon" style="background:#E0F7FA;"><span class="material-icons" style="color:var(--secondary);">medication</span></div>
+              <div class="chat-suggestion-icon chat-si-teal"><span class="material-icons">medication</span></div>
               <p class="chat-suggestion-label">Refill Prescription</p>
             </div>
             <div class="chat-suggestion-card" role="button" tabindex="0">
-              <div class="chat-suggestion-icon" style="background:#E8F5E9;"><span class="material-icons" style="color:var(--success);">description</span></div>
+              <div class="chat-suggestion-icon chat-si-green"><span class="material-icons">description</span></div>
               <p class="chat-suggestion-label">Understand My Claim</p>
             </div>
             <div class="chat-suggestion-card" role="button" tabindex="0">
-              <div class="chat-suggestion-icon" style="background:#F3E5F5;"><span class="material-icons" style="color:#7B1FA2;">shield</span></div>
+              <div class="chat-suggestion-icon chat-si-purple"><span class="material-icons">shield</span></div>
               <p class="chat-suggestion-label">Check My Benefits</p>
             </div>
             <div class="chat-suggestion-card" role="button" tabindex="0">
-              <div class="chat-suggestion-icon" style="background:#FFF3E0;"><span class="material-icons" style="color:#E65100;">calendar_today</span></div>
+              <div class="chat-suggestion-icon chat-si-orange"><span class="material-icons">calendar_today</span></div>
               <p class="chat-suggestion-label">Book Appointment</p>
             </div>
             <div class="chat-suggestion-card" role="button" tabindex="0">
-              <div class="chat-suggestion-icon" style="background:var(--error-light);"><span class="material-icons" style="color:var(--error);">health_and_safety</span></div>
+              <div class="chat-suggestion-icon chat-si-error"><span class="material-icons">health_and_safety</span></div>
               <p class="chat-suggestion-label">Symptom Checker</p>
             </div>
           </div>
-          <div style="padding:6px 12px 6px;"><p class="section-label">RECENT CONVERSATIONS</p></div>
-          <div style="background:var(--surface);border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);">
+          <div class="chat-section-header"><p class="section-label">RECENT CONVERSATIONS</p></div>
+          <div class="chat-recent-list">
             <div class="chat-history-item">
-              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-icon"><span class="material-icons">smart_toy</span></div>
               <div class="chat-history-body">
                 <p class="chat-history-title">Prescription refill help</p>
                 <p class="chat-history-preview">Your refill was sent to CVS...</p>
               </div>
               <span class="item-meta">2h</span>
             </div>
-            <div class="chat-history-item" style="border-bottom:none;">
-              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+            <div class="chat-history-item">
+              <div class="chat-history-icon"><span class="material-icons">smart_toy</span></div>
               <div class="chat-history-body">
                 <p class="chat-history-title">Claim status inquiry</p>
                 <p class="chat-history-preview">Claim #CLM-0244 is processing...</p>
@@ -2551,11 +2544,11 @@
               <span class="item-meta">Yesterday</span>
             </div>
           </div>
-          <p class="body-xs" style="text-align:center;padding:10px 18px;color:var(--on-surface-3);line-height:1.5;">HealthBot provides guidance only. Always consult your provider for medical decisions.</p>
+          <p class="body-xs chat-disclaimer">HealthBot provides guidance only. Always consult your provider for medical decisions.</p>
         </div>
         <div class="chat-input-bar">
           <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
-          <div class="chat-input" role="textbox" aria-label="Message HealthBot"><span style="color:var(--on-surface-3);font-size:12px;">Ask me anything...</span></div>
+          <div class="chat-input" role="textbox" aria-label="Message HealthBot"><span class="chat-placeholder">Ask me anything...</span></div>
           <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
         </div>
       </div>
@@ -2573,23 +2566,21 @@
        CHAT · 02 — Active Conversation
   ═══════════════════════════════════════ -->
   <div class="screen-cell">
-    <div class="screen-label" style="color:#1565C0;">CHAT · 02</div>
+    <div class="screen-label screen-label-chat">CHAT · 02</div>
     <div class="screen-title">Active Conversation</div>
     <article class="phone-frame" aria-label="Active chat screen">
       <div class="app-bar">
         <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
-        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
-          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
-          </div>
+        <div class="chat-app-bar-identity">
+          <div class="chat-app-bar-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
           <div>
-            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
-            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;display:flex;align-items:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#69F0AE;"></span>Online · AI-powered</p>
+            <p class="chat-app-bar-name">HealthBot</p>
+            <p class="chat-app-bar-status"><span class="chat-online-dot"></span>Online · AI-powered</p>
           </div>
         </div>
         <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
       </div>
-      <div class="screen-content" style="padding:0;">
+      <div class="screen-content">
         <div class="scrollable">
           <div class="chat-messages">
             <div class="chat-date-divider">TODAY · 10:42 AM</div>
@@ -2601,7 +2592,7 @@
             <div class="chat-bubble-row user">
               <div class="chat-bubble chat-bubble-user">I need to refill my Lisinopril prescription.</div>
             </div>
-            <p class="chat-sender-name" style="margin-top:6px;">HealthBot</p>
+            <p class="chat-sender-name chat-gap">HealthBot</p>
             <div class="chat-bubble-row bot">
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">Sure! Lisinopril 10mg was last filled Feb 1 at CVS Caremark. You have <strong>3 refills</strong> remaining. Shall I request one now?</div>
@@ -2609,19 +2600,19 @@
             <div class="chat-bubble-row user">
               <div class="chat-bubble chat-bubble-user">Yes please!</div>
             </div>
-            <p class="chat-sender-name" style="margin-top:6px;">HealthBot</p>
+            <p class="chat-sender-name chat-gap">HealthBot</p>
             <div class="chat-bubble-row bot">
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">Done! Your refill has been sent to CVS Caremark. It should be ready for pickup in 1–2 business days.</div>
             </div>
-            <div style="display:flex;justify-content:flex-start;padding-left:29px;margin-top:3px;">
-              <span style="font-size:10px;color:var(--on-surface-3);">10:43 AM · Delivered</span>
+            <div class="chat-timestamp-row-bot">
+              <span class="chat-timestamp">10:43 AM · Delivered</span>
             </div>
           </div>
         </div>
         <div class="chat-input-bar">
           <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
-          <div class="chat-input" role="textbox" aria-label="Type a message"><span style="color:var(--on-surface-3);font-size:12px;">Type a message...</span></div>
+          <div class="chat-input" role="textbox" aria-label="Type a message"><span class="chat-placeholder">Type a message...</span></div>
           <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
         </div>
       </div>
@@ -2632,23 +2623,21 @@
        CHAT · 03 — Typing Indicator
   ═══════════════════════════════════════ -->
   <div class="screen-cell">
-    <div class="screen-label" style="color:#1565C0;">CHAT · 03</div>
+    <div class="screen-label screen-label-chat">CHAT · 03</div>
     <div class="screen-title">Typing Indicator</div>
     <article class="phone-frame" aria-label="Bot typing indicator screen">
       <div class="app-bar">
         <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
-        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
-          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
-          </div>
+        <div class="chat-app-bar-identity">
+          <div class="chat-app-bar-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
           <div>
-            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
-            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;">typing...</p>
+            <p class="chat-app-bar-name">HealthBot</p>
+            <p class="chat-app-bar-status">typing...</p>
           </div>
         </div>
         <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
       </div>
-      <div class="screen-content" style="padding:0;">
+      <div class="screen-content">
         <div class="scrollable">
           <div class="chat-messages">
             <div class="chat-date-divider">TODAY · 2:18 PM</div>
@@ -2657,14 +2646,13 @@
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">Hi Sarah! What can I help you with today?</div>
             </div>
-            <div class="chat-bubble-row user" style="margin-top:6px;">
+            <div class="chat-bubble-row user chat-gap">
               <div class="chat-bubble chat-bubble-user">What's the status of my claim CLM-2026-0244?</div>
             </div>
-            <div style="display:flex;justify-content:flex-end;margin-top:2px;margin-bottom:8px;">
-              <span style="font-size:10px;color:var(--on-surface-3);">2:18 PM · Sent</span>
+            <div class="chat-timestamp-row-user">
+              <span class="chat-timestamp">2:18 PM · Sent</span>
             </div>
-            <!-- Typing indicator -->
-            <p class="chat-sender-name">HealthBot</p>
+            <p class="chat-sender-name chat-gap-lg">HealthBot</p>
             <div class="chat-bubble-row bot" aria-label="HealthBot is typing" aria-live="polite">
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-typing-bubble">
@@ -2678,7 +2666,7 @@
         </div>
         <div class="chat-input-bar">
           <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
-          <div class="chat-input" role="textbox" aria-label="Type a message"><span style="color:var(--on-surface-3);font-size:12px;">Type a message...</span></div>
+          <div class="chat-input" role="textbox" aria-label="Type a message"><span class="chat-placeholder">Type a message...</span></div>
           <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message" disabled><span class="material-icons">send</span></button>
         </div>
       </div>
@@ -2689,36 +2677,33 @@
        CHAT · 04 — Rich Card Response
   ═══════════════════════════════════════ -->
   <div class="screen-cell">
-    <div class="screen-label" style="color:#1565C0;">CHAT · 04</div>
+    <div class="screen-label screen-label-chat">CHAT · 04</div>
     <div class="screen-title">Rich Card Response</div>
     <article class="phone-frame" aria-label="Rich card response in chat">
       <div class="app-bar">
         <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
-        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
-          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
-          </div>
+        <div class="chat-app-bar-identity">
+          <div class="chat-app-bar-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
           <div>
-            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
-            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;display:flex;align-items:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#69F0AE;"></span>Online</p>
+            <p class="chat-app-bar-name">HealthBot</p>
+            <p class="chat-app-bar-status"><span class="chat-online-dot"></span>Online</p>
           </div>
         </div>
         <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
       </div>
-      <div class="screen-content" style="padding:0;">
+      <div class="screen-content">
         <div class="scrollable">
           <div class="chat-messages">
             <div class="chat-date-divider">TODAY · 9:05 AM</div>
             <div class="chat-bubble-row user">
               <div class="chat-bubble chat-bubble-user">Book an appointment with Dr. Chen</div>
             </div>
-            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
-            <div class="chat-bubble-row bot" style="margin-bottom:4px;">
+            <p class="chat-sender-name chat-gap-lg">HealthBot</p>
+            <div class="chat-bubble-row bot">
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">I found an available slot with Dr. Chen. Here's the appointment option:</div>
             </div>
-            <!-- Rich card -->
-            <div style="margin-left:29px;margin-bottom:4px;">
+            <div class="chat-card-indent">
               <div class="chat-rich-card" role="article" aria-label="Appointment option with Dr. Maria Chen">
                 <div class="chat-rich-card-header">
                   <span class="material-icons">event</span>
@@ -2731,20 +2716,20 @@
                   <div class="chat-rich-card-row"><span class="material-icons">calendar_today</span>Mar 18, 2026 · 10:30 AM</div>
                   <div class="chat-rich-card-row"><span class="material-icons">location_on</span>450 Sutter St · In-Person</div>
                   <div class="chat-rich-card-row"><span class="material-icons">payments</span>$25 copay · In-Network</div>
-                  <div style="margin-top:2px;"><span class="chip-sm chip-success">Available</span></div>
+                  <div class="chat-rich-card-chip"><span class="chip-sm chip-success">Available</span></div>
                 </div>
                 <div class="chat-rich-card-action" role="button" tabindex="0" aria-label="Book this appointment slot">BOOK THIS SLOT</div>
               </div>
             </div>
-            <div style="margin-left:29px;margin-bottom:4px;">
-              <p class="chat-sender-name" style="margin-left:0;">HealthBot</p>
-              <div class="chat-bubble chat-bubble-bot" style="border-radius:16px;border-bottom-left-radius:4px;max-width:190px;padding:8px 11px;font-size:12px;line-height:1.5;">Would you like to confirm this time, or see other available slots?</div>
+            <div class="chat-card-indent">
+              <p class="chat-sender-name">HealthBot</p>
+              <div class="chat-bubble chat-bubble-bot">Would you like to confirm this time, or see other available slots?</div>
             </div>
           </div>
         </div>
         <div class="chat-input-bar">
           <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
-          <div class="chat-input" role="textbox" aria-label="Type a message"><span style="color:var(--on-surface-3);font-size:12px;">Type a message...</span></div>
+          <div class="chat-input" role="textbox" aria-label="Type a message"><span class="chat-placeholder">Type a message...</span></div>
           <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
         </div>
       </div>
@@ -2755,23 +2740,21 @@
        CHAT · 05 — Quick Replies
   ═══════════════════════════════════════ -->
   <div class="screen-cell">
-    <div class="screen-label" style="color:#1565C0;">CHAT · 05</div>
+    <div class="screen-label screen-label-chat">CHAT · 05</div>
     <div class="screen-title">Quick Replies</div>
     <article class="phone-frame" aria-label="Quick reply chips in chat">
       <div class="app-bar">
         <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
-        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
-          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
-          </div>
+        <div class="chat-app-bar-identity">
+          <div class="chat-app-bar-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
           <div>
-            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
-            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;display:flex;align-items:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#69F0AE;"></span>Online</p>
+            <p class="chat-app-bar-name">HealthBot</p>
+            <p class="chat-app-bar-status"><span class="chat-online-dot"></span>Online</p>
           </div>
         </div>
         <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
       </div>
-      <div class="screen-content" style="padding:0;">
+      <div class="screen-content">
         <div class="scrollable">
           <div class="chat-messages">
             <div class="chat-date-divider">TODAY · 11:30 AM</div>
@@ -2780,17 +2763,16 @@
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">Hello Sarah! What can I help you with today?</div>
             </div>
-            <div class="chat-bubble-row user" style="margin-top:6px;">
+            <div class="chat-bubble-row user chat-gap">
               <div class="chat-bubble chat-bubble-user">I need to see a doctor</div>
             </div>
-            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
+            <p class="chat-sender-name chat-gap-lg">HealthBot</p>
             <div class="chat-bubble-row bot">
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">I can help you find the right care. What type of visit are you looking for?</div>
             </div>
           </div>
         </div>
-        <!-- Quick reply chips -->
         <div class="chat-quick-replies" role="group" aria-label="Quick reply options">
           <button type="button" class="chat-quick-reply">Primary Care</button>
           <button type="button" class="chat-quick-reply">Urgent Care</button>
@@ -2800,7 +2782,7 @@
         </div>
         <div class="chat-input-bar">
           <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Attach file"><span class="material-icons">attach_file</span></button>
-          <div class="chat-input" role="textbox" aria-label="Type a message or choose a reply above"><span style="color:var(--on-surface-3);font-size:12px;">Or type your own...</span></div>
+          <div class="chat-input" role="textbox" aria-label="Type a message or choose a reply above"><span class="chat-placeholder">Or type your own...</span></div>
           <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
         </div>
       </div>
@@ -2811,23 +2793,21 @@
        CHAT · 06 — Image Attachment
   ═══════════════════════════════════════ -->
   <div class="screen-cell">
-    <div class="screen-label" style="color:#1565C0;">CHAT · 06</div>
+    <div class="screen-label screen-label-chat">CHAT · 06</div>
     <div class="screen-title">Image Attachment</div>
     <article class="phone-frame" aria-label="Chat with image attachment">
       <div class="app-bar">
         <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
-        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
-          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
-          </div>
+        <div class="chat-app-bar-identity">
+          <div class="chat-app-bar-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
           <div>
-            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
-            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;display:flex;align-items:center;gap:3px;"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#69F0AE;"></span>Online</p>
+            <p class="chat-app-bar-name">HealthBot</p>
+            <p class="chat-app-bar-status"><span class="chat-online-dot"></span>Online</p>
           </div>
         </div>
         <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
       </div>
-      <div class="screen-content" style="padding:0;">
+      <div class="screen-content">
         <div class="scrollable">
           <div class="chat-messages">
             <div class="chat-date-divider">TODAY · 3:15 PM</div>
@@ -2836,24 +2816,23 @@
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">Hi Sarah! You can share a photo of your insurance card or a prescription label and I'll help you read the details.</div>
             </div>
-            <!-- User sends image -->
-            <div class="chat-bubble-row user" style="margin-top:6px;" aria-label="You sent an image">
+            <div class="chat-bubble-row user chat-gap" aria-label="You sent an image">
               <div class="chat-img-bubble" role="img" aria-label="Insurance card photo">
                 <span class="material-icons">photo</span>
               </div>
             </div>
-            <div style="display:flex;justify-content:flex-end;margin-top:2px;">
-              <span style="font-size:10px;color:var(--on-surface-3);">Insurance_Card.jpg · 3:16 PM</span>
+            <div class="chat-timestamp-row-user">
+              <span class="chat-timestamp">Insurance_Card.jpg · 3:16 PM</span>
             </div>
-            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
+            <p class="chat-sender-name chat-gap-lg">HealthBot</p>
             <div class="chat-bubble-row bot">
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">I can see your Red Cross Red Shield Medical card. What would you like to know about your coverage?</div>
             </div>
-            <div class="chat-bubble-row user" style="margin-top:6px;">
+            <div class="chat-bubble-row user chat-gap">
               <div class="chat-bubble chat-bubble-user">What's my specialist copay?</div>
             </div>
-            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
+            <p class="chat-sender-name chat-gap-lg">HealthBot</p>
             <div class="chat-bubble-row bot">
               <div class="chat-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">Your specialist visit copay is <strong>$40</strong> per visit for in-network providers. Need help finding a specialist?</div>
@@ -2862,7 +2841,7 @@
         </div>
         <div class="chat-input-bar">
           <button type="button" class="chat-input-btn chat-input-btn-ghost" aria-label="Take photo or attach file"><span class="material-icons">add_photo_alternate</span></button>
-          <div class="chat-input" role="textbox" aria-label="Type a message"><span style="color:var(--on-surface-3);font-size:12px;">Type a message...</span></div>
+          <div class="chat-input" role="textbox" aria-label="Type a message"><span class="chat-placeholder">Type a message...</span></div>
           <button type="button" class="chat-input-btn chat-input-btn-send" aria-label="Send message"><span class="material-icons">send</span></button>
         </div>
       </div>
@@ -2873,25 +2852,22 @@
        CHAT · 07 — Escalation to Human Agent
   ═══════════════════════════════════════ -->
   <div class="screen-cell">
-    <div class="screen-label" style="color:#1565C0;">CHAT · 07</div>
+    <div class="screen-label screen-label-chat">CHAT · 07</div>
     <div class="screen-title">Escalation to Live Agent</div>
     <article class="phone-frame" aria-label="Escalation to human agent">
       <div class="app-bar">
         <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
-        <div style="flex:1;display:flex;align-items:center;gap:8px;padding-left:4px;">
-          <div style="width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);border:1.5px solid rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span class="material-icons" style="font-size:15px;color:white;">smart_toy</span>
-          </div>
+        <div class="chat-app-bar-identity">
+          <div class="chat-app-bar-bot-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
           <div>
-            <p style="color:white;font-size:13px;font-weight:700;line-height:1.1;margin:0;">HealthBot</p>
-            <p style="color:rgba(255,255,255,0.72);font-size:10px;margin:0;">Connecting to agent...</p>
+            <p class="chat-app-bar-name">HealthBot</p>
+            <p class="chat-app-bar-status">Connecting to agent...</p>
           </div>
         </div>
         <button type="button" class="icon-btn" aria-label="More options"><span class="material-icons" aria-hidden="true">more_vert</span></button>
       </div>
-      <!-- Chat behind the modal (dimmed) -->
-      <div class="screen-content" style="padding:0;position:relative;">
-        <div class="scrollable" style="opacity:0.35;" aria-hidden="true">
+      <div class="screen-content">
+        <div class="scrollable chat-dimmed" aria-hidden="true">
           <div class="chat-messages">
             <div class="chat-date-divider">TODAY · 4:02 PM</div>
             <p class="chat-sender-name">HealthBot</p>
@@ -2899,29 +2875,28 @@
               <div class="chat-bot-icon"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">Hi Sarah! How can I help you?</div>
             </div>
-            <div class="chat-bubble-row user" style="margin-top:6px;">
+            <div class="chat-bubble-row user chat-gap">
               <div class="chat-bubble chat-bubble-user">I want to dispute a claim denial</div>
             </div>
-            <p class="chat-sender-name" style="margin-top:8px;">HealthBot</p>
+            <p class="chat-sender-name chat-gap-lg">HealthBot</p>
             <div class="chat-bubble-row bot">
               <div class="chat-bot-icon"><span class="material-icons">smart_toy</span></div>
               <div class="chat-bubble chat-bubble-bot">I understand. Claim disputes are best handled by a live agent who can review your file directly. Would you like me to connect you?</div>
             </div>
           </div>
         </div>
-        <!-- Escalation modal overlay -->
-        <div class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="escalation-title" style="align-items:flex-end;padding:0;">
-          <div class="chat-escalation-card" style="border-radius:20px 20px 0 0;">
+        <div class="modal-overlay chat-overlay-bottom" role="dialog" aria-modal="true" aria-labelledby="escalation-title">
+          <div class="chat-escalation-card chat-escalation-sheet">
             <div class="chat-agent-avatar" aria-hidden="true">JS</div>
-            <h2 class="modal-title" id="escalation-title" style="font-size:16px;margin-bottom:2px;">Connect with a Live Agent</h2>
-            <p class="body-sm" style="text-align:center;color:var(--on-surface-2);line-height:1.5;">A care advocate can review your claim and assist with the dispute process.</p>
+            <h2 class="modal-title chat-sheet-title" id="escalation-title">Connect with a Live Agent</h2>
+            <p class="body-sm chat-sheet-body">A care advocate can review your claim and assist with the dispute process.</p>
             <div class="chat-wait-badge" aria-label="Estimated wait time 5 minutes">
               <span class="material-icons">schedule</span>~5 min wait
             </div>
-            <div style="width:100%;display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+            <div class="chat-escalation-actions">
               <button type="button" class="btn btn-primary">CONNECT NOW</button>
               <button type="button" class="btn btn-outlined">Schedule a Callback</button>
-              <button type="button" class="btn-text" style="color:var(--on-surface-2);">Continue with HealthBot</button>
+              <button type="button" class="btn-text btn-text-muted">Continue with HealthBot</button>
             </div>
           </div>
         </div>
@@ -2933,30 +2908,28 @@
        CHAT · 08 — Conversation Feedback
   ═══════════════════════════════════════ -->
   <div class="screen-cell">
-    <div class="screen-label" style="color:#1565C0;">CHAT · 08</div>
+    <div class="screen-label screen-label-chat">CHAT · 08</div>
     <div class="screen-title">Conversation Feedback</div>
     <article class="phone-frame" aria-label="End of chat feedback screen">
       <div class="app-bar">
         <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
         <h1 class="app-bar-title app-bar-title-padded">Rate Your Experience</h1>
       </div>
-      <div class="screen-content" style="padding:0;">
+      <div class="screen-content">
         <div class="chat-feedback-wrap">
           <div class="chat-feedback-icon" aria-hidden="true"><span class="material-icons">smart_toy</span></div>
-          <h2 class="h2" style="margin-bottom:2px;">How did we do?</h2>
-          <p class="body-sm" style="color:var(--on-surface-2);line-height:1.5;text-align:center;">Your conversation with HealthBot has ended. Let us know how it went.</p>
-          <!-- Conversation summary chip -->
-          <div style="background:var(--surface-var);border:1px solid var(--divider);border-radius:var(--radius-lg);padding:10px 14px;width:100%;margin-top:6px;">
-            <p class="body-xs" style="color:var(--on-surface-2);margin-bottom:4px;">TOPIC</p>
-            <div style="display:flex;align-items:center;gap:6px;">
-              <span class="material-icons" style="font-size:16px;color:var(--secondary);">medication</span>
+          <h2 class="h2">How did we do?</h2>
+          <p class="body-sm text-center">Your conversation with HealthBot has ended. Let us know how it went.</p>
+          <div class="chat-topic-summary">
+            <p class="body-xs chat-topic-label">TOPIC</p>
+            <div class="chat-topic-row">
+              <span class="material-icons chat-topic-icon">medication</span>
               <p class="body-sm text-bold">Prescription Refill</p>
             </div>
-            <p class="body-xs" style="margin-top:4px;">Duration: 4 min · 8 messages</p>
+            <p class="body-xs mt-1">Duration: 4 min · 8 messages</p>
           </div>
-          <!-- Star rating -->
-          <div style="margin-top:6px;">
-            <p class="section-label" style="text-align:center;margin-bottom:8px;">TAP TO RATE</p>
+          <div class="chat-rating-section">
+            <p class="section-label text-center mb-2">TAP TO RATE</p>
             <div class="chat-stars" role="group" aria-label="Star rating">
               <span class="chat-star" role="radio" aria-label="1 star" aria-checked="false">★</span>
               <span class="chat-star" role="radio" aria-label="2 stars" aria-checked="false">★</span>
@@ -2964,17 +2937,16 @@
               <span class="chat-star" role="radio" aria-label="4 stars, selected" aria-checked="true">★</span>
               <span class="chat-star-empty" role="radio" aria-label="5 stars" aria-checked="false">★</span>
             </div>
-            <p class="body-sm" style="text-align:center;color:var(--on-surface-2);margin-top:2px;">Good</p>
+            <p class="body-sm text-center">Good</p>
           </div>
-          <!-- Comment -->
-          <div style="width:100%;margin-top:4px;">
+          <div class="chat-comment-wrap">
             <label class="tf-label" for="feedback-comment">ADD A COMMENT (OPTIONAL)</label>
-            <div class="text-field" style="min-height:56px;align-items:flex-start;padding-top:10px;" id="feedback-comment">
+            <div class="text-field text-field-multiline" id="feedback-comment">
               <span class="tf-placeholder">What could we improve?</span>
             </div>
           </div>
-          <button type="button" class="btn btn-primary w-full" style="margin-top:8px;">SUBMIT FEEDBACK</button>
-          <button type="button" class="btn-text" style="margin-top:2px;">Start New Conversation</button>
+          <button type="button" class="btn btn-primary w-full mt-2">SUBMIT FEEDBACK</button>
+          <button type="button" class="btn-text">Start New Conversation</button>
         </div>
       </div>
     </article>
@@ -2984,26 +2956,26 @@
        CHAT · 09 — Chat History
   ═══════════════════════════════════════ -->
   <div class="screen-cell">
-    <div class="screen-label" style="color:#1565C0;">CHAT · 09</div>
+    <div class="screen-label screen-label-chat">CHAT · 09</div>
     <div class="screen-title">Chat History</div>
-    <article class="phone-frame" aria-label="Chat history screen" style="position:relative;">
+    <article class="phone-frame" aria-label="Chat history screen">
       <div class="app-bar">
         <button type="button" class="icon-btn" aria-label="Go back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
         <h1 class="app-bar-title app-bar-title-padded">Conversations</h1>
         <button type="button" class="icon-btn" aria-label="Search conversations"><span class="material-icons" aria-hidden="true">search</span></button>
       </div>
-      <div class="screen-content" style="padding:0;">
+      <div class="screen-content">
         <div class="scrollable">
-          <div style="padding:10px 12px 6px;background:var(--bg);">
-            <div class="search-bar" role="search" style="margin:0;">
+          <div class="chat-search-header">
+            <div class="search-bar" role="search">
               <span class="material-icons" aria-hidden="true">search</span>
               <span class="search-placeholder">Search conversations...</span>
             </div>
           </div>
-          <div style="padding:8px 12px 4px;"><p class="section-label">TODAY</p></div>
-          <div style="background:var(--surface);border-top:1px solid var(--divider);">
+          <div class="chat-history-group-header"><p class="section-label">TODAY</p></div>
+          <div class="chat-history-group">
             <div class="chat-history-item">
-              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-icon"><span class="material-icons">smart_toy</span></div>
               <div class="chat-history-body">
                 <p class="chat-history-title">Prescription refill — Lisinopril</p>
                 <p class="chat-history-preview">Refill sent to CVS Caremark</p>
@@ -3011,7 +2983,7 @@
               <div class="msg-trailing"><span class="item-meta">2h</span><span class="unread-dot" aria-label="Unread"></span></div>
             </div>
             <div class="chat-history-item">
-              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-icon"><span class="material-icons">smart_toy</span></div>
               <div class="chat-history-body">
                 <p class="chat-history-title">Claim status inquiry</p>
                 <p class="chat-history-preview">Claim #CLM-0244 is in review</p>
@@ -3019,10 +2991,10 @@
               <span class="item-meta">5h</span>
             </div>
           </div>
-          <div style="padding:8px 12px 4px;background:var(--bg);"><p class="section-label">YESTERDAY</p></div>
-          <div style="background:var(--surface);border-top:1px solid var(--divider);">
+          <div class="chat-history-group-header"><p class="section-label">YESTERDAY</p></div>
+          <div class="chat-history-group">
             <div class="chat-history-item">
-              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-icon"><span class="material-icons">smart_toy</span></div>
               <div class="chat-history-body">
                 <p class="chat-history-title">Appointment booking</p>
                 <p class="chat-history-preview">Booked Dr. Chen for Mar 18</p>
@@ -3030,7 +3002,7 @@
               <span class="item-meta">Yesterday</span>
             </div>
             <div class="chat-history-item">
-              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">support_agent</span></div>
+              <div class="chat-history-icon chat-history-icon-agent"><span class="material-icons">support_agent</span></div>
               <div class="chat-history-body">
                 <p class="chat-history-title">Live Agent — Claim dispute</p>
                 <p class="chat-history-preview">Dispute submitted for CLM-0198</p>
@@ -3038,18 +3010,18 @@
               <span class="item-meta">Yesterday</span>
             </div>
           </div>
-          <div style="padding:8px 12px 4px;background:var(--bg);"><p class="section-label">LAST WEEK</p></div>
-          <div style="background:var(--surface);border-top:1px solid var(--divider);">
+          <div class="chat-history-group-header"><p class="section-label">LAST WEEK</p></div>
+          <div class="chat-history-group">
             <div class="chat-history-item">
-              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+              <div class="chat-history-icon"><span class="material-icons">smart_toy</span></div>
               <div class="chat-history-body">
                 <p class="chat-history-title">Benefits explanation</p>
                 <p class="chat-history-preview">Explained deductible vs. copay</p>
               </div>
               <span class="item-meta">Mar 4</span>
             </div>
-            <div class="chat-history-item" style="border-bottom:none;">
-              <div class="chat-history-icon"><span class="material-icons" style="font-size:18px;color:white;">smart_toy</span></div>
+            <div class="chat-history-item">
+              <div class="chat-history-icon"><span class="material-icons">smart_toy</span></div>
               <div class="chat-history-body">
                 <p class="chat-history-title">Find a doctor — Cardiology</p>
                 <p class="chat-history-preview">3 in-network cardiologists found</p>
@@ -3059,7 +3031,6 @@
           </div>
         </div>
       </div>
-      <!-- FAB -->
       <button type="button" class="chat-fab" aria-label="Start a new chat">
         <span class="material-icons" aria-hidden="true">add_comment</span>
       </button>
