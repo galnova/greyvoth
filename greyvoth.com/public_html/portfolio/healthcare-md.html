@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthcare App – Material Design Wireframes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="healthcare-md.css">
+</head>
+<body>
+
+<a href="#main-grid" class="skip-link">Skip to main content</a>
+
+<!-- CONTROL PANEL -->
+<div id="ctrl-panel" role="complementary" aria-label="Design controls">
+  <header>Design Controls <span>Live — updates all screens</span></header>
+
+  <div class="ctrl-section">
+    <div class="ctrl-section-label">Colors</div>
+    <div class="ctrl-row">
+      <label>Primary</label>
+      <input type="color" value="#431843" oninput="setVar('--primary', this)">
+      <div class="ctrl-hex">#431843</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Primary Dark</label>
+      <input type="color" value="#003c8f" oninput="setVar('--primary-dark', this)">
+      <div class="ctrl-hex">#003c8f</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Primary Light</label>
+      <input type="color" value="#E3F2FD" oninput="setVar('--primary-light', this)">
+      <div class="ctrl-hex">#E3F2FD</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Secondary</label>
+      <input type="color" value="#00838F" oninput="setVar('--secondary', this)">
+      <div class="ctrl-hex">#00838F</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Error</label>
+      <input type="color" value="#B00020" oninput="setVar('--error', this)">
+      <div class="ctrl-hex">#B00020</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Error Light</label>
+      <input type="color" value="#FFDAD6" oninput="setVar('--error-light', this)">
+      <div class="ctrl-hex">#FFDAD6</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Success</label>
+      <input type="color" value="#2E7D32" oninput="setVar('--success', this)">
+      <div class="ctrl-hex">#2E7D32</div>
+    </div>
+    <div class="ctrl-row">
+      <label>On Surface</label>
+      <input type="color" value="#1A1C2E" oninput="setVar('--on-surface', this)">
+      <div class="ctrl-hex">#1A1C2E</div>
+    </div>
+    <div class="ctrl-row">
+      <label>On Surface 2</label>
+      <input type="color" value="#5C6070" oninput="setVar('--on-surface-2', this)">
+      <div class="ctrl-hex">#5C6070</div>
+    </div>
+    <div class="ctrl-row">
+      <label>On Surface 3</label>
+      <input type="color" value="#9CA3AF" oninput="setVar('--on-surface-3', this)">
+      <div class="ctrl-hex">#9CA3AF</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Divider</label>
+      <input type="color" value="#E2E8F0" oninput="setVar('--divider', this)">
+      <div class="ctrl-hex">#E2E8F0</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Border</label>
+      <input type="color" value="#C8D0E0" oninput="setVar('--border', this)">
+      <div class="ctrl-hex">#C8D0E0</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Surface Var</label>
+      <input type="color" value="#EEF2FF" oninput="setVar('--surface-var', this)">
+      <div class="ctrl-hex">#EEF2FF</div>
+    </div>
+    <div class="ctrl-row">
+      <label>Page BG</label>
+      <input type="color" value="#E8EAF6" oninput="setVar('--page-bg', this)">
+      <div class="ctrl-hex">#E8EAF6</div>
+    </div>
+  </div>
+
+  <div class="ctrl-section">
+    <div class="ctrl-section-label">Layout</div>
+    <div class="ctrl-range-row">
+      <label>Screen Gap <span id="gap-val">20px</span></label>
+      <input type="range" min="8" max="48" value="20" oninput="updateGap(this)">
+    </div>
+    <div class="ctrl-select-row">
+      <label>Grid Columns</label>
+      <select onchange="updateColumns(this.value)">
+        <option value="2">2 columns</option>
+        <option value="3">3 columns</option>
+        <option value="4" selected>4 columns</option>
+        <option value="5">5 columns</option>
+      </select>
+    </div>
+  </div>
+
+  <button class="ctrl-btn" onclick="location.reload()">Reset to Defaults</button>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-title">Healthcare App – Material Design Wireframes</div>
+<p class="page-subtitle">31 screens · WCAG 2.1 AA · Material Design 3 · HTML/CSS editable</p>
+
+<div class="legend" role="list" aria-label="Screen categories">
+  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--primary);"></div>Auth</div>
+  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--secondary);"></div>Onboarding</div>
+  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--warning);"></div>Recovery</div>
+  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--success);"></div>Main Flows</div>
+  <div class="chip" role="listitem"><div class="chip-dot" style="background:var(--error);"></div>System States</div>
+</div>
+
+<button id="ctrl-toggle" aria-label="Toggle design controls" aria-expanded="true" aria-controls="ctrl-panel">
+  <span class="material-icons" aria-hidden="true">tune</span>
+  <span id="ctrl-toggle-label">Hide Controls</span>
+</button>
+
+<!-- GRID -->
+<div class="grid" id="main-grid">
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 1 — Login (AUTH · 01)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">AUTH · 01</div>
+    <div class="screen-title">Login</div>
+    <article class="phone-frame" aria-label="Login screen">
+      <div class="login-hero" role="banner">
+        <div class="login-logo" aria-hidden="true">
+          <span class="material-icons" aria-hidden="true">favorite</span>
+        </div>
+        <div class="login-app-name" aria-label="MyHealth app">MyHealth</div>
+        <div class="login-tagline">Your health, your way</div>
+      </div>
+      <div class="login-card">
+        <h1 class="login-welcome">Welcome back</h1>
+        <p class="login-sub">Sign in to continue</p>
+        <div class="field-group">
+          <label class="tf-label" for="s1-username">Username</label>
+          <div class="text-field">
+            <span class="tf-value" id="s1-username">sarah.johnson</span>
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="tf-label" for="s1-password">Password</label>
+          <div class="text-field">
+            <span class="tf-value" id="s1-password">••••••••</span>
+            <span class="tf-icon material-icons" aria-hidden="true">visibility</span>
+          </div>
+        </div>
+        <div class="text-right mt-neg">
+          <a href="#" class="link link-sm">Forgot Password?</a>
+        </div>
+        <button type="button" class="btn btn-primary">SIGN IN</button>
+        <div class="divider-label" aria-hidden="true">or</div>
+        <button type="button" class="btn btn-outlined">CREATE ACCOUNT</button>
+        <p class="body-xs text-center mt-2 leading-loose">
+          By signing in you agree to our<br>
+          <a href="#" class="link">Terms of Service</a> &amp; <a href="#" class="link">Privacy Policy</a>
+        </p>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 2 — Login Error (AUTH · 02)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">AUTH · 02</div>
+    <div class="screen-title">Login Error</div>
+    <article class="phone-frame" aria-label="Login error screen">
+      <div class="login-hero" role="banner">
+        <div class="login-logo" aria-hidden="true">
+          <span class="material-icons" aria-hidden="true">favorite</span>
+        </div>
+        <div class="login-app-name">MyHealth</div>
+        <div class="login-tagline">Your health, your way</div>
+      </div>
+      <div class="login-card login-card-tight">
+        <h1 class="login-welcome">Welcome back</h1>
+        <p class="login-sub">Sign in to continue</p>
+        <div class="error-banner" role="alert" aria-live="assertive">
+          <span class="material-icons" aria-hidden="true">error_outline</span>
+          <p>Unable to sign in. Please check your username and password and try again.</p>
+        </div>
+        <div class="field-group">
+          <label class="tf-label" for="s2-username">Username</label>
+          <div class="text-field error" aria-describedby="s2-username-error">
+            <span class="tf-value" id="s2-username">sarah.johnsonn</span>
+          </div>
+          <div class="field-error" id="s2-username-error" role="alert">
+            <span class="material-icons" aria-hidden="true">error</span>Username not found
+          </div>
+        </div>
+        <div class="field-group">
+          <label class="tf-label" for="s2-password">Password</label>
+          <div class="text-field error" aria-describedby="s2-password-error">
+            <span class="tf-value" id="s2-password">••••••••</span>
+            <span class="tf-icon material-icons" aria-hidden="true">visibility</span>
+          </div>
+          <div class="field-error" id="s2-password-error" role="alert">
+            <span class="material-icons" aria-hidden="true">error</span>Incorrect password
+          </div>
+        </div>
+        <div class="text-right mt-neg">
+          <a href="#" class="link link-sm">Forgot Password?</a>
+        </div>
+        <button type="button" class="btn btn-primary">SIGN IN</button>
+        <div class="divider-label" aria-hidden="true">or</div>
+        <button type="button" class="btn btn-outlined">CREATE ACCOUNT</button>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       AUTH · 03 — Biometric Login
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">AUTH · 03</div>
+    <div class="screen-title">Biometric Login</div>
+    <article class="phone-frame" aria-label="Biometric login screen">
+      <header class="app-bar">
+        <button class="icon-btn" aria-label="Back"><span class="material-icons" aria-hidden="true">arrow_back</span></button>
+        <span class="app-bar-title">Sign In</span>
+        <span style="width:40px"></span>
+      </header>
+      <div class="screen-content" style="display:flex;flex-direction:column;align-items:center;padding:40px 24px 24px;">
+        <!-- User avatar + name -->
+        <div class="avatar avatar-primary avatar-52" aria-hidden="true">JD</div>
+        <p class="body-sm" style="margin:8px 0 0;font-weight:600;color:var(--on-surface);">Jane Doe</p>
+        <p class="body-sm" style="margin:2px 0 32px;color:var(--on-surface-2);">jane.doe@email.com</p>
+
+        <!-- Fingerprint / Face ID button -->
+        <button type="button"
+          style="width:72px;height:72px;border-radius:50%;background:var(--primary-light);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:16px;"
+          aria-label="Authenticate with biometrics">
+          <span class="material-icons" style="font-size:36px;color:var(--primary);" aria-hidden="true">fingerprint</span>
+        </button>
+        <p class="body-sm" style="text-align:center;color:var(--on-surface-2);margin-bottom:32px;">Touch the sensor or look at your camera</p>
+
+        <!-- CTAs -->
+        <button type="button" class="btn btn-primary" style="width:100%;margin-bottom:12px;">USE FACE ID</button>
+        <button type="button" class="btn-text" aria-label="Sign in with password instead">Sign in with Password</button>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 3 — Registration Step 1 (ONBOARDING · 01)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">ONBOARDING · 01</div>
+    <div class="screen-title">Registration — Personal Info</div>
+    <article class="phone-frame" aria-label="Registration step 1 screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <span class="app-bar-title">Create Account</span>
+      </div>
+      <div class="reg-progress" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" aria-label="Step 1 of 3">
+        <div class="reg-progress-seg on"></div>
+        <div class="reg-progress-seg off"></div>
+        <div class="reg-progress-seg off"></div>
+      </div>
+      <div class="screen-content">
+        <div class="reg-content">
+          <div>
+            <h1 class="h2 mb-1">Personal Information</h1>
+            <p class="body-sm">Let's start with your basic info</p>
+          </div>
+          <div class="field-group">
+            <label class="tf-label" for="s3-fname">First Name</label>
+            <div class="text-field">
+              <span class="tf-value" id="s3-fname">Sarah</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="tf-label" for="s3-lname">Last Name</label>
+            <div class="text-field">
+              <span class="tf-value" id="s3-lname">Johnson</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="tf-label" for="s3-dob">Date of Birth</label>
+            <div class="text-field">
+              <span class="tf-value" id="s3-dob">03/15/1988</span>
+              <span class="tf-icon material-icons" aria-hidden="true">calendar_today</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="tf-label" for="s3-phone">Phone Number</label>
+            <div class="text-field">
+              <span class="tf-value" id="s3-phone">(555) 867-5309</span>
+              <span class="tf-icon material-icons" aria-hidden="true">phone</span>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary mt-1">CONTINUE</button>
+          <p class="body-sm text-center">
+            Already have an account? <a href="#" class="link">Sign In</a>
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 4 — Registration Step 2 (ONBOARDING · 02)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">ONBOARDING · 02</div>
+    <div class="screen-title">Registration — Account Setup</div>
+    <article class="phone-frame" aria-label="Registration step 2 screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <span class="app-bar-title">Create Account</span>
+      </div>
+      <div class="reg-progress" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="3" aria-label="Step 2 of 3">
+        <div class="reg-progress-seg on"></div>
+        <div class="reg-progress-seg on"></div>
+        <div class="reg-progress-seg off"></div>
+      </div>
+      <div class="screen-content">
+        <div class="reg-content">
+          <div>
+            <h1 class="h2 mb-1">Account Details</h1>
+            <p class="body-sm">Set up your login credentials</p>
+          </div>
+          <div class="field-group">
+            <label class="tf-label" for="s4-email">Email</label>
+            <div class="text-field">
+              <span class="tf-value" id="s4-email">sarah@email.com</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="tf-label" for="s4-username">Username</label>
+            <div class="text-field">
+              <span class="tf-value" id="s4-username">sarah.johnson</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="tf-label" for="s4-password">Password</label>
+            <div class="text-field">
+              <span class="tf-value" id="s4-password">••••••••</span>
+              <span class="tf-icon material-icons" aria-hidden="true">visibility</span>
+            </div>
+            <div class="pwd-strength" aria-label="Password strength: Medium">
+              <div class="pwd-strength-bars" aria-hidden="true">
+                <div class="pwd-bar filled-med"></div>
+                <div class="pwd-bar filled-med"></div>
+                <div class="pwd-bar"></div>
+                <div class="pwd-bar"></div>
+              </div>
+              <div class="pwd-label">Medium strength</div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="tf-label" for="s4-confirm">Confirm Password</label>
+            <div class="text-field">
+              <span class="tf-value" id="s4-confirm">••••••••</span>
+              <span class="tf-icon material-icons" aria-hidden="true">visibility</span>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary mt-1">CONTINUE</button>
+          <p class="body-sm text-center">
+            Already have an account? <a href="#" class="link">Sign In</a>
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 5 — Email Verification (ONBOARDING · 03)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">ONBOARDING · 03</div>
+    <div class="screen-title">Email Verification</div>
+    <article class="phone-frame" aria-label="Email verification screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <span class="app-bar-title">Verify Email</span>
+      </div>
+      <div class="reg-progress" role="progressbar" aria-valuenow="3" aria-valuemin="1" aria-valuemax="3" aria-label="Step 3 of 3">
+        <div class="reg-progress-seg on"></div>
+        <div class="reg-progress-seg on"></div>
+        <div class="reg-progress-seg on"></div>
+      </div>
+      <div class="screen-content">
+        <div class="reg-content reg-content-center">
+          <div class="illus-circle" aria-hidden="true">
+            <span class="material-icons" aria-hidden="true">email</span>
+          </div>
+          <div class="w-full">
+            <h1 class="h1 text-center mb-2">Check your email</h1>
+            <p class="body-sm text-center">We sent a 6-digit code to</p>
+            <p class="body-base text-center text-primary text-bold">sarah@email.com</p>
+          </div>
+          <div role="group" aria-label="One-time password input">
+            <div class="otp-row">
+              <div class="otp-box filled" aria-label="Digit 1: 3">3</div>
+              <div class="otp-box filled" aria-label="Digit 2: 8">8</div>
+              <div class="otp-box filled" aria-label="Digit 3: 2">2</div>
+              <div class="otp-box" aria-label="Digit 4: empty"></div>
+              <div class="otp-box" aria-label="Digit 5: empty"></div>
+              <div class="otp-box" aria-label="Digit 6: empty"></div>
+            </div>
+          </div>
+          <p class="body-sm text-center">Code expires in <strong>4:32</strong></p>
+          <a href="#" class="link text-center">Resend Code</a>
+          <button type="button" class="btn btn-primary w-full">VERIFY</button>
+          <a href="#" class="link-muted body-sm text-center">Wrong email?</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       ONBOARDING · 04 — Registration Success
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">ONBOARDING · 04</div>
+    <div class="screen-title">Registration Success</div>
+    <article class="phone-frame" aria-label="Registration success screen" role="status" aria-live="polite">
+      <div class="screen-content" style="display:flex;flex-direction:column;overflow:hidden;">
+        <!-- Celebration top section -->
+        <div style="background:var(--primary);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px 40px;flex:0 0 auto;">
+          <div style="width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+            <span class="material-icons" style="font-size:48px;color:#ffffff;" aria-hidden="true">check_circle</span>
+          </div>
+          <h1 style="font-size:22px;font-weight:700;color:#ffffff;text-align:center;margin:0 0 8px;">You're all set!</h1>
+          <p class="body-sm" style="color:rgba(255,255,255,0.85);text-align:center;margin:0;">Your account is ready. Start managing your health today.</p>
+        </div>
+
+        <!-- Feature tiles section -->
+        <div style="flex:1;background:#ffffff;padding:24px;overflow-y:auto;">
+          <p class="section-label" style="margin-bottom:16px;">WHAT YOU CAN DO</p>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+            <!-- Tile 1 -->
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="width:44px;height:44px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <span class="material-icons" style="font-size:22px;color:var(--primary);" aria-hidden="true">medical_services</span>
+              </div>
+              <div>
+                <p class="body-sm" style="font-weight:600;color:var(--on-surface);margin:0;">Find Care</p>
+                <p class="body-sm" style="color:var(--on-surface-2);margin:0;">Search doctors & facilities</p>
+              </div>
+            </div>
+            <!-- Tile 2 -->
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="width:44px;height:44px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <span class="material-icons" style="font-size:22px;color:var(--primary);" aria-hidden="true">verified_user</span>
+              </div>
+              <div>
+                <p class="body-sm" style="font-weight:600;color:var(--on-surface);margin:0;">View Coverage</p>
+                <p class="body-sm" style="color:var(--on-surface-2);margin:0;">Check benefits & deductibles</p>
+              </div>
+            </div>
+            <!-- Tile 3 -->
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="width:44px;height:44px;border-radius:10px;background:var(--primary-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <span class="material-icons" style="font-size:22px;color:var(--primary);" aria-hidden="true">receipt_long</span>
+              </div>
+              <div>
+                <p class="body-sm" style="font-weight:600;color:var(--on-surface);margin:0;">Track Claims</p>
+                <p class="body-sm" style="color:var(--on-surface-2);margin:0;">Monitor status & history</p>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" style="width:100%;">GET STARTED</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 6 — Forgot Username (RECOVERY · 01)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">RECOVERY · 01</div>
+    <div class="screen-title">Forgot Username</div>
+    <article class="phone-frame" aria-label="Forgot username screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <span class="app-bar-title">Forgot Username</span>
+      </div>
+      <div class="screen-content">
+        <div class="reg-content reg-content-center">
+          <div class="illus-circle" aria-hidden="true">
+            <span class="material-icons" aria-hidden="true">lock</span>
+          </div>
+          <div class="w-full">
+            <h1 class="h1 text-center mb-2">Recover Your Username</h1>
+            <p class="body-sm text-center leading-normal">Enter the email address associated with your account and we'll send your username.</p>
+          </div>
+          <div class="field-group w-full">
+            <label class="tf-label" for="s6-email">Email Address</label>
+            <div class="text-field w-full">
+              <span class="tf-placeholder" id="s6-email">Enter your email</span>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary w-full">SEND MY USERNAME</button>
+          <div class="divider-label w-full" aria-hidden="true">or</div>
+          <p class="body-sm text-center">Remember your username?</p>
+          <button type="button" class="btn-text">Back to Sign In</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 7 — Reset Password (RECOVERY · 02)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">RECOVERY · 02</div>
+    <div class="screen-title">Reset Password</div>
+    <article class="phone-frame" aria-label="Reset password screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <span class="app-bar-title">Reset Password</span>
+      </div>
+      <div class="screen-content">
+        <div class="p-4 mb-1">
+          <div class="step-row" role="list" aria-label="Password reset steps">
+            <div class="step-item" role="listitem">
+              <div class="step-circle active" aria-label="Step 1: Email, current step">1</div>
+              <div class="step-label active">Email</div>
+            </div>
+            <div class="step-line" aria-hidden="true"></div>
+            <div class="step-item" role="listitem">
+              <div class="step-circle" aria-label="Step 2: Verify, not started">2</div>
+              <div class="step-label">Verify</div>
+            </div>
+            <div class="step-line" aria-hidden="true"></div>
+            <div class="step-item" role="listitem">
+              <div class="step-circle" aria-label="Step 3: New Password, not started">3</div>
+              <div class="step-label">New</div>
+            </div>
+          </div>
+        </div>
+        <div class="reg-content reg-content-center reg-content-notop">
+          <div class="illus-circle illus-circle-mt" aria-hidden="true">
+            <span class="material-icons" aria-hidden="true">vpn_key</span>
+          </div>
+          <div class="w-full">
+            <h1 class="h1 text-center mb-2">Reset Your Password</h1>
+            <p class="body-sm text-center leading-normal">We'll send a password reset link to your registered email address.</p>
+          </div>
+          <div class="field-group w-full">
+            <label class="tf-label" for="s7-email">Email Address</label>
+            <div class="text-field w-full">
+              <span class="tf-placeholder" id="s7-email">Enter your email</span>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary w-full">SEND RESET LINK</button>
+          <button type="button" class="btn-text">Back to Sign In</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 8 — Home / Dashboard (MAIN · 01)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 01</div>
+    <div class="screen-title">Home / Dashboard</div>
+    <article class="phone-frame" aria-label="Home dashboard screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Open navigation menu">
+          <span class="material-icons" aria-hidden="true">menu</span>
+        </button>
+        <h1 class="app-bar-title">MyHealth</h1>
+        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
+      </div>
+      <div class="screen-content">
+        <div class="hero-card" role="region" aria-label="Member summary">
+          <p class="hero-greeting">Good morning, Sarah &#128075;</p>
+          <p class="hero-sub">Member since 2019 · Red Cross PPO</p>
+        </div>
+        <div class="quick-actions" role="list" aria-label="Quick actions">
+          <div class="quick-card" role="listitem" tabindex="0" aria-label="Find Care">
+            <span class="material-icons" aria-hidden="true">local_hospital</span>
+            <div class="q-label">Find Care</div>
+          </div>
+          <div class="quick-card" role="listitem" tabindex="0" aria-label="Coverage">
+            <span class="material-icons" aria-hidden="true">shield</span>
+            <div class="q-label">Coverage</div>
+          </div>
+          <div class="quick-card" role="listitem" tabindex="0" aria-label="Messages, 3 unread">
+            <span class="material-icons" aria-hidden="true">mail</span>
+            <div class="q-label">Messages</div>
+            <span class="nav-badge" aria-hidden="true">3</span>
+          </div>
+        </div>
+        <div class="section-header mt-4">
+          <h2 class="section-title">Upcoming</h2>
+          <a href="#" class="section-link link">View all</a>
+        </div>
+        <div class="card card-padded">
+          <div class="row-item">
+            <div class="avatar avatar-teal avatar-40" aria-label="Dr. Maria Chen">MC</div>
+            <div class="flex-1">
+              <p class="body-base text-bold">Dr. Maria Chen</p>
+              <p class="body-sm">Primary Care</p>
+            </div>
+            <span class="chip-sm chip-success">Confirmed</span>
+          </div>
+          <div class="meta-row">
+            <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
+            <span class="body-sm">Mar 15 · 10:30 AM</span>
+          </div>
+        </div>
+        <div class="section-header mt-4">
+          <h2 class="section-title">Health Alerts</h2>
+        </div>
+        <div class="card card-padded alert-card" role="alert">
+          <div class="alert-card-inner">
+            <span class="material-icons icon-md alert-icon" aria-hidden="true">warning_amber</span>
+            <div class="flex-1">
+              <p class="body-base text-bold">Lab results ready</p>
+              <p class="body-sm">Reviewed by Dr. Chen</p>
+            </div>
+            <a href="#" class="link link-sm">View</a>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item active" aria-label="Home" aria-current="page">
+          <span class="material-icons" aria-hidden="true">home</span>
+          <span class="nav-label">Home</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Care">
+          <span class="material-icons" aria-hidden="true">local_hospital</span>
+          <span class="nav-label">Care</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Coverage">
+          <span class="material-icons" aria-hidden="true">shield</span>
+          <span class="nav-label">Coverage</span>
+        </button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread">
+          <span class="material-icons" aria-hidden="true">mail</span>
+          <span class="nav-label">Messages</span>
+          <span class="nav-badge" aria-hidden="true">3</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Account">
+          <span class="material-icons" aria-hidden="true">person</span>
+          <span class="nav-label">Account</span>
+        </button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 9 — Coverage (MAIN · 02)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 02</div>
+    <div class="screen-title">My Coverage</div>
+    <article class="phone-frame" aria-label="My coverage screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">My Coverage</h1>
+      </div>
+      <div class="screen-content">
+        <div class="scrollable">
+          <div class="insurance-card" role="region" aria-label="Insurance card">
+            <p class="ins-plan">Red Cross Red Shield PPO</p>
+            <p class="ins-meta">Group #: BCB-2024-887234</p>
+            <p class="ins-meta">Policy #: POL-SJ-20190314</p>
+            <div class="ins-footer">
+              <span class="ins-member">Sarah Johnson</span>
+              <span class="chip-sm chip-white">Active</span>
+            </div>
+          </div>
+          <div class="stat-row mt-3" role="region" aria-label="Cost summary">
+            <div class="stat-box">
+              <div class="stat-label">Deductible</div>
+              <div class="stat-value">$250</div>
+              <div class="stat-total">of $1,500</div>
+              <div class="progress-bar-track mt-2" role="progressbar" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100" aria-label="17% of deductible met">
+                <div class="progress-bar-fill" style="width:17%;"></div>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Out-of-Pocket</div>
+              <div class="stat-value">$1,100</div>
+              <div class="stat-total">of $5,000</div>
+              <div class="progress-bar-track mt-2" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" aria-label="22% of out-of-pocket max met">
+                <div class="progress-bar-fill" style="width:22%;"></div>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-label">Copay</div>
+              <div class="stat-value">$25</div>
+              <div class="stat-total">per visit</div>
+            </div>
+          </div>
+          <div class="tabs mt-3" role="tablist" aria-label="Coverage types">
+            <button type="button" class="tab active" role="tab" aria-selected="true" aria-controls="tab-medical">Medical</button>
+            <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="tab-dental">Dental</button>
+            <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="tab-vision">Vision</button>
+          </div>
+          <dl id="tab-medical" role="region" aria-label="Medical benefits">
+            <div class="benefit-row">
+              <dt class="benefit-name">Preventive Care</dt>
+              <dd><span class="chip-sm chip-success">100% Covered</span></dd>
+            </div>
+            <div class="benefit-row">
+              <dt class="benefit-name">Specialist Visit</dt>
+              <dd class="benefit-val">$40 copay</dd>
+            </div>
+            <div class="benefit-row">
+              <dt class="benefit-name">Emergency Room</dt>
+              <dd class="benefit-val">$250 deductible</dd>
+            </div>
+            <div class="benefit-row">
+              <dt class="benefit-name">Mental Health</dt>
+              <dd class="benefit-val">80% covered</dd>
+            </div>
+            <div class="benefit-row">
+              <dt class="benefit-name">Prescription (Tier 1)</dt>
+              <dd class="benefit-val">$10 copay</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home">
+          <span class="material-icons" aria-hidden="true">home</span>
+          <span class="nav-label">Home</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Care">
+          <span class="material-icons" aria-hidden="true">local_hospital</span>
+          <span class="nav-label">Care</span>
+        </button>
+        <button type="button" class="nav-item active" aria-label="Coverage" aria-current="page">
+          <span class="material-icons" aria-hidden="true">shield</span>
+          <span class="nav-label">Coverage</span>
+        </button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread">
+          <span class="material-icons" aria-hidden="true">mail</span>
+          <span class="nav-label">Messages</span>
+          <span class="nav-badge" aria-hidden="true">3</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Account">
+          <span class="material-icons" aria-hidden="true">person</span>
+          <span class="nav-label">Account</span>
+        </button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 10 — Nav Drawer (MAIN · 03)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 03</div>
+    <div class="screen-title">Navigation Drawer</div>
+    <article class="phone-frame" aria-label="Navigation drawer screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Open navigation menu" aria-expanded="true">
+          <span class="material-icons" aria-hidden="true">menu</span>
+        </button>
+        <h1 class="app-bar-title">MyHealth</h1>
+        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
+      </div>
+      <div class="screen-content pos-rel">
+        <!-- Background content dimmed -->
+        <div class="hero-card dimmed" aria-hidden="true">
+          <p class="hero-greeting">Good morning, Sarah</p>
+          <p class="hero-sub">Member since 2019 · Red Cross PPO</p>
+        </div>
+        <div class="dimmed p-4 stack-2" aria-hidden="true">
+          <div style="height:52px; background:var(--surface); border-radius:10px; border:1px solid var(--divider);"></div>
+          <div style="height:52px; background:var(--surface); border-radius:10px; border:1px solid var(--divider);"></div>
+        </div>
+        <!-- Overlay -->
+        <div class="drawer-overlay" aria-hidden="true"></div>
+        <!-- Drawer -->
+        <div class="drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
+          <div class="drawer-header">
+            <div class="drawer-avatar" aria-label="Sarah Johnson" role="img">SJ</div>
+            <p class="drawer-name">Sarah Johnson</p>
+            <p class="drawer-plan">Red Cross PPO</p>
+          </div>
+          <nav aria-label="Site navigation">
+            <ul class="drawer-nav-list" role="list">
+              <li role="listitem">
+                <a href="#" class="drawer-item active" aria-current="page">
+                  <span class="material-icons" aria-hidden="true">home</span>
+                  Home
+                </a>
+              </li>
+              <li role="listitem">
+                <a href="#" class="drawer-item">
+                  <span class="material-icons" aria-hidden="true">local_hospital</span>
+                  Care Options
+                </a>
+              </li>
+              <li role="listitem">
+                <a href="#" class="drawer-item">
+                  <span class="material-icons" aria-hidden="true">shield</span>
+                  My Coverage
+                </a>
+              </li>
+              <li role="listitem">
+                <a href="#" class="drawer-item" aria-label="Messages, 3 unread">
+                  <span class="material-icons" aria-hidden="true">mail</span>
+                  Messages
+                  <span class="nav-badge nav-badge-static" aria-hidden="true">3</span>
+                </a>
+              </li>
+              <li role="listitem">
+                <a href="#" class="drawer-item">
+                  <span class="material-icons" aria-hidden="true">calendar_today</span>
+                  Appointments
+                </a>
+              </li>
+              <li role="listitem">
+                <a href="#" class="drawer-item">
+                  <span class="material-icons" aria-hidden="true">search</span>
+                  Find Provider
+                </a>
+              </li>
+              <li role="listitem" aria-hidden="true"><div class="drawer-divider"></div></li>
+              <li role="listitem">
+                <a href="#" class="drawer-item">
+                  <span class="material-icons" aria-hidden="true">settings</span>
+                  Settings
+                </a>
+              </li>
+              <li role="listitem">
+                <a href="#" class="drawer-item">
+                  <span class="material-icons" aria-hidden="true">help_outline</span>
+                  Help
+                </a>
+              </li>
+              <li role="listitem" aria-hidden="true"><div class="drawer-divider"></div></li>
+              <li role="listitem">
+                <button type="button" class="drawer-item danger">
+                  <span class="material-icons" aria-hidden="true">logout</span>
+                  Sign Out
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 11 — Error Modal (SYSTEM · 01)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">SYSTEM · 01</div>
+    <div class="screen-title">Error Modal</div>
+    <article class="phone-frame" aria-label="Error modal screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Open navigation menu">
+          <span class="material-icons" aria-hidden="true">menu</span>
+        </button>
+        <h1 class="app-bar-title">MyHealth</h1>
+        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
+      </div>
+      <div class="screen-content pos-rel">
+        <div class="hero-card dimmed" aria-hidden="true">
+          <p class="hero-greeting">Good morning, Sarah</p>
+          <p class="hero-sub">Member since 2019 · Red Cross PPO</p>
+        </div>
+        <div class="modal-overlay">
+          <div class="modal-card"
+               role="dialog"
+               aria-modal="true"
+               aria-labelledby="modal-title-s11"
+               aria-describedby="modal-body-s11">
+            <div class="modal-icon" aria-hidden="true">
+              <div class="modal-icon-circle">
+                <span class="material-icons icon-lg text-error" aria-hidden="true">error_outline</span>
+              </div>
+            </div>
+            <h2 class="modal-title" id="modal-title-s11">Something Went Wrong</h2>
+            <p class="modal-body" id="modal-body-s11">We couldn't process your request. Please check your connection and try again.</p>
+            <div class="modal-actions">
+              <button type="button" class="btn btn-primary">TRY AGAIN</button>
+              <button type="button" class="btn btn-outlined">Go Back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 12 — Toast Message (SYSTEM · 02)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">SYSTEM · 02</div>
+    <div class="screen-title">Toast Notification</div>
+    <article class="phone-frame" aria-label="Toast notification screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Open navigation menu">
+          <span class="material-icons" aria-hidden="true">menu</span>
+        </button>
+        <h1 class="app-bar-title">MyHealth</h1>
+        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
+      </div>
+      <div class="screen-content pos-rel">
+        <div class="hero-card" role="region" aria-label="Member summary">
+          <p class="hero-greeting">Good morning, Sarah &#128075;</p>
+          <p class="hero-sub">Member since 2019 · Red Cross PPO</p>
+        </div>
+        <div class="quick-actions" role="list" aria-label="Quick actions">
+          <div class="quick-card" role="listitem" tabindex="0" aria-label="Find Care">
+            <span class="material-icons" aria-hidden="true">local_hospital</span>
+            <div class="q-label">Find Care</div>
+          </div>
+          <div class="quick-card" role="listitem" tabindex="0" aria-label="Coverage">
+            <span class="material-icons" aria-hidden="true">shield</span>
+            <div class="q-label">Coverage</div>
+          </div>
+          <div class="quick-card" role="listitem" tabindex="0" aria-label="Messages">
+            <span class="material-icons" aria-hidden="true">mail</span>
+            <div class="q-label">Messages</div>
+          </div>
+        </div>
+        <div class="section-header mt-4">
+          <h2 class="section-title">Upcoming</h2>
+          <a href="#" class="section-link link">View all</a>
+        </div>
+        <div class="toast" role="status" aria-live="polite" aria-atomic="true">
+          <span class="material-icons toast-icon" aria-hidden="true">check_circle</span>
+          <p class="toast-text">Appointment scheduled successfully!</p>
+          <button type="button" class="toast-action" aria-label="Undo appointment scheduling">Undo</button>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item active" aria-label="Home" aria-current="page">
+          <span class="material-icons" aria-hidden="true">home</span>
+          <span class="nav-label">Home</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Care">
+          <span class="material-icons" aria-hidden="true">local_hospital</span>
+          <span class="nav-label">Care</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Coverage">
+          <span class="material-icons" aria-hidden="true">shield</span>
+          <span class="nav-label">Coverage</span>
+        </button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread">
+          <span class="material-icons" aria-hidden="true">mail</span>
+          <span class="nav-label">Messages</span>
+          <span class="nav-badge" aria-hidden="true">3</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Account">
+          <span class="material-icons" aria-hidden="true">person</span>
+          <span class="nav-label">Account</span>
+        </button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 13 — Care Options (MAIN · 04)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 04</div>
+    <div class="screen-title">Care Options</div>
+    <article class="phone-frame" aria-label="Care options screen">
+      <div class="app-bar">
+        <h1 class="app-bar-title app-bar-title-padded">Care Options</h1>
+        <button type="button" class="icon-btn" aria-label="Filter care options">
+          <span class="material-icons" aria-hidden="true">tune</span>
+        </button>
+      </div>
+      <div class="screen-content">
+        <div class="search-bar" role="search">
+          <span class="material-icons" aria-hidden="true">search</span>
+          <span class="search-placeholder" aria-label="Search care options">Search care options...</span>
+        </div>
+        <div class="section-label" id="care-label">Available Near You</div>
+        <div class="care-grid" role="list" aria-labelledby="care-label">
+          <div class="care-card" role="listitem" tabindex="0" aria-label="Primary Care - In-network">
+            <div class="care-icon care-icon-blue" aria-hidden="true">
+              <span class="material-icons" aria-hidden="true">local_hospital</span>
+            </div>
+            <div>
+              <p class="care-name">Primary Care</p>
+              <p class="care-sub">In-network</p>
+            </div>
+          </div>
+          <div class="care-card" role="listitem" tabindex="0" aria-label="Urgent Care - Open now">
+            <div class="care-icon care-icon-orange" aria-hidden="true">
+              <span class="material-icons" aria-hidden="true">emergency</span>
+            </div>
+            <div>
+              <p class="care-name">Urgent Care</p>
+              <p class="care-sub">Open now</p>
+            </div>
+          </div>
+          <div class="care-card" role="listitem" tabindex="0" aria-label="Virtual Visit - On-demand">
+            <div class="care-icon care-icon-green" aria-hidden="true">
+              <span class="material-icons" aria-hidden="true">videocam</span>
+            </div>
+            <div>
+              <p class="care-name">Virtual Visit</p>
+              <p class="care-sub">On-demand</p>
+            </div>
+          </div>
+          <div class="care-card" role="listitem" tabindex="0" aria-label="Mental Health - In-network">
+            <div class="care-icon care-icon-purple" aria-hidden="true">
+              <span class="material-icons" aria-hidden="true">self_improvement</span>
+            </div>
+            <div>
+              <p class="care-name">Mental Health</p>
+              <p class="care-sub">In-network</p>
+            </div>
+          </div>
+          <div class="care-card" role="listitem" tabindex="0" aria-label="Pharmacy - 3 nearby">
+            <div class="care-icon care-icon-teal" aria-hidden="true">
+              <span class="material-icons" aria-hidden="true">local_pharmacy</span>
+            </div>
+            <div>
+              <p class="care-name">Pharmacy</p>
+              <p class="care-sub">3 nearby</p>
+            </div>
+          </div>
+          <div class="care-card" role="listitem" tabindex="0" aria-label="Specialists - Referral needed">
+            <div class="care-icon care-icon-red" aria-hidden="true">
+              <span class="material-icons" aria-hidden="true">medical_services</span>
+            </div>
+            <div>
+              <p class="care-name">Specialists</p>
+              <p class="care-sub">Referral needed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home">
+          <span class="material-icons" aria-hidden="true">home</span>
+          <span class="nav-label">Home</span>
+        </button>
+        <button type="button" class="nav-item active" aria-label="Care" aria-current="page">
+          <span class="material-icons" aria-hidden="true">local_hospital</span>
+          <span class="nav-label">Care</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Coverage">
+          <span class="material-icons" aria-hidden="true">shield</span>
+          <span class="nav-label">Coverage</span>
+        </button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread">
+          <span class="material-icons" aria-hidden="true">mail</span>
+          <span class="nav-label">Messages</span>
+          <span class="nav-badge" aria-hidden="true">3</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Account">
+          <span class="material-icons" aria-hidden="true">person</span>
+          <span class="nav-label">Account</span>
+        </button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN — Provider Search Results (MAIN · 04a)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 04a</div>
+    <div class="screen-title">Provider Search Results</div>
+    <article class="phone-frame" aria-label="Provider search results screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Find Provider</h1>
+        <button type="button" class="icon-btn" aria-label="Filter results">
+          <span class="material-icons" aria-hidden="true">tune</span>
+        </button>
+      </div>
+      <div class="screen-content">
+        <div class="search-bar" role="search">
+          <span class="material-icons" aria-hidden="true">search</span>
+          <span class="search-placeholder" style="color:var(--on-surface);">Primary Care near 94105</span>
+          <button type="button" style="background:none;border:none;padding:0;cursor:pointer;" aria-label="Clear search">
+            <span class="material-icons" style="font-size:18px;color:var(--on-surface-3);" aria-hidden="true">close</span>
+          </button>
+        </div>
+        <!-- Filter chips -->
+        <div style="display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none;" role="group" aria-label="Active filters">
+          <button type="button" class="chip-sm chip-success" style="white-space:nowrap;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;" aria-pressed="true">
+            <span class="material-icons" style="font-size:12px;" aria-hidden="true">check</span>In-Network
+          </button>
+          <button type="button" class="chip-sm" style="white-space:nowrap;border:1px solid var(--border);background:var(--surface);cursor:pointer;" aria-pressed="false">Distance</button>
+          <button type="button" class="chip-sm" style="white-space:nowrap;border:1px solid var(--border);background:var(--surface);cursor:pointer;" aria-pressed="false">Rating</button>
+          <button type="button" class="chip-sm" style="white-space:nowrap;border:1px solid var(--border);background:var(--surface);cursor:pointer;" aria-pressed="false">Available Today</button>
+        </div>
+        <div class="section-label" style="padding:0 16px 8px;">12 providers found</div>
+        <div class="scrollable bg-surface">
+          <!-- Provider 1 -->
+          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" role="article" aria-label="Dr. Maria Chen, Primary Care, in-network, 4.9 stars, 0.3 miles">
+            <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+            <div class="item-body">
+              <p class="item-title text-bold">Dr. Maria Chen</p>
+              <p class="item-subtitle">Primary Care · 0.3 mi</p>
+              <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
+                <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★★</span>
+                <span class="body-xs" style="color:var(--on-surface-2);">4.9 (127)</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+              <span class="chip-sm chip-success">In-Network</span>
+              <button type="button" class="btn btn-primary" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+            </div>
+          </div>
+          <!-- Provider 2 -->
+          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" role="article" aria-label="Dr. James Park, Primary Care, in-network, 4.7 stars, 0.7 miles">
+            <div class="avatar avatar-teal avatar-40" aria-hidden="true">JP</div>
+            <div class="item-body">
+              <p class="item-title text-bold">Dr. James Park</p>
+              <p class="item-subtitle">Primary Care · 0.7 mi</p>
+              <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
+                <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★☆</span>
+                <span class="body-xs" style="color:var(--on-surface-2);">4.7 (89)</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+              <span class="chip-sm chip-success">In-Network</span>
+              <button type="button" class="btn btn-primary" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+            </div>
+          </div>
+          <!-- Provider 3 -->
+          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" role="article" aria-label="Dr. Aisha Patel, Internal Medicine, out-of-network, 4.8 stars, 1.2 miles">
+            <div class="avatar avatar-purple avatar-40" aria-hidden="true">AP</div>
+            <div class="item-body">
+              <p class="item-title text-bold">Dr. Aisha Patel</p>
+              <p class="item-subtitle">Internal Medicine · 1.2 mi</p>
+              <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
+                <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★★</span>
+                <span class="body-xs" style="color:var(--on-surface-2);">4.8 (203)</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+              <span class="chip-sm chip-warning">Out-of-Net</span>
+              <button type="button" class="btn btn-outlined" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+            </div>
+          </div>
+          <!-- Provider 4 -->
+          <div class="list-item border-none" style="align-items:flex-start;padding:12px 16px;" tabindex="0" role="article" aria-label="Dr. Robert Kim, Family Medicine, in-network, 4.6 stars, 1.8 miles">
+            <div class="avatar avatar-orange avatar-40" aria-hidden="true">RK</div>
+            <div class="item-body">
+              <p class="item-title text-bold">Dr. Robert Kim</p>
+              <p class="item-subtitle">Family Medicine · 1.8 mi</p>
+              <div style="display:flex;align-items:center;gap:4px;margin-top:2px;">
+                <span style="color:#F59E0B;font-size:11px;" aria-hidden="true">★★★★☆</span>
+                <span class="body-xs" style="color:var(--on-surface-2);">4.6 (54)</span>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+              <span class="chip-sm chip-success">In-Network</span>
+              <button type="button" class="btn btn-primary" style="padding:4px 12px;font-size:11px;height:auto;min-height:0;">Book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item active" aria-label="Care" aria-current="page"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN — Provider Detail (MAIN · 04b)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 04b</div>
+    <div class="screen-title">Provider Detail</div>
+    <article class="phone-frame" aria-label="Provider detail screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Provider Profile</h1>
+        <button type="button" class="icon-btn" aria-label="Share provider">
+          <span class="material-icons" aria-hidden="true">share</span>
+        </button>
+      </div>
+      <div class="screen-content">
+        <div class="scrollable">
+          <!-- Provider hero -->
+          <div style="display:flex;flex-direction:column;align-items:center;padding:20px 16px 16px;background:var(--surface);border-bottom:1px solid var(--divider);">
+            <div class="avatar avatar-primary" style="width:64px;height:64px;font-size:22px;margin-bottom:12px;" aria-label="Dr. Maria Chen" role="img">MC</div>
+            <p class="h2" style="margin-bottom:2px;">Dr. Maria Chen</p>
+            <p class="body-sm" style="color:var(--on-surface-2);margin-bottom:6px;">Primary Care Physician</p>
+            <div style="display:flex;align-items:center;gap:4px;margin-bottom:10px;">
+              <span style="color:#F59E0B;font-size:13px;" aria-hidden="true">★★★★★</span>
+              <span class="body-sm" style="color:var(--on-surface-2);">4.9 · 127 reviews</span>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <span class="chip-sm chip-success">In-Network</span>
+              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Accepting Patients</span>
+            </div>
+          </div>
+          <!-- Quick stats -->
+          <div class="stat-row" style="padding:12px 16px;" role="region" aria-label="Provider summary">
+            <div class="stat-box" style="flex:1;text-align:center;">
+              <div class="stat-value" style="font-size:18px;">15+</div>
+              <div class="stat-label">Years Exp.</div>
+            </div>
+            <div class="stat-box" style="flex:1;text-align:center;border-left:1px solid var(--divider);border-right:1px solid var(--divider);">
+              <div class="stat-value" style="font-size:18px;">$25</div>
+              <div class="stat-label">Copay</div>
+            </div>
+            <div class="stat-box" style="flex:1;text-align:center;">
+              <div class="stat-value" style="font-size:18px;">0.3 mi</div>
+              <div class="stat-label">Distance</div>
+            </div>
+          </div>
+          <!-- Tabs -->
+          <div class="tabs" role="tablist" aria-label="Provider information">
+            <button type="button" class="tab active" role="tab" aria-selected="true">About</button>
+            <button type="button" class="tab" role="tab" aria-selected="false">Reviews</button>
+            <button type="button" class="tab" role="tab" aria-selected="false">Availability</button>
+          </div>
+          <!-- About content -->
+          <div style="padding:16px;" role="region" aria-label="About Dr. Maria Chen">
+            <h2 class="section-label" style="margin-bottom:8px;">ABOUT</h2>
+            <p class="body-sm" style="line-height:1.6;color:var(--on-surface-2);margin-bottom:16px;">Board-certified in Internal Medicine with a focus on preventive care and chronic disease management. Graduated from UCSF School of Medicine.</p>
+            <h2 class="section-label" style="margin-bottom:8px;">OFFICE</h2>
+            <div class="meta-row" style="margin-bottom:4px;">
+              <span class="material-icons icon-sm text-secondary" aria-hidden="true">location_on</span>
+              <span class="body-sm">450 Sutter St, Suite 1108, San Francisco, CA</span>
+            </div>
+            <div class="meta-row" style="margin-bottom:16px;">
+              <span class="material-icons icon-sm text-secondary" aria-hidden="true">schedule</span>
+              <span class="body-sm">Mon–Fri · 8:00 AM – 5:00 PM</span>
+            </div>
+            <h2 class="section-label" style="margin-bottom:8px;">INSURANCE ACCEPTED</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span class="chip-sm chip-success">Red Cross PPO</span>
+              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Medicare</span>
+              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Aetna</span>
+              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Cigna</span>
+            </div>
+          </div>
+          <!-- Book CTA -->
+          <div style="padding:0 16px 16px;">
+            <button type="button" class="btn btn-primary w-full">BOOK APPOINTMENT</button>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item active" aria-label="Care" aria-current="page"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN — Book Appointment (MAIN · 09)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 09</div>
+    <div class="screen-title">Book Appointment</div>
+    <article class="phone-frame" aria-label="Book appointment screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Book Appointment</h1>
+      </div>
+      <div class="screen-content">
+        <div class="scrollable">
+          <!-- Provider summary -->
+          <div class="card card-padded" style="margin:12px 16px 0;display:flex;align-items:center;gap:12px;">
+            <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+            <div class="flex-1">
+              <p class="body-base text-bold">Dr. Maria Chen</p>
+              <p class="body-sm">Primary Care · $25 copay</p>
+            </div>
+            <span class="chip-sm chip-success">In-Network</span>
+          </div>
+          <!-- Visit type -->
+          <div style="padding:16px 16px 8px;">
+            <h2 class="section-label" style="margin-bottom:10px;">VISIT TYPE</h2>
+            <div style="display:flex;gap:8px;" role="group" aria-label="Visit type">
+              <button type="button" style="flex:1;padding:10px;border-radius:8px;border:2px solid var(--primary);background:var(--primary-light);color:var(--primary);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;" aria-pressed="true">
+                <span class="material-icons" style="font-size:16px;" aria-hidden="true">person</span>In-Person
+              </button>
+              <button type="button" style="flex:1;padding:10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;" aria-pressed="false">
+                <span class="material-icons" style="font-size:16px;" aria-hidden="true">videocam</span>Video
+              </button>
+            </div>
+          </div>
+          <!-- Calendar -->
+          <div style="padding:0 16px 8px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+              <button type="button" class="icon-btn" aria-label="Previous month"><span class="material-icons" aria-hidden="true">chevron_left</span></button>
+              <h2 class="body-base text-bold" aria-live="polite">March 2026</h2>
+              <button type="button" class="icon-btn" aria-label="Next month"><span class="material-icons" aria-hidden="true">chevron_right</span></button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);text-align:center;gap:2px;" role="grid" aria-label="March 2026 calendar">
+              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">S</div>
+              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">M</div>
+              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">T</div>
+              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">W</div>
+              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">T</div>
+              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">F</div>
+              <div class="body-xs" style="color:var(--on-surface-3);padding:4px 0;" aria-hidden="true">S</div>
+              <div role="gridcell"></div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">1</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">2</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">3</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">4</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">5</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">6</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">7</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">8</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">9</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">10</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">11</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">12</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">13</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">14</div>
+              <div role="gridcell" aria-selected="true" aria-label="March 15, selected" style="padding:4px 2px;font-size:12px;font-weight:700;color:#fff;background:var(--primary);border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;margin:auto;">15</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">16</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">17</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">18</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface);" tabindex="0">19</div>
+              <div role="gridcell" style="padding:6px 2px;font-size:12px;color:var(--on-surface-3);">20</div>
+            </div>
+          </div>
+          <!-- Time slots -->
+          <div style="padding:0 16px 16px;">
+            <h2 class="section-label" style="margin-bottom:10px;">AVAILABLE TIMES · MARCH 15</h2>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;" role="group" aria-label="Available appointment times">
+              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 12px;" aria-pressed="false">9:00 AM</button>
+              <button type="button" class="chip-sm chip-success" style="cursor:pointer;padding:6px 12px;" aria-pressed="true" aria-label="10:30 AM, selected">10:30 AM</button>
+              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 12px;" aria-pressed="false">11:00 AM</button>
+              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface-var);color:var(--on-surface-3);cursor:not-allowed;padding:6px 12px;" disabled aria-label="2:00 PM, unavailable">2:00 PM</button>
+              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 12px;" aria-pressed="false">3:30 PM</button>
+              <button type="button" class="chip-sm" style="border:1px solid var(--border);background:var(--surface);color:var(--on-surface-2);cursor:pointer;padding:6px 12px;" aria-pressed="false">4:00 PM</button>
+            </div>
+          </div>
+          <!-- Confirm -->
+          <div style="padding:0 16px 16px;">
+            <button type="button" class="btn btn-primary w-full">CONFIRM APPOINTMENT</button>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item active" aria-label="Care" aria-current="page"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN — Appointments List (MAIN · 09a)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 09a</div>
+    <div class="screen-title">Appointments</div>
+    <article class="phone-frame" aria-label="Appointments screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Appointments</h1>
+        <button type="button" class="icon-btn" aria-label="Schedule new appointment">
+          <span class="material-icons" aria-hidden="true">add</span>
+        </button>
+      </div>
+      <div class="screen-content">
+        <div class="tabs" role="tablist" aria-label="Appointment filters">
+          <button type="button" class="tab active" role="tab" aria-selected="true" aria-controls="appt-upcoming">Upcoming</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="appt-past">Past</button>
+        </div>
+        <div class="scrollable bg-surface" id="appt-upcoming">
+          <!-- Upcoming 1 — Confirmed -->
+          <div class="card card-padded" style="margin:12px 16px 8px;" role="article" aria-label="Appointment with Dr. Maria Chen, March 15 at 10:30 AM, confirmed">
+            <div class="row-item" style="margin-bottom:8px;">
+              <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+              <div class="flex-1">
+                <p class="body-base text-bold">Dr. Maria Chen</p>
+                <p class="body-sm">Primary Care</p>
+              </div>
+              <span class="chip-sm chip-success">Confirmed</span>
+            </div>
+            <div class="meta-row" style="margin-bottom:4px;">
+              <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
+              <span class="body-sm">Mar 15, 2026 · 10:30 AM</span>
+            </div>
+            <div class="meta-row" style="margin-bottom:12px;">
+              <span class="material-icons icon-sm text-secondary" aria-hidden="true">location_on</span>
+              <span class="body-sm">450 Sutter St, Suite 1108 · In-Person</span>
+            </div>
+            <div style="display:flex;gap:8px;border-top:1px solid var(--divider);padding-top:10px;">
+              <button type="button" class="btn btn-outlined" style="flex:1;padding:6px;font-size:12px;height:auto;">Reschedule</button>
+              <button type="button" class="btn-text" style="flex:1;font-size:12px;color:var(--error);">Cancel</button>
+            </div>
+          </div>
+          <!-- Upcoming 2 — Pending -->
+          <div class="card card-padded" style="margin:0 16px 8px;" role="article" aria-label="Appointment with Dr. James Park, April 2 at 2:00 PM, pending">
+            <div class="row-item" style="margin-bottom:8px;">
+              <div class="avatar avatar-teal avatar-40" aria-hidden="true">JP</div>
+              <div class="flex-1">
+                <p class="body-base text-bold">Dr. James Park</p>
+                <p class="body-sm">Primary Care</p>
+              </div>
+              <span class="chip-sm chip-warning">Pending</span>
+            </div>
+            <div class="meta-row" style="margin-bottom:4px;">
+              <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
+              <span class="body-sm">Apr 2, 2026 · 2:00 PM</span>
+            </div>
+            <div class="meta-row" style="margin-bottom:12px;">
+              <span class="material-icons icon-sm text-secondary" aria-hidden="true">videocam</span>
+              <span class="body-sm">Video Visit</span>
+            </div>
+            <div style="display:flex;gap:8px;border-top:1px solid var(--divider);padding-top:10px;">
+              <button type="button" class="btn btn-outlined" style="flex:1;padding:6px;font-size:12px;height:auto;">Reschedule</button>
+              <button type="button" class="btn-text" style="flex:1;font-size:12px;color:var(--error);">Cancel</button>
+            </div>
+          </div>
+          <!-- Past header -->
+          <div class="section-header" style="padding:12px 16px 4px;">
+            <h2 class="section-title" style="color:var(--on-surface-2);">Past</h2>
+          </div>
+          <!-- Past 1 — Completed -->
+          <div class="card card-padded" style="margin:0 16px 8px;opacity:0.75;" role="article" aria-label="Past appointment with Dr. Maria Chen, February 10, completed">
+            <div class="row-item">
+              <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+              <div class="flex-1">
+                <p class="body-base text-bold">Dr. Maria Chen</p>
+                <p class="body-sm">Primary Care</p>
+              </div>
+              <span class="chip-sm" style="background:var(--surface-var);color:var(--on-surface-2);">Completed</span>
+            </div>
+            <div class="meta-row" style="margin-top:8px;">
+              <span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span>
+              <span class="body-sm">Feb 10, 2026 · 9:00 AM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item active" aria-label="Care" aria-current="page"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 14 — Account Settings (MAIN · 05)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 05</div>
+    <div class="screen-title">Account Settings</div>
+    <article class="phone-frame" aria-label="Account settings screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Account Settings</h1>
+      </div>
+      <div class="screen-content">
+        <div class="scrollable">
+          <div class="settings-profile">
+            <div class="avatar avatar-primary avatar-52" aria-label="Sarah Johnson avatar" role="img">SJ</div>
+            <p class="settings-name">Sarah Johnson</p>
+            <a href="#" class="link link-sm">Edit Profile</a>
+          </div>
+
+          <h2 class="section-label" id="settings-profile-label">PROFILE</h2>
+          <div role="list" aria-labelledby="settings-profile-label" class="bg-surface">
+            <div class="list-item" role="listitem" tabindex="0" aria-label="Personal Information">
+              <div class="item-body"><div class="item-title">Personal Information</div></div>
+              <span class="material-icons chevron" aria-hidden="true">chevron_right</span>
+            </div>
+            <div class="list-item" role="listitem" tabindex="0" aria-label="Health Profile">
+              <div class="item-body"><div class="item-title">Health Profile</div></div>
+              <span class="material-icons chevron" aria-hidden="true">chevron_right</span>
+            </div>
+            <div class="list-item" role="listitem" tabindex="0" aria-label="Insurance and Coverage">
+              <div class="item-body"><div class="item-title">Insurance &amp; Coverage</div></div>
+              <span class="material-icons chevron" aria-hidden="true">chevron_right</span>
+            </div>
+          </div>
+
+          <h2 class="section-label" id="settings-security-label">SECURITY</h2>
+          <div role="list" aria-labelledby="settings-security-label" class="bg-surface">
+            <div class="list-item" role="listitem" tabindex="0" aria-label="Change Password">
+              <div class="item-body"><div class="item-title">Change Password</div></div>
+              <span class="material-icons chevron" aria-hidden="true">chevron_right</span>
+            </div>
+            <div class="list-item" role="listitem">
+              <div class="item-body"><div class="item-title">Two-Factor Auth</div></div>
+              <button type="button"
+                      class="toggle on"
+                      role="switch"
+                      aria-checked="true"
+                      aria-label="Two-Factor Authentication"></button>
+            </div>
+            <div class="list-item" role="listitem">
+              <div class="item-body"><div class="item-title">Biometric Login</div></div>
+              <button type="button"
+                      class="toggle on"
+                      role="switch"
+                      aria-checked="true"
+                      aria-label="Biometric Login"></button>
+            </div>
+          </div>
+
+          <h2 class="section-label" id="settings-prefs-label">PREFERENCES</h2>
+          <div role="list" aria-labelledby="settings-prefs-label" class="bg-surface">
+            <div class="list-item" role="listitem" tabindex="0" aria-label="Notifications">
+              <div class="item-body"><div class="item-title">Notifications</div></div>
+              <span class="material-icons chevron" aria-hidden="true">chevron_right</span>
+            </div>
+            <div class="list-item" role="listitem" tabindex="0" aria-label="Privacy Settings">
+              <div class="item-body"><div class="item-title">Privacy Settings</div></div>
+              <span class="material-icons chevron" aria-hidden="true">chevron_right</span>
+            </div>
+            <div class="list-item" role="listitem" tabindex="0" aria-label="Language: English">
+              <div class="item-body"><div class="item-title">Language</div></div>
+              <div class="item-meta">English</div>
+              <span class="material-icons chevron" aria-hidden="true">chevron_right</span>
+            </div>
+          </div>
+
+          <div class="settings-divider" aria-hidden="true"></div>
+          <div class="bg-surface">
+            <button type="button" class="list-item w-full border-none" aria-label="Sign Out">
+              <span class="material-icons icon-md text-error" aria-hidden="true">logout</span>
+              <div class="item-body"><div class="item-title text-error">Sign Out</div></div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 15 — Message Center (MAIN · 06)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 06</div>
+    <div class="screen-title">Message Center</div>
+    <article class="phone-frame" aria-label="Message center screen">
+      <div class="app-bar">
+        <h1 class="app-bar-title app-bar-title-padded">Messages</h1>
+        <button type="button" class="icon-btn" aria-label="Compose new message">
+          <span class="material-icons" aria-hidden="true">edit</span>
+        </button>
+      </div>
+      <div class="screen-content">
+        <div class="tabs" role="tablist" aria-label="Message filters">
+          <button type="button" class="tab active" role="tab" aria-selected="true" aria-controls="tab-all">All</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="tab-providers">Providers</button>
+          <button type="button" class="tab" role="tab" aria-selected="false" aria-controls="tab-alerts">Alerts</button>
+        </div>
+        <div class="search-bar" role="search">
+          <span class="material-icons" aria-hidden="true">search</span>
+          <span class="search-placeholder">Search messages...</span>
+        </div>
+        <div class="scrollable bg-surface" id="tab-all">
+          <ul class="msg-list" aria-label="Messages">
+            <!-- Message 1 — unread -->
+            <li class="list-item" aria-label="Dr. Maria Chen, unread: Results look normal, follow up in... 2 hours ago">
+              <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+              <div class="item-body">
+                <p class="item-title text-bold">Dr. Maria Chen</p>
+                <p class="item-subtitle">Results look normal, follow up in...</p>
+              </div>
+              <div class="msg-trailing">
+                <span class="item-meta">2h</span>
+                <span class="unread-dot" aria-label="Unread"></span>
+              </div>
+            </li>
+            <!-- Message 2 — read -->
+            <li class="list-item" aria-label="Nurse Practitioner: Your prescription has been renewed. Yesterday">
+              <div class="avatar avatar-teal avatar-40" aria-hidden="true">NP</div>
+              <div class="item-body">
+                <p class="item-title">Nurse Practitioner</p>
+                <p class="item-subtitle">Your prescription has been renewed</p>
+              </div>
+              <span class="item-meta">Yesterday</span>
+            </li>
+            <!-- Message 3 — unread -->
+            <li class="list-item" aria-label="Lab Results Alert, unread: New lab results available for... 2 days ago">
+              <div class="avatar avatar-orange avatar-40" aria-hidden="true">LA</div>
+              <div class="item-body">
+                <p class="item-title text-bold">Lab Results Alert</p>
+                <p class="item-subtitle">New lab results available for...</p>
+              </div>
+              <div class="msg-trailing">
+                <span class="item-meta">2d</span>
+                <span class="unread-dot" aria-label="Unread"></span>
+              </div>
+            </li>
+            <!-- Message 4 — read -->
+            <li class="list-item" aria-label="Appointment Team: Reminder: Dr. Chen tomorrow at 10:30. 3 days ago">
+              <div class="avatar avatar-success avatar-40" aria-hidden="true">AP</div>
+              <div class="item-body">
+                <p class="item-title">Appointment Team</p>
+                <p class="item-subtitle">Reminder: Dr. Chen tomorrow at 10:30</p>
+              </div>
+              <span class="item-meta">3d</span>
+            </li>
+            <!-- Message 5 — read -->
+            <li class="list-item border-none" aria-label="Health Plan: Your EOB for February is ready. 1 week ago">
+              <div class="avatar avatar-purple avatar-40" aria-hidden="true">HP</div>
+              <div class="item-body">
+                <p class="item-title">Health Plan</p>
+                <p class="item-subtitle">Your EOB for February is ready</p>
+              </div>
+              <span class="item-meta">1w</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home">
+          <span class="material-icons" aria-hidden="true">home</span>
+          <span class="nav-label">Home</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Care">
+          <span class="material-icons" aria-hidden="true">local_hospital</span>
+          <span class="nav-label">Care</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Coverage">
+          <span class="material-icons" aria-hidden="true">shield</span>
+          <span class="nav-label">Coverage</span>
+        </button>
+        <button type="button" class="nav-item active nav-item-rel" aria-label="Messages, 3 unread" aria-current="page">
+          <span class="material-icons" aria-hidden="true">mail</span>
+          <span class="nav-label">Messages</span>
+          <span class="nav-badge" aria-hidden="true">3</span>
+        </button>
+        <button type="button" class="nav-item" aria-label="Account">
+          <span class="material-icons" aria-hidden="true">person</span>
+          <span class="nav-label">Account</span>
+        </button>
+      </nav>
+    </article>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 16 — Compose New Message (MAIN · 06a)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN &middot; 06a</div>
+    <div class="screen-title">Compose New Message</div>
+    <article class="phone-frame" aria-label="Compose new message screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Discard and go back">
+          <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+        <h1 class="app-bar-title">New Message</h1>
+        <button type="button" class="compose-send-btn" aria-label="Send message">
+          <span class="material-icons" aria-hidden="true" style="font-size:16px">send</span>
+          Send
+        </button>
+      </div>
+      <div class="screen-content" style="display:flex;flex-direction:column;overflow:hidden;">
+        <div class="compose-field" role="group" aria-label="To field">
+          <span class="compose-field-label">To:</span>
+          <div class="compose-field-value">
+            <span class="compose-recipient-chip" aria-label="Recipient: Dr. Maria Chen">
+              <div class="avatar avatar-primary" style="width:22px;height:22px;font-size:9px;" aria-hidden="true">MC</div>
+              Dr. Maria Chen
+            </span>
+          </div>
+        </div>
+        <div class="compose-field" role="group" aria-label="Subject field">
+          <span class="compose-field-label">Subject:</span>
+          <div class="compose-field-value">Follow-up question about test results</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;padding:6px 16px;background:var(--success-light);border-bottom:1px solid var(--divider);">
+          <span class="material-icons" aria-hidden="true" style="font-size:14px;color:var(--success);">lock</span>
+          <span style="font-size:11px;color:var(--success);font-weight:500;">Secure, HIPAA-compliant message</span>
+        </div>
+        <div class="compose-body-area">
+          <p class="compose-body-text">Hi Dr. Chen,<br><br>I had a question about the lab results from my visit last week. The report mentioned my cholesterol levels were slightly elevated &mdash; could you clarify what that means for my treatment plan?<br><br>Thank you,<br>Sarah<span class="compose-cursor" aria-hidden="true"></span></p>
+        </div>
+        <div class="compose-toolbar" role="toolbar" aria-label="Formatting options">
+          <button type="button" class="compose-toolbar-btn" aria-label="Attach file"><span class="material-icons" aria-hidden="true" style="font-size:20px;">attach_file</span></button>
+          <button type="button" class="compose-toolbar-btn" aria-label="Add image"><span class="material-icons" aria-hidden="true" style="font-size:20px;">image</span></button>
+          <button type="button" class="compose-toolbar-btn" aria-label="Bold"><span class="material-icons" aria-hidden="true" style="font-size:20px;">format_bold</span></button>
+          <button type="button" class="compose-toolbar-btn" aria-label="Bullet list"><span class="material-icons" aria-hidden="true" style="font-size:20px;">format_list_bulleted</span></button>
+          <div class="compose-toolbar-spacer"></div>
+          <button type="button" class="compose-toolbar-btn" aria-label="More options"><span class="material-icons" aria-hidden="true" style="font-size:20px;">more_vert</span></button>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item active nav-item-rel" aria-label="Messages" aria-current="page"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 17 — Claims List (MAIN · 07)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN &middot; 07</div>
+    <div class="screen-title">Claims</div>
+    <article class="phone-frame" aria-label="Claims list screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Claims</h1>
+        <button type="button" class="icon-btn" aria-label="Filter claims">
+          <span class="material-icons" aria-hidden="true">tune</span>
+        </button>
+      </div>
+      <div class="screen-content">
+        <div class="tabs" role="tablist" aria-label="Claim status filters">
+          <button type="button" class="tab active" role="tab" aria-selected="true">All</button>
+          <button type="button" class="tab" role="tab" aria-selected="false">Processing</button>
+          <button type="button" class="tab" role="tab" aria-selected="false">Paid</button>
+          <button type="button" class="tab" role="tab" aria-selected="false">Denied</button>
+        </div>
+        <div class="scrollable bg-surface">
+          <ul class="msg-list" aria-label="Claims list">
+            <li class="list-item" aria-label="Dr. Maria Chen, Primary Care Visit, Feb 28, Paid, $180 billed">
+              <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+              <div class="item-body">
+                <p class="item-title text-bold">Dr. Maria Chen</p>
+                <p class="item-subtitle">Primary Care Visit &middot; Feb 28</p>
+              </div>
+              <div class="claim-row-trailing">
+                <span class="claim-amount">$180</span>
+                <span class="chip-sm chip-success">Paid</span>
+              </div>
+            </li>
+            <li class="list-item" aria-label="Lab Services, Blood Panel, Feb 15, Processing, $320 billed">
+              <div class="avatar avatar-orange avatar-40" aria-hidden="true">LS</div>
+              <div class="item-body">
+                <p class="item-title text-bold">Lab Services</p>
+                <p class="item-subtitle">Blood Panel &middot; Feb 15</p>
+              </div>
+              <div class="claim-row-trailing">
+                <span class="claim-amount">$320</span>
+                <span class="chip-sm chip-warning">Processing</span>
+              </div>
+            </li>
+            <li class="list-item" aria-label="Urgent Care, Walk-in Visit, Jan 22, Paid, $450 billed">
+              <div class="avatar avatar-teal avatar-40" aria-hidden="true">UC</div>
+              <div class="item-body">
+                <p class="item-title">Urgent Care</p>
+                <p class="item-subtitle">Walk-in Visit &middot; Jan 22</p>
+              </div>
+              <div class="claim-row-trailing">
+                <span class="claim-amount">$450</span>
+                <span class="chip-sm chip-success">Paid</span>
+              </div>
+            </li>
+            <li class="list-item" aria-label="Mental Health Services, Therapy Session, Jan 10, Processing, $160 billed">
+              <div class="avatar avatar-purple avatar-40" aria-hidden="true">MH</div>
+              <div class="item-body">
+                <p class="item-title">Mental Health Svcs</p>
+                <p class="item-subtitle">Therapy Session &middot; Jan 10</p>
+              </div>
+              <div class="claim-row-trailing">
+                <span class="claim-amount">$160</span>
+                <span class="chip-sm chip-warning">Processing</span>
+              </div>
+            </li>
+            <li class="list-item border-none" aria-label="Pharmacy, Lisinopril, Dec 28, Denied, $45 billed">
+              <div class="avatar avatar-success avatar-40" aria-hidden="true">RX</div>
+              <div class="item-body">
+                <p class="item-title">Pharmacy</p>
+                <p class="item-subtitle">Lisinopril 10mg &middot; Dec 28</p>
+              </div>
+              <div class="claim-row-trailing">
+                <span class="claim-amount">$45</span>
+                <span class="chip-sm chip-error">Denied</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item active" aria-label="Coverage" aria-current="page"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 18 — Claim Detail (MAIN · 07a)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN &middot; 07a</div>
+    <div class="screen-title">Claim Detail</div>
+    <article class="phone-frame" aria-label="Claim detail screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Claim Detail</h1>
+        <button type="button" class="icon-btn" aria-label="Download EOB">
+          <span class="material-icons" aria-hidden="true">download</span>
+        </button>
+      </div>
+      <div class="screen-content">
+        <div class="scrollable">
+          <div class="claim-status-banner claim-status-banner-success" role="status" aria-label="Claim paid">
+            <span class="material-icons" aria-hidden="true" style="font-size:28px;">check_circle</span>
+            <div>
+              <p class="claim-status-title">Claim Paid</p>
+              <p class="claim-status-sub">Payment issued Feb 28, 2026</p>
+            </div>
+          </div>
+          <div class="claim-detail-section">
+            <h2 class="section-label" style="margin-bottom:8px;">PROVIDER</h2>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Provider</span>
+              <span class="claim-kv-value">Dr. Maria Chen</span>
+            </div>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Service</span>
+              <span class="claim-kv-value">Primary Care Visit</span>
+            </div>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Date of Service</span>
+              <span class="claim-kv-value">Feb 28, 2026</span>
+            </div>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Claim #</span>
+              <span class="claim-kv-value" style="font-size:11px;font-family:monospace;">CLM-2026-0228-4491</span>
+            </div>
+          </div>
+          <div class="claim-detail-section">
+            <h2 class="section-label" style="margin-bottom:8px;">COST BREAKDOWN</h2>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Amount Billed</span>
+              <span class="claim-kv-value">$180.00</span>
+            </div>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Plan Allowed</span>
+              <span class="claim-kv-value">$155.00</span>
+            </div>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Plan Paid</span>
+              <span class="claim-kv-value" style="color:var(--success);">$130.00</span>
+            </div>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Deductible Applied</span>
+              <span class="claim-kv-value">$0.00</span>
+            </div>
+          </div>
+          <div class="claim-total-row" aria-label="Your cost: $25.00">
+            <span class="claim-total-label">Your Cost</span>
+            <span class="claim-total-value">$25.00</span>
+          </div>
+          <div class="claim-detail-section" style="display:flex;flex-direction:column;gap:8px;">
+            <button type="button" class="btn btn-secondary w-full">View Explanation of Benefits</button>
+            <button type="button" class="btn-text" style="font-size:13px;">Report an Issue with This Claim</button>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item active" aria-label="Coverage" aria-current="page"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 19 — ID Cards Landing (MAIN · 08)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN &middot; 08</div>
+    <div class="screen-title">ID Cards</div>
+    <article class="phone-frame" aria-label="ID cards landing screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">ID Cards</h1>
+      </div>
+      <div class="screen-content">
+        <div class="scrollable">
+          <div class="id-card-list" role="list" aria-label="Insurance ID cards">
+
+            <!-- Medical -->
+            <div class="id-card-thumb id-card-thumb-medical" role="listitem" tabindex="0"
+                 aria-label="Medical ID card, Red Cross Red Shield PPO, active">
+              <p class="id-card-thumb-type">Medical</p>
+              <p class="id-card-thumb-plan">Red Cross Red Shield PPO</p>
+              <p class="id-card-thumb-member">Sarah Johnson</p>
+              <div class="id-card-thumb-footer">
+                <span class="id-card-thumb-id">MBR-SJ-20190314</span>
+                <span class="chip-sm chip-white">Active</span>
+              </div>
+            </div>
+
+            <!-- Dental -->
+            <div class="id-card-thumb id-card-thumb-dental" role="listitem" tabindex="0"
+                 aria-label="Dental ID card, Delta Dental PPO, active">
+              <p class="id-card-thumb-type">Dental</p>
+              <p class="id-card-thumb-plan">Delta Dental PPO</p>
+              <p class="id-card-thumb-member">Sarah Johnson</p>
+              <div class="id-card-thumb-footer">
+                <span class="id-card-thumb-id">DD-887234-SJ</span>
+                <span class="chip-sm chip-white">Active</span>
+              </div>
+            </div>
+
+            <!-- Vision -->
+            <div class="id-card-thumb id-card-thumb-vision" role="listitem" tabindex="0"
+                 aria-label="Vision ID card, VSP Vision Care, active">
+              <p class="id-card-thumb-type">Vision</p>
+              <p class="id-card-thumb-plan">VSP Vision Care</p>
+              <p class="id-card-thumb-member">Sarah Johnson</p>
+              <div class="id-card-thumb-footer">
+                <span class="id-card-thumb-id">VSP-44912-SJ</span>
+                <span class="chip-sm chip-white">Active</span>
+              </div>
+            </div>
+
+            <!-- Prescription -->
+            <div class="id-card-thumb id-card-thumb-rx" role="listitem" tabindex="0"
+                 aria-label="Prescription ID card, CVS Caremark, active">
+              <p class="id-card-thumb-type">Prescription (Rx)</p>
+              <p class="id-card-thumb-plan">CVS Caremark</p>
+              <p class="id-card-thumb-member">Sarah Johnson</p>
+              <div class="id-card-thumb-footer">
+                <span class="id-card-thumb-id">RX-2024-887234</span>
+                <span class="chip-sm chip-white">Active</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item active" aria-label="Coverage" aria-current="page"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN 20 — ID Card Detail (MAIN · 08a)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN &middot; 08a</div>
+    <div class="screen-title">ID Card — Medical</div>
+    <article class="phone-frame" aria-label="Medical ID card detail screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Medical ID Card</h1>
+      </div>
+      <div class="screen-content">
+        <div class="scrollable">
+
+          <!-- Full card -->
+          <div class="id-card-full" role="region" aria-label="Medical insurance ID card">
+
+            <!-- Front face -->
+            <div class="id-card-full-front">
+              <div class="id-card-logo-row">
+                <div>
+                  <p class="id-card-logo-text">RedCross</p>
+                  <p class="id-card-logo-sub">Red Shield</p>
+                </div>
+                <!-- <div class="id-card-chip-icon" aria-hidden="true"></div> -->
+              </div>
+              <p class="id-card-member-name">Sarah Johnson</p>
+              <p class="id-card-member-dob">DOB: 03/14/1990</p>
+              <div class="id-card-numbers">
+                <div>
+                  <p class="id-card-num-label">Member ID</p>
+                  <p class="id-card-num-value">MBR-SJ-20190314</p>
+                </div>
+                <div>
+                  <p class="id-card-num-label">Group #</p>
+                  <p class="id-card-num-value">BCB-2024-887234</p>
+                </div>
+                <div>
+                  <p class="id-card-num-label">Plan</p>
+                  <p class="id-card-num-value">PPO</p>
+                </div>
+                <div>
+                  <p class="id-card-num-label">Eff. Date</p>
+                  <p class="id-card-num-value">01/01/2024</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Back face — copays & contact -->
+            <div class="id-card-full-back">
+              <div class="id-card-back-row">
+                <span class="id-card-back-label">PCP Copay</span>
+                <span class="id-card-back-value">$25</span>
+              </div>
+              <div class="id-card-back-row">
+                <span class="id-card-back-label">Specialist Copay</span>
+                <span class="id-card-back-value">$40</span>
+              </div>
+              <div class="id-card-back-row">
+                <span class="id-card-back-label">ER Copay</span>
+                <span class="id-card-back-value">$250</span>
+              </div>
+              <div class="id-card-back-row">
+                <span class="id-card-back-label">Customer Service</span>
+                <span class="id-card-back-value">1-800-555-0199</span>
+              </div>
+              <div class="id-card-back-row">
+                <span class="id-card-back-label">24/7 Nurse Line</span>
+                <span class="id-card-back-value">1-800-555-0124</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action buttons -->
+          <div class="id-card-actions" role="toolbar" aria-label="Card actions">
+            <button type="button" class="id-card-action-btn" aria-label="Download card">
+              <span class="material-icons" aria-hidden="true">download</span>
+              <span class="id-card-action-label">Download ID Card</span>
+            </button>
+            <button type="button" class="id-card-action-btn" aria-label="Share card">
+              <span class="material-icons" aria-hidden="true">share</span>
+              <span class="id-card-action-label">Share ID Card</span>
+            </button>
+            <button type="button" class="id-card-action-btn" aria-label="Add to Apple Wallet">
+              <span class="material-icons" aria-hidden="true">add_card</span>
+              <span class="id-card-action-label">Add to Wallet</span>
+            </button>
+            <button type="button" class="id-card-action-btn" aria-label="Print card">
+              <span class="material-icons" aria-hidden="true">print</span>
+              <span class="id-card-action-label">Print ID Card</span>
+            </button>
+          </div>
+
+          <!-- Member info section -->
+          <div class="claim-detail-section">
+            <h2 class="section-label" style="margin-bottom:8px;">PLAN DETAILS</h2>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Plan Name</span>
+              <span class="claim-kv-value">Red Cross Red Shield PPO</span>
+            </div>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Policy #</span>
+              <span class="claim-kv-value" style="font-size:11px;font-family:monospace;">POL-SJ-20190314</span>
+            </div>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Network</span>
+              <span class="claim-kv-value">BlueCare Preferred</span>
+            </div>
+            <div class="claim-kv">
+              <span class="claim-kv-label">Status</span>
+              <span class="chip-sm chip-success">Active</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item active" aria-label="Coverage" aria-current="page"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN — Lab Results (MAIN · 10)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 10</div>
+    <div class="screen-title">Lab Results</div>
+    <article class="phone-frame" aria-label="Lab results screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Lab Results</h1>
+        <button type="button" class="icon-btn" aria-label="Filter results">
+          <span class="material-icons" aria-hidden="true">tune</span>
+        </button>
+      </div>
+      <div class="screen-content">
+        <div class="tabs" role="tablist" aria-label="Result filters">
+          <button type="button" class="tab active" role="tab" aria-selected="true">All</button>
+          <button type="button" class="tab" role="tab" aria-selected="false">Abnormal</button>
+          <button type="button" class="tab" role="tab" aria-selected="false">Pending</button>
+        </div>
+        <div class="scrollable bg-surface">
+          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" aria-label="Comprehensive Metabolic Panel, Feb 28, 1 abnormal result">
+            <div class="avatar avatar-error avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+            <div class="item-body">
+              <p class="item-title text-bold">Comprehensive Metabolic Panel</p>
+              <p class="item-subtitle">Feb 28, 2026 · Dr. Maria Chen</p>
+            </div>
+            <span class="chip-sm chip-error">1 Abnormal</span>
+          </div>
+          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" aria-label="Lipid Panel, Feb 15, normal">
+            <div class="avatar avatar-success avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+            <div class="item-body">
+              <p class="item-title text-bold">Lipid Panel</p>
+              <p class="item-subtitle">Feb 15, 2026 · Dr. Maria Chen</p>
+            </div>
+            <span class="chip-sm chip-success">Normal</span>
+          </div>
+          <div class="list-item" style="align-items:flex-start;padding:12px 16px;" tabindex="0" aria-label="Complete Blood Count, Mar 5, pending">
+            <div class="avatar avatar-orange avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+            <div class="item-body">
+              <p class="item-title text-bold">Complete Blood Count</p>
+              <p class="item-subtitle">Mar 5, 2026 · Dr. Maria Chen</p>
+            </div>
+            <span class="chip-sm chip-warning">Pending</span>
+          </div>
+          <div class="list-item border-none" style="align-items:flex-start;padding:12px 16px;" tabindex="0" aria-label="Thyroid Panel, Jan 10, normal">
+            <div class="avatar avatar-success avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">science</span></div>
+            <div class="item-body">
+              <p class="item-title text-bold">Thyroid Panel (TSH)</p>
+              <p class="item-subtitle">Jan 10, 2026 · Dr. Maria Chen</p>
+            </div>
+            <span class="chip-sm chip-success">Normal</span>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item active" aria-label="Home" aria-current="page"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN — Lab Result Detail (MAIN · 10a)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 10a</div>
+    <div class="screen-title">Lab Result Detail</div>
+    <article class="phone-frame" aria-label="Lab result detail screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Lab Result</h1>
+        <button type="button" class="icon-btn" aria-label="Download result">
+          <span class="material-icons" aria-hidden="true">download</span>
+        </button>
+      </div>
+      <div class="screen-content">
+        <div class="scrollable">
+          <!-- Status banner -->
+          <div class="claim-status-banner" style="background:var(--error-light);color:var(--error);" role="status" aria-label="1 abnormal result">
+            <span class="material-icons" aria-hidden="true" style="font-size:28px;">warning_amber</span>
+            <div>
+              <p class="claim-status-title" style="color:var(--error);">1 Abnormal Result</p>
+              <p class="claim-status-sub" style="color:var(--error);">Reviewed by Dr. Chen · Feb 28</p>
+            </div>
+          </div>
+          <!-- Test info -->
+          <div class="claim-detail-section">
+            <h2 class="section-label" style="margin-bottom:8px;">TEST INFO</h2>
+            <div class="claim-kv"><span class="claim-kv-label">Test</span><span class="claim-kv-value">Comprehensive Metabolic Panel</span></div>
+            <div class="claim-kv"><span class="claim-kv-label">Date</span><span class="claim-kv-value">Feb 28, 2026</span></div>
+            <div class="claim-kv"><span class="claim-kv-label">Ordered by</span><span class="claim-kv-value">Dr. Maria Chen</span></div>
+            <div class="claim-kv" style="border-bottom:none;"><span class="claim-kv-label">Lab</span><span class="claim-kv-value">Quest Diagnostics</span></div>
+          </div>
+          <!-- Results -->
+          <div class="claim-detail-section" style="padding:0;">
+            <h2 class="section-label" style="margin:0 16px 8px;">RESULTS</h2>
+            <!-- Normal -->
+            <div style="padding:10px 16px;border-bottom:1px solid var(--divider);display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <p class="body-sm text-bold">Glucose</p>
+                <p class="body-xs" style="color:var(--on-surface-2);">Ref: 70–100 mg/dL</p>
+              </div>
+              <div style="text-align:right;">
+                <p class="body-base text-bold">95 mg/dL</p>
+                <span class="chip-sm chip-success">Normal</span>
+              </div>
+            </div>
+            <!-- Abnormal with range bar -->
+            <div style="padding:10px 16px;border-bottom:1px solid var(--divider);background:var(--error-light);">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                <div>
+                  <p class="body-sm text-bold">Cholesterol Total</p>
+                  <p class="body-xs" style="color:var(--on-surface-2);">Ref: &lt;200 mg/dL</p>
+                </div>
+                <div style="text-align:right;">
+                  <p class="body-base text-bold" style="color:var(--error);">215 mg/dL ↑</p>
+                  <span class="chip-sm chip-error">High</span>
+                </div>
+              </div>
+              <!-- Range indicator -->
+              <div style="position:relative;height:6px;border-radius:3px;background:linear-gradient(to right,var(--success) 0%,var(--success) 66%,var(--error) 66%,var(--error) 100%);">
+                <div style="position:absolute;top:50%;left:71%;transform:translate(-50%,-50%);width:12px;height:12px;background:var(--error);border-radius:50%;border:2px solid white;box-shadow:0 1px 3px rgba(0,0,0,0.25);"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--on-surface-2);margin-top:4px;">
+                <span>0</span><span>Normal &lt;200</span><span>300 mg/dL</span>
+              </div>
+            </div>
+            <!-- Normal -->
+            <div style="padding:10px 16px;display:flex;justify-content:space-between;align-items:center;">
+              <div>
+                <p class="body-sm text-bold">Creatinine</p>
+                <p class="body-xs" style="color:var(--on-surface-2);">Ref: 0.6–1.2 mg/dL</p>
+              </div>
+              <div style="text-align:right;">
+                <p class="body-base text-bold">0.9 mg/dL</p>
+                <span class="chip-sm chip-success">Normal</span>
+              </div>
+            </div>
+          </div>
+          <!-- Provider note -->
+          <div class="claim-detail-section">
+            <h2 class="section-label" style="margin-bottom:8px;">PROVIDER NOTE</h2>
+            <div class="card card-padded" style="margin:0;">
+              <div class="row-item" style="margin-bottom:6px;">
+                <div class="avatar avatar-primary avatar-40" aria-hidden="true">MC</div>
+                <div class="flex-1">
+                  <p class="body-sm text-bold">Dr. Maria Chen</p>
+                  <p class="body-xs" style="color:var(--on-surface-2);">Feb 28, 2026</p>
+                </div>
+              </div>
+              <p class="body-sm" style="color:var(--on-surface-2);line-height:1.5;">Cholesterol slightly elevated. Recommend dietary changes and follow-up in 3 months.</p>
+            </div>
+          </div>
+          <div style="padding:0 16px 16px;">
+            <button type="button" class="btn btn-outlined w-full">MESSAGE DR. CHEN</button>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item active" aria-label="Home" aria-current="page"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN — Prescriptions (MAIN · 11)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">MAIN · 11</div>
+    <div class="screen-title">Prescriptions</div>
+    <article class="phone-frame" aria-label="Prescriptions screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Prescriptions</h1>
+      </div>
+      <div class="screen-content">
+        <div class="tabs" role="tablist" aria-label="Prescription filters">
+          <button type="button" class="tab active" role="tab" aria-selected="true">Active</button>
+          <button type="button" class="tab" role="tab" aria-selected="false">Expired</button>
+        </div>
+        <div class="scrollable">
+          <!-- Rx 1 — 3 refills -->
+          <div class="card card-padded" style="margin:12px 16px 8px;" role="article" aria-label="Lisinopril 10mg, 3 refills remaining">
+            <div class="row-item" style="margin-bottom:8px;">
+              <div class="avatar avatar-teal avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">medication</span></div>
+              <div class="flex-1">
+                <p class="body-base text-bold">Lisinopril 10mg</p>
+                <p class="body-sm">Once daily · Blood Pressure</p>
+              </div>
+              <span class="chip-sm chip-success">3 Refills</span>
+            </div>
+            <div class="meta-row" style="margin-bottom:4px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
+            <div class="meta-row" style="margin-bottom:10px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Feb 1 · CVS Caremark</span></div>
+            <button type="button" class="btn btn-primary w-full" style="font-size:12px;padding:8px;">REQUEST REFILL</button>
+          </div>
+          <!-- Rx 2 — 1 refill -->
+          <div class="card card-padded" style="margin:0 16px 8px;" role="article" aria-label="Atorvastatin 20mg, 1 refill remaining">
+            <div class="row-item" style="margin-bottom:8px;">
+              <div class="avatar avatar-purple avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">medication</span></div>
+              <div class="flex-1">
+                <p class="body-base text-bold">Atorvastatin 20mg</p>
+                <p class="body-sm">Once daily · Cholesterol</p>
+              </div>
+              <span class="chip-sm chip-warning">1 Refill</span>
+            </div>
+            <div class="meta-row" style="margin-bottom:4px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
+            <div class="meta-row" style="margin-bottom:10px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Jan 15 · CVS Caremark</span></div>
+            <button type="button" class="btn btn-primary w-full" style="font-size:12px;padding:8px;">REQUEST REFILL</button>
+          </div>
+          <!-- Rx 3 — no refills -->
+          <div class="card card-padded" style="margin:0 16px 8px;" role="article" aria-label="Metformin 500mg, no refills, renewal needed">
+            <div class="row-item" style="margin-bottom:8px;">
+              <div class="avatar avatar-orange avatar-40" aria-hidden="true" style="font-size:0;"><span class="material-icons" style="font-size:20px;color:white;">medication</span></div>
+              <div class="flex-1">
+                <p class="body-base text-bold">Metformin 500mg</p>
+                <p class="body-sm">Twice daily · Diabetes</p>
+              </div>
+              <span class="chip-sm chip-error">No Refills</span>
+            </div>
+            <div class="meta-row" style="margin-bottom:4px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">person</span><span class="body-sm">Dr. Maria Chen</span></div>
+            <div class="meta-row" style="margin-bottom:10px;"><span class="material-icons icon-sm text-secondary" aria-hidden="true">calendar_today</span><span class="body-sm">Last filled Dec 10 · CVS Caremark</span></div>
+            <button type="button" class="btn btn-outlined w-full" style="font-size:12px;padding:8px;">REQUEST RENEWAL</button>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item active" aria-label="Care" aria-current="page"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SCREEN — Empty State (SYSTEM · 03)
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">SYSTEM · 03</div>
+    <div class="screen-title">Empty State</div>
+    <article class="phone-frame" aria-label="Empty appointments screen">
+      <div class="app-bar">
+        <button type="button" class="icon-btn" aria-label="Go back">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+        </button>
+        <h1 class="app-bar-title">Appointments</h1>
+        <button type="button" class="icon-btn" aria-label="Schedule new appointment">
+          <span class="material-icons" aria-hidden="true">add</span>
+        </button>
+      </div>
+      <div class="screen-content" style="display:flex;flex-direction:column;overflow:hidden;">
+        <div class="tabs" role="tablist" aria-label="Appointment filters">
+          <button type="button" class="tab active" role="tab" aria-selected="true">Upcoming</button>
+          <button type="button" class="tab" role="tab" aria-selected="false">Past</button>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;text-align:center;background:var(--surface);" role="status" aria-label="No upcoming appointments">
+          <div class="illus-circle" aria-hidden="true" style="margin-bottom:20px;">
+            <span class="material-icons" aria-hidden="true">calendar_today</span>
+          </div>
+          <h2 class="h2" style="margin-bottom:8px;">No Upcoming Appointments</h2>
+          <p class="body-sm" style="color:var(--on-surface-2);line-height:1.6;margin-bottom:24px;">You don't have any scheduled appointments. Book a provider to get started.</p>
+          <button type="button" class="btn btn-primary w-full">SCHEDULE APPOINTMENT</button>
+          <button type="button" class="btn-text" style="margin-top:10px;">Browse Care Options</button>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item active" aria-label="Care" aria-current="page"><span class="material-icons" aria-hidden="true">local_hospital</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Coverage"><span class="material-icons" aria-hidden="true">shield</span><span class="nav-label">Coverage</span></button>
+        <button type="button" class="nav-item nav-item-rel" aria-label="Messages, 3 unread"><span class="material-icons" aria-hidden="true">mail</span><span class="nav-label">Messages</span><span class="nav-badge" aria-hidden="true">3</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SYSTEM · 04 — Skeleton Loading
+  ═══════════════════════════════════════ -->
+  <div class="screen-cell">
+    <div class="screen-label">SYSTEM · 04</div>
+    <div class="screen-title">Skeleton Loading</div>
+    <article class="phone-frame" aria-label="Skeleton loading state" aria-busy="true" aria-live="polite">
+      <header class="app-bar">
+        <span style="width:40px"></span>
+        <!-- Skeleton title bar -->
+        <div style="height:16px;width:120px;border-radius:4px;background:var(--divider);"></div>
+        <div style="width:40px;height:40px;border-radius:50%;background:var(--divider);"></div>
+      </header>
+      <div class="screen-content" style="padding:16px;display:flex;flex-direction:column;gap:16px;">
+        <!-- Hero card skeleton -->
+        <div style="border-radius:16px;overflow:hidden;background:var(--divider);height:76px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;">
+          <div style="height:10px;width:60%;border-radius:3px;background:rgba(255,255,255,0.35);"></div>
+          <div style="height:14px;width:45%;border-radius:3px;background:rgba(255,255,255,0.25);"></div>
+        </div>
+
+        <!-- Quick-action skeletons -->
+        <div style="display:flex;gap:12px;">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--divider);"></div>
+            <div style="height:10px;width:40px;border-radius:3px;background:var(--divider);"></div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--divider);"></div>
+            <div style="height:10px;width:40px;border-radius:3px;background:var(--divider);"></div>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--divider);"></div>
+            <div style="height:10px;width:40px;border-radius:3px;background:var(--divider);"></div>
+          </div>
+        </div>
+
+        <!-- Section label skeleton -->
+        <div style="height:11px;width:90px;border-radius:3px;background:var(--divider);"></div>
+
+        <!-- Appointment card skeleton -->
+        <div style="border-radius:12px;border:1px solid var(--border);padding:16px;display:flex;gap:12px;">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--divider);flex-shrink:0;"></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+            <div style="height:13px;width:70%;border-radius:3px;background:var(--divider);"></div>
+            <div style="height:11px;width:50%;border-radius:3px;background:var(--divider);"></div>
+            <div style="height:22px;width:72px;border-radius:20px;background:var(--divider);margin-top:4px;"></div>
+          </div>
+        </div>
+
+        <!-- Second section label skeleton -->
+        <div style="height:11px;width:70px;border-radius:3px;background:var(--divider);"></div>
+
+        <!-- Alert card skeleton -->
+        <div style="border-radius:12px;border:1px solid var(--border);padding:16px;display:flex;gap:12px;">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--divider);flex-shrink:0;"></div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+            <div style="height:13px;width:80%;border-radius:3px;background:var(--divider);"></div>
+            <div style="height:11px;width:55%;border-radius:3px;background:var(--divider);"></div>
+          </div>
+        </div>
+      </div>
+      <nav class="bottom-nav" aria-label="Main navigation">
+        <button type="button" class="nav-item active" aria-current="page" aria-label="Home"><span class="material-icons" aria-hidden="true">home</span><span class="nav-label">Home</span></button>
+        <button type="button" class="nav-item" aria-label="Care"><span class="material-icons" aria-hidden="true">favorite</span><span class="nav-label">Care</span></button>
+        <button type="button" class="nav-item" aria-label="Claims"><span class="material-icons" aria-hidden="true">description</span><span class="nav-label">Claims</span></button>
+        <button type="button" class="nav-item" aria-label="Account"><span class="material-icons" aria-hidden="true">person</span><span class="nav-label">Account</span></button>
+      </nav>
+    </article>
+  </div>
+
+</div><!-- /grid -->
+
+<script src="healthcare-md.js"></script>
+</body>
+</html>
