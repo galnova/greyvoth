@@ -179,6 +179,10 @@ a:hover{ text-decoration:none; }
   .gn-logo img{ height:58px; }
   .sale-media { background: none !important; }
   .sale-card::before { background: none !important; }
+
+  .btn {
+    width: 100%!important;
+  }
 }
 
 .navbar-dark .navbar-nav .nav-link,
