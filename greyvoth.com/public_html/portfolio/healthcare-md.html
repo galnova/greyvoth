@@ -581,11 +581,11 @@
     <div class="screen-title">Home / Dashboard</div>
     <article class="phone-frame" aria-label="Home dashboard screen">
       <div class="app-bar">
+        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
+        <h1 class="app-bar-title">MyHealth</h1>
         <button type="button" class="icon-btn" aria-label="Open navigation menu">
           <span class="material-icons" aria-hidden="true">menu</span>
         </button>
-        <h1 class="app-bar-title">MyHealth</h1>
-        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
       </div>
       <div class="screen-content">
         <div class="hero-card" role="region" aria-label="Member summary">
@@ -775,13 +775,13 @@
     <div class="screen-title">Navigation Drawer</div>
     <article class="phone-frame" aria-label="Navigation drawer screen">
       <div class="app-bar">
+        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
+        <h1 class="app-bar-title">MyHealth</h1>
         <button type="button" class="icon-btn" aria-label="Open navigation menu" aria-expanded="true">
           <span class="material-icons" aria-hidden="true">menu</span>
         </button>
-        <h1 class="app-bar-title">MyHealth</h1>
-        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
       </div>
-      <div class="screen-content pos-rel">
+      <div class="screen-content">
         <!-- Background content dimmed -->
         <div class="hero-card dimmed" aria-hidden="true">
           <p class="hero-greeting">Good morning, Sarah</p>
@@ -791,14 +791,19 @@
           <div class="placeholder-card"></div>
           <div class="placeholder-card"></div>
         </div>
-        <!-- Overlay -->
-        <div class="drawer-overlay" aria-hidden="true"></div>
-        <!-- Drawer -->
-        <div class="drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
+      </div>
+      <!-- Scrim + drawer at phone-frame level so they cover the app bar too -->
+      <div class="drawer-overlay" aria-hidden="true"></div>
+      <!-- Drawer -->
+      <div class="drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
           <div class="drawer-header">
+            <button class="drawer-close" type="button" aria-label="Close menu">
+              <span class="material-icons" aria-hidden="true">close</span>
+            </button>
             <div class="drawer-avatar" aria-label="Sarah Johnson" role="img">SJ</div>
             <p class="drawer-name">Sarah Johnson</p>
             <p class="drawer-plan">Red Cross PPO</p>
+            <button class="drawer-edit-link" type="button" aria-label="Edit profile">Edit profile</button>
           </div>
           <nav aria-label="Site navigation">
             <ul class="drawer-nav-list" role="list">
@@ -862,7 +867,6 @@
             </ul>
           </nav>
         </div>
-      </div>
     </article>
   </div>
 
@@ -874,11 +878,11 @@
     <div class="screen-title">Error Modal</div>
     <article class="phone-frame" aria-label="Error modal screen">
       <div class="app-bar">
+        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
+        <h1 class="app-bar-title">MyHealth</h1>
         <button type="button" class="icon-btn" aria-label="Open navigation menu">
           <span class="material-icons" aria-hidden="true">menu</span>
         </button>
-        <h1 class="app-bar-title">MyHealth</h1>
-        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
       </div>
       <div class="screen-content pos-rel">
         <div class="hero-card dimmed" aria-hidden="true">
@@ -916,11 +920,11 @@
     <div class="screen-title">Toast Notification</div>
     <article class="phone-frame" aria-label="Toast notification screen">
       <div class="app-bar">
+        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
+        <h1 class="app-bar-title">MyHealth</h1>
         <button type="button" class="icon-btn" aria-label="Open navigation menu">
           <span class="material-icons" aria-hidden="true">menu</span>
         </button>
-        <h1 class="app-bar-title">MyHealth</h1>
-        <div class="avatar-sm" aria-label="Sarah Johnson profile" role="img">SJ</div>
       </div>
       <div class="screen-content pos-rel">
         <div class="hero-card" role="region" aria-label="Member summary">
@@ -1639,7 +1643,7 @@
               <span class="item-meta">3d</span>
             </li>
             <!-- Message 5 — read -->
-            <li class="list-item border-none" aria-label="Health Plan: Your EOB for February is ready. 1 week ago">
+            <li class="list-item" aria-label="Health Plan: Your EOB for February is ready. 1 week ago">
               <div class="avatar avatar-purple avatar-40" aria-hidden="true">HP</div>
               <div class="item-body">
                 <p class="item-title">Health Plan</p>
@@ -1803,7 +1807,7 @@
                 <span class="chip-sm chip-warning">Processing</span>
               </div>
             </li>
-            <li class="list-item border-none" aria-label="Pharmacy, Lisinopril, Dec 28, Denied, $45 billed">
+            <li class="list-item" aria-label="Pharmacy, Lisinopril, Dec 28, Denied, $45 billed">
               <div class="avatar avatar-success avatar-40" aria-hidden="true">RX</div>
               <div class="item-body">
                 <p class="item-title">Pharmacy</p>
@@ -2416,8 +2420,8 @@
       <header class="app-bar">
         <span class="app-bar-spacer"></span>
         <!-- Skeleton title bar -->
-        <div class="skel-title-bar"></div>
         <div class="skel-avatar-bar"></div>
+        <div class="skel-title-bar"></div>
       </header>
       <div class="screen-content screen-content-padded">
         <!-- Hero card skeleton -->
