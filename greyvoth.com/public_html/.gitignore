@@ -1,2 +1,14 @@
+# Dreamweaver
 **/dwsync.xml
 **/_notes/
+
+# Claude Code
+.claude/
+CLAUDE.md
+
+# Webstats
+webstats/
+
+# OS
+.DS_Store
+Thumbs.db

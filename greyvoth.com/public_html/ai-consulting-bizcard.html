@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Greyvoth — Business Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    @page { size: 3.5in 2in; margin: 0; }
+  </style>
+  <link rel="stylesheet" href="_css/ai.css">
+</head>
+<body class="ai-bizcard">
+<div class="card">
+  <div class="accent-bar"></div>
+
+  <div class="content">
+    <!-- Top: Logo + Icon -->
+    <div class="top-row">
+      <img src="2020/nu_logo.png" alt="Greyvoth">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="36" height="36">
+        <circle cx="50" cy="50" r="49" fill="#14224a"/>
+        <line x1="50" y1="25" x2="50" y2="16" stroke="#f6f7fb" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="50" cy="12" r="4" fill="#f6f7fb"/>
+        <rect x="20" y="26" width="60" height="54" rx="9" fill="#f6f7fb"/>
+        <rect x="27" y="35" width="14" height="9" rx="4.5" fill="#00C2FF"/>
+        <rect x="59" y="35" width="14" height="9" rx="4.5" fill="#00C2FF"/>
+        <path d="M 54,50 A 8,8 0 1,0 58,57 H 52" fill="none" stroke="#ffd35a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="32" y="71" width="36" height="5" rx="2.5" fill="#14224a" opacity="0.4"/>
+        <g transform="translate(79,19)">
+          <polygon points="0,-7 1.6,-1.6 7,0 1.6,1.6 0,7 -1.6,1.6 -7,0 -1.6,-1.6" fill="#00C2FF"/>
+        </g>
+        <circle cx="87" cy="28" r="2.2" fill="#ffd35a"/>
+      </svg>
+    </div>
+
+    <!-- Name -->
+    <div class="name-block">
+      <div class="name">Keith Jeter</div>
+      <div class="title">AI Consultant</div>
+      <div class="tagline">AI Strategy &amp; Ethics &mdash; For Individuals &amp; Businesses</div>
+    </div>
+
+    <!-- Bottom: Contact + Services -->
+    <div class="bottom-row">
+      <div class="contact">
+        <p>
+          <a href="https://greyvoth.com/about">greyvoth.com/about</a><br>
+          greyvoth@gmail.com
+        </p>
+      </div>
+      <div id="qr-bizcard"></div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="_js/ai.js"></script>
+</body>
+</html>
