@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find c:UserskjeteOneDriveDesktopWebsitessiteground-greyvothgreyvoth.compublic_html -type f -name *.html -o -name *.css -o -name *.js)",
+      "Bash(/tmp/structure.txt:*)",
+      "Read(//tmp/**)",
+      "Bash(mv index.html ai-consulting-landing.html)",
+      "Bash(mv works.html index.html)"
+    ]
+  }
+}
