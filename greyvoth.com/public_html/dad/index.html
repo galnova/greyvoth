@@ -8,41 +8,56 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <link rel="stylesheet" href="_css/dad.css">
 </head>
 <body>
   <header>
     <h1><span class="h1-accent">Dungeon</span> a Day</h1>
     <div class="divider"><span class="divider-gem"></span></div>
-    <p class="subtitle">32 panels&thinsp;&mdash;&thinsp;click any area to have a closer look at my dungeon.</p>
-    <button class="flip-btn" id="flip-btn" aria-pressed="false"><span class="flip-icon" aria-hidden="true">&#x21BB;</span><span id="flip-label">Rotate to see 17&thinsp;&ndash;&thinsp;32 right side up</span></button>
+    <p class="subtitle">32 panels total - Click any area to have a closer look at my dungeon.</p>
+    <button class="flip-btn" id="flip-btn" aria-pressed="false"><i class="flip-icon fa-solid fa-rotate-right" aria-hidden="true"></i><span id="flip-label">Rotate to see 17&thinsp;&ndash;&thinsp;32 right side up</span></button>
   </header>
   <main>
     <div class="grid" id="grid" role="list" aria-label="32 dungeon panels"></div>
   </main>
   <section class="rules" aria-label="About this project">
     <div class="divider" aria-hidden="true"><span class="divider-gem"></span></div>
-    <img class="rules-img" src="./_img/dad-list.png" alt="Master prompt list showing all 32 dungeon prompts">
+    <img class="rules-img rules-img--zoom" src="./_img/dad-list.png" alt="Master prompt list showing all 32 dungeon prompts" data-lightbox tabindex="0" role="button" aria-label="View prompt list full size">
     <p class="rules-text">I had to choose a random prompt each day for a month and create a dungeon. This was a lot of fun to try.</p>
     <div class="divider" aria-hidden="true"><span class="divider-gem"></span></div>
-    <img class="rules-img rules-img--small" src="./_img/gear.jpg" alt="Art supplies including Sharpie and Pentel markers, Sumi ink, and Ohuhu brush pens">
+    <img class="rules-img rules-img--small rules-img--zoom" src="./_img/gear.jpg" alt="Art supplies including Sharpie and Pentel markers, Sumi ink, and Ohuhu brush pens" data-lightbox tabindex="0" role="button" aria-label="View gear photo full size">
     <p class="rules-text">The tools used to create this were Sharpie and Pentel markers, NicPro 0.5mm mechanical pencils, Sumi ink and Ohuhu water coloring brush pens.</p>
   </section>
   <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-theme" aria-hidden="true">
     <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true"></div>
     <div class="modal-content">
-      <button class="modal-close" id="modal-close" aria-label="Close dialog">&times;</button>
+      <button class="modal-close" id="modal-close" aria-label="Close dialog"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
       <div class="modal-day-label" id="modal-day"></div>
       <div class="modal-theme-name" id="modal-theme"></div>
       <div class="modal-body">
-        <button class="modal-nav" id="modal-prev" aria-label="Previous dungeon">&#8249;</button>
+        <button class="modal-nav" id="modal-prev" aria-label="Previous dungeon"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
         <div class="modal-image-wrap">
           <img class="modal-image" id="modal-image" alt="">
         </div>
-        <button class="modal-nav" id="modal-next" aria-label="Next dungeon">&#8250;</button>
+        <button class="modal-nav" id="modal-next" aria-label="Next dungeon"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
       </div>
     </div>
   </div>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightbox-backdrop" aria-hidden="true"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close" aria-label="Close image"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <img class="lightbox-image" id="lightbox-image" alt="">
+    </div>
+  </div>
+  <audio id="bg-audio" loop>
+    <source src="bg_music/ominous.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-btn" id="music-btn" aria-label="Play background music" aria-pressed="false">
+    <i class="music-icon fa-solid fa-play" id="music-icon" aria-hidden="true"></i>
+    <span class="music-label">dad theme</span>
+  </button>
   <footer class="attribution">
     <p>All art created by Keith Harvey Jeter a.k.a. <a href="https://greyvoth.com" class="attribution-link">Greyvoth</a>.</p>
   </footer>
