@@ -25,6 +25,41 @@ const MODAL_FILES = [
   'm-25', 'm-26', 'm-27', 'm-28', 'm-29', 'm-30', 'm-31', 'm-32'
 ];
 
+const DESCRIPTIONS = [
+  "I didn't know what I was in for when I started. So I just rushed starting.",
+  "This one was rough. It came out okay but I wasn't feeling it.",
+  "I tried and tried to draw veins but it was hard with the ink to show it.",
+  "The skull was when I started feeling it. I was having fun now!",
+  "The faces were kind of meh but it was fun to think about it.",
+  "This was very fun. A gatekeeper of sorts.",
+  "Figuring out how to simplify chains is going to pay off later.",
+  "Mad I visualized as upside down. I had fun with this one.",
+  "The statue was tricky but I kept working at it.",
+  "The swinging blades got too busy but I had fun drawing it.",
+  "A creepy doll always makes a dungeon complete.",
+  "The stairway of books was also challenging to conceive.",
+  "The torch head gets lost a bit but I like the character.",
+  "Nothing much to say about this one haha.",
+  "Wax was challenging to draw but I like the priest.",
+  "One of One!",
+  "The no eyes part is so creepy.",
+  "You can kind of see the mouth!",
+  "The spine thing threw me but I tried!",
+  "The creature looks too happy!!!",
+  "I like how the panels came out.",
+  "HE is responsible for all of this.",
+  "Every king needs a throne.",
+  "Gotta love a fun zombie drawing.",
+  "This figure was actually the last one I drew and also the most memorable.",
+  "Very creepy visual but there is a story here if you want to imagine it.",
+  "Living. Alive. Creepy.",
+  "This pool bleeds into the creature's pool!",
+  "I took my shot at inking a serpent.",
+  "Madness personified.",
+  "This cloaked figure controls the serpent.",
+  "Not much to say about this except I laid the ink down heavily."
+];
+
 const grid       = document.getElementById('grid');
 const modal      = document.getElementById('modal');
 const modalBg    = document.getElementById('modal-backdrop');
@@ -34,6 +69,7 @@ const modalTheme = document.getElementById('modal-theme');
 const modalImage = document.getElementById('modal-image');
 const modalPrev  = document.getElementById('modal-prev');
 const modalNext  = document.getElementById('modal-next');
+const modalDesc  = document.getElementById('modal-desc');
 
 let current   = 0;
 let lastFocus = null;
@@ -120,6 +156,9 @@ function applyModal() {
     modalImage.classList.add('missing');
   }
   modalImage.alt = modalFile !== null ? THEMES[current] : '';
+  const desc = DESCRIPTIONS[current];
+  modalDesc.textContent = desc || '';
+  modalDesc.hidden = !desc;
 }
 
 function navigate(dir) {
