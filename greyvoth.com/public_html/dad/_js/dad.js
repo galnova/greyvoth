@@ -7,15 +7,22 @@ const THEMES = [
   "eyeless deer horror",               "mouth-shaped tunnel",           "spine-whip abomination",        "pool creature",
   "hallway of shifting panels",        "axe-crowned king",              "upside down throne",            "spider webbed zombie",
   "chain-dragging penitent",           "hanging body tree",             "living doorway",                "pool of darkness",
-  "many-eyed serpent",                 "cloaked figure",                "caged madness",                 "black slime"
+  "many-eyed serpent",                 "caged madness",                 "cloaked figure",                "black slime"
 ];
 
 // Actual image filenames — null means not yet drawn
 const FILES = [
-    1,    2,   61,    3,   17,   85,   73,   79,
-   14,   60,   57,   20,    9,   10,   33,   56,
-   41,   42,   77,   62,   87,   88,   16,   22,
-  null, null,    7,   37,  100,   64, null,   92
+   1,  2,  3,  4,  5,  6,  7,  8,
+   9, 10, 11, 12, 13, 14, 15, 16,
+  17, 18, 19, 20, 21, 22, 23, 24,
+  25, 26, 27, 28, 29, 30, 31, 32
+];
+
+const MODAL_FILES = [
+  'm-1',  'm-2',  'm-3',  'm-4',  'm-5',  'm-6',  'm-7',  'm-8',
+  'm-9',  'm-10', 'm-11', 'm-12', 'm-13', 'm-14', 'm-15', 'm-16',
+  'm-17', 'm-18', 'm-19', 'm-20', 'm-21', 'm-22', 'm-23', 'm-24',
+  'm-25', 'm-26', 'm-27', 'm-28', 'm-29', 'm-30', 'm-31', 'm-32'
 ];
 
 const grid       = document.getElementById('grid');
@@ -101,20 +108,18 @@ function closeModal() {
 }
 
 function applyModal() {
-  const day = current + 1;
+  const day       = current + 1;
+  const modalFile = MODAL_FILES[current] ?? FILES[current];
   modalDay.textContent   = `Day ${pad(day)}`;
   modalTheme.textContent = THEMES[current];
-  modalImage.classList.remove('missing', 'rotated');
-  if (FILES[current] !== null) {
-    modalImage.src = `./_img/${FILES[current]}.png`;
+  modalImage.classList.remove('missing');
+  if (modalFile !== null) {
+    modalImage.src = `./_img/${modalFile}.png`;
   } else {
     modalImage.removeAttribute('src');
     modalImage.classList.add('missing');
   }
-  modalImage.alt = FILES[current] !== null ? THEMES[current] : '';
-  if (day >= 17) {
-    modalImage.classList.add('rotated');
-  }
+  modalImage.alt = modalFile !== null ? THEMES[current] : '';
 }
 
 function navigate(dir) {
@@ -131,11 +136,62 @@ modalClose.addEventListener('click', closeModal);
 modalPrev.addEventListener('click', () => navigate(-1));
 modalNext.addEventListener('click', () => navigate(1));
 
+/* ── Lightbox ────────────────────────────────── */
+const lightbox       = document.getElementById('lightbox');
+const lightboxBg     = document.getElementById('lightbox-backdrop');
+const lightboxClose  = document.getElementById('lightbox-close');
+const lightboxImage  = document.getElementById('lightbox-image');
+let lightboxLastFocus = null;
+
+function openLightbox(img) {
+  lightboxLastFocus = document.activeElement;
+  lightboxImage.src = img.src;
+  lightboxImage.alt = img.alt;
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('no-scroll');
+  lightboxClose.focus();
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('no-scroll');
+  if (lightboxLastFocus) lightboxLastFocus.focus();
+}
+
+document.querySelectorAll('[data-lightbox]').forEach(img => {
+  img.addEventListener('click', () => openLightbox(img));
+  img.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(img); }
+  });
+});
+
+lightboxBg.addEventListener('click', closeLightbox);
+lightboxClose.addEventListener('click', closeLightbox);
+
 document.addEventListener('keydown', e => {
-  if (!modal.classList.contains('open')) return;
-  if (e.key === 'Escape')     closeModal();
-  if (e.key === 'ArrowLeft')  navigate(-1);
-  if (e.key === 'ArrowRight') navigate(1);
+  if (e.key === 'Escape') {
+    if (modal.classList.contains('open'))   closeModal();
+    if (lightbox.classList.contains('open')) closeLightbox();
+  }
+  if (modal.classList.contains('open')) {
+    if (e.key === 'ArrowLeft')  navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  }
+});
+
+/* ── Music player ────────────────────────────── */
+const bgAudio   = document.getElementById('bg-audio');
+const musicBtn  = document.getElementById('music-btn');
+const musicIcon = document.getElementById('music-icon');
+musicBtn.addEventListener('click', () => {
+  const playing = bgAudio.paused;
+  playing ? bgAudio.play() : bgAudio.pause();
+  musicBtn.setAttribute('aria-pressed', String(playing));
+  musicBtn.setAttribute('aria-label', playing ? 'Pause background music' : 'Play background music');
+  musicIcon.classList.toggle('fa-play', !playing);
+  musicIcon.classList.toggle('fa-pause', playing);
 });
 
 /* ── Flip grid ───────────────────────────────── */
@@ -145,6 +201,6 @@ flipBtn.addEventListener('click', () => {
   const flipped = grid.classList.toggle('flipped');
   flipBtn.setAttribute('aria-pressed', String(flipped));
   flipLabel.textContent = flipped
-    ? 'Rotate to see 1\u2009\u20131\u20096 right side up'
-    : 'Rotate to see 17\u2009\u201332 right side up';
+    ? 'Rotate to see 1 - 16 right side up'
+    : 'Rotate to see 17 - 32 right side up';
 });
