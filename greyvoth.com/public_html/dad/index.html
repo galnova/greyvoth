@@ -42,6 +42,7 @@
         </div>
         <button class="modal-nav" id="modal-next" aria-label="Next dungeon"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
       </div>
+      <p class="modal-desc" id="modal-desc"></p>
     </div>
   </div>
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
@@ -51,6 +52,24 @@
       <img class="lightbox-image" id="lightbox-image" alt="">
     </div>
   </div>
+  <section class="finals" aria-label="Complete dungeon artwork">
+    <div class="divider" aria-hidden="true"><span class="divider-gem"></span></div>
+    <h2 class="finals-title">The Complete Dungeon</h2>
+    <div class="finals-grid">
+      <div class="final-card">
+        <img class="final-img" src="./_img/dad-final.png" alt="Complete dungeon illustration" data-lightbox tabindex="0" role="button" aria-label="View complete dungeon full size">
+        <a class="final-download" href="./_img/dad-final.png" download="dad-final.png">
+          <i class="fa-solid fa-download" aria-hidden="true"></i> Normal
+        </a>
+      </div>
+      <div class="final-card">
+        <img class="final-img" src="./_img/dad-final-inverted.png" alt="Complete dungeon illustration, inverted" data-lightbox tabindex="0" role="button" aria-label="View inverted dungeon full size">
+        <a class="final-download" href="./_img/dad-final-inverted.png" download="dad-final-inverted.png">
+          <i class="fa-solid fa-download" aria-hidden="true"></i> Inverted
+        </a>
+      </div>
+    </div>
+  </section>
   <audio id="bg-audio" loop>
     <source src="bg_music/ominous.mp3" type="audio/mpeg">
   </audio>
