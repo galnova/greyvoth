@@ -434,7 +434,6 @@ main {
   padding: 2rem 1rem 1.5rem;
   width: min(calc(68vmin + 9rem), 95vw);
 }
-
 .modal-close {
   position: absolute;
   top: 0.4rem;
