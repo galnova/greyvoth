@@ -19,10 +19,10 @@ const FILES = [
 ];
 
 const MODAL_FILES = [
-  'm-1',  'm-2',  'm-3',  'm-4',  'm-5',  'm-6',  'm-7',  'm-8',
-  'm-9',  'm-10', 'm-11', 'm-12', 'm-13', 'm-14', 'm-15', 'm-16',
-  'm-17', 'm-18', 'm-19', 'm-20', 'm-21', 'm-22', 'm-23', 'm-24',
-  'm-25', 'm-26', 'm-27', 'm-28', 'm-29', 'm-30', 'm-31', 'm-32'
+  '1',  '2',  '3',  '4',  '5',  '6',  '7',  '8',
+  '9',  '10', '11', '12', '13', '14', '15', '16',
+  '17', '18', '19', '20', '21', '22', '23', '24',
+  '25', '26', '27', '28', '29', '30', '31', '32'
 ];
 
 const DESCRIPTIONS = [
@@ -148,7 +148,10 @@ function applyModal() {
   const modalFile = MODAL_FILES[current] ?? FILES[current];
   modalDay.textContent   = `Day ${pad(day)}`;
   modalTheme.textContent = THEMES[current];
-  modalImage.classList.remove('missing');
+  modalImage.classList.remove('missing', 'rotated');
+  if (current >= 16 && current !== 19) {
+    modalImage.classList.add('rotated');
+  }
   if (modalFile !== null) {
     modalImage.src = `./_img/${modalFile}.png`;
   } else {

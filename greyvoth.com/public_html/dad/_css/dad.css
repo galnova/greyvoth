@@ -581,6 +581,10 @@ main {
   height: auto;
 }
 
+.modal-image.rotated {
+  transform: rotate(180deg);
+}
+
 .modal-image.missing {
   display: none;
 }
