@@ -498,6 +498,10 @@ body.alt .portfolio-card:hover{
   background:#315788;
 }
 
+body.alt .portfolio-card:hover .card-body h4 {
+  color: #fff; 
+}
+
 body.alt .portfolio-card .card-body{
   border-top:1px solid rgba(15,18,32,.08);
 }
@@ -663,6 +667,10 @@ body.alt #galleryGrid > [class*="col-"]::after{
 
 body.alt #galleryGrid > [class*="col-"]:last-child::after{
   display:none;
+}
+
+@media (max-width:575.98px){
+  body.alt #galleryGrid > [class*="col-"]:nth-child(2n)::after{ display:none; }
 }
 
 @media (min-width:576px) and (max-width:767.98px){
