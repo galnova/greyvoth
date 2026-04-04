@@ -662,7 +662,7 @@ body.alt #galleryGrid > [class*="col-"]::after{
   background:var(--gv-line-color);
   transform:translateY(-50%);
   pointer-events:none;
-  z-index:0; 
+  z-index:0;
 }
 
 body.alt #galleryGrid > [class*="col-"]:last-child::after{
