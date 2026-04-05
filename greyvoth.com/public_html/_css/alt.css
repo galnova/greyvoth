@@ -45,7 +45,11 @@ body.alt .site-footer{
 body.alt .gv-container{ padding-left:12px; padding-right:12px; }
 
 body.alt .gv-section{ background:#dff6fd; }
-body.alt hr{ border-top: 2px solid var(--gv-line-color); opacity: 1; margin: 1.5rem 0; }
+body.alt hr{ 
+  border-top: 2px solid var(--gv-line-color);
+  opacity: 1;
+  margin: 1.5rem 0!important;
+ }
 
 body.alt .hero{
   color:#000;
