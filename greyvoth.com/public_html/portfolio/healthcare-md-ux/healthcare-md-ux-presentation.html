@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthcareMD UX Case Study - Presentation</title>
+    <link rel="stylesheet" href="healthcare-ux.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="page-presentation">
+    <div class="presentation">
+        <div class="slide" data-slide="1">
+            <h1>HealthcareMD Website Redesign</h1>
+            <h2>Building Trust Through Patient-Centered UX</h2>
+            <br>
+            <div class="slide-center">
+                <strong>Keith Jeter</strong><br>
+                UX Designer & Strategist
+            </div>
+            <br>
+            <div class="highlight">
+                <strong>Client:</strong> HealthcareMD Medical Practice<br>
+                <strong>Challenge:</strong> Modernize digital presence to reduce call volume and attract new patients<br>
+                <strong>Result:</strong> 40% reduction in front-desk calls, 25% increase in new patient inquiries
+            </div>
+            <div class="slide-number">1 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Agenda</h2>
+            <h3>UX Process Overview</h3>
+            <br>
+            <ul>
+                <li><strong>Discovery & Research</strong><br>Understanding user needs and business goals</li>
+                <li><strong>User Personas & Journey Maps</strong><br>Defining our target users and their experiences</li>
+                <li><strong>Information Architecture & Site Map</strong><br>Structuring content for clarity and findability</li>
+                <li><strong>Wireframes & Annotated Flows</strong><br>Designing intuitive interactions and layouts</li>
+                <li><strong>Outcomes & Impact</strong><br>Measuring success and lessons learned</li>
+            </ul>
+            <div class="slide-number">2 / 31</div>
+        </div>
+
+        <div class="slide">
+            <div class="section-divider"><i class="fas fa-magnifying-glass"></i></div>
+            <h1>DISCOVERY & RESEARCH</h1>
+            <h3>Understanding the Healthcare Landscape</h3>
+            <div class="slide-number">3 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>HealthcareMD Challenge</h2>
+            <div class="slide-2col">
+                <div class="slide-col-fill">
+                    <h3>Business Goals:</h3>
+                    <ul>
+                        <li>Reduce front-desk call volume by 30%</li>
+                        <li>Increase new patient acquisition by 20%</li>
+                        <li>Establish trustworthy online presence</li>
+                        <li>Shift 50%+ of bookings to online self-scheduling</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>User Goals:</h3>
+                    <ul>
+                        <li>Easily book appointments without calling</li>
+                        <li>Quickly find the right provider for specific needs</li>
+                        <li>Clearly understand services, pricing, and insurance coverage</li>
+                        <li>Access trustworthy health information without medical jargon</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">4 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Research Methodology</h2>
+            <h3>Comprehensive User Research</h3>
+            <div class="slide-2col">
+                <div>
+                    <h4>Quantitative Methods:</h4>
+                    <ul>
+                        <li>Online surveys (156 patients)</li>
+                        <li>Website analytics review</li>
+                        <li>A/B testing on competitor sites</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Qualitative Methods:</h4>
+                    <ul>
+                        <li>User interviews (12 patients)</li>
+                        <li>Usability testing (8 participants)</li>
+                        <li>Contextual inquiry sessions</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">5 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Key Research Insights</h2>
+            <div class="metric">
+                <div class="number">67%</div>
+                <div>of patients research providers online before their first call</div>
+            </div>
+            <div class="metric">
+                <div class="number">70%</div>
+                <div>of healthcare research occurs on smartphones</div>
+            </div>
+            <div class="highlight">
+                Top frustrations: Overwhelming homepages, unclear provider information, hidden pricing
+            </div>
+            <div class="slide-number">6 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Competitive Analysis</h2>
+            <h3>12 Competitor Websites Analyzed</h3>
+            <div class="slide-2col">
+                <div>
+                    <h4>Strengths Found:</h4>
+                    <ul>
+                        <li>Clear appointment booking widgets</li>
+                        <li>Provider photos and credentials</li>
+                        <li>Simple service explanations</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Opportunities Identified:</h4>
+                    <ul>
+                        <li>Poor mobile experiences (35% of sites)</li>
+                        <li>Hidden contact information</li>
+                        <li>Complex navigation requiring 3+ clicks</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">7 / 31</div>
+        </div>
+
+        <div class="slide">
+            <div class="section-divider"><i class="fas fa-users"></i></div>
+            <h1>USER PERSONAS & JOURNEY MAPS</h1>
+            <h3>Defining Our Target Users</h3>
+            <div class="slide-number">8 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Primary Persona: Sarah Martinez</h2>
+            <div class="slide-persona-grid">
+                <div>
+                    <h3>Demographics:</h3>
+                    <ul>
+                        <li>34-year-old marketing professional</li>
+                        <li>Managing Type 2 diabetes</li>
+                        <li>Heavy mobile user, tech-savvy</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Key Goals:</h3>
+                    <ul>
+                        <li>Schedule appointments quickly</li>
+                        <li>Find providers with specific expertise</li>
+                        <li>Access clear, jargon-free information</li>
+                        <li>Minimize administrative time</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="annotation">
+                <strong>Quote:</strong> "I need healthcare that's as easy as shopping online. Why should managing my health be more complicated than buying shoes?"
+            </div>
+            <div class="slide-number">9 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Secondary Persona: Robert Chen</h2>
+            <div class="slide-persona-grid">
+                <div>
+                    <h3>Demographics:</h3>
+                    <ul>
+                        <li>68-year-old retiree and caregiver</li>
+                        <li>Managing multiple chronic conditions</li>
+                        <li>Desktop-focused, needs accessibility</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Key Goals:</h3>
+                    <ul>
+                        <li>Understand complex services clearly</li>
+                        <li>Access large-print, easy-to-read info</li>
+                        <li>Find trustworthy providers</li>
+                        <li>Coordinate care for family</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="annotation">
+                <strong>Quote:</strong> "I want information I can share with my family easily. Everything should be straightforward and trustworthy."
+            </div>
+            <div class="slide-number">10 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Persona: Maria Rodriguez</h2>
+            <div class="slide-persona-grid">
+                <div>
+                    <h3>Demographics:</h3>
+                    <ul>
+                        <li>28-year-old new mother</li>
+                        <li>Seeking pediatrician for newborn</li>
+                        <li>Mobile-first, research-oriented</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Key Goals:</h3>
+                    <ul>
+                        <li>Find pediatric specialists with strong reputations</li>
+                        <li>Understand insurance coverage and costs clearly</li>
+                        <li>Access reliable newborn care information</li>
+                        <li>Make confident decisions for her child</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="annotation">
+                <strong>Quote:</strong> "How do I know I'm choosing the right doctor for my baby? Everything feels so important and confusing."
+            </div>
+            <div class="slide-number">11 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Persona: James Mitchell</h2>
+            <div class="slide-persona-grid">
+                <div>
+                    <h3>Demographics:</h3>
+                    <ul>
+                        <li>45-year-old small business owner</li>
+                        <li>Managing high blood pressure</li>
+                        <li>Laptop-primary, values efficiency</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Key Goals:</h3>
+                    <ul>
+                        <li>Book annual physicals with minimal back-and-forth</li>
+                        <li>Get clear cost estimates before appointments</li>
+                        <li>Access results and follow-ups without calling</li>
+                        <li>Complete tasks in a short time window</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="annotation">
+                <strong>Quote:</strong> "I have 20 minutes between meetings. If I can't book an appointment in that window, I'm calling your competitor."
+            </div>
+            <div class="slide-number">12 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Persona: Emily Torres</h2>
+            <div class="slide-persona-grid">
+                <div>
+                    <h3>Demographics:</h3>
+                    <ul>
+                        <li>22-year-old college student</li>
+                        <li>Navigating independent insurance for the first time</li>
+                        <li>Mobile-only, highly digital</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Key Goals:</h3>
+                    <ul>
+                        <li>Understand what her insurance actually covers</li>
+                        <li>Find an affordable provider near campus</li>
+                        <li>Know what to expect in plain language</li>
+                        <li>Avoid surprises on cost or process</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="annotation">
+                <strong>Quote:</strong> "I don't even know what a deductible is. The website should explain things like I've never done this before — because I haven't."
+            </div>
+            <div class="slide-number">13 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Emotional Journey Mapping</h2>
+            <h3>Healthcare Decision Process</h3>
+            <div class="slide-journey-grid">
+                <div class="journey-phase">
+                    <h4>Phase 1: Awareness</h4>
+                    <div class="journey-icon phase-danger"><i class="fas fa-triangle-exclamation"></i></div>
+                    <small>Feeling Overwhelmed</small>
+                </div>
+                <div class="journey-phase">
+                    <h4>Phase 2: Consideration</h4>
+                    <div class="journey-icon phase-warning"><i class="fas fa-circle-question"></i></div>
+                    <small>Feeling Uncertain</small>
+                </div>
+                <div class="journey-phase">
+                    <h4>Phase 3: Booking</h4>
+                    <div class="journey-icon phase-caution"><i class="fas fa-heart-pulse"></i></div>
+                    <small>Feeling Anxious</small>
+                </div>
+                <div class="journey-phase">
+                    <h4>Phase 4: Preparation</h4>
+                    <div class="journey-icon phase-success"><i class="fas fa-circle-check"></i></div>
+                    <small>Feeling Confident</small>
+                </div>
+            </div>
+            <div class="slide-number">14 / 31</div>
+        </div>
+
+        <div class="slide">
+            <div class="section-divider"><i class="fas fa-sitemap"></i></div>
+            <h1>INFORMATION ARCHITECTURE</h1>
+            <h3>Structuring Content for Clarity</h3>
+            <div class="slide-number">12 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Content Audit Results</h2>
+            <div class="metric">
+                <div class="number">47</div>
+                <div>pages of scattered content</div>
+            </div>
+            <div class="metric">
+                <div class="number">4.2</div>
+                <div>average clicks to complete basic tasks</div>
+            </div>
+            <br>
+            <h3>Issues Identified:</h3>
+            <ul>
+                <li>Service information buried 3-4 levels deep</li>
+                <li>Provider biographies scattered across pages</li>
+                <li>Contact information in 4 different locations</li>
+                <li>No clear content hierarchy</li>
+            </ul>
+            <div class="slide-number">13 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Site Map Redesign</h2>
+            <div class="wireframe">
+                <div>HealthcareMD (Homepage)</div>
+                <div>├── Find a Doctor - Provider search, profiles, reviews</div>
+                <div>├── Book Appointment - Online scheduling, availability</div>
+                <div>├── Services - Service explanations, pricing, FAQs</div>
+                <div>├── Insurance &amp; Billing - Coverage info, payment options</div>
+                <div>├── About Us - Credentials, team, facilities</div>
+                <div>├── Contact - Centralized contact information</div>
+                <div>└── Patient Resources - Forms, preparation guides, FAQs</div>
+            </div>
+            <div class="annotation">
+                <strong>Task-Based Organization:</strong> Structure around what users need to accomplish, not organizational departments
+            </div>
+            <div class="slide-number">17 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Navigation Improvements</h2>
+            <div class="metric">
+                <div class="number">2.1</div>
+                <div>average clicks after redesign (vs 4.2 before)</div>
+            </div>
+            <br>
+            <h3>Critical User Flows:</h3>
+            <ul>
+                <li><strong>Appointment Booking:</strong> Home → Book Appointment (2 clicks)</li>
+                <li><strong>Provider Research:</strong> Home → Find a Doctor → Profile (3 clicks)</li>
+                <li><strong>Service Information:</strong> Home → Services → Specific Service (3 clicks)</li>
+            </ul>
+            <div class="slide-number">18 / 31</div>
+        </div>
+
+        <div class="slide">
+            <div class="section-divider"><i class="fas fa-drafting-compass"></i></div>
+            <h1>WIRE FRAMES & FLOWS</h1>
+            <h3>Designing Intuitive Interactions</h3>
+            <div class="slide-number">19 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Design System Foundation</h2>
+            <h3>Mobile-First Healthcare Design</h3>
+            <div class="slide-2col">
+                <div>
+                    <h4>Visual Hierarchy:</h4>
+                    <ul>
+                        <li>Large, prominent action buttons</li>
+                        <li>Clear typographic scale</li>
+                        <li>Medical-appropriate contrast</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Color Psychology:</h4>
+                    <ul>
+                        <li>Navy blue (#1a365d) - Trust & authority</li>
+                        <li>Warm accent (#f59e0b) - Approachability</li>
+                        <li>High contrast - Accessibility</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">20 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Homepage Wireframe</h2>
+            <div class="wireframe">
+                <div>┌─────────────────────────────────────┐</div>
+                <div>│ HealthcareMD                       │ ← Clear branding establishes authority</div>
+                <div>│ Compassionate Care for All         │ ← Trust statement</div>
+                <div>│                                     │</div>
+                <div>│ [Emergency? Call 911]              │ ← Critical safety information</div>
+                <div>│                                     │</div>
+                <div>│ [Book Appointment] [Find Doctor]    │ ← Primary actions split by intent</div>
+                <div>│                                     │</div>
+                <div>│ + Same-Day Appointments Available  │ ← Social proof reduces anxiety</div>
+                <div>│ + 15+ Years Serving Community      │ ← Credibility indicators</div>
+                <div>│ + Most Insurance Plans Accepted    │ ← Practical reassurance</div>
+                <div>│                                     │</div>
+                <div>│ ──────────────────────────────────── │ ← Visual separation</div>
+                <div>│ Our Services: Family Medicine,      │ ← Progressive disclosure</div>
+                <div>│ Pediatrics, Internal Medicine       │ ← Essential info first</div>
+                <div>└─────────────────────────────────────┘</div>
+            </div>
+            <div class="annotation">
+                <strong>Trust Signals Above Fold:</strong> Healthcare decisions are high-stakes; patients need immediate confidence
+            </div>
+            <div class="slide-number">21 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Find a Doctor Flow</h2>
+            <h3>Step 1: Search Interface</h3>
+            <div class="wireframe">
+                <div>┌─────────────────────────────────────┐</div>
+                <div>│ [Search doctors...]                │ ← Simple entry point</div>
+                <div>│ ├─ Specialty: Family Medicine [v]  │ ← Smart defaults</div>
+                <div>│ ├─ Insurance: Accepted [v]         │ ← Practical filters</div>
+                <div>│ └─ Availability: Today [v]         │ ← Urgency consideration</div>
+                <div>│                                     │</div>
+                <div>│ Dr. Sarah Johnson                  │ ← Human faces build trust</div>
+                <div>│    Family Medicine · 4.8 (127)     │ ← Credibility metrics</div>
+                <div>│    "Takes time to explain clearly" │ ← Social proof</div>
+                <div>│                                     │</div>
+                <div>│ Dr. Michael Chen                   │ ← Multiple options reduce anxiety</div>
+                <div>│    Internal Medicine · 4.9 (89)    │ ← Quantitative validation</div>
+                <div>│    "Very thorough and patient"     │</div>
+                <div>└─────────────────────────────────────┘</div>
+            </div>
+            <div class="slide-number">22 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Provider Profile</h2>
+            <div class="wireframe">
+                <div>┌─────────────────────────────────────┐</div>
+                <div>│ [&lt;- Back to Search]               │ ← Clear navigation</div>
+                <div>│                                     │</div>
+                <div>│ Dr. Sarah Johnson                  │ ← Consistent branding</div>
+                <div>│ Family Medicine                    │ ← Clear specialty</div>
+                <div>│                                     │</div>
+                <div>│ 123 Medical Center Dr              │ ← Essential logistics</div>
+                <div>│ Hours: Mon-Fri 8AM-5PM             │ ← Clear availability</div>
+                <div>│ Phone: (555) 123-4567              │ ← Multiple contact options</div>
+                <div>│                                     │</div>
+                <div>│ Rating: 4.8 (127 reviews)          │ ← Social proof</div>
+                <div>│ "Dr. Johnson takes time to         │</div>
+                <div>│ explain everything clearly"        │ ← Authentic testimonials</div>
+                <div>│                                     │</div>
+                <div>│ [Book with Dr. Johnson]            │ ← Primary action prominent</div>
+                <div>│ [Send Message]                     │ ← Secondary communication</div>
+                <div>└─────────────────────────────────────┘</div>
+            </div>
+            <div class="slide-number">23 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Booking Flow</h2>
+            <h3>One-Page Booking Approach</h3>
+            <div class="wireframe">
+                <div>┌─────────────────────────────────────┐</div>
+                <div>│ Book Appointment                    │ ← Clear purpose</div>
+                <div>│                                     │</div>
+                <div>│ ┌─ Select Service ─┐               │ ← Logical flow</div>
+                <div>│ │ Family Medicine  │               │</div>
+                <div>│ │ Pediatrics       │               │</div>
+                <div>│ │ Urgent Care      │               │</div>
+                <div>│ └──────────────────┘               │</div>
+                <div>│                                     │</div>
+                <div>│ ┌─ Choose Provider ─┐              │ ← Smart filtering</div>
+                <div>│ │ Any Provider      │               │</div>
+                <div>│ │ Dr. Sarah Johnson │               │</div>
+                <div>│ └───────────────────┘              │</div>
+                <div>│                                     │</div>
+                <div>│ ┌─ Select Date/Time ─┐             │ ← Visual calendar</div>
+                <div>│ │ Today, 2:00 PM    │ ← Next available</div>
+                <div>│ │ Tomorrow, 9:00 AM │               │</div>
+                <div>│ │ [Calendar View]   │               │</div>
+                <div>│ └───────────────────┘              │</div>
+                <div>│                                     │</div>
+                <div>│ Cost: ~$150                        │ ← Transparency</div>
+                <div>│ Insurance: Accepted                │ ← Reassurance</div>
+                <div>│                                     │</div>
+                <div>│ [Confirm Booking]                  │ ← Single action</div>
+                <div>└─────────────────────────────────────┘</div>
+            </div>
+            <div class="slide-number">24 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Accessibility Features</h2>
+            <h3>Healthcare-Specific Inclusive Design</h3>
+            <div class="slide-2col">
+                <div>
+                    <h4>WCAG AA Compliance:</h4>
+                    <ul>
+                        <li>44px minimum touch targets</li>
+                        <li>4.5:1 contrast ratio</li>
+                        <li>Logical heading hierarchy</li>
+                        <li>Screen reader compatibility</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Healthcare Features:</h4>
+                    <ul>
+                        <li>Emergency information always visible</li>
+                        <li>Simple language options</li>
+                        <li>Family caregiver support</li>
+                        <li>Large text and high contrast</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-number">25 / 31</div>
+        </div>
+
+        <div class="slide">
+            <div class="section-divider"><i class="fas fa-chart-column"></i></div>
+            <h1>OUTCOMES & IMPACT</h1>
+            <h3>Measuring Success</h3>
+            <div class="slide-number">26 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Quantitative Results</h2>
+            <div class="slide-metrics-grid">
+                <div class="metric">
+                    <div class="number">89%</div>
+                    <div>Task completion rate (vs 45% before)</div>
+                </div>
+                <div class="metric">
+                    <div class="number">2.3 min</div>
+                    <div>Time on task (vs 4.1 min before)</div>
+                </div>
+                <div class="metric">
+                    <div class="number">73%</div>
+                    <div>Mobile usage (vs 48% before)</div>
+                </div>
+                <div class="metric">
+                    <div class="number">4.6/5</div>
+                    <div>User satisfaction rating</div>
+                </div>
+            </div>
+            <div class="slide-number">27 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Business Impact</h2>
+            <div class="slide-metrics-grid">
+                <div class="metric">
+                    <div class="number">40%</div>
+                    <div>Reduction in front-desk calls</div>
+                </div>
+                <div class="metric">
+                    <div class="number">25%</div>
+                    <div>Increase in new patient inquiries</div>
+                </div>
+                <div class="metric">
+                    <div class="number">65%</div>
+                    <div>Of appointments booked online</div>
+                </div>
+                <div class="metric">
+                    <div class="number">$50K</div>
+                    <div>Annual savings from reduced calls</div>
+                </div>
+            </div>
+            <div class="slide-number">28 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Patient Testimonials</h2>
+            <div class="annotation">
+                <strong>Sarah M.:</strong> "Finally, a doctor's website that doesn't make me feel stupid. Everything is clear and I could book my appointment in 2 minutes."
+            </div>
+            <div class="annotation">
+                <strong>Robert C.:</strong> "I can actually read this on my phone without squinting. And I found a great doctor for my grandson."
+            </div>
+            <div class="annotation">
+                <strong>Maria R.:</strong> "The reviews helped me choose the right pediatrician. No more guessing!"
+            </div>
+            <div class="annotation">
+                <strong>James M.:</strong> "Booked my annual physical in under three minutes during a coffee break. That's what I needed."
+            </div>
+            <div class="annotation">
+                <strong>Emily T.:</strong> "The insurance explainer actually made sense. I knew exactly what I'd owe before I even booked."
+            </div>
+            <div class="slide-number">29 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h2>Lessons Learned</h2>
+            <h3>What Worked Exceptionally Well:</h3>
+            <ul>
+                <li><strong>User-Centered Research:</strong> Data-driven decisions built stakeholder confidence</li>
+                <li><strong>Iterative Testing:</strong> Caught critical issues before launch</li>
+                <li><strong>Trust-Focused Design:</strong> Addressed healthcare-specific anxieties</li>
+                <li><strong>Mobile-First Philosophy:</strong> Met actual user behavior expectations</li>
+            </ul>
+            <div class="slide-number">30 / 31</div>
+        </div>
+
+        <div class="slide">
+            <h1>Thank You</h1>
+            <h2>Questions & Discussion</h2>
+            <br>
+            <div class="slide-center">
+                <strong>Keith Jeter</strong><br>
+                UX Designer & Healthcare Specialist<br>
+                galnova@gmail.com
+            </div>
+            <div class="slide-number">31 / 31</div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">Previous</button>
+        <span class="slide-counter" id="slide-counter">1 / 31</span>
+        <button class="nav-btn" onclick="nextSlide()">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const counter = document.getElementById('slide-counter');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'flex' : 'none';
+            });
+            counter.textContent = `${index + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
