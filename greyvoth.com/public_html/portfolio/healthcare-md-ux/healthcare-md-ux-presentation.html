@@ -145,6 +145,9 @@
 
         <div class="slide">
             <h2>Primary Persona: Sarah Martinez</h2>
+            <div class="slide-persona-img">
+                <img src="_img/sarah-martinez.jpg" alt="Sarah Martinez">
+            </div>
             <div class="slide-persona-grid">
                 <div>
                     <h3>Demographics:</h3>
@@ -172,6 +175,9 @@
 
         <div class="slide">
             <h2>Secondary Persona: Robert Chen</h2>
+            <div class="slide-persona-img">
+                <img src="_img/robert-chen.jpg" alt="Robert Chen">
+            </div>
             <div class="slide-persona-grid">
                 <div>
                     <h3>Demographics:</h3>
@@ -199,6 +205,9 @@
 
         <div class="slide">
             <h2>Persona: Maria Rodriguez</h2>
+            <div class="slide-persona-img">
+                <img src="_img/maria-rodriguez.jpg" alt="Maria Rodriguez">
+            </div>
             <div class="slide-persona-grid">
                 <div>
                     <h3>Demographics:</h3>
@@ -226,6 +235,9 @@
 
         <div class="slide">
             <h2>Persona: James Mitchell</h2>
+            <div class="slide-persona-img">
+                <img src="_img/james-mitchell.jpg" alt="James Mitchell">
+            </div>
             <div class="slide-persona-grid">
                 <div>
                     <h3>Demographics:</h3>
@@ -253,6 +265,9 @@
 
         <div class="slide">
             <h2>Persona: Emily Torres</h2>
+            <div class="slide-persona-img">
+                <img src="_img/emily-torres.jpg" alt="Emily Torres">
+            </div>
             <div class="slide-persona-grid">
                 <div>
                     <h3>Demographics:</h3>
@@ -401,105 +416,173 @@
 
         <div class="slide">
             <h2>Homepage Wireframe</h2>
-            <div class="wireframe">
-                <div>┌─────────────────────────────────────┐</div>
-                <div>│ HealthcareMD                       │ ← Clear branding establishes authority</div>
-                <div>│ Compassionate Care for All         │ ← Trust statement</div>
-                <div>│                                     │</div>
-                <div>│ [Emergency? Call 911]              │ ← Critical safety information</div>
-                <div>│                                     │</div>
-                <div>│ [Book Appointment] [Find Doctor]    │ ← Primary actions split by intent</div>
-                <div>│                                     │</div>
-                <div>│ + Same-Day Appointments Available  │ ← Social proof reduces anxiety</div>
-                <div>│ + 15+ Years Serving Community      │ ← Credibility indicators</div>
-                <div>│ + Most Insurance Plans Accepted    │ ← Practical reassurance</div>
-                <div>│                                     │</div>
-                <div>│ ──────────────────────────────────── │ ← Visual separation</div>
-                <div>│ Our Services: Family Medicine,      │ ← Progressive disclosure</div>
-                <div>│ Pediatrics, Internal Medicine       │ ← Essential info first</div>
-                <div>└─────────────────────────────────────┘</div>
-            </div>
-            <div class="annotation">
-                <strong>Trust Signals Above Fold:</strong> Healthcare decisions are high-stakes; patients need immediate confidence
+            <div class="slide-2col">
+                <div class="wf-screen">
+                    <div class="wf-topbar">
+                        <span class="wf-logo">HealthcareMD</span>
+                        <div class="wf-topnav">
+                            <span>Find a Doctor</span>
+                            <span>Services</span>
+                            <span>Contact</span>
+                        </div>
+                    </div>
+                    <div class="wf-hero">
+                        <div class="wf-headline">Compassionate Care for All</div>
+                        <div class="wf-subtext">Serving our community for 15+ years</div>
+                        <div class="wf-emergency"><i class="fas fa-triangle-exclamation"></i> Emergency? Call 911</div>
+                        <div class="wf-actions">
+                            <div class="wf-btn-primary">Book Appointment</div>
+                            <div class="wf-btn-secondary">Find Doctor</div>
+                        </div>
+                        <div class="wf-trust-list">
+                            <div class="wf-trust-item"><i class="fas fa-circle-check"></i> Same-Day Appointments Available</div>
+                            <div class="wf-trust-item"><i class="fas fa-circle-check"></i> 15+ Years Serving the Community</div>
+                            <div class="wf-trust-item"><i class="fas fa-circle-check"></i> Most Insurance Plans Accepted</div>
+                        </div>
+                    </div>
+                    <div class="wf-services-strip">Family Medicine &nbsp;&middot;&nbsp; Pediatrics &nbsp;&middot;&nbsp; Internal Medicine</div>
+                </div>
+                <ul>
+                    <li><strong>Clear branding</strong> establishes authority immediately</li>
+                    <li><strong>Emergency info</strong> always visible — critical safety signal</li>
+                    <li><strong>Split CTAs</strong> serve both booking and research intent</li>
+                    <li><strong>Social proof</strong> reduces patient anxiety above the fold</li>
+                    <li><strong>Services strip</strong> enables progressive content discovery</li>
+                </ul>
             </div>
             <div class="slide-number">21 / 31</div>
         </div>
 
         <div class="slide">
             <h2>Find a Doctor Flow</h2>
-            <h3>Step 1: Search Interface</h3>
-            <div class="wireframe">
-                <div>┌─────────────────────────────────────┐</div>
-                <div>│ [Search doctors...]                │ ← Simple entry point</div>
-                <div>│ ├─ Specialty: Family Medicine [v]  │ ← Smart defaults</div>
-                <div>│ ├─ Insurance: Accepted [v]         │ ← Practical filters</div>
-                <div>│ └─ Availability: Today [v]         │ ← Urgency consideration</div>
-                <div>│                                     │</div>
-                <div>│ Dr. Sarah Johnson                  │ ← Human faces build trust</div>
-                <div>│    Family Medicine · 4.8 (127)     │ ← Credibility metrics</div>
-                <div>│    "Takes time to explain clearly" │ ← Social proof</div>
-                <div>│                                     │</div>
-                <div>│ Dr. Michael Chen                   │ ← Multiple options reduce anxiety</div>
-                <div>│    Internal Medicine · 4.9 (89)    │ ← Quantitative validation</div>
-                <div>│    "Very thorough and patient"     │</div>
-                <div>└─────────────────────────────────────┘</div>
+            <div class="slide-2col">
+                <div class="wf-screen">
+                    <div class="wf-topbar">
+                        <span class="wf-logo">Find a Doctor</span>
+                    </div>
+                    <div class="wf-body">
+                        <div class="wf-search-input"><i class="fas fa-magnifying-glass"></i> &nbsp;Search doctors...</div>
+                        <div class="wf-filter-row">
+                            <div class="wf-filter-chip">Family Medicine <i class="fas fa-chevron-down"></i></div>
+                            <div class="wf-filter-chip">Insurance: Accepted <i class="fas fa-chevron-down"></i></div>
+                            <div class="wf-filter-chip">Today <i class="fas fa-chevron-down"></i></div>
+                        </div>
+                        <div class="wf-result-card">
+                            <div class="wf-avatar"></div>
+                            <div>
+                                <div class="wf-result-name">Dr. Sarah Johnson</div>
+                                <div class="wf-result-meta">Family Medicine &nbsp;&middot;&nbsp; 4.8 (127 reviews)</div>
+                                <div class="wf-result-quote">"Takes time to explain clearly"</div>
+                            </div>
+                        </div>
+                        <div class="wf-result-card">
+                            <div class="wf-avatar"></div>
+                            <div>
+                                <div class="wf-result-name">Dr. Michael Chen</div>
+                                <div class="wf-result-meta">Internal Medicine &nbsp;&middot;&nbsp; 4.9 (89 reviews)</div>
+                                <div class="wf-result-quote">"Very thorough and patient"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>Simple search entry</strong> lowers barrier to finding a provider</li>
+                    <li><strong>Smart filter chips</strong> surface specialty, insurance, and availability upfront</li>
+                    <li><strong>Avatar placeholders</strong> prime users to expect human faces — builds trust</li>
+                    <li><strong>Ratings and quotes</strong> provide credibility and social proof inline</li>
+                    <li><strong>Multiple results</strong> reduce anxiety by showing choice</li>
+                </ul>
             </div>
             <div class="slide-number">22 / 31</div>
         </div>
 
         <div class="slide">
             <h2>Provider Profile</h2>
-            <div class="wireframe">
-                <div>┌─────────────────────────────────────┐</div>
-                <div>│ [&lt;- Back to Search]               │ ← Clear navigation</div>
-                <div>│                                     │</div>
-                <div>│ Dr. Sarah Johnson                  │ ← Consistent branding</div>
-                <div>│ Family Medicine                    │ ← Clear specialty</div>
-                <div>│                                     │</div>
-                <div>│ 123 Medical Center Dr              │ ← Essential logistics</div>
-                <div>│ Hours: Mon-Fri 8AM-5PM             │ ← Clear availability</div>
-                <div>│ Phone: (555) 123-4567              │ ← Multiple contact options</div>
-                <div>│                                     │</div>
-                <div>│ Rating: 4.8 (127 reviews)          │ ← Social proof</div>
-                <div>│ "Dr. Johnson takes time to         │</div>
-                <div>│ explain everything clearly"        │ ← Authentic testimonials</div>
-                <div>│                                     │</div>
-                <div>│ [Book with Dr. Johnson]            │ ← Primary action prominent</div>
-                <div>│ [Send Message]                     │ ← Secondary communication</div>
-                <div>└─────────────────────────────────────┘</div>
+            <div class="slide-2col">
+                <div class="wf-screen">
+                    <div class="wf-back-link"><i class="fas fa-arrow-left"></i> Back to Search</div>
+                    <div class="wf-provider-header">
+                        <div class="wf-avatar-lg"></div>
+                        <div>
+                            <div class="wf-provider-name">Dr. Sarah Johnson</div>
+                            <div class="wf-provider-specialty">Family Medicine</div>
+                        </div>
+                    </div>
+                    <div class="wf-info-list">
+                        <div class="wf-info-row">
+                            <div class="wf-info-icon"><i class="fas fa-location-dot"></i></div>
+                            123 Medical Center Dr
+                        </div>
+                        <div class="wf-info-row">
+                            <div class="wf-info-icon"><i class="fas fa-clock"></i></div>
+                            Mon&ndash;Fri, 8AM&ndash;5PM
+                        </div>
+                        <div class="wf-info-row">
+                            <div class="wf-info-icon"><i class="fas fa-phone"></i></div>
+                            (555) 123-4567
+                        </div>
+                    </div>
+                    <div class="wf-rating-row"><i class="fas fa-star"></i> 4.8 &nbsp;&middot;&nbsp; 127 reviews</div>
+                    <div class="wf-testimonial">"Dr. Johnson takes time to explain everything clearly."</div>
+                    <div class="wf-cta-area">
+                        <div class="wf-btn-full-primary">Book with Dr. Johnson</div>
+                        <div class="wf-btn-full-secondary">Send Message</div>
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>Back link</strong> keeps users oriented within the flow</li>
+                    <li><strong>Large avatar</strong> humanizes the provider and builds trust</li>
+                    <li><strong>Logistics icons</strong> surface location, hours, and contact at a glance</li>
+                    <li><strong>Star rating + testimonial</strong> provide authentic social proof</li>
+                    <li><strong>Primary CTA prominent</strong> — secondary action clearly subordinate</li>
+                </ul>
             </div>
             <div class="slide-number">23 / 31</div>
         </div>
 
         <div class="slide">
             <h2>Booking Flow</h2>
-            <h3>One-Page Booking Approach</h3>
-            <div class="wireframe">
-                <div>┌─────────────────────────────────────┐</div>
-                <div>│ Book Appointment                    │ ← Clear purpose</div>
-                <div>│                                     │</div>
-                <div>│ ┌─ Select Service ─┐               │ ← Logical flow</div>
-                <div>│ │ Family Medicine  │               │</div>
-                <div>│ │ Pediatrics       │               │</div>
-                <div>│ │ Urgent Care      │               │</div>
-                <div>│ └──────────────────┘               │</div>
-                <div>│                                     │</div>
-                <div>│ ┌─ Choose Provider ─┐              │ ← Smart filtering</div>
-                <div>│ │ Any Provider      │               │</div>
-                <div>│ │ Dr. Sarah Johnson │               │</div>
-                <div>│ └───────────────────┘              │</div>
-                <div>│                                     │</div>
-                <div>│ ┌─ Select Date/Time ─┐             │ ← Visual calendar</div>
-                <div>│ │ Today, 2:00 PM    │ ← Next available</div>
-                <div>│ │ Tomorrow, 9:00 AM │               │</div>
-                <div>│ │ [Calendar View]   │               │</div>
-                <div>│ └───────────────────┘              │</div>
-                <div>│                                     │</div>
-                <div>│ Cost: ~$150                        │ ← Transparency</div>
-                <div>│ Insurance: Accepted                │ ← Reassurance</div>
-                <div>│                                     │</div>
-                <div>│ [Confirm Booking]                  │ ← Single action</div>
-                <div>└─────────────────────────────────────┘</div>
+            <div class="slide-2col">
+                <div class="wf-screen">
+                    <div class="wf-page-header">Book Appointment</div>
+                    <div class="wf-form-body">
+                        <div class="wf-form-group">
+                            <div class="wf-form-label">Select Service</div>
+                            <div class="wf-select-list">
+                                <div class="wf-select-option selected">Family Medicine</div>
+                                <div class="wf-select-option">Pediatrics</div>
+                                <div class="wf-select-option">Urgent Care</div>
+                            </div>
+                        </div>
+                        <div class="wf-form-group">
+                            <div class="wf-form-label">Choose Provider</div>
+                            <div class="wf-select-list">
+                                <div class="wf-select-option selected">Any Available Provider</div>
+                                <div class="wf-select-option">Dr. Sarah Johnson</div>
+                            </div>
+                        </div>
+                        <div class="wf-form-group">
+                            <div class="wf-form-label">Select Date &amp; Time</div>
+                            <div class="wf-time-slots">
+                                <div class="wf-time-slot selected">Today, 2:00 PM</div>
+                                <div class="wf-time-slot">Tomorrow, 9:00 AM</div>
+                                <div class="wf-time-slot link"><i class="fas fa-calendar"></i> View Full Calendar</div>
+                            </div>
+                        </div>
+                        <div class="wf-summary-box">
+                            <div class="wf-summary-item"><i class="fas fa-tag"></i> Est. Cost: ~$150</div>
+                            <div class="wf-summary-item"><i class="fas fa-shield-halved"></i> Insurance Accepted</div>
+                        </div>
+                        <div class="wf-btn-full-primary">Confirm Booking</div>
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>One-page flow</strong> eliminates multi-step drop-off</li>
+                    <li><strong>Logical step order</strong> — service → provider → time mirrors mental model</li>
+                    <li><strong>Smart defaults</strong> pre-select next available slot to reduce decisions</li>
+                    <li><strong>Cost transparency</strong> shown before confirmation to reduce financial anxiety</li>
+                    <li><strong>Single confirm action</strong> — no ambiguity at the critical moment</li>
+                </ul>
             </div>
             <div class="slide-number">24 / 31</div>
         </div>
