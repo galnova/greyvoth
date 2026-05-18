@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Greyvoth — Original characters and worlds by Keith Jeter. Hue Shift, Gods V. Men, The Legend of the Cursed Twelve." />
+  <title>Greyvoth — World of Grey</title>
+  <link rel="icon" href="greyvoth.com/public_html/assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,600;0,700;1,700&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── TOKENS ─────────────────────────────────────────────────────── */
+    :root {
+      --bg:          #F7F5F1;
+      --bg-lift:     #EAE8E3;
+      --accent:      #D2C200;
+      --accent-dk:   #594800;
+      --text-hi:     #070603;
+      --text-2:      #54524E;
+      --rule:        #D6D4D0;
+      --drench-bg:   #D2C200;
+      --drench-hi:   #060603;
+      --drench-2:    #261900;
+      --drench-rule: #968900;
+      --dark-bg:     #050403;
+      --dark-hi:     #EAE8E3;
+      --dark-2:      #9A9893;
+      --dark-3:      #5A5853;
+      --dark-rule:   #1D1A15;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-hi);
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 300;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── SCROLL PROGRESS ─────────────────────────────────────────────── */
+    .brand-bar {
+      position: fixed;
+      inset-block-start: 0; inset-inline: 0;
+      height: 3px;
+      background: #000;
+      z-index: 300;
+    }
+    .brand-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      transform-origin: left;
+      transform: scaleX(0);
+      will-change: transform;
+    }
+
+    /* ── CURSOR ──────────────────────────────────────────────────────── */
+    .c-cursor {
+      position: fixed; top: 0; left: 0;
+      width: 14px; height: 14px;
+      border: 1.5px solid var(--accent-dk);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%) scale(1);
+      transition: transform .25s cubic-bezier(.16,1,.3,1), background .2s ease, border-color .2s ease, opacity .2s ease;
+      will-change: transform, top, left;
+    }
+    .c-cursor.hovering { transform: translate(-50%,-50%) scale(2.8); background: rgba(210, 194, 0, 0.18); }
+    .c-cursor.on-dark  { border-color: var(--accent); }
+    .c-cursor.on-dark.hovering { background: rgba(210, 194, 0, 0.22); }
+
+    /* ── NAV ─────────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      inset-block-start: 3px; inset-inline: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.375rem 4rem;
+      border-bottom: 1px solid transparent;
+      transition: background .4s ease, border-color .4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(247, 245, 241, 0.93);
+      backdrop-filter: blur(18px);
+      border-color: var(--rule);
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.25rem;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--text-hi); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: .8125rem; letter-spacing: .055em; text-transform: uppercase;
+      color: var(--text-2); text-decoration: none; position: relative; padding-bottom: 2px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      inset-block-end: 0; inset-inline: 0;
+      height: 1px; background: var(--accent-dk);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .3s cubic-bezier(.16,1,.3,1);
+    }
+    .nav-links a:hover { color: var(--text-hi); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--text-hi); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-trigger {
+      font-size: .8125rem; letter-spacing: .055em; text-transform: uppercase;
+      color: var(--text-2); background: none; border: none; cursor: pointer;
+      font-family: 'Epilogue', sans-serif; padding: 0 0 2px;
+    }
+    .nav-dropdown-trigger:hover { color: var(--text-hi); }
+    .nav-dropdown-menu {
+      position: absolute; top: calc(100% + 1rem); left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+      background: rgba(247, 245, 241, 0.97);
+      border: 1px solid var(--rule); backdrop-filter: blur(18px);
+      min-width: 168px; display: flex; flex-direction: column;
+      z-index: 300; opacity: 0; pointer-events: none;
+      transition: opacity .2s ease, transform .25s cubic-bezier(.16,1,.3,1);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu {
+      opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0);
+    }
+    .nav-dropdown-menu a {
+      font-size: .75rem; letter-spacing: .055em; text-transform: uppercase;
+      color: var(--text-2); text-decoration: none; padding: .625rem 1.25rem;
+    }
+    .nav-dropdown-menu a::after { display: none; }
+    .nav-dropdown-menu a:hover { color: var(--text-hi); background: var(--bg-lift); }
+    .nav-cta {
+      font-size: .8125rem; letter-spacing: .04em;
+      padding: .5rem 1.25rem; border: 1px solid var(--text-hi);
+      color: var(--text-hi); text-decoration: none;
+      font-family: 'Epilogue', sans-serif; font-weight: 400;
+    }
+    .nav-cta:hover { background: var(--text-hi); color: var(--bg); }
+
+    /* ── HERO ────────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 54fr 46fr;
+      align-items: center;
+      padding: 8.5rem 4rem 5.5rem;
+      gap: 5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .hero-content { max-width: 600px; }
+    .hero-kicker {
+      font-size: .6875rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--accent-dk); font-weight: 400; margin-bottom: 2rem; min-height: 1em;
+    }
+    .hero-kicker::after { content: '|'; animation: blink .9s step-end infinite; }
+    .hero-kicker.done::after { display: none; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .hero-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: clamp(3.5rem, 7.5vw, 7.5rem);
+      line-height: .88; letter-spacing: -.01em;
+      text-transform: uppercase; color: var(--text-hi); margin-bottom: 2.5rem;
+    }
+    .hl-line { display: block; overflow: hidden; padding-bottom: .06em; }
+    .hl-inner { display: block; transform: translateY(108%); will-change: transform; }
+    .hl-inner.revealed { animation: slideUp .95s cubic-bezier(.16,1,.3,1) forwards; }
+    .hl-inner.em-word { color: var(--accent-dk); font-style: italic; }
+    @keyframes slideUp { to { transform: translateY(0); } }
+    .hero-sub {
+      font-size: clamp(1rem, 1.4vw, 1.125rem); color: var(--text-2);
+      line-height: 1.8; max-width: 48ch; margin-bottom: 3rem;
+      opacity: 0; transform: translateY(16px);
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 2rem;
+      opacity: 0; transform: translateY(16px);
+    }
+    .hero-visual {
+      aspect-ratio: 3 / 4; border: 1px solid var(--rule); overflow: hidden;
+      opacity: 0; will-change: transform, opacity;
+      transition: opacity .9s cubic-bezier(.16,1,.3,1);
+      box-shadow: 0 2px 4px rgba(7, 6, 3, 0.04), 0 8px 24px rgba(7, 6, 3, 0.07), 0 28px 72px rgba(7, 6, 3, 0.11);
+      max-width: 460px; justify-self: center;
+    }
+    .hero-visual.visible { opacity: 1; }
+    .hero-visual img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+    /* ── BUTTONS ─────────────────────────────────────────────────────── */
+    .btn-primary {
+      font-family: 'Epilogue', sans-serif; font-size: .875rem; font-weight: 500;
+      letter-spacing: .04em; padding: .9rem 2rem;
+      background: var(--text-hi); color: var(--bg); border: none; text-decoration: none; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--accent-dk); }
+    .btn-ghost {
+      font-size: .8125rem; color: var(--text-2); text-decoration: none;
+      letter-spacing: .04em; display: flex; align-items: center; gap: .4rem;
+    }
+    .btn-ghost::after { content: '→'; }
+    .btn-ghost:hover { color: var(--text-hi); }
+
+    /* ── SECTION HEADER (shared) ─────────────────────────────────────── */
+    .section-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      padding-bottom: 2.5rem; border-bottom: 1px solid var(--rule);
+    }
+    .section-label {
+      font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--text-2); font-weight: 400;
+    }
+    .section-count {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .75rem;
+      letter-spacing: .08em; color: var(--text-2);
+    }
+
+    /* ── PROJECTS — 3-column image cards ─────────────────────────────── */
+    .projects { border-bottom: 1px solid var(--rule); }
+    .projects .section-header { padding: 5rem 4rem 2.5rem; margin-bottom: 0; border-bottom-color: var(--rule); }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .project-card {
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+      border-top: 1px solid var(--rule);
+      border-right: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .project-card:last-child { border-right: none; }
+    .project-img {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--bg-lift);
+    }
+    .project-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center; display: block;
+      transition: transform .7s cubic-bezier(.16,1,.3,1);
+    }
+    .project-card:hover .project-img img { transform: scale(1.06); }
+    .project-body {
+      padding: 2rem 2rem 2.5rem;
+      border-top: 1px solid var(--rule);
+      background: var(--bg);
+      transition: background .3s ease;
+      flex: 1;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .project-card:hover .project-body { background: var(--bg-lift); }
+    .project-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .6875rem; font-weight: 600; letter-spacing: .16em;
+      color: var(--accent-dk); display: block;
+    }
+    .project-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.625rem, 2.2vw, 2.375rem);
+      font-weight: 700; line-height: .95; text-transform: uppercase;
+      letter-spacing: .02em; color: var(--text-hi); display: block;
+    }
+    .project-card:hover .project-name { color: var(--accent-dk); }
+    .project-desc {
+      font-size: .875rem; color: var(--text-2); line-height: 1.75;
+      display: block; flex: 1;
+    }
+    .project-link {
+      font-size: .6875rem; letter-spacing: .10em; text-transform: uppercase;
+      color: var(--accent-dk); display: flex; align-items: center; gap: .35rem;
+      margin-top: auto;
+    }
+    .project-link::after { 
+      content: '→';
+      margin-top: -2px;
+    }
+
+    /* ── SECTION HEADLINE (shared) ───────────────────────────────────── */
+    .section-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 5.5rem);
+      font-weight: 700; text-transform: uppercase;
+      line-height: .88; letter-spacing: -.01em;
+    }
+
+    /* ── ARTBOOKS — chartreuse drench, two cards ─────────────────────── */
+    .artbooks, .projects {
+      background: var(--drench-bg);
+      padding: 7rem 4rem;
+    }
+    .artbooks .section-header { border-bottom-color: var(--drench-rule); margin-bottom: 3rem; }
+    .artbooks .section-label { color: var(--drench-2); }
+    .artbooks .section-count { color: var(--drench-2); }
+    .artbooks-headline { color: var(--drench-hi); margin-bottom: 4rem; }
+    .artbooks-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10rem;
+      border-top: 1px solid var(--drench-rule);
+      padding-top: 3rem;
+    }
+    .artbook-card {
+      display: flex; flex-direction: column; gap: 1.75rem;
+      text-decoration: none;
+    }
+    .artbook-card-img {
+      overflow: hidden;
+      border: 5px solid #000;
+      box-shadow: 0 20px 64px rgba(6, 6, 3, 0.35);
+    }
+    .artbook-card-img img { width: 100%; display: block; }
+    .artbook-card-meta {
+      display: flex; flex-direction: column; gap: .875rem;
+    }
+    .artbook-edition {
+      font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--drench-2); font-weight: 400;
+    }
+    .artbook-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.625rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .02em;
+      color: var(--drench-hi); line-height: 1.05;
+    }
+    .artbook-btn {
+      font-family: 'Epilogue', sans-serif;
+      font-size: .875rem; font-weight: 500; letter-spacing: .04em;
+      padding: .875rem 2rem; background: var(--drench-hi);
+      color: var(--drench-bg); border: none; text-decoration: none;
+      display: inline-block; align-self: flex-start;
+    }
+    .artbook-btn:hover { background: #1B1B13; color: var(--accent); }
+
+    /* ── SWORDSAYERS CAROUSEL ────────────────────────────────────────── */
+    .carousel-section {
+      background: #fff;
+      padding: 7rem 4rem;
+      border-top: 1px solid var(--dark-rule);
+    }
+    .carousel-section .section-header { border-bottom-color: var(--dark-rule); }
+    .carousel-section .section-label,
+    .carousel-section .section-count { color: var(--dark-3); }
+    .carousel-sub {
+      font-size: .9375rem; color: var(--dark-2); font-weight: 300;
+      margin-top: 1.75rem; margin-bottom: 3rem;
+    }
+
+    .carousel-headline { color: var(--drench-hi); margin-bottom: 4rem; }
+    .c-track {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 5 / 2;
+      background: var(--dark-rule);
+    }
+    .c-slide { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; }
+    .c-slide.active { opacity: 1; }
+    .c-slide a { display: block; width: 100%; height: 100%; }
+    .c-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .c-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(5, 4, 3, 0.8);
+      border: 1px solid var(--dark-rule);
+      color: var(--dark-2); padding: .875rem 1.25rem;
+      cursor: pointer; z-index: 10; font-size: 1.1rem;
+      line-height: 1; font-family: 'Epilogue', sans-serif;
+    }
+    .c-btn:hover { color: var(--dark-hi); border-color: var(--dark-2); }
+    .c-btn-prev { left: 1.25rem; }
+    .c-btn-next { right: 1.25rem; }
+    .c-dots { display: flex; justify-content: center; gap: .75rem; margin-top: 1.75rem; }
+    .c-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--dark-rule); border: none; cursor: pointer; padding: 0;
+    }
+    .c-dot.active { background: var(--accent); }
+
+    /* ── EVEN MORE ───────────────────────────────────────────────────── */
+    .even-more { padding: 7rem 4rem; border-bottom: 1px solid var(--rule); }
+    .even-more .section-header { margin-bottom: 3.5rem; }
+    .more-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+    }
+    .more-tile {
+      position: relative; overflow: hidden;
+      aspect-ratio: 4 / 3;
+      display: block; text-decoration: none;
+      border-right: 1px solid var(--rule);
+      background: var(--bg-lift);
+    }
+    .more-tile:last-child { border-right: none; }
+    .more-tile img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center; display: block;
+      transition: transform .6s cubic-bezier(.16,1,.3,1);
+    }
+    .more-tile:hover img { transform: scale(1.07); }
+    .more-tile-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2.5rem 1rem .875rem;
+      background: linear-gradient(transparent, rgba(7, 6, 3, 0.80));
+      color: #EAE8E3;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.125rem;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+
+    /* ── PLATFORMS ───────────────────────────────────────────────────── */
+    .cta-strip {
+      background: var(--dark-bg);
+      padding: 7rem 4rem 5rem;
+      border-top: 1px solid var(--dark-rule);
+    }
+    .platforms-header {
+      display: flex; align-items: flex-end;
+      justify-content: space-between; gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    .cta-label {
+      font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--dark-3); margin-bottom: 1.75rem;
+    }
+    .cta-headline { font-size: clamp(2.75rem, 5.5vw, 5.5rem); line-height: .90; color: var(--dark-hi); }
+    .even-more .section-headline { color: var(--text-hi); margin-bottom: 3.5rem; }
+    .cta-action { flex-shrink: 0; align-self: flex-end; }
+    .btn-accent {
+      font-family: 'Epilogue', sans-serif; font-size: .875rem; font-weight: 500;
+      letter-spacing: .04em; padding: .9rem 2.25rem;
+      background: var(--accent); color: var(--drench-hi);
+      border: none; text-decoration: none; display: inline-block;
+    }
+    .btn-accent:hover { background: #BDAF00; }
+    .cta-patreon-note {
+      font-size: .75rem; color: var(--dark-3); margin-top: .75rem; letter-spacing: .04em;
+    }
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: .625rem;
+      border-top: 1px solid var(--dark-rule);
+      padding-top: 3rem;
+    }
+    .social-link {
+      font-size: .6875rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--dark-3); text-decoration: none;
+      border: 1px solid var(--dark-rule);
+      padding: .875rem 1rem; display: block; text-align: center;
+      font-family: 'Epilogue', sans-serif; font-weight: 400;
+      transition: color .2s ease, border-color .2s ease;
+    }
+    .social-link:hover { color: var(--dark-hi); border-color: var(--dark-2); }
+
+    /* ── FOOTER ──────────────────────────────────────────────────────── */
+    .footer {
+      background: var(--dark-bg);
+      padding: 3.5rem 4rem;
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: end; gap: 4rem;
+      border-top: 1px solid var(--dark-rule);
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: .75rem; }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--dark-hi); text-decoration: none;
+    }
+    .footer-tagline { font-size: .8125rem; color: var(--dark-3); max-width: 44ch; line-height: 1.65; }
+    .footer-copy { font-size: .75rem; color: #44423F; margin-top: 1.5rem; letter-spacing: .04em; }
+    .footer-nav { display: flex; flex-direction: column; align-items: flex-end; gap: .875rem; }
+    .footer-nav a { font-size: .8125rem; color: var(--dark-3); text-decoration: none; }
+    .footer-nav a:hover { color: var(--dark-hi); }
+
+    /* ── ANIMATIONS ──────────────────────────────────────────────────── */
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeUp .75s cubic-bezier(.16,1,.3,1) forwards; }
+
+    /* ── REDUCED MOTION ──────────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .hl-inner { transform: none !important; }
+      .hero-sub, .hero-actions, .hero-visual { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .project-grid { grid-template-columns: 1fr 1fr; }
+      .project-card:nth-child(2) { border-right: none; }
+      .project-card:nth-child(3) { border-right: none; border-top: 1px solid var(--rule); }
+    }
+
+    @media (max-width: 960px) {
+      body { cursor: auto; }
+      .c-cursor { display: none; }
+      .nav { padding: 1.25rem 2rem; }
+      .nav-links { display: none; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 7.5rem 2rem 4.5rem; gap: 3rem; }
+      .hero-visual { aspect-ratio: 4/3; max-width: 100%; justify-self: stretch; }
+
+      .projects .section-header { padding: 4rem 2rem 2rem; }
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card { border-right: none; }
+      .project-card:nth-child(n) { border-top: 1px solid var(--rule); }
+
+      .artbooks { padding: 5.5rem 2rem; }
+      .artbooks-cards { grid-template-columns: 1fr; gap: 3.5rem; }
+
+      .carousel-section { padding: 5rem 2rem; }
+      .c-track { aspect-ratio: 16/7; }
+
+      .even-more { padding: 5rem 2rem; }
+      .more-grid { grid-template-columns: repeat(2, 1fr); }
+      .more-tile:nth-child(2) { border-right: none; }
+      .more-tile:nth-child(3) { border-top: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+      .more-tile:nth-child(4) { border-top: 1px solid var(--rule); border-right: none; }
+
+      .cta-strip { padding: 5rem 2rem; }
+      .platforms-header { flex-direction: column; align-items: flex-start; }
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .footer { padding: 3rem 2rem; grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-nav { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 1.25rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="brand-bar" aria-hidden="true">
+    <div class="brand-bar-fill" id="progress-fill"></div>
+  </div>
+
+  <nav class="nav" id="site-nav" aria-label="Main navigation">
+    <a class="nav-logo" href="/">Greyvoth</a>
+    <ul class="nav-links">
+      <li><a href="greyvoth.com/public_html/about.html">GreyFacts</a></li>
+      <li><a href="#projects" data-nav="projects">Projects</a></li>
+      <li><a href="https://thehueshift.com" target="_blank" rel="noopener noreferrer">Hue Shift</a></li>
+      <li><a href="https://godsvmen.com" target="_blank" rel="noopener noreferrer">Gods V. Men</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown-trigger" aria-haspopup="true">More ↓</button>
+        <div class="nav-dropdown-menu" role="menu">
+          <a href="greyvoth.com/public_html/concept.html" role="menuitem">Concept Art</a>
+          <a href="greyvoth.com/public_html/old.html" role="menuitem">Legacy Art</a>
+          <a href="greyvoth.com/public_html/drawsesh.html" role="menuitem">DrawSesh</a>
+          <a href="greyvoth.com/public_html/lotct/lotct-landing.html" role="menuitem">LOTCT</a>
+          <a href="greyvoth.com/public_html/ai-services.html" target="_blank" rel="noopener noreferrer" role="menuitem">AI Consulting</a>
+        </div>
+      </li>
+    </ul>
+    <a class="nav-cta" href="#platforms">Support</a>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <p class="hero-kicker" id="hero-kicker" aria-label="Original character creator"></p>
+      <h1 class="hero-headline">
+        <span class="hl-line"><span class="hl-inner">World</span></span>
+        <span class="hl-line"><span class="hl-inner">of</span></span>
+        <span class="hl-line"><span class="hl-inner em-word">Grey.</span></span>
+      </h1>
+      <p class="hero-sub" id="hero-sub">
+        I'm Keith Jeter — illustrator and creator of original characters. Three worlds built from imagination alone. Connect with me after you check out my work.
+      </p>
+      <div class="hero-actions" id="hero-actions">
+        <a class="btn-primary" href="#projects">Explore my work</a>
+        <a class="btn-ghost" href="#platforms">Support on Patreon</a>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="hero-visual" role="img" aria-label="Original character artwork from Gods V. Men by Keith Jeter">
+      <img src="https://godsvmen.com/img/2025/ignis-smile-sm.png" alt="" loading="eager" decoding="async" />
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ───────────────────────────────────────────────────────── -->
+  <section class="projects" id="projects">
+    <!-- <header class="section-header">
+      <span class="section-label">Worlds</span>
+      <span class="section-count">03 series</span>
+    </header> -->
+    <h2 class="section-headline artbooks-headline">My Current Projects</h2>
+    <div class="project-grid">
+      <a class="project-card" href="https://thehueshift.com" target="_blank" rel="noopener noreferrer">
+        <div class="project-img">
+          <img src="https://thehueshift.com/_img/HueShift-Cast-4-sm.jpg" alt="Hue Shift cast artwork by Keith Jeter" loading="lazy" decoding="async" />
+        </div>
+        <div class="project-body">
+          <!-- <span class="project-num">01</span> -->
+          <span class="project-name">Hue Shift</span>
+          <span class="project-desc">A webcomic built on color theory and urban fantasy. Each character's power is tied to the visible spectrum.</span>
+          <span class="project-link">Visit Hue Shift</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="https://godsvmen.com" target="_blank" rel="noopener noreferrer">
+        <div class="project-img">
+          <img src="https://godsvmen.com/img/2025/ignis-smile-sm.png" alt="Gods V. Men SwordSayers artwork by Keith Jeter" loading="lazy" decoding="async" />
+        </div>
+        <div class="project-body">
+          <!-- <span class="project-num">02</span> -->
+          <span class="project-name">Gods V. Men</span>
+          <span class="project-desc">Ancient gods and mortal heroes clash across generations. Every deity, every conflict, every consequence rebuilt from scratch.</span>
+          <span class="project-link">Visit Gods V. Men</span>
+        </div>
+      </a>
+
+      <a class="project-card" href="greyvoth.com/public_html/lotct/lotct-landing.html">
+        <div class="project-img">
+          <img src="greyvoth.com/public_html/A24/ced-roman.png" alt="Legend of the Cursed Twelve artwork by Keith Jeter" loading="lazy" decoding="async" />
+        </div>
+        <div class="project-body">
+          <!-- <span class="project-num">03</span> -->
+          <span class="project-name">Legend of the Cursed Twelve</span>
+          <span class="project-desc">Twelve warriors, each bound to an ancient curse. An epic fantasy series on the edge of collapse.</span>
+          <span class="project-link">Explore LOTCT</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── ARTBOOKS ───────────────────────────────────────────────────────── -->
+  <section class="artbooks" id="artbooks">
+    <!-- <header class="section-header">
+      <span class="section-label">Artbooks</span>
+      <span class="section-count">02 editions</span>
+    </header> -->
+    <h2 class="section-headline artbooks-headline">The SwordSayers<br>Compendium</h2>
+
+    <div class="artbooks-cards">
+      <a class="artbook-card" href="https://a.co/d/e2XDe4K" target="_blank" rel="noopener noreferrer">
+        <div class="artbook-card-img">
+          <img src="greyvoth.com/public_html/A25/godsvmencover.png" alt="Gods V. Men: The SwordSayers Compendium, print edition" loading="lazy" decoding="async" />
+        </div>
+        <div class="artbook-card-meta">
+          <span class="artbook-edition">Print Edition</span>
+          <span class="artbook-title">Gods V. Men: The SwordSayers Compendium</span>
+          <span class="artbook-btn">Buy on Amazon</span>
+        </div>
+      </a>
+
+      <a class="artbook-card" href="https://www.amazon.com/dp/B0DYGB5WRM" target="_blank" rel="noopener noreferrer">
+        <div class="artbook-card-img">
+          <img src="greyvoth.com/public_html/A25/godsvmencover-2.png" alt="Gods V. Men: The SwordSayers Compendium, digital edition" loading="lazy" decoding="async" />
+        </div>
+        <div class="artbook-card-meta">
+          <span class="artbook-edition">Digital Edition</span>
+          <span class="artbook-title">Gods V. Men: The SwordSayers Compendium</span>
+          <span class="artbook-btn">Buy on Amazon</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── SWORDSAYERS CAROUSEL ──────────────────────────────────────────── -->
+  <section class="carousel-section" id="swordsayers">
+    <!-- <header class="section-header">
+      <span class="section-label">The SwordSayers</span>
+      <span class="section-count">05 images</span>
+    </header> -->
+    <h2 class="section-headline carousel-headline">The SwordSayers Universe</h2>
+    <p class="carousel-sub">Warriors bound by blood and steel. A closer look at the SwordSayers universe.</p>
+
+    <div role="region" aria-label="SwordSayers artwork carousel">
+      <div class="c-track">
+        <div class="c-slide active">
+          <a href="https://godsvmen.com" target="_blank" rel="noopener noreferrer">
+            <img src="greyvoth.com/public_html/A25/grey-banner-1.png" alt="SwordSayers artwork 1" loading="eager" decoding="async" />
+          </a>
+        </div>
+        <div class="c-slide">
+          <a href="https://godsvmen.com" target="_blank" rel="noopener noreferrer" tabindex="-1">
+            <img src="greyvoth.com/public_html/A25/grey-banner-2.png" alt="SwordSayers artwork 2" loading="lazy" decoding="async" />
+          </a>
+        </div>
+        <div class="c-slide">
+          <a href="https://godsvmen.com" target="_blank" rel="noopener noreferrer" tabindex="-1">
+            <img src="greyvoth.com/public_html/A25/grey-banner-3.png" alt="SwordSayers artwork 3" loading="lazy" decoding="async" />
+          </a>
+        </div>
+        <div class="c-slide">
+          <a href="https://godsvmen.com" target="_blank" rel="noopener noreferrer" tabindex="-1">
+            <img src="greyvoth.com/public_html/A25/grey-banner-4.png" alt="SwordSayers artwork 4" loading="lazy" decoding="async" />
+          </a>
+        </div>
+        <div class="c-slide">
+          <a href="https://godsvmen.com" target="_blank" rel="noopener noreferrer" tabindex="-1">
+            <img src="greyvoth.com/public_html/A25/grey-banner-5.png" alt="SwordSayers artwork 5" loading="lazy" decoding="async" />
+          </a>
+        </div>
+        <button class="c-btn c-btn-prev" aria-label="Previous slide">←</button>
+        <button class="c-btn c-btn-next" aria-label="Next slide">→</button>
+      </div>
+      <div class="c-dots" role="tablist" aria-label="Select slide">
+        <button class="c-dot active" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
+        <button class="c-dot"        role="tab" aria-selected="false" aria-label="Slide 2"></button>
+        <button class="c-dot"        role="tab" aria-selected="false" aria-label="Slide 3"></button>
+        <button class="c-dot"        role="tab" aria-selected="false" aria-label="Slide 4"></button>
+        <button class="c-dot"        role="tab" aria-selected="false" aria-label="Slide 5"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EVEN MORE ──────────────────────────────────────────────────────── -->
+  <section class="even-more" id="more">
+    <!-- <header class="section-header">
+      <span class="section-label">Even More</span>
+      <span class="section-count">04 sections</span>
+    </header> -->
+    <h2 class="section-headline">Even More</h2>
+    <div class="more-grid">
+      <a class="more-tile" href="greyvoth.com/public_html/about.html" aria-label="About Keith Jeter">
+        <img src="greyvoth.com/public_html/assets/img/portfolio/port-2.png" alt="" loading="lazy" decoding="async" />
+        <span class="more-tile-label">About Me</span>
+      </a>
+      <a class="more-tile" href="greyvoth.com/public_html/concept.html" aria-label="Concept art work in progress">
+        <img src="greyvoth.com/public_html/concept_images/digital-duo.PNG" alt="" loading="lazy" decoding="async" />
+        <span class="more-tile-label">Concept WIP</span>
+      </a>
+      <a class="more-tile" href="greyvoth.com/public_html/old.html" aria-label="Legacy art archive">
+        <img src="greyvoth.com/public_html/nu_images/gd_22.png" alt="" loading="lazy" decoding="async" />
+        <span class="more-tile-label">Legacy Art</span>
+      </a>
+      <a class="more-tile" href="greyvoth.com/public_html/dad/" target="_blank" rel="noopener noreferrer" aria-label="Dad — Dungeon a Day">
+        <img src="greyvoth.com/public_html/dad/_img/dad-final.png" alt="" loading="lazy" decoding="async" />
+        <span class="more-tile-label">Dad</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── PLATFORMS ──────────────────────────────────────────────────────── -->
+  <section class="cta-strip" id="platforms">
+    <div class="platforms-header">
+      <div>
+        <!-- <p class="cta-label">Stay connected< -->
+        <h2 class="section-headline cta-headline">Follow<br>&amp; Support.</h2>
+      </div>
+      <div class="cta-action">
+        <a class="btn-accent" href="https://www.patreon.com/greyvoth" target="_blank" rel="noopener noreferrer">Join on Patreon</a>
+        <p class="cta-patreon-note">Exclusive content, early access, and more.</p>
+      </div>
+    </div>
+    <div class="social-grid">
+      <a class="social-link" href="https://www.paypal.me/greyvoth"                 target="_blank" rel="noopener noreferrer">Donate</a>
+      <a class="social-link" href="https://www.amazon.com/dp/B0DPVTSXRN"          target="_blank" rel="noopener noreferrer">GVM Merch</a>
+      <a class="social-link" href="https://www.amazon.com/dp/B0DR9K1DTL"          target="_blank" rel="noopener noreferrer">Greyvoth Merch</a>
+      <a class="social-link" href="https://www.amazon.com/dp/B0F276HNG7"          target="_blank" rel="noopener noreferrer">Drawsesh Merch</a>
+      <a class="social-link" href="https://www.amazon.com/dp/B0DT93TFLK"          target="_blank" rel="noopener noreferrer">Artbook</a>
+      <a class="social-link" href="https://www.tiktok.com/@greyvoth"              target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a class="social-link" href="https://www.youtube.com/user/riotgear2007"     target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a class="social-link" href="https://www.instagram.com/greyvoth"            target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a class="social-link" href="https://bsky.app/profile/greyvoth.bsky.social" target="_blank" rel="noopener noreferrer">BlueSky</a>
+      <a class="social-link" href="https://www.linkedin.com/in/keith-jeter/"      target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <a class="footer-logo" href="/">Greyvoth</a>
+      <p class="footer-tagline">Original characters and worlds by Keith Jeter. Always building.</p>
+      <p class="footer-copy">© <span id="year"></span> Greyvoth. All Rights Reserved.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <a href="greyvoth.com/public_html/about.html">GreyFacts</a>
+      <a href="greyvoth.com/public_html/concept.html">Concept Art</a>
+      <a href="greyvoth.com/public_html/old.html">Legacy Art</a>
+      <a href="greyvoth.com/public_html/lotct/lotct-landing.html">LOTCT</a>
+      <a href="https://thehueshift.com" target="_blank" rel="noopener noreferrer">Hue Shift</a>
+      <a href="https://godsvmen.com"    target="_blank" rel="noopener noreferrer">Gods V. Men</a>
+    </nav>
+  </footer>
+
+  <script>
+    (function () {
+      const rmq = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const pfq = window.matchMedia('(pointer: fine)').matches;
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      /* ── SCROLL PROGRESS ────────────────────────── */
+      const fill = document.getElementById('progress-fill');
+      function updateProgress() {
+        const max = document.body.scrollHeight - window.innerHeight;
+        fill.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+      }
+
+      /* ── NAV + PARALLAX ─────────────────────────── */
+      const nav = document.getElementById('site-nav');
+      const heroVis = document.getElementById('hero-visual');
+      window.addEventListener('scroll', () => {
+        updateProgress();
+        nav.classList.toggle('scrolled', window.scrollY > 56);
+        if (!rmq && heroVis) heroVis.style.transform = `translateY(${window.scrollY * .08}px)`;
+      }, { passive: true });
+
+      /* ── CURSOR ─────────────────────────────────── */
+      if (pfq) {
+        const cur = document.createElement('div');
+        cur.className = 'c-cursor';
+        cur.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(cur);
+        let mx = -100, my = -100, cx = -100, cy = -100, raf;
+        document.addEventListener('mousemove', e => {
+          mx = e.clientX; my = e.clientY;
+          if (!raf) raf = requestAnimationFrame(move);
+        });
+        function move() {
+          raf = null;
+          cx += (mx - cx) * .18; cy += (my - cy) * .18;
+          cur.style.left = cx + 'px'; cur.style.top = cy + 'px';
+          if (Math.abs(mx - cx) > .5 || Math.abs(my - cy) > .5) raf = requestAnimationFrame(move);
+        }
+        document.querySelectorAll('a, button').forEach(el => {
+          el.addEventListener('mouseenter', () => cur.classList.add('hovering'));
+          el.addEventListener('mouseleave', () => cur.classList.remove('hovering'));
+        });
+        const darkSet = new Set();
+        const dkObs = new IntersectionObserver(entries => {
+          entries.forEach(e => e.isIntersecting ? darkSet.add(e.target) : darkSet.delete(e.target));
+          cur.classList.toggle('on-dark', darkSet.size > 0);
+        }, { threshold: .1 });
+        document.querySelectorAll('.carousel-section, .cta-strip, .footer').forEach(s => dkObs.observe(s));
+        document.addEventListener('mouseleave', () => { cur.style.opacity = '0'; });
+        document.addEventListener('mouseenter', () => { cur.style.opacity = '1'; });
+      } else {
+        document.body.style.cursor = 'auto';
+      }
+
+      /* ── TYPEWRITER ──────────────────────────────── */
+      const kicker = document.getElementById('hero-kicker');
+      const ktext  = 'Original character creator';
+      function type(i) {
+        kicker.textContent = ktext.slice(0, i);
+        if (i === ktext.length) { kicker.classList.add('done'); return; }
+        setTimeout(() => type(i + 1), rmq ? 0 : 42);
+      }
+      setTimeout(() => type(0), rmq ? 0 : 300);
+
+      /* ── HEADLINE REVEAL ─────────────────────────── */
+      document.querySelectorAll('.hl-inner').forEach((el, i) => {
+        setTimeout(() => el.classList.add('revealed'), rmq ? 0 : 360 + i * 145);
+      });
+
+      /* ── HERO FADE IN ───────────────────────────── */
+      const heroSub = document.getElementById('hero-sub');
+      const heroAct = document.getElementById('hero-actions');
+      setTimeout(() => heroSub.classList.add('fade-in'), rmq ? 0 : 800);
+      setTimeout(() => heroAct.classList.add('fade-in'), rmq ? 0 : 950);
+      setTimeout(() => { if (heroVis) heroVis.classList.add('visible'); }, rmq ? 0 : 500);
+
+      /* ── ACTIVE NAV ──────────────────────────────── */
+      const navLinks = document.querySelectorAll('.nav-links a[data-nav]');
+      const projSec  = document.getElementById('projects');
+      if (projSec && navLinks.length) {
+        new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            navLinks.forEach(a => a.classList.toggle('active', e.isIntersecting && a.dataset.nav === e.target.id));
+          });
+        }, { threshold: .3 }).observe(projSec);
+      }
+
+      /* ── CAROUSEL ────────────────────────────────── */
+      const slides = Array.from(document.querySelectorAll('.c-slide'));
+      const dots   = Array.from(document.querySelectorAll('.c-dot'));
+      let cur2 = 0, timer;
+      function goTo(n) {
+        slides[cur2].classList.remove('active');
+        slides[cur2].querySelector('a').tabIndex = -1;
+        dots[cur2].classList.remove('active');
+        dots[cur2].setAttribute('aria-selected', 'false');
+        cur2 = (n + slides.length) % slides.length;
+        slides[cur2].classList.add('active');
+        slides[cur2].querySelector('a').tabIndex = 0;
+        dots[cur2].classList.add('active');
+        dots[cur2].setAttribute('aria-selected', 'true');
+      }
+      function restart() { clearInterval(timer); timer = setInterval(() => goTo(cur2 + 1), 4200); }
+      document.querySelector('.c-btn-prev').addEventListener('click', () => { goTo(cur2 - 1); restart(); });
+      document.querySelector('.c-btn-next').addEventListener('click', () => { goTo(cur2 + 1); restart(); });
+      dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); restart(); }));
+      if (!rmq) restart();
+
+    })();
+  </script>
+
+</body>
+</html>
