@@ -758,11 +758,6 @@ body.page-document .header .subtitle {
     border-left: 3px solid #3b82f6;
     border-radius: 8px;
     padding: 14px 16px;
-    transition: background 0.2s;
-}
-
-.toc li:hover {
-    background: #eff6ff;
 }
 
 .toc li::before {
@@ -940,6 +935,84 @@ body.page-document .wireframe {
     border: 1px solid rgba(148, 163, 184, 0.2);
     max-width: 600px;
     white-space: pre-wrap;
+}
+
+.sitemap {
+    margin: 20px 0 25px;
+    max-width: 600px;
+}
+
+.sitemap-root {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #1a365d;
+    color: white;
+    font-weight: 600;
+    padding: 12px 18px;
+    border-radius: 8px;
+}
+
+.sitemap-children {
+    list-style: none;
+    margin: 0 0 0 22px;
+    padding: 8px 0 0;
+    border-left: 2px solid #cbd5e1;
+}
+
+.sitemap-children li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 8px 24px;
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-left: 3px solid #3b82f6;
+    border-radius: 8px;
+}
+
+.sitemap-children li:last-child {
+    margin-bottom: 0;
+}
+
+/* horizontal connector from the trunk to each card */
+.sitemap-children li::before {
+    content: '';
+    position: absolute;
+    left: -26px;
+    top: 50%;
+    width: 24px;
+    border-top: 2px solid #cbd5e1;
+}
+
+/* hide the trunk below the last card's connector */
+.sitemap-children li:last-child::after {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: calc(50% + 2px);
+    bottom: -2px;
+    width: 4px;
+    background: #fff;
+}
+
+.sitemap-children i {
+    color: #1d4ed8;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.sitemap-children strong {
+    display: block;
+    color: #0f172a;
+}
+
+.sitemap-children span {
+    font-size: 0.88em;
+    color: #64748b;
 }
 
 body.page-document .wireframe:has(.wf-screen) {
