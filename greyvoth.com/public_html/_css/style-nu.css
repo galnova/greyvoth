@@ -277,6 +277,34 @@ a:hover {
   text-decoration: none;
 }
 
+/* Current page: highlighted, not a link */
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link.active:hover {
+  position: relative;
+  color: #fff;
+  background: none;
+  cursor: default;
+}
+
+.navbar-dark .navbar-nav .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.35rem;
+  width: 18px;
+  height: 2px;
+  margin-left: -9px;
+  border-radius: 2px;
+  background: var(--gv-accent);
+}
+
+@media (max-width: 991.98px) {
+  .navbar-dark .navbar-nav .nav-link.active::after {
+    left: 0.85rem;
+    margin-left: 0;
+  }
+}
+
 .navbar-nav .dropdown-menu {
   background: rgba(10, 10, 14, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.14);
