@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat Assistant Case Study</title>
+    <meta name="description" content="Case study: AI Chat Assistant for the Member Portal. Blue Cross Blue Shield of Michigan, 2026.">
+    <link rel="stylesheet" href="../healthcare-md-ux/healthcare-ux.css">
+    <link rel="stylesheet" href="ai-chat-assistant.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600&family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="../case-study-theme.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="page-document">
+    <button type="button" class="print-btn" onclick="window.print()">Print Document</button>
+
+    <div class="document">
+        <header class="header">
+            <h1>AI Chat Assistant for the Member Portal</h1>
+            <p class="subtitle">By Keith Jeter</p>
+            <p class="confidential-note">Screens shown are recreated for confidentiality. No member data or internal assets are used.</p>
+        </header>
+
+        <div class="meta-info meta-info-3">
+            <div class="meta-item">
+                <i class="fas fa-building meta-icon" aria-hidden="true"></i>
+                <div class="label">Company</div>
+                <div class="value">Blue Cross Blue Shield of Michigan</div>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-calendar-days meta-icon" aria-hidden="true"></i>
+                <div class="label">Year</div>
+                <div class="value">2026</div>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-rocket meta-icon" aria-hidden="true"></i>
+                <div class="label">Status</div>
+                <div class="value">Pilot launched to 1,000 members</div>
+            </div>
+        </div>
+
+        <main>
+            <section class="section" aria-labelledby="my-role">
+                <h2 id="my-role">My role</h2>
+                <p class="role-summary">Member Portal subject-matter expert · HTML prototyping · Accessibility and functional QA</p>
+                <p>I was the team's <strong>Member Portal expert</strong>. I knew how the portal's pages, patterns and edge cases worked, so I made sure the chat experience fit them.</p>
+                <p>I took the team's designs and <strong>built the chat components as working HTML prototypes</strong>, so we could test real behavior instead of static screens.</p>
+            </section>
+
+            <section class="section" aria-labelledby="team">
+                <h2 id="team">Team</h2>
+                <p>UX Manager, 2 UX Designers, Content Writer, me</p>
+            </section>
+
+            <section class="section" aria-labelledby="challenge">
+                <h2 id="challenge">The challenge</h2>
+                <p>BCBSM was adding an AI chat assistant to its member portal, used by millions of members. The assistant had to fit into an experience members already knew and meet strict accessibility and compliance standards. It also had to work inside existing portal systems that weren't built for it.</p>
+
+                <figure class="case-figure">
+                    <img src="images/placeholder-1.png" width="1600" height="1000" loading="lazy" alt="Recreated portal page showing the AI chat assistant entry point, in its closed state and its open state.">
+                    <figcaption>The chat entry point on a portal page (closed and open states)</figcaption>
+                </figure>
+            </section>
+
+            <section class="section" aria-labelledby="what-i-did">
+                <h2 id="what-i-did">What I did</h2>
+                <ul>
+                    <li><strong>Built the components in code.</strong> I built the chat window, message bubbles, input and states as interactive HTML prototypes based on the team's designs.</li>
+                    <li><strong>Tested accessibility myself.</strong> I checked keyboard navigation, screen-reader output, focus order and contrast on every piece I built before it moved forward.</li>
+                    <li><strong>Verified functionality before handoff.</strong> I confirmed every component behaved as intended, so engineers received prototypes that were already tested, not just specs.</li>
+                    <li><strong>Kept it consistent with the portal.</strong> I made sure the chat matched existing portal patterns, so it felt native rather than bolted on.</li>
+                </ul>
+
+                <figure class="case-figure">
+                    <img src="images/placeholder-2.png" width="1600" height="1000" loading="lazy" alt="Recreated chat conversation: a member's question, the assistant's answer, and follow-up suggestion chips.">
+                    <figcaption>A conversation: member question, assistant answer, follow-up chips</figcaption>
+                </figure>
+
+                <figure class="case-figure">
+                    <img src="images/placeholder-3.png" width="1600" height="1000" loading="lazy" alt="Component sheet showing chat message bubbles, the message input, a typing indicator, and error and empty states.">
+                    <figcaption>Component sheet: bubbles, input, typing indicator, error and empty states</figcaption>
+                </figure>
+
+                <figure class="case-figure">
+                    <img src="images/placeholder-4.png" width="1600" height="1000" loading="lazy" alt="Accessibility notes for the chat: a numbered focus order overlay and screen-reader annotations on each component.">
+                    <figcaption>Accessibility notes: focus order overlay and screen-reader annotations</figcaption>
+                </figure>
+            </section>
+
+            <section class="section" aria-labelledby="in-the-way">
+                <h2 id="in-the-way">What got in the way</h2>
+                <p>The design side went smoothly. The hard part was <strong>engineering integration</strong>: limits in how the chat service connected with existing portal systems. Because the prototypes were already working, tested code, the team could pinpoint where design intent and system limits met.</p>
+            </section>
+
+            <section class="section" aria-labelledby="outcome">
+                <h2 id="outcome">Outcome</h2>
+                <ul>
+                    <li><strong>Pilot launched to 1,000 members.</strong> It's the first step before a wider rollout.</li>
+                    <li><strong>Handed off tested, accessible components</strong> that engineering could build from with fewer surprises.</li>
+                    <li><strong>Feedback is still coming in;</strong> the pilot is in progress.</li>
+                </ul>
+            </section>
+
+            <section class="section" aria-labelledby="next">
+                <h2 id="next">What I'd do next</h2>
+                <p>My part of the project ended at handoff. With more time, I would run usability sessions with pilot members, especially screen-reader and older users, and use what they find to improve the components before the wider launch.</p>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-name">Keith Jeter</p>
+            <p>Lead Product Designer</p>
+            <p><a href="mailto:galnova@gmail.com">galnova@gmail.com</a></p>
+        </footer>
+    </div>
+</body>
+</html>

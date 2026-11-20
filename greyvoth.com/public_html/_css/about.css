@@ -1,0 +1,83 @@
+/* Theme: Bootstrap variables first, then the few styles Bootstrap doesn't cover.
+   All spacing and layout come from Bootstrap classes in the markup. */
+:root {
+  --brand-navy: #0a2540;
+  --brand-sky: #93ccff;
+  --brand-panel: #f3f7fb;
+  --brand-panel-2: #e8eff7;
+  --brand-line: #dce5ee;
+  --brand-shadow: 0 1px 3px rgba(10, 37, 64, .12);
+  --brand-display: var(--bs-body-font-family);
+  --brand-mono: "IBM Plex Mono", Consolas, monospace;
+
+  --bs-body-font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  --bs-body-line-height: 1.6;
+  --bs-body-color: #334155;
+  --bs-body-bg: #d9e4ef;
+  --bs-secondary-color: #475569;
+  --bs-heading-color: var(--brand-navy);
+  --bs-primary: #0066d6;
+  --bs-primary-rgb: 0, 102, 214;
+  --bs-link-color-rgb: 0, 80, 168;
+  --bs-link-hover-color-rgb: 10, 37, 64;
+  --bs-border-color: var(--brand-line);
+  --bs-border-radius: 8px;
+}
+
+body {
+  background-image:
+    linear-gradient(rgba(0, 102, 214, .06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 102, 214, .06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+}
+h1, h2, h3, .font-display { font-family: var(--brand-display); font-weight: 700; letter-spacing: -.02em; }
+:focus-visible { outline: 3px solid var(--bs-primary); outline-offset: 3px; box-shadow: none !important; }
+[data-bs-theme="dark"] :focus-visible, .on-dark :focus-visible { outline-color: var(--brand-sky); }
+
+.eyebrow { font-family: var(--brand-mono); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--bs-primary); }
+.bg-navy { background-color: var(--brand-navy); }
+.navbar[data-bs-theme="dark"] { --bs-navbar-color: rgba(255, 255, 255, .85); --bs-navbar-hover-color: #fff; }
+.text-navy { color: var(--brand-navy); }
+.text-sky { color: var(--brand-sky); }
+.text-on-dark { color: rgba(255, 255, 255, .85); }
+.bg-band {
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, .04) 0 2px, transparent 2px 16px),
+    linear-gradient(115deg, var(--brand-navy) 0%, #0b4a96 58%, #0a4fa8 100%);
+}
+
+/* Cards are the one surface style used everywhere */
+.card { --bs-card-bg: var(--brand-panel); --bs-card-border-width: 0; --bs-card-color: var(--bs-body-color); box-shadow: var(--brand-shadow); }
+.list-group { --bs-list-group-bg: transparent; }
+
+/* Buttons: Bootstrap .btn with theme colors */
+.btn { --bs-btn-font-weight: 700; --bs-btn-border-radius: 6px; --bs-btn-border-width: 2px; --bs-btn-border-color: transparent; --bs-btn-hover-border-color: transparent; --bs-btn-active-border-color: transparent; }
+.btn-primary { --bs-btn-bg: #0066d6; --bs-btn-hover-bg: #0050a8; --bs-btn-active-bg: #0050a8; }
+.btn-outline-primary { --bs-btn-color: #0050a8; --bs-btn-border-color: #0066d6; --bs-btn-hover-bg: #e1edfb; --bs-btn-hover-color: #0050a8; --bs-btn-hover-border-color: #0066d6; --bs-btn-active-bg: #e1edfb; --bs-btn-active-color: #0050a8; }
+.btn-cta { --bs-btn-bg: #4da8ff; --bs-btn-color: var(--brand-navy); --bs-btn-hover-bg: #79bdff; --bs-btn-hover-color: var(--brand-navy); --bs-btn-active-bg: #79bdff; --bs-btn-active-color: var(--brand-navy); }
+.btn-soft { --bs-btn-bg: #e9f1fa; --bs-btn-color: var(--brand-navy); --bs-btn-hover-bg: #fff; --bs-btn-hover-color: var(--brand-navy); --bs-btn-active-bg: #fff; --bs-btn-active-color: var(--brand-navy); }
+
+.badge { --bs-badge-font-size: 13px; --bs-badge-border-radius: 6px; }
+.chip { background: var(--brand-panel-2); color: var(--brand-navy); font-weight: 600; }
+.chip-dark { background: var(--brand-navy); color: #fff; }
+.section-rule { border-top: 2px solid var(--brand-navy); }
+
+/* More work links: color change on hover, no movement */
+.card-link-row { color: var(--brand-navy); transition: background-color .2s, color .2s; }
+.card-link-row:hover { --bs-card-bg: var(--brand-navy); color: #fff; }
+.card-link-row:hover .eyebrow { color: var(--brand-sky); }
+.card-link-row .go { width: 36px; height: 36px; transition: background-color .2s, color .2s; }
+.card-link-row:hover .go { background: var(--brand-sky) !important; color: var(--brand-navy) !important; }
+
+/* Hero entrance: each item fades and rises in, one after another */
+@keyframes rise-in { from { opacity: 0; transform: translateY(12px); } }
+.rise-in { animation: rise-in .6s cubic-bezier(.2, .7, .2, 1) both; }
+.rise-in-2 { animation-delay: .08s; }
+.rise-in-3 { animation-delay: .16s; }
+.rise-in-4 { animation-delay: .24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in { animation: none; }
+  .card-link-row, .card-link-row .go { transition: none; }
+}

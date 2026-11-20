@@ -1,0 +1,71 @@
+/* AI Chat Assistant case study: additions on top of ../healthcare-md-ux/healthcare-ux.css */
+
+.confidential-note {
+    margin: 0;
+    font-size: 0.85em;
+    color: #475569;
+}
+
+/* Meta row has three items instead of four */
+.meta-info-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.role-summary {
+    font-weight: 600;
+    color: #1d4ed8;
+}
+
+.case-figure {
+    margin: 30px 0 0;
+}
+
+.case-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    background: #f1f5f9;
+}
+
+.case-figure figcaption {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #475569;
+}
+
+.footer-name {
+    margin: 0 0 6px;
+    font-size: 1.17em;
+    font-weight: 700;
+}
+
+/* Print button: darker blue so the white label passes contrast */
+.print-btn {
+    background: #1d4ed8;
+}
+
+.print-btn:hover {
+    background: #1e40af;
+}
+
+/* Visible keyboard focus */
+:focus-visible {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 3px;
+}
+
+.print-btn:focus-visible {
+    outline-color: #0f172a;
+}
+
+@media (max-width: 768px) {
+    .meta-info-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .meta-info-3 .meta-item {
+        border-right: none;
+    }
+}

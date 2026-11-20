@@ -1,0 +1,142 @@
+/*
+  Case study theme: the chat-mocks look (navy + azure, tinted surfaces, Barlow/Inter/Plex Mono).
+  Loaded after healthcare-ux.css on the case study pages. It only restyles; layout comes
+  from healthcare-ux.css. Rule: no partial borders (left/top accents) on rounded shapes.
+*/
+:root {
+    --navy: #0a2540;
+    --blue: #0066d6;
+    --blue-dark: #0050a8;
+    --blue-soft: #e1edfb;
+    --sky: #5fb0ff;
+    --ink: #0f172a;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --line: #c9d6e3;
+    --line-soft: #dce5ee;
+    --surface: #d9e4ef;
+    --panel: #f3f7fb;
+    --panel-2: #e8eff7;
+    --r: 8px;
+    --r-sm: 6px;
+    --display: "Barlow", "Bahnschrift", "Segoe UI", sans-serif;
+    --body: "Inter", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", Consolas, monospace;
+    --shadow: 0 1px 3px rgba(10, 37, 64, .12);
+}
+
+body.page-document {
+    font-family: var(--body);
+    color: var(--ink);
+    background-color: var(--surface);
+    background-image:
+        radial-gradient(ellipse 900px 600px at 85% 0%, rgba(0, 102, 214, .16), transparent 70%),
+        linear-gradient(rgba(0, 102, 214, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 102, 214, .06) 1px, transparent 1px);
+    background-size: auto, 40px 40px, 40px 40px;
+    background-attachment: fixed;
+}
+
+body.page-document a { color: var(--blue-dark); text-underline-offset: 3px; }
+body.page-document :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- Header ---------- */
+body.page-document .header { text-align: left; border-top: 2px solid var(--navy); padding-top: 24px; }
+body.page-document .header h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: -.01em;
+    line-height: 1.05;
+}
+body.page-document .header .subtitle { font-family: var(--mono); font-size: 1em; font-weight: 500; letter-spacing: .04em; color: var(--blue-dark); }
+
+/* ---------- Meta strip ---------- */
+body.page-document .meta-info { background: var(--navy); border: 0; border-radius: var(--r); box-shadow: var(--shadow); }
+body.page-document .meta-item { border: 0; border-right: 1px solid rgba(255, 255, 255, .15); }
+body.page-document .meta-item:last-child { border-right: 0; }
+body.page-document .meta-icon { color: var(--sky); }
+body.page-document .meta-item .label { font-family: var(--mono); color: rgba(255, 255, 255, .72); }
+body.page-document .meta-item .value { font-family: var(--display); font-weight: 600; color: #fff; }
+
+/* ---------- Table of contents ---------- */
+body.page-document .toc { background: var(--panel); border: 0; border-radius: var(--r); box-shadow: var(--shadow); }
+body.page-document .toc h2 { font-family: var(--display); font-weight: 600; color: var(--navy); }
+body.page-document .toc li { background: var(--panel-2); border: 0; border-radius: var(--r-sm); }
+body.page-document .toc-num { font-family: var(--mono); color: var(--blue); }
+body.page-document .toc-text { color: var(--navy); font-weight: 600; }
+
+/* ---------- Sections ---------- */
+body.page-document .section { background: var(--panel); border: 0; border-radius: var(--r); box-shadow: var(--shadow); }
+body.page-document .section h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    color: var(--navy);
+    border-bottom: 1px solid var(--navy);
+    letter-spacing: -.01em;
+}
+body.page-document .section h3,
+body.page-document .section h4,
+body.page-document .section h5 { font-family: var(--display); font-weight: 600; color: var(--navy); }
+body.page-document .section p,
+body.page-document .section li { color: var(--slate-700); }
+body.page-document strong { color: var(--ink); }
+
+/* Callouts: tinted fills, no accent stripes */
+body.page-document .highlight-box { background: var(--blue-soft); border: 0; border-radius: var(--r); }
+body.page-document .highlight-box strong { color: var(--navy); }
+body.page-document .annotation { background: var(--panel-2); border: 0; border-radius: var(--r); }
+body.page-document .annotation strong { color: var(--navy); }
+body.page-document .quote { background: var(--panel-2); border: 0; border-radius: var(--r); color: var(--navy); }
+
+/* Metrics */
+body.page-document .metric { background: var(--panel-2); border: 0; border-radius: var(--r); box-shadow: none; }
+body.page-document .metric .number { font-family: var(--display); font-weight: 600; color: var(--blue); }
+body.page-document .metric .label { color: var(--slate-600); }
+
+/* Personas */
+body.page-document .persona-card { background: var(--panel-2); border: 0; border-radius: var(--r); box-shadow: none; }
+body.page-document .persona-name { font-family: var(--display); font-weight: 600; color: var(--navy); }
+body.page-document .persona-role { color: var(--slate-600); }
+
+/* Journey cards: tint only, no colored top bar */
+body.page-document .journey-card { border: 0; border-radius: var(--r); }
+body.page-document .journey-phase-num { font-family: var(--mono); }
+
+/* Tables */
+body.page-document .comparison-table { border-radius: var(--r); overflow: hidden; box-shadow: none; }
+body.page-document .comparison-table th { background: var(--navy); color: #fff; font-family: var(--display); font-weight: 600; border-bottom: 0; }
+body.page-document .comparison-table td { border-bottom-color: var(--line-soft); }
+body.page-document .comparison-table tr:nth-child(even) { background: var(--panel-2); }
+
+/* Wireframes and site map */
+body.page-document .wireframe { background: var(--panel-2); border: 0; box-shadow: none; }
+body.page-document .sitemap-root { background: var(--navy); border-radius: var(--r-sm); }
+body.page-document .sitemap-children { border-left-color: var(--line); }
+body.page-document .sitemap-children li { background: var(--panel-2); border: 0; border-radius: var(--r-sm); }
+body.page-document .sitemap-children li::before { border-top-color: var(--line); }
+body.page-document .sitemap-children li:last-child::after { background: var(--panel); }
+body.page-document .sitemap-children i { color: var(--blue); }
+
+/* Figures */
+body.page-document .case-figure img { border: 0; border-radius: var(--r); box-shadow: 0 6px 18px -10px rgba(10, 37, 64, .35); }
+body.page-document .case-figure figcaption { font-family: var(--mono); font-size: .8em; color: var(--slate-600); }
+body.page-document .confidential-note { font-family: var(--mono); color: var(--slate-600); }
+body.page-document .role-summary { font-family: var(--mono); font-size: .9em; color: var(--blue-dark); }
+
+/* Summary + footer */
+body.page-document .outcome-summary { background: var(--blue-soft); border: 0; border-radius: var(--r); }
+body.page-document .outcome-summary h3 { font-family: var(--display); font-weight: 600; color: var(--navy); }
+body.page-document .footer { background: var(--navy); color: #fff; border: 0; border-radius: var(--r); }
+body.page-document .footer h3,
+body.page-document .footer .footer-name { font-family: var(--display); font-weight: 600; color: #fff; }
+body.page-document .footer p { color: rgba(255, 255, 255, .85); }
+body.page-document .footer a { color: #9fd0ff; }
+
+/* Print button */
+body.page-document .print-btn { background: var(--navy); color: #fff; border-radius: var(--r-sm); box-shadow: 0 2px 6px rgba(10, 37, 64, .25); font-family: var(--body); }
+body.page-document .print-btn:hover { background: var(--blue-dark); }
+
+@media print {
+    body.page-document { background: #fff; }
+}

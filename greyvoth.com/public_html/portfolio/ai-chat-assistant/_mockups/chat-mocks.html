@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chat assistant mocks</title>
+<!--
+  Source for the four case study images.
+  Open normally to see all four boards. Add #b1, #b2, #b3 or #b4 to the URL
+  to show one board at 1600x1000 (that's how the PNGs are exported).
+  Fonts are Windows system fonts (Bahnschrift, Segoe UI, Consolas).
+-->
+<style>
+  :root {
+    /* color */
+    --navy: #0a2540;
+    --blue: #0066d6;
+    --blue-dark: #0050a8;
+    --blue-soft: #e1edfb;
+    --sky: #5fb0ff;
+    --ink: #0f172a;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748b;
+    --line: #c9d6e3;
+    --line-soft: #dce5ee;
+    --surface: #d9e4ef;
+    --panel: #f3f7fb;
+    --panel-2: #e8eff7;
+    --field: #fbfdff;
+    --red: #b91c1c;
+    --note: #c2410c;        /* annotation markers */
+    --note-line: #ea580c;   /* annotation outlines */
+    /* shape */
+    --r: 8px;
+    --r-sm: 6px;
+    /* type */
+    --display: "Bahnschrift SemiBold", "Bahnschrift", "Segoe UI", sans-serif;
+    --display-light: "Bahnschrift Light", "Bahnschrift", "Segoe UI", sans-serif;
+    --mono: Consolas, "Courier New", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html.single, html.single body { width: 1600px; height: 1000px; overflow: hidden; }
+  html:not(.single) body { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px 16px; background: #9fb3c8; overflow-x: hidden; }
+  /* View-all mode: each 1600x1000 board is scaled to the screen width (--s is set by the script) */
+  html:not(.single) .artboard { flex: none; transform: scale(var(--s, 1)); transform-origin: top left;
+    margin-right: calc(-1600px * (1 - var(--s, 1))); margin-bottom: calc(-1000px * (1 - var(--s, 1))); border-radius: 8px; overflow: hidden; }
+  body { font-family: "Segoe UI", Tahoma, sans-serif; color: var(--ink); }
+
+  .artboard {
+    display: none;
+    position: relative;
+    width: 1600px;
+    height: 1000px;
+    padding: 56px 64px;
+    background-color: var(--surface);
+    background-image:
+      radial-gradient(ellipse 900px 600px at 85% 0%, rgba(0, 102, 214, .16), transparent 70%),
+      radial-gradient(ellipse 700px 500px at 0% 100%, rgba(10, 37, 64, .10), transparent 70%),
+      linear-gradient(rgba(0, 102, 214, .06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 102, 214, .06) 1px, transparent 1px);
+    background-size: auto, auto, 40px 40px, 40px 40px;
+  }
+  .artboard.show, html:not(.single) .artboard { display: block; }
+
+  /* Board header */
+  .hd { display: grid; grid-template-columns: 232px 1fr; border-top: 2px solid var(--navy); padding-top: 16px; }
+  .hd-index { font-family: var(--mono); font-size: 14px; color: var(--slate-600); line-height: 1.5; }
+  .hd-index b { display: block; color: var(--navy); font-weight: 700; letter-spacing: .08em; }
+  .hd-title { font-family: var(--display); font-size: 40px; letter-spacing: -.01em; line-height: 1.05; color: var(--navy); }
+
+  /* ---------- Portal home ---------- */
+  .screen { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 8px 20px -12px rgba(10, 37, 64, .25); overflow: hidden; }
+  .p-nav { display: flex; align-items: center; justify-content: space-between; height: 56px; padding: 0 20px; background: var(--navy); color: #fff; }
+  .p-logo { display: flex; align-items: center; gap: 10px; font-family: var(--display); font-size: 16px; }
+  .p-logo svg { width: 24px; height: 26px; }
+  .p-links { display: flex; align-items: center; gap: 4px; font-size: 13px; color: rgba(255, 255, 255, .78); }
+  .p-links > span { padding: 7px 10px; border-radius: var(--r-sm); }
+  .p-links .on { color: var(--navy); font-weight: 700; background: #e9f1fa; }
+  .p-profile { display: inline-flex; align-items: center; gap: 8px; margin-left: 6px; padding-left: 14px !important; border-left: 1px solid rgba(255, 255, 255, .2); border-radius: 0 !important; }
+  .p-profile i { display: block; width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--navy); font-style: normal; font-family: var(--display); font-size: 11px; line-height: 26px; text-align: center; }
+
+  .p-hero {
+    position: relative;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 24px;
+    padding: 28px 24px 56px;
+    color: #fff;
+    background:
+      repeating-linear-gradient(135deg, rgba(255, 255, 255, .045) 0 2px, transparent 2px 14px),
+      linear-gradient(115deg, var(--navy) 0%, #0b4a96 55%, var(--blue) 100%);
+  }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: rgba(255, 255, 255, .7); }
+  .p-hero h3 { font-family: var(--display); font-weight: normal; font-size: 28px; margin: 6px 0 6px; }
+  .p-hero p { font-size: 13px; color: rgba(255, 255, 255, .85); }
+  .hero-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 14px; font-weight: 700; line-height: 1; color: var(--navy); background: #4da8ff; padding: 11px 18px; border-radius: var(--r-sm); }
+
+  .idcard { flex-shrink: 0; width: 210px; padding: 16px; border-radius: var(--r); color: var(--navy); background: linear-gradient(135deg, #ffffff 0%, #d6e7fb 100%); box-shadow: 0 4px 10px rgba(0, 0, 0, .18); }
+  .idcard b { display: block; font-family: var(--display); font-weight: normal; font-size: 15px; }
+  .idcard code { display: block; font-family: var(--mono); font-size: 12px; letter-spacing: .06em; margin-top: 2px; color: var(--slate-700); }
+  .idcard em { display: block; font-style: normal; font-size: 10px; color: var(--slate-600); margin-top: 6px; }
+
+  .p-stats { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); margin: -36px 24px 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 4px 12px -6px rgba(10, 37, 64, .2); }
+  .stat { padding: 14px 18px 16px; }
+  .stat + .stat { border-left: 1px solid var(--line-soft); }
+  .stat small { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; color: var(--slate-600); text-transform: uppercase; }
+  .stat p { font-family: var(--display); font-size: 24px; margin-top: 2px; color: var(--navy); }
+  .stat p span { font-family: var(--display-light); font-size: 14px; color: var(--slate-500); }
+  .bar { height: 4px; border-radius: 2px; background: var(--line-soft); margin-top: 8px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: #1a8cff; }
+
+  .p-cols { display: grid; grid-template-columns: 1.35fr 1fr; gap: 24px; padding: 24px; }
+  .p-h { font-family: var(--display); font-size: 16px; color: var(--navy); padding-bottom: 8px; border-bottom: 1px solid var(--navy); }
+  .row { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line-soft); font-size: 12.5px; }
+  .row small { display: block; font-size: 11px; color: var(--slate-500); }
+  .status { font-size: 11px; font-weight: 700; color: #fff; padding: 4px 9px; border-radius: 4px; align-self: center; }
+  .ok { background: #15803d; }
+  .wait { background: #c2410c; }
+  .quick { display: grid; gap: 8px; margin-top: 10px; }
+  .qa { display: flex; align-items: center; gap: 10px; padding: 9px 10px; background: var(--panel-2); border-radius: var(--r-sm); font-size: 12.5px; font-weight: 600; color: var(--navy); }
+  .qa i { width: 26px; height: 26px; border-radius: var(--r-sm); background: var(--blue-soft); display: grid; place-items: center; }
+  .qa svg { width: 14px; height: 14px; }
+  .qa em { margin-left: auto; font-style: normal; font-size: 11px; color: #fff; background: var(--blue); border-radius: 4px; padding: 1px 6px; }
+
+  .scrim { position: absolute; inset: 0; background: rgba(10, 37, 64, .66); }
+
+  /* ---------- Chat ---------- */
+  .launcher { position: absolute; right: 24px; bottom: 24px; display: flex; align-items: center; gap: 10px; padding: 12px 18px 12px 14px; border-radius: var(--r); background: var(--blue); color: #fff; font-size: 14px; font-weight: 600; box-shadow: 0 4px 10px -4px rgba(0, 60, 130, .35); line-height: 1; }
+  .launcher svg { display: block; width: 22px; height: 22px; flex-shrink: 0; }
+
+  .chat { position: relative; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); box-shadow: 0 10px 24px -14px rgba(10, 37, 64, .3); }
+  /* Light header: bare blue chat icon, bare navy close icon */
+  .c-head { display: flex; align-items: center; gap: 12px; padding: 16px 20px 16px 24px; background: #e9f0f8; color: var(--navy); border-bottom: 1px solid var(--line); border-radius: var(--r) var(--r) 0 0; }
+  .c-mark { width: 36px; height: 36px; border-radius: 50%; background: var(--blue); display: grid; place-items: center; color: #fff; flex-shrink: 0; }
+  .c-mark svg { width: 20px; height: 20px; }
+  .c-title { flex: 1; }
+  .c-title b { font-family: var(--display); font-size: 17px; font-weight: normal; }
+  .c-title small { display: block; font-size: 12px; color: var(--slate-600); }
+  .tag-ai { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .1em; color: #fff; background: var(--blue); border-radius: 4px; padding: 2px 6px; margin-left: 6px; vertical-align: 3px; }
+  .c-x { width: 32px; height: 32px; display: grid; place-items: center; color: var(--navy); }
+  .c-x svg { width: 16px; height: 16px; }
+  .c-body { flex: 1; padding: 24px; display: flex; flex-direction: column; gap: 24px; }
+  .c-note { font-size: 11px; color: var(--slate-600); padding: 8px 12px; background: var(--panel-2); border-radius: var(--r-sm); }
+  .who { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--slate-500); margin-bottom: 8px; display: block; }
+  .bot { font-size: 14px; line-height: 1.55; color: var(--ink); max-width: 92%; }
+  .bot a { color: var(--blue); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .me { align-self: flex-end; max-width: 80%; text-align: right; }
+  .me p { display: inline-block; text-align: left; background: var(--navy); color: #fff; font-size: 14px; line-height: 1.5; padding: 12px 16px; border-radius: var(--r) var(--r) 2px var(--r); }
+  .sugg-label { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--slate-500); margin-bottom: 8px; }
+  .sugg { display: flex; flex-direction: column; gap: 6px; }
+  .sugg > span:not(.n) { display: flex; justify-content: space-between; align-items: center; padding: 9px 12px; background: var(--blue-soft); border-radius: var(--r-sm); font-size: 13px; font-weight: 600; color: var(--blue-dark); }
+  .sugg > span:not(.n)::after { content: "\2192"; font-weight: 400; }
+  .c-input { padding: 16px 24px; border-top: 1px solid var(--line); background: var(--panel-2); border-radius: 0 0 var(--r) var(--r); }
+
+  /* Input with the send arrow inside the field */
+  .field { position: relative; height: 44px; display: flex; align-items: center; padding: 0 48px 0 16px; border: 1.5px solid #9fb0c3; border-radius: var(--r-sm); background: var(--field); font-size: 14px; color: var(--slate-500); }
+  .send-in { position: absolute; right: 6px; top: 50%; width: 32px; height: 32px; margin-top: -16px; display: grid; place-items: center; border-radius: var(--r-sm); color: var(--blue); }
+  .send-in svg { width: 18px; height: 18px; }
+  .field.focus { border-color: var(--blue); color: var(--ink); box-shadow: 0 0 0 3px rgba(0, 102, 214, .2); }
+  .field.focus .send-in { background: var(--blue-soft); }
+  .field.off { border-style: dashed; color: #94a3b8; background: var(--panel-2); }
+  .field.off .send-in { color: #94a3b8; }
+
+  .typing { display: inline-flex; gap: 4px; align-items: flex-end; height: 14px; }
+  .typing i { width: 4px; border-radius: 1px; background: var(--blue); }
+  .typing i:nth-child(1) { height: 6px; } .typing i:nth-child(2) { height: 12px; } .typing i:nth-child(3) { height: 8px; }
+
+  /* ---------- 1. Entry ---------- */
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 32px; }
+  .cap { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; font-family: var(--mono); font-size: 13px; letter-spacing: .06em; color: var(--slate-600); }
+  .cap b { font-family: var(--display); font-size: 20px; color: var(--navy); letter-spacing: 0; }
+  .cap::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; }
+  .dock { position: absolute; top: 0; right: 0; bottom: 0; width: 330px; border: 0; border-left: 1px solid var(--line); border-radius: 0; box-shadow: -8px 0 20px -10px rgba(0, 0, 0, .3); }
+  .dock .c-head, .dock .c-input { border-radius: 0; }
+
+  /* ---------- 2. Conversation ---------- */
+  .split { position: absolute; inset: 0; display: grid; grid-template-columns: 600px 1fr; }
+  .side { padding: 56px 64px; display: flex; flex-direction: column; color: #fff;
+    background:
+      repeating-linear-gradient(135deg, rgba(255, 255, 255, .03) 0 2px, transparent 2px 16px),
+      linear-gradient(160deg, var(--navy) 0%, #0b3f80 100%); }
+  .side .hd { border-top-color: #fff; grid-template-columns: 1fr; }
+  .side .hd-index { color: rgba(255, 255, 255, .75); }
+  .side .hd-index b { color: #fff; }
+  .side h2 { font-family: var(--display); font-weight: normal; font-size: 58px; line-height: 1.02; letter-spacing: -.015em; margin-top: auto; }
+  .side h2 span { color: var(--sky); }
+  .legend { margin-top: 40px; border-top: 1px solid rgba(255, 255, 255, .2); }
+  .legend > div { display: grid; grid-template-columns: 44px 1fr; align-items: center; padding: 16px 0; border-bottom: 1px solid rgba(255, 255, 255, .2); }
+  .legend b { font-family: var(--display); font-weight: normal; font-size: 16px; }
+  .legend p { font-size: 13px; color: rgba(255, 255, 255, .75); margin-top: 2px; }
+  .k { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; line-height: 1; background: var(--note); color: #fff; border-radius: 5px; font-family: var(--display); font-size: 14px; }
+  .stage { display: grid; place-items: center; }
+  .pin { position: absolute; left: -66px; display: flex; align-items: center; }
+  .pin i { width: 34px; height: 2px; background: var(--note-line); }
+
+  /* ---------- 3. Component sheet ---------- */
+  /* Two rows of three equal cells, then a full-width color strip */
+  .sheet { height: 790px; margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr 150px; gap: 16px; }
+  .cell { display: flex; flex-direction: column; padding: 24px; background: var(--panel); border-radius: var(--r); box-shadow: 0 1px 3px rgba(10, 37, 64, .12); }
+  .cell.span3 { grid-column: 1 / -1; }
+  .cell h3 { display: flex; align-items: baseline; gap: 10px; margin-bottom: 20px; font-family: var(--display); font-weight: normal; font-size: 17px; color: var(--navy); }
+  .cell h3 .no { font-family: var(--mono); font-size: 12px; color: var(--blue); }
+  .cell h3 em { margin-left: auto; font-style: normal; font-family: var(--mono); font-size: 11px; color: var(--slate-600); }
+  .state { display: grid; grid-template-columns: 76px 1fr; align-items: center; gap: 12px; }
+  .state + .state { margin-top: 12px; }
+  .lbl { font-family: var(--mono); font-size: 11px; color: var(--slate-600); }
+  .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .swatches div { display: flex; align-items: center; gap: 12px; }
+  .swatches i { flex-shrink: 0; width: 56px; height: 56px; border-radius: var(--r-sm); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08); }
+  .swatches small { font-family: var(--mono); font-size: 11px; color: var(--slate-600); line-height: 1.4; }
+  .swatches small b { display: block; font-family: var(--display); font-weight: normal; font-size: 14px; color: var(--navy); }
+
+  /* Error: icon, message, solid retry button on one line */
+  .alert { display: grid; grid-template-columns: 22px 1fr auto; align-items: center; gap: 12px; padding: 14px 14px 14px 16px; background: #fde8e8; border-radius: var(--r-sm); }
+  .alert > svg { width: 22px; height: 22px; color: var(--red); }
+  .alert b { display: block; font-size: 14px; color: #8f1414; }
+  .alert p { font-size: 12.5px; color: var(--slate-700); margin-top: 2px; }
+  .btn-retry { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: var(--r-sm); background: transparent; color: var(--red); border: 2px solid var(--red); font-size: 13px; font-weight: 700; line-height: 1; white-space: nowrap; }
+  .btn-retry svg { width: 14px; height: 14px; }
+
+  .empty { display: flex; flex-direction: column; align-items: center; text-align: center; margin: auto 0; }
+  .empty .c-mark { width: 56px; height: 56px; }
+  .empty .c-mark svg { width: 30px; height: 30px; }
+  .empty b { font-family: var(--display); font-weight: normal; font-size: 22px; color: var(--navy); margin-top: 10px; }
+  .empty p { font-size: 13px; color: var(--slate-600); margin: 4px 0 16px; }
+  .empty .sugg { width: 100%; }
+
+  /* ---------- 5. Responsive ---------- */
+  .resp { display: grid; grid-template-columns: 248px 1fr; gap: 48px; margin-top: 32px; }
+  .bp { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .bp:first-child { border-top: 1px solid var(--navy); }
+  .bp small { font-family: var(--mono); font-size: 12px; color: var(--blue); }
+  .bp b { display: block; font-family: var(--display); font-weight: normal; font-size: 18px; color: var(--navy); margin: 2px 0 4px; }
+  .bp p { font-size: 13px; line-height: 1.5; color: var(--slate-600); }
+  .phones { display: flex; justify-content: flex-end; gap: 40px; }
+  .phone-cap { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--slate-600); margin-bottom: 12px; }
+  .phone-cap b { font-family: var(--display); font-size: 18px; color: var(--navy); letter-spacing: 0; margin-right: 8px; }
+  .phone { position: relative; display: flex; flex-direction: column; width: 340px; height: 700px; overflow: hidden; background: var(--panel); border-radius: 16px; box-shadow: 0 10px 24px -14px rgba(10, 37, 64, .35); }
+  .sbar { display: flex; justify-content: space-between; align-items: center; height: 28px; padding: 0 20px; font-family: var(--mono); font-size: 11px; font-weight: 700; background: var(--navy); color: #fff; flex-shrink: 0; }
+  .sbar.light { background: var(--panel); color: var(--navy); }
+  .m-top { display: flex; align-items: center; justify-content: space-between; height: 52px; padding: 0 16px; background: var(--navy); color: #fff; flex-shrink: 0; }
+  .m-top .p-logo { font-size: 15px; }
+  .m-avatar { display: block; width: 30px; height: 30px; border-radius: 50%; background: #fff; color: var(--navy); font-family: var(--display); font-size: 12px; line-height: 30px; text-align: center; }
+  .m-hero { padding: 20px 18px 52px; color: #fff; background: repeating-linear-gradient(135deg, rgba(255, 255, 255, .045) 0 2px, transparent 2px 14px), linear-gradient(115deg, var(--navy) 0%, #0b4a96 60%, var(--blue) 100%); }
+  .m-hero h3 { font-family: var(--display); font-weight: normal; font-size: 22px; margin: 4px 0; }
+  .m-hero p { font-size: 12.5px; color: rgba(255, 255, 255, .85); }
+  .m-stats { position: relative; display: grid; grid-template-columns: 1fr 1fr; margin: -36px 16px 0; background: var(--panel); border-radius: var(--r); box-shadow: 0 4px 12px -6px rgba(10, 37, 64, .25); }
+  .m-stats .stat { padding: 12px 14px; }
+  .m-stats .stat p { font-size: 21px; }
+  .m-sec { padding: 20px 18px 0; }
+  .m-sec .p-h { font-size: 15px; }
+  .tabbar { position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(4, auto) 40px; justify-content: space-between; padding: 8px 10px 14px; background: var(--panel); box-shadow: 0 -1px 0 var(--line); }
+  .tabbar span { display: flex; align-items: center; justify-content: center; gap: 5px; height: 38px; padding: 0 10px; border-radius: var(--r-sm); font-size: 11px; font-weight: 600; color: var(--slate-600); }
+  .tabbar span svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .tabbar .menu svg { width: 20px; height: 20px; }
+  .tabbar .on { background: var(--navy); color: #fff; }
+  .tabbar .on svg { color: var(--sky); }
+  .phone .launcher { right: 16px; bottom: 82px; padding: 12px 16px 12px 12px; }
+  .phone .c-head { border-radius: 0; flex-shrink: 0; }
+  .phone .c-body { padding: 20px; gap: 20px; }
+  .phone .c-input { border-radius: 0; padding: 12px 16px 20px; flex-shrink: 0; }
+
+  /* ---------- 4. Accessibility ---------- */
+  .a11y { display: grid; grid-template-columns: 480px 1fr; gap: 72px; margin-top: 32px; }
+  .a11y .chat { width: 440px; height: 742px; margin-left: 20px; }
+  .ring { position: relative; outline: 2px dashed var(--note-line); outline-offset: 5px; border-radius: var(--r-sm); }
+  .ring-in { outline-offset: -8px; }
+  .send-in.ring { position: absolute; }
+  .n { position: absolute; z-index: 2; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; line-height: 1; border-radius: 5px; background: var(--note); color: #fff; font-family: var(--display); font-size: 14px; font-weight: normal; text-decoration: none; letter-spacing: 0; }
+  .n.l { left: -36px; top: -6px; }
+  .n.r { right: -36px; top: -6px; }
+  .ring-in > .n.l { left: -20px; top: 2px; }
+  .notes { border-top: 1px solid var(--navy); }
+  .note { display: grid; grid-template-columns: 64px 1fr; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .note .num { font-family: var(--display); font-size: 30px; line-height: 1; color: var(--note); }
+  .note b { font-family: var(--display); font-weight: normal; font-size: 18px; color: var(--navy); }
+  .note p { font-size: 13px; color: var(--slate-600); margin-top: 3px; line-height: 1.5; }
+  code { font-family: var(--mono); font-size: 12px; color: var(--blue-dark); }
+  .key { display: flex; gap: 26px; font-family: var(--mono); font-size: 12px; color: var(--slate-600); margin-bottom: 16px; }
+  .key span { display: inline-flex; align-items: center; gap: 8px; }
+  .key i { width: 22px; height: 14px; outline: 2px dashed var(--note-line); outline-offset: -2px; border-radius: 3px; }
+  .key em { width: 14px; height: 14px; border-radius: 3px; background: var(--note); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <!-- Assistant: chat bubble -->
+  <symbol id="i-chat" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 4v-4h0A2.5 2.5 0 0 1 4 13.5z"/><circle cx="8.5" cy="9.5" r="1.2" fill="currentColor"/><circle cx="12" cy="9.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="9.5" r="1.2" fill="currentColor"/></symbol>
+  <!-- Portal logo: split-tone shield, no cross -->
+  <symbol id="i-logo" viewBox="0 0 24 26"><path fill="#5fb0ff" d="M12 1l10 3.6v7.2c0 6.2-4.2 11.4-10 13.2C6.2 23.2 2 18 2 11.8V4.6z"/><path fill="#ffffff" opacity=".9" d="M12 1v24C6.2 23.2 2 18 2 11.8V4.6z"/><path fill="#0066d6" d="M12 7.5l4.5 4.5L12 16.5 7.5 12z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 5l14 14M19 5L5 19"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor"/><path stroke="#fff" stroke-width="2.4" stroke-linecap="round" d="M12 7v6M12 16.6v.4"/></symbol>
+  <symbol id="i-retry" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4.4h-4.4"/></symbol>
+  <symbol id="t-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M3.5 11L12 4l8.5 7v9h-6v-6h-5v6h-6z"/></symbol>
+  <symbol id="t-coverage" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M12 3l8 3v5.5c0 4.8-3.3 8.4-8 9.8-4.7-1.4-8-5-8-9.8V6z"/></symbol>
+  <symbol id="t-claims" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" d="M6 3h9l4 4v14H6z"/><path stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M9.5 12h6M9.5 16h6"/></symbol>
+  <symbol id="t-care" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4" fill="currentColor"/></symbol>
+  <symbol id="t-menu" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M4 6.5h16M4 12h16M4 17.5h16"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="#0066d6" stroke-width="2.2" d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4" fill="#0066d6"/></symbol>
+  <symbol id="i-rx" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="8" rx="4" transform="rotate(-40 12 12)" fill="none" stroke="#0066d6" stroke-width="2.2"/><path d="M9.2 8.6l5.6 6.8" stroke="#0066d6" stroke-width="2.2"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="#0066d6" stroke-width="2.2"/><path d="M4 7l8 6 8-6" fill="none" stroke="#0066d6" stroke-width="2.2"/></symbol>
+</svg>
+
+<!-- 1. Entry point: closed and open -->
+<section class="artboard" id="b1">
+  <div class="hd"><div class="hd-index"><b>01 / 04</b>Entry point</div><div class="hd-title">The assistant waits at the edge of the page<br>until a member asks for it.</div></div>
+  <div class="pair">
+    <div>
+      <div class="cap"><b>A</b>CLOSED</div>
+      <div class="screen" style="height:690px">
+        <div class="p-nav"><div class="p-logo"><svg><use href="#i-logo"/></svg>Member Portal</div><div class="p-links"><span class="on">Home</span><span>Coverage</span><span>Claims</span><span>Find care</span><span class="p-profile"><i>JL</i>Profile</span></div></div>
+        <div class="p-hero">
+          <div><small class="eyebrow">2026 PLAN YEAR · GOLD PPO</small><h3>Good morning, Jordan</h3><p>Your annual checkup is due by June 30.</p><span class="hero-link">Book a visit &rarr;</span></div>
+          <div class="idcard"><b>Jordan Lee</b><code>XJP 4821 0937</code><em>Group 04812 · PPO</em></div>
+        </div>
+        <div class="p-stats">
+          <div class="stat"><small>Deductible</small><p>$640 <span>/ 1,500</span></p><div class="bar"><i style="width:43%"></i></div></div>
+          <div class="stat"><small>Out-of-pocket</small><p>$910 <span>/ 4,000</span></p><div class="bar"><i style="width:23%"></i></div></div>
+          <div class="stat"><small>Open claims</small><p>2</p><div class="bar"><i style="width:0"></i></div></div>
+        </div>
+        <div class="p-cols">
+          <div>
+            <div class="p-h">Recent claims</div>
+            <div class="row"><div>Lab work<small>Mar 12 · Westside Lab</small></div><span class="status ok">Processed</span></div>
+            <div class="row"><div>Primary care visit<small>Feb 27 · Dr. Patel</small></div><span class="status ok">Processed</span></div>
+            <div class="row"><div>Prescription<small>Feb 19 · Main St Pharmacy</small></div><span class="status wait">In review</span></div>
+          </div>
+          <div>
+            <div class="p-h">Quick actions</div>
+            <div class="quick">
+              <div class="qa"><i><svg><use href="#i-pin"/></svg></i>Find care near me</div>
+              <div class="qa"><i><svg><use href="#i-rx"/></svg></i>Prescriptions</div>
+              <div class="qa"><i><svg><use href="#i-mail"/></svg></i>Messages<em>2</em></div>
+            </div>
+          </div>
+        </div>
+        <div class="launcher"><svg><use href="#i-chat"/></svg>Ask the assistant</div>
+      </div>
+    </div>
+    <div>
+      <div class="cap"><b>B</b>OPEN</div>
+      <div class="screen" style="height:690px">
+        <div class="p-nav"><div class="p-logo"><svg><use href="#i-logo"/></svg>Member Portal</div><div class="p-links"><span class="on">Home</span><span>Coverage</span><span>Claims</span><span>Find care</span><span class="p-profile"><i>JL</i>Profile</span></div></div>
+        <div class="p-hero">
+          <div><small class="eyebrow">2026 PLAN YEAR · GOLD PPO</small><h3>Good morning, Jordan</h3><p>Your annual checkup is due by June 30.</p><span class="hero-link">Book a visit &rarr;</span></div>
+        </div>
+        <div class="p-stats">
+          <div class="stat"><small>Deductible</small><p>$640 <span>/ 1,500</span></p><div class="bar"><i style="width:43%"></i></div></div>
+          <div class="stat"><small>Out-of-pocket</small><p>$910 <span>/ 4,000</span></p><div class="bar"><i style="width:23%"></i></div></div>
+          <div class="stat"><small>Open claims</small><p>2</p><div class="bar"><i style="width:0"></i></div></div>
+        </div>
+        <div class="p-cols">
+          <div><div class="p-h">Recent claims</div><div class="row"><div>Lab work<small>Mar 12 · Westside Lab</small></div><span class="status ok">Processed</span></div></div>
+        </div>
+        <div class="scrim"></div>
+        <div class="chat dock">
+          <div class="c-head"><div class="c-mark"><svg><use href="#i-chat"/></svg></div><div class="c-title"><b>Member Assistant <span class="tag-ai">AI</span></b><small>Answers about your plan</small></div><div class="c-x"><svg><use href="#i-x"/></svg></div></div>
+          <div class="c-body">
+            <div class="c-note">AI answers can make mistakes. Check important details.</div>
+            <div class="bot"><span class="who">ASSISTANT</span>Hi Jordan. I can help with coverage, claims and finding care. What would you like to know?</div>
+            <div style="margin-top:auto"><div class="sugg-label">TRY ASKING</div><div class="sugg"><span>Check my deductible</span><span>Find a doctor</span><span>Claim status</span></div></div>
+          </div>
+          <div class="c-input"><div class="field">Type your question<span class="send-in"><svg><use href="#i-send"/></svg></span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Conversation -->
+<section class="artboard" id="b2">
+  <div class="split">
+    <div class="side">
+      <div class="hd"><div class="hd-index"><b>02 / 04</b>Conversation</div></div>
+      <h2>Question.<br>Answer.<br><span>Next step.</span></h2>
+      <div class="legend">
+        <div><span class="k">A</span><div><b>Member question</b><p>Plain language, set apart as a solid block.</p></div></div>
+        <div><span class="k">B</span><div><b>Assistant answer</b><p>Short answer first, then a link to the source page.</p></div></div>
+        <div><span class="k">C</span><div><b>Follow-up suggestions</b><p>Next questions, plus a way to reach a person.</p></div></div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="chat" style="width:560px;height:820px">
+        <div class="c-head"><div class="c-mark"><svg><use href="#i-chat"/></svg></div><div class="c-title"><b>Member Assistant <span class="tag-ai">AI</span></b><small>Answers about your plan</small></div><div class="c-x"><svg><use href="#i-x"/></svg></div></div>
+        <div class="c-body" style="padding:24px 32px">
+          <div class="c-note">AI answers can make mistakes. Check important details.</div>
+          <div class="bot"><span class="who">ASSISTANT · 10:41</span>Hi Jordan. I can help with coverage, claims and finding care. What would you like to know?</div>
+          <div class="me"><span class="who">YOU · 10:42</span><p id="pinA" style="font-size:15px">Is urgent care covered if I go this weekend?</p></div>
+          <div class="bot" id="pinB" style="font-size:15px"><span class="who">ASSISTANT · 10:42</span>Yes. Urgent care is covered at in-network centers, including weekends. Your plan's urgent care copay is <b>$50 per visit</b>.<br><br>Going out of network may cost more. <a>See your plan summary</a></div>
+          <div style="margin-top:auto"><div class="sugg-label">FOLLOW UP</div><div class="sugg" id="pinC"><span>Find urgent care near me</span><span>What about the emergency room?</span><span>Talk to a person</span></div></div>
+        </div>
+        <div class="c-input" style="padding:16px 32px"><div class="field">Type your question<span class="send-in"><svg><use href="#i-send"/></svg></span></div></div>
+        <!-- markers are centered on their targets by the script at the bottom -->
+        <span class="pin" data-for="pinA"><span class="k">A</span><i></i></span>
+        <span class="pin" data-for="pinB"><span class="k">B</span><i></i></span>
+        <span class="pin" data-for="pinC"><span class="k">C</span><i></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Component sheet -->
+<section class="artboard" id="b3">
+  <div class="hd"><div class="hd-index"><b>03 / 04</b>Component sheet</div><div class="hd-title">Components and states</div></div>
+  <div class="sheet">
+    <div class="cell">
+      <h3><span class="no">01</span>Messages<em>8px radius</em></h3>
+      <div class="bot"><span class="who">ASSISTANT</span>Assistant replies sit on the page as open text, with a link to the <a>source page</a>.</div>
+      <div class="me" style="margin-top:20px;display:flex;flex-direction:column;align-items:flex-end"><span class="who">YOU</span><p>Member messages are a solid block</p></div>
+    </div>
+    <div class="cell">
+      <h3><span class="no">02</span>Input<em>44px · send inside</em></h3>
+      <div class="state"><span class="lbl">Default</span><div class="field">Type your question<span class="send-in"><svg><use href="#i-send"/></svg></span></div></div>
+      <div class="state"><span class="lbl">Focus</span><div class="field focus">Is urgent care covered|<span class="send-in"><svg><use href="#i-send"/></svg></span></div></div>
+      <div class="state"><span class="lbl">Sending</span><div class="field off">Sending<span class="send-in"><svg><use href="#i-send"/></svg></span></div></div>
+    </div>
+    <div class="cell">
+      <h3><span class="no">03</span>Header and launcher</h3>
+      <div class="c-head" style="border-radius:var(--r-sm);border-bottom:0;background:var(--panel-2)"><div class="c-mark"><svg><use href="#i-chat"/></svg></div><div class="c-title"><b>Member Assistant <span class="tag-ai">AI</span></b><small>Answers about your plan</small></div><div class="c-x"><svg><use href="#i-x"/></svg></div></div>
+      <div style="margin-top:auto"><div class="launcher" style="position:static;display:inline-flex"><svg><use href="#i-chat"/></svg>Ask the assistant</div></div>
+    </div>
+    <div class="cell">
+      <h3><span class="no">04</span>Suggestions<em>Tinted rows</em></h3>
+      <div class="sugg"><span>Check my deductible</span><span>Find a doctor</span><span>Talk to a person</span></div>
+    </div>
+    <div class="cell">
+      <h3><span class="no">05</span>Feedback states</h3>
+      <div class="lbl" style="margin-bottom:10px">Typing</div>
+      <div style="display:flex;align-items:center;gap:12px"><span class="typing"><i></i><i></i><i></i></span><span class="who" style="margin:0">ASSISTANT IS TYPING</span></div>
+      <div class="lbl" style="margin:28px 0 10px">Error</div>
+      <div class="alert"><svg><use href="#i-alert"/></svg><div><b>Message not sent</b><p>Check your connection.</p></div><span class="btn-retry"><svg><use href="#i-retry"/></svg>Try again</span></div>
+    </div>
+    <div class="cell">
+      <h3><span class="no">06</span>Empty state</h3>
+      <div class="empty">
+        <div class="c-mark"><svg><use href="#i-chat"/></svg></div>
+        <b>How can I help today?</b>
+        <p>Ask about coverage, claims or finding care.</p>
+        <div class="sugg"><span>Check my deductible</span><span>Claim status</span></div>
+      </div>
+    </div>
+    <div class="cell span3">
+      <h3><span class="no">07</span>Color</h3>
+      <div class="swatches">
+        <div><i style="background:#0a2540"></i><small><b>Navy</b>#0A2540</small></div>
+        <div><i style="background:#0066d6"></i><small><b>Blue</b>#0066D6</small></div>
+        <div><i style="background:#5fb0ff"></i><small><b>Sky</b>#5FB0FF</small></div>
+        <div><i style="background:#e1edfb"></i><small><b>Blue soft</b>#E1EDFB</small></div>
+        <div><i style="background:#475569"></i><small><b>Muted</b>#475569</small></div>
+        <div><i style="background:#b91c1c"></i><small><b>Error</b>#B91C1C</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Accessibility notes -->
+<section class="artboard" id="b4">
+  <div class="hd"><div class="hd-index"><b>04 / 04</b>Accessibility notes</div><div class="hd-title">Focus order and screen-reader annotations</div></div>
+  <div class="a11y">
+    <div class="chat">
+      <div class="c-head"><div class="c-mark"><svg><use href="#i-chat"/></svg></div><div class="c-title"><b>Member Assistant <span class="tag-ai">AI</span></b><small>Answers about your plan</small></div><div class="c-x ring"><svg><use href="#i-x"/></svg><span class="n r">1</span></div></div>
+      <div class="c-body ring ring-in">
+        <span class="n l">2</span>
+        <div class="bot"><span class="who">ASSISTANT</span>Hi Jordan. What would you like to know?</div>
+        <div class="me"><span class="who">YOU</span><p>Is urgent care covered?</p></div>
+        <div class="bot"><span class="who">ASSISTANT</span>Yes, at in-network centers.<br><a class="ring" style="display:inline-block;margin-top:6px;outline-offset:3px">See your plan summary<span class="n r" style="top:-4px">3</span></a></div>
+        <div style="display:flex;align-items:center;gap:12px"><span class="typing"><i></i><i></i><i></i></span><span class="who" style="margin:0">ASSISTANT IS TYPING</span></div>
+      </div>
+      <div style="padding:0 24px 16px"><div class="sugg ring"><span class="n l">4</span><span>Find urgent care</span><span>Talk to a person</span></div></div>
+      <div class="c-input"><div class="field ring" style="outline-offset:4px"><span class="n l">5</span>Type your question<span class="send-in ring" style="outline-offset:2px"><svg><use href="#i-send"/></svg><span class="n r" style="right:-46px;top:-2px">6</span></span></div></div>
+    </div>
+    <div>
+      <div class="key"><span><i></i>Focus outline</span><span><em></em>Tab order</span></div>
+      <div class="notes">
+        <div class="note"><span class="num">01</span><div><b>Close button</b><p>First stop when the panel opens. <code>aria-label="Close chat"</code>. Esc also closes and returns focus to the launcher.</p></div></div>
+        <div class="note"><span class="num">02</span><div><b>Message log</b><p><code>role="log"</code> with <code>aria-live="polite"</code>, so new answers are read without interrupting the member.</p></div></div>
+        <div class="note"><span class="num">03</span><div><b>Links in answers</b><p>Descriptive link text, reachable with Tab inside the log.</p></div></div>
+        <div class="note"><span class="num">04</span><div><b>Suggestions</b><p>Real <code>&lt;button&gt;</code> elements in a group labeled "Suggested questions".</p></div></div>
+        <div class="note"><span class="num">05</span><div><b>Message input</b><p>Labeled "Type your question" for screen readers. Enter sends.</p></div></div>
+        <div class="note"><span class="num">06</span><div><b>Send button</b><p>Sits inside the field. <code>aria-label="Send message"</code>. Disabled while a message is sending.</p></div></div>
+        <div class="note"><span class="num" style="color:var(--slate-500)">&mdash;</span><div><b>Typing and contrast</b><p>Typing is announced once, "Assistant is typing". Text meets 4.5:1; focus outlines meet 3:1.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Responsive (extra board, not part of the four case study images) -->
+<section class="artboard" id="b5">
+  <div class="hd"><div class="hd-index"><b>EXTRA</b>Responsive</div><div class="hd-title">One component set, every screen size</div></div>
+  <div class="resp">
+    <div>
+      <div class="bp"><small>&ge; 1024px</small><b>Docked panel</b><p>Opens beside the page behind a dark scrim, so the page stays in view.</p></div>
+      <div class="bp"><small>600 &ndash; 1023px</small><b>Sheet</b><p>Slides over the page as a 420px sheet.</p></div>
+      <div class="bp"><small>&lt; 600px</small><b>Full screen</b><p>Takes over the screen. Close returns focus to the launcher.</p></div>
+      <div class="bp"><small>All sizes</small><b>Touch and keyboard</b><p>Targets are at least 44px. The input stays pinned above the on-screen keyboard.</p></div>
+    </div>
+    <div class="phones">
+      <div>
+        <div class="phone-cap"><b>A</b>HOME</div>
+        <div class="phone">
+          <div class="sbar"><span>9:41</span><span>5G</span></div>
+          <div class="m-top"><div class="p-logo"><svg><use href="#i-logo"/></svg>Member Portal</div><span class="m-avatar">JL</span></div>
+          <div class="m-hero"><small class="eyebrow">2026 · GOLD PPO</small><h3>Good morning, Jordan</h3><p>Your annual checkup is due by June 30.</p><span class="hero-link">Book a visit &rarr;</span></div>
+          <div class="m-stats">
+            <div class="stat"><small>Deductible</small><p>$640 <span>/ 1,500</span></p><div class="bar"><i style="width:43%"></i></div></div>
+            <div class="stat"><small>Out-of-pocket</small><p>$910 <span>/ 4,000</span></p><div class="bar"><i style="width:23%"></i></div></div>
+          </div>
+          <div class="m-sec">
+            <div class="p-h">Recent claims</div>
+            <div class="row"><div>Lab work<small>Mar 12 · Westside Lab</small></div><span class="status ok">Processed</span></div>
+            <div class="row"><div>Prescription<small>Feb 19 · Main St Pharmacy</small></div><span class="status wait">In review</span></div>
+          </div>
+          <div class="launcher"><svg><use href="#i-chat"/></svg>Ask</div>
+          <div class="tabbar"><span class="on"><svg><use href="#t-home"/></svg>Home</span><span><svg><use href="#t-coverage"/></svg>Coverage</span><span><svg><use href="#t-claims"/></svg>Claims</span><span><svg><use href="#t-care"/></svg>Care</span><span class="menu" aria-label="Menu"><svg><use href="#t-menu"/></svg></span></div>
+        </div>
+      </div>
+      <div>
+        <div class="phone-cap"><b>B</b>CHAT OPEN</div>
+        <div class="phone">
+          <div class="sbar light"><span>9:41</span><span>5G</span></div>
+          <div class="c-head"><div class="c-mark"><svg><use href="#i-chat"/></svg></div><div class="c-title"><b>Member Assistant <span class="tag-ai">AI</span></b><small>Answers about your plan</small></div><div class="c-x"><svg><use href="#i-x"/></svg></div></div>
+          <div class="c-body">
+            <div class="c-note">AI answers can make mistakes. Check important details.</div>
+            <div class="bot"><span class="who">ASSISTANT</span>Hi Jordan. I can help with coverage, claims and finding care. What would you like to know?</div>
+            <div style="margin-top:auto"><div class="sugg-label">TRY ASKING</div><div class="sugg"><span>Check my deductible</span><span>Find a doctor</span><span>Claim status</span></div></div>
+          </div>
+          <div class="c-input"><div class="field">Type your question<span class="send-in"><svg><use href="#i-send"/></svg></span></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="phone-cap"><b>C</b>CONVERSATION</div>
+        <div class="phone">
+          <div class="sbar light"><span>9:42</span><span>5G</span></div>
+          <div class="c-head"><div class="c-mark"><svg><use href="#i-chat"/></svg></div><div class="c-title"><b>Member Assistant <span class="tag-ai">AI</span></b><small>Answers about your plan</small></div><div class="c-x"><svg><use href="#i-x"/></svg></div></div>
+          <div class="c-body">
+            <div class="me"><span class="who">YOU · 10:42</span><p>Is urgent care covered if I go this weekend?</p></div>
+            <div class="bot"><span class="who">ASSISTANT · 10:42</span>Yes. Urgent care is covered at in-network centers, including weekends. Your copay is <b>$50 per visit</b>. <a>See your plan summary</a></div>
+            <div style="margin-top:auto"><div class="sugg-label">FOLLOW UP</div><div class="sugg"><span>Find urgent care near me</span><span>Talk to a person</span></div></div>
+          </div>
+          <div class="c-input"><div class="field focus">Is the ER covered too|<span class="send-in"><svg><use href="#i-send"/></svg></span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // #b1-#b5 shows one artboard (used to export the PNGs); no hash shows them all
+  const el = location.hash && document.getElementById(location.hash.slice(1));
+  if (el) { document.documentElement.classList.add("single"); el.classList.add("show"); }
+
+  // Center each A/B/C marker vertically on the element it points to
+  document.querySelectorAll(".pin[data-for]").forEach((pin) => {
+    const target = document.getElementById(pin.dataset.for);
+    const box = pin.offsetParent.getBoundingClientRect();
+    const k = pin.offsetParent.offsetHeight / box.height; // undo any board scaling
+    const t = target.getBoundingClientRect();
+    pin.style.top = ((t.top - box.top + t.height / 2) * k - pin.offsetHeight / 2) + "px";
+  });
+
+  // View-all mode: scale the boards to fit the screen, and refit on resize
+  if (!el) {
+    const fit = () => {
+      const avail = document.documentElement.clientWidth - 32;
+      document.documentElement.style.setProperty("--s", Math.min(1, avail / 1600));
+    };
+    fit();
+    addEventListener("resize", fit);
+  }
+</script>
+</body>
+</html>
