@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Home | Tornado Health</title>
+  <meta name="description" content="Tornado Health member portal demo. A portfolio project with made-up data.">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css"
+        integrity="sha384-AGSGRaBRodcsy1n0F2zMm+LfXuZry/ZJ6nfio36UgMuNBs/AOC8ciJ7py4SgkpoY" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/solid.min.css"
+        integrity="sha384-H/BU8KfYKZ0VK4RJyclToSd6x8TmMY4/Rym2YtHXnGQOUZAoLIYIaOxkIfyTAuVh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/portal.css">
+  <link rel="preload" href="data/member.json" as="fetch" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+  <script src="js/portal.js" defer></script>
+</head>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100">
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 z-3 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
+
+  <!-- Header: logo, primary nav with megamenus, divider, account menu ============ -->
+  <header class="site-header sticky-top">
+    <div class="container-xl header-bar d-flex align-items-center gap-3">
+      <a class="site-logo tap-target me-auto" href="index.html" aria-label="Tornado Health home">
+        <svg aria-hidden="true" focusable="false"><use href="assets/logo.svg#logo"></use></svg>
+      </a>
+
+      <nav class="primary-nav d-none d-lg-block" aria-label="Primary">
+        <ul class="nav flex-nowrap align-items-center gap-1">
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Coverage</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta p-4 h-100">
+                      <p class="fw-bold mb-1">Coverage overview</p>
+                      <p class="small text-body-secondary mb-3">See what your plan covers and what you've spent.</p>
+                      <a class="dropdown-item menu-cta" href="#">Go to coverage overview <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                    <div class="col-sm-6">
+                      <p class="mega-group-title" id="nav-coverage-your-benefits">Your benefits</p>
+                      <ul class="list-unstyled mb-0" aria-labelledby="nav-coverage-your-benefits">
+                        <li><a class="dropdown-item mega-link" href="#">Medical</a></li><li><a class="dropdown-item mega-link" href="#">Rx</a></li><li><a class="dropdown-item mega-link" href="#">Dental</a></li><li><a class="dropdown-item mega-link" href="#">Vision</a></li><li><a class="dropdown-item mega-link" href="#">Spending Accounts</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="mega-group-title" id="nav-coverage-your-plan">Your plan</p>
+                      <ul class="list-unstyled mb-0" aria-labelledby="nav-coverage-your-plan">
+                        <li><a class="dropdown-item mega-link" href="#">ID Cards</a></li><li><a class="dropdown-item mega-link" href="#">Who's Covered</a></li><li><a class="dropdown-item mega-link" href="#">Coordination of Benefits</a></li><li><a class="dropdown-item mega-link" href="#">Referrals &amp; Prior Auths</a></li>
+                      </ul>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Claims</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta p-4 h-100">
+                      <p class="fw-bold mb-1">Claim summary</p>
+                      <p class="small text-body-secondary mb-3">Track every claim and what you owe.</p>
+                      <a class="dropdown-item menu-cta" href="#">Go to claim summary <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                    <div class="col-sm-6">
+                      <p class="mega-group-title" id="nav-claims-claims">Claims</p>
+                      <ul class="list-unstyled mb-0" aria-labelledby="nav-claims-claims">
+                        <li><a class="dropdown-item mega-link" href="#">Claim Details</a></li><li><a class="dropdown-item mega-link" href="#">EOBs (Explanation of Benefits)</a></li>
+                      </ul>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Find Care</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta p-4 h-100">
+                      <p class="fw-bold mb-1">Choices for care</p>
+                      <p class="small text-body-secondary mb-3">Not sure where to go? Compare a doctor, urgent care, video visit or the ER.</p>
+                      <a class="dropdown-item menu-cta" href="#">Go to choices for care <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                    <div class="col-sm-6">
+                      <p class="mega-group-title" id="nav-find-care-find-care">Find care</p>
+                      <ul class="list-unstyled mb-0" aria-labelledby="nav-find-care-find-care">
+                        <li><a class="dropdown-item mega-link" href="#">Find a Doctor</a></li><li><a class="dropdown-item mega-link" href="#">Behavioral Health Support</a></li><li><a class="dropdown-item mega-link" href="#">Get a Second Opinion</a></li><li><a class="dropdown-item mega-link" href="#">Estimate Your Cost</a></li>
+                      </ul>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Programs &amp; Services</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta p-4 h-100">
+                      <p class="fw-bold mb-1">Programs overview</p>
+                      <p class="small text-body-secondary mb-3">Programs and perks that come with your plan.</p>
+                      <a class="dropdown-item menu-cta" href="#">Go to programs overview <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                    <div class="col-sm-6">
+                      <p class="mega-group-title" id="nav-programs-and-services-programs">Programs</p>
+                      <ul class="list-unstyled mb-0" aria-labelledby="nav-programs-and-services-programs">
+                        <li><a class="dropdown-item mega-link" href="#">Health Care &amp; Well-Being</a></li><li><a class="dropdown-item mega-link" href="#">Rewards &amp; Perks</a></li>
+                      </ul>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Support</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta p-4 h-100">
+                      <p class="fw-bold mb-1">Help center</p>
+                      <p class="small text-body-secondary mb-3">Answers, guides and ways to reach us.</p>
+                      <a class="dropdown-item menu-cta" href="#">Go to help center <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                    <div class="col-sm-6">
+                      <p class="mega-group-title" id="nav-support-get-help">Get help</p>
+                      <ul class="list-unstyled mb-0" aria-labelledby="nav-support-get-help">
+                        <li><a class="dropdown-item mega-link" href="#">Contact Us</a></li><li><a class="dropdown-item mega-link" href="#">FAQ</a></li><li><button class="dropdown-item mega-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#assistant" aria-controls="assistant" aria-haspopup="dialog">AI Chat</button></li><li><a class="dropdown-item mega-link" href="#">Website Feedback</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="mega-group-title" id="nav-support-forms">Forms</p>
+                      <ul class="list-unstyled mb-0" aria-labelledby="nav-support-forms">
+                        <li><a class="dropdown-item mega-link" href="#">All Forms</a></li>
+                      </ul>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <span class="nav-divider d-none d-lg-block" aria-hidden="true"></span>
+
+      <!-- Account: a small dropdown, not a megamenu -->
+      <div class="dropdown">
+        <button class="account-link tap-target dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="avatar-wrap" aria-hidden="true"><span class="avatar" data-field="initials">RK</span><span class="avatar-count" data-field="alertTotal">5</span></span>
+          <span class="account-label">My Account</span>
+          <span class="visually-hidden"><span data-field="alertTotal">5</span> new</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end account-menu">
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-envelope fa-fw" aria-hidden="true"></i>Messages<span class="badge bg-primary ms-auto" data-field="msgCount">2</span><span class="visually-hidden">unread</span></a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-bell fa-fw" aria-hidden="true"></i>Notifications<span class="badge bg-primary ms-auto" data-field="noteCount">3</span><span class="visually-hidden">new</span></a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li class="px-2 py-1"><a class="dropdown-item menu-cta" href="#">Account overview <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-location-dot fa-fw" aria-hidden="true"></i>Addresses</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-sliders fa-fw" aria-hidden="true"></i>Other options</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#logout-modal"><i class="fa-solid fa-right-from-bracket fa-fw" aria-hidden="true"></i>Log out</button></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main ============================================================== -->
+  <main class="flex-grow-1" id="main" tabindex="-1">
+    <!-- Greeting band (full-width, dark purple): today's date, name, and status chips that jump to their sections -->
+    <header class="greeting-band">
+      <div class="container-xl py-4">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-8">
+            <div class="greeting-meta d-flex flex-column flex-md-row align-items-start align-items-md-center gap-1 gap-md-3 mb-1">
+              <!-- Family member switcher: changes whose claims show -->
+              <div class="dropdown">
+                <button class="member-switch dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Viewing: <span data-field="viewingName">Roy</span></button>
+                <ul class="dropdown-menu member-menu" data-list="family" aria-label="Family members"></ul>
+              </div>
+              <span class="meta-divider d-none d-md-block" aria-hidden="true"></span>
+              <p class="mb-0" data-field="today">Today</p>
+              <span class="meta-divider d-none d-md-block" aria-hidden="true"></span>
+              <p class="status-note mb-0"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i><span data-field="planName">Tornado Gold PPO</span> · <span data-field="planYearShort">Plan year 2027</span></p>
+            </div>
+            <h1 id="greeting" class="mb-3">Welcome back, <span data-field="firstName">Roy</span></h1>
+            <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0" aria-label="Your status">
+              <li><a class="status-chip" href="#todo-title"><i class="fa-solid fa-circle-exclamation text-warning-emphasis" aria-hidden="true"></i><span data-field="todoCount">1 thing to do</span></a></li>
+              <li><a class="status-chip" href="#plan-title"><i class="fa-solid fa-wallet text-primary" aria-hidden="true"></i><span data-field="dedLeft">$860 left on your deductible</span></a></li>
+            </ul>
+          </div>
+
+          <!-- AI Chat promo: desktop only (the floating chat button covers smaller screens) -->
+          <aside class="col-lg-4 d-none d-lg-block" aria-labelledby="chat-promo-title">
+            <div class="chat-promo p-3">
+              <h2 class="chat-promo-title d-flex align-items-center gap-2 mb-1" id="chat-promo-title"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i>Questions? Ask AI Chat</h2>
+              <p class="small mb-2">Get quick answers about your plan and claims.</p>
+              <button class="btn btn-light btn-sm chat-promo-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#assistant" aria-controls="assistant" aria-haspopup="dialog">Start a chat</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </header>
+
+    <div class="container-xl py-4">
+      <p class="visually-hidden" role="status" id="live-status"></p>
+      <div class="alert alert-danger d-none" role="alert" id="load-error">
+        We couldn't load your information. Refresh the page to try again.
+      </div>
+
+      <div class="row g-4">
+        <!-- Main column: what to do, then what happened -->
+        <div class="col-lg-8 vstack gap-4">
+          <section class="card" aria-labelledby="todo-title">
+            <div class="card-body p-4">
+              <h2 class="mb-3" id="todo-title">To do</h2>
+
+              <!-- The one action: the page's focus and its only primary button -->
+              <div class="action-block d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 p-3 p-md-4" data-list="action" aria-busy="true">
+                <!-- Placeholder built from the same elements as the real strip, so nothing shifts when data loads -->
+                <div class="flex-grow-1" aria-hidden="true">
+                  <p class="mb-1"><span class="badge placeholder col-3 col-md-2">&nbsp;</span></p>
+                  <p class="h3 mb-1"><span class="placeholder col-11 col-md-8"></span><span class="placeholder col-6 d-md-none"></span></p>
+                  <p class="small mb-0"><span class="placeholder col-12 col-md-9"></span><span class="placeholder col-12 col-md-5"></span><span class="placeholder col-4 d-md-none"></span></p>
+                </div>
+                <span class="btn btn-primary disabled placeholder px-5" aria-hidden="true">&nbsp;</span>
+              </div>
+
+              <!-- Updates: in progress, nothing to do yet -->
+              <h3 class="small fw-semibold text-body-secondary mt-4 mb-2" id="updates-title">Updates</h3>
+              <ul class="list-group list-group-flush" data-list="updates" aria-labelledby="updates-title" aria-busy="true">
+                <li class="list-group-item update-row" aria-hidden="true"><span class="placeholder icon-chip"></span><span><span class="placeholder col-6 d-block mb-2"></span><span class="placeholder col-4 d-block"></span></span></li>
+                <li class="list-group-item update-row" aria-hidden="true"><span class="placeholder icon-chip"></span><span><span class="placeholder col-6 d-block mb-2"></span><span class="placeholder col-4 d-block"></span></span></li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="claims-title">
+            <div class="card-body p-4">
+              <div class="section-head mb-3">
+                <h2 class="mb-0" id="claims-title">Recent claims</h2>
+                <a class="tap-target link-icon" href="#">See all claims <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+              </div>
+              <ul class="list-group list-group-flush" data-list="claims" aria-busy="true">
+                <li class="list-group-item claim-row" aria-hidden="true"><span><span class="placeholder col-6 d-block mb-2"></span><span class="placeholder col-9 d-block"></span></span><span class="placeholder col-12"></span><span class="placeholder col-12"></span></li>
+                <li class="list-group-item claim-row" aria-hidden="true"><span><span class="placeholder col-6 d-block mb-2"></span><span class="placeholder col-9 d-block"></span></span><span class="placeholder col-12"></span><span class="placeholder col-12"></span></li>
+                <li class="list-group-item claim-row" aria-hidden="true"><span><span class="placeholder col-6 d-block mb-2"></span><span class="placeholder col-9 d-block"></span></span><span class="placeholder col-12"></span><span class="placeholder col-12"></span></li>
+              </ul>
+            </div>
+          </section>
+        </div>
+
+        <!-- Side column: where you stand, your card, suggestions -->
+        <div class="col-lg-4 vstack gap-4">
+          <section class="card" aria-labelledby="plan-title">
+            <div class="card-body p-4">
+              <h2 class="mb-3" id="plan-title">Your plan</h2>
+              <div class="vstack gap-4">
+                <div>
+                  <div class="d-flex align-items-baseline justify-content-between gap-2">
+                    <span class="fw-semibold" id="ded-label">Deductible</span>
+                    <span class="small text-body-secondary">of <span data-field="dedLimit">$1,500</span></span>
+                  </div>
+                  <p class="stat-value mb-2" data-field="dedSpent">$640</p>
+                  <progress class="meter mb-2" max="1500" value="640" data-meter="deductible" aria-labelledby="ded-label" aria-describedby="ded-help"></progress>
+                  <p class="small text-body-secondary mb-0" id="ded-help" data-field="dedHelp">$860 left before your plan pays more.</p>
+                </div>
+                <div>
+                  <div class="d-flex align-items-baseline justify-content-between gap-2">
+                    <span class="fw-semibold" id="oop-label">Out-of-pocket max</span>
+                    <span class="small text-body-secondary">of <span data-field="oopLimit">$4,000</span></span>
+                  </div>
+                  <p class="stat-value mb-2" data-field="oopSpent">$910</p>
+                  <progress class="meter mb-2" max="4000" value="910" data-meter="outOfPocket" aria-labelledby="oop-label" aria-describedby="oop-help"></progress>
+                  <p class="small text-body-secondary mb-0" id="oop-help" data-field="oopHelp">$3,090 left. After that, covered care is $0.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" id="id-card" aria-labelledby="id-title" tabindex="-1">
+            <div class="card-body p-4">
+              <div class="section-head mb-3">
+                <h2 class="mb-0" id="id-title">Your ID card</h2>
+                <a class="tap-target link-icon" href="#">View <span class="visually-hidden">full ID card</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+              </div>
+              <div class="id-card p-3">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <span class="site-logo"><svg aria-hidden="true" focusable="false"><use href="assets/logo.svg#logo"></use></svg></span>
+                  <span class="small fw-semibold" data-field="planName">Tornado Gold PPO</span>
+                </div>
+                <dl class="row row-cols-2 g-2 mb-0">
+                  <div class="col"><dt>Member</dt><dd class="mb-0" data-field="fullName">Roy Kent</dd></div>
+                  <div class="col"><dt>Member ID</dt><dd class="mb-0" data-field="memberId">THK 482910573</dd></div>
+                  <div class="col"><dt>Rx BIN</dt><dd class="mb-0" data-field="rxBin">610279</dd></div>
+                  <div class="col"><dt>Rx PCN</dt><dd class="mb-0" data-field="rxPcn">THRX</dd></div>
+                </dl>
+              </div>
+              <div class="id-actions d-flex flex-wrap gap-3 mt-3">
+                <button class="btn btn-link link-icon px-0" type="button" data-id-action="download"><i class="fa-solid fa-download" aria-hidden="true"></i>Download</button>
+                <button class="btn btn-link link-icon px-0" type="button" data-id-action="wallet"><i class="fa-solid fa-wallet" aria-hidden="true"></i>Add to wallet</button>
+              </div>
+              <p class="status-line small text-body-secondary mb-0" role="status" id="id-status"></p>
+            </div>
+          </section>
+
+          <aside class="card" aria-labelledby="rec-title">
+            <div class="card-body p-4">
+              <h2 class="mb-3" id="rec-title">For you</h2>
+              <ul class="list-group list-group-flush" data-list="recommendations" aria-busy="true">
+                <li class="list-group-item" aria-hidden="true"><span class="placeholder col-7 d-block mb-2"></span><span class="placeholder col-10 d-block"></span></li>
+                <li class="list-group-item" aria-hidden="true"><span class="placeholder col-7 d-block mb-2"></span><span class="placeholder col-10 d-block"></span></li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Find a doctor: the most common reason to log in after ID card and claims -->
+      <section class="card mt-4" aria-labelledby="find-title">
+        <div class="card-body p-4">
+          <h2 class="mb-1" id="find-title">Find a doctor</h2>
+          <p class="small text-body-secondary mb-3">In network for your Tornado Gold PPO plan.</p>
+          <form class="find-form" id="find-form" role="search" aria-labelledby="find-title" novalidate>
+            <label class="form-label small fw-semibold" for="find-q">Name, specialty or condition</label>
+            <div class="input-group">
+              <input class="form-control" type="search" id="find-q" name="q" autocomplete="off" aria-describedby="find-error">
+              <button class="btn btn-outline-primary d-inline-flex align-items-center gap-2" type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>Search</button>
+            </div>
+            <p class="small text-danger-emphasis fw-semibold mt-2 mb-0" id="find-error" hidden>Enter a name, specialty or condition.</p>
+          </form>
+          <p class="small fw-semibold text-body-secondary mt-3 mb-2" id="find-popular">Popular searches</p>
+          <div class="d-flex flex-wrap gap-2" role="group" aria-labelledby="find-popular">
+            <button class="btn btn-outline-primary btn-sm chat-chip" type="button" data-find="Primary care">Primary care</button>
+            <button class="btn btn-outline-primary btn-sm chat-chip" type="button" data-find="Urgent care">Urgent care</button>
+            <button class="btn btn-outline-primary btn-sm chat-chip" type="button" data-find="Dermatology">Dermatology</button>
+          </div>
+          <p class="status-line small mb-0" id="find-status" role="status"></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer ============================================================ -->
+  <footer class="border-top bg-body py-4">
+    <div class="container-xl px-4">
+      <nav aria-label="Footer">
+        <ul class="list-unstyled d-flex flex-wrap column-gap-4 row-gap-1 mb-2">
+          <li><a class="tap-target" href="#">Help &amp; contact</a></li>
+          <li><a class="tap-target" href="#">Accessibility statement</a></li>
+          <li><a class="tap-target" href="#">Privacy</a></li>
+          <li><a class="tap-target" href="#">Language assistance</a></li>
+          <li><a class="tap-target" href="#">Nondiscrimination notice</a></li>
+        </ul>
+      </nav>
+      <p class="small text-body-secondary mb-0">Tornado Health is a fictional company. This is a portfolio demo by Keith Jeter. All data is made up.</p>
+    </div>
+  </footer>
+
+  <!-- Bottom nav (below 992px; hidden above, so only one nav landmark is exposed) -->
+  <nav class="bottom-nav d-lg-none" aria-label="Mobile">
+    <ul class="list-unstyled mb-0">
+      <li><a href="index.html" aria-current="page"><i class="fa-solid fa-house" aria-hidden="true"></i>Home</a></li>
+      <li><a href="#"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i>Coverage</a></li>
+      <li><a href="#"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>Claims</a></li>
+      <li><a href="#id-card"><i class="fa-solid fa-id-card" aria-hidden="true"></i>ID Card</a></li>
+      <li><button type="button" data-bs-toggle="offcanvas" data-bs-target="#more-sheet" aria-controls="more-sheet" aria-haspopup="dialog"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button></li>
+    </ul>
+  </nav>
+
+  <!-- More sheet -->
+  <div class="offcanvas offcanvas-bottom more-sheet" role="dialog" tabindex="-1" id="more-sheet" aria-labelledby="more-title">
+    <div class="sheet-handle mx-auto mt-2" aria-hidden="true"></div>
+    <div class="offcanvas-header pb-2">
+      <h2 class="offcanvas-title" id="more-title">More</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-0">
+      <nav aria-label="More">
+        <ul class="row row-cols-2 g-2 list-unstyled mb-0">
+          <li class="col"><a class="more-tile p-3" href="#"><span class="icon-chip" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span><span class="fw-semibold">Find Care</span><small>Doctors, urgent care and more</small></a></li>
+          <li class="col"><a class="more-tile p-3" href="#"><span class="icon-chip" aria-hidden="true"><i class="fa-solid fa-hand-holding-heart"></i></span><span class="fw-semibold">Programs &amp; Services</span><small>Well-being, rewards and perks</small></a></li>
+          <li class="col"><a class="more-tile p-3" href="#"><span class="icon-chip" aria-hidden="true"><i class="fa-solid fa-circle-question"></i></span><span class="fw-semibold">Help Center</span><small>Answers, chat and contact</small></a></li>
+          <li class="col"><a class="more-tile p-3" href="#"><span class="icon-chip" aria-hidden="true"><i class="fa-solid fa-file-lines"></i></span><span class="fw-semibold">All Forms</span><small>Claim, appeal and update forms</small></a></li>
+          <li class="col"><a class="more-tile p-3" href="#"><span class="icon-chip" aria-hidden="true"><i class="fa-solid fa-notes-medical"></i></span><span class="fw-semibold">Referrals &amp; Prior Auths</span><small>Track approvals and referrals</small></a></li>
+          <li class="col"><a class="more-tile p-3" href="#"><span class="icon-chip" aria-hidden="true"><i class="fa-solid fa-users"></i></span><span class="fw-semibold">Who's Covered</span><small>You and your dependents</small></a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- AI Chat -->
+  <button class="btn btn-primary chat-fab d-inline-flex align-items-center justify-content-center" type="button"
+          data-bs-toggle="offcanvas" data-bs-target="#assistant" aria-controls="assistant" aria-haspopup="dialog" aria-label="Open AI Chat">
+    <i class="fa-solid fa-comment fa-lg" aria-hidden="true"></i>
+  </button>
+
+  <div class="offcanvas offcanvas-end chat-panel" role="dialog" tabindex="-1" id="assistant" aria-labelledby="assistant-title">
+    <div class="offcanvas-header border-bottom">
+      <h2 class="offcanvas-title d-flex align-items-center gap-2" id="assistant-title">
+        AI Chat <span class="badge bg-primary-subtle text-primary-emphasis">Demo</span>
+      </h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close AI Chat"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column gap-3">
+      <p class="small text-body-secondary bg-body-tertiary rounded-3 p-3 mb-0">This is a demo. AI Chat answers with made-up data and can't give medical advice.</p>
+      <div class="chat-log flex-grow-1 vstack gap-3" role="log" aria-live="polite" aria-label="Conversation" tabindex="0" data-list="chat">
+        <p class="bg-body-tertiary rounded-3 p-3 mb-0"><span class="visually-hidden">AI Chat: </span>Hi Roy. Ask a question or pick one below.</p>
+      </div>
+      <div class="d-flex flex-wrap gap-2" role="group" aria-label="Suggested questions" data-list="prompts"></div>
+    </div>
+    <form class="border-top p-3" id="chat-form" autocomplete="off">
+      <label class="visually-hidden" for="chat-input">Type your question</label>
+      <div class="chat-field">
+        <input class="form-control" id="chat-input" type="text" placeholder="Type your question" maxlength="200">
+        <button class="chat-send" type="submit" aria-label="Send question"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </form>
+  </div>
+  <!-- Log out confirmation: confirm, then a logged-out state (demo) -->
+  <div class="modal fade" id="logout-modal" role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="logout-title">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body p-4" data-step="confirm">
+          <h2 class="mb-2" id="logout-title">Log out of Tornado Health?</h2>
+          <p class="text-body-secondary mb-4">You'll need to sign in again to see your claims, ID card and messages.</p>
+          <div class="d-flex flex-column flex-sm-row gap-2">
+            <button class="btn btn-primary" type="button" id="logout-confirm">Log out</button>
+            <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Stay signed in</button>
+          </div>
+        </div>
+        <div class="modal-body p-4" data-step="done" hidden>
+          <h2 class="mb-2" id="logout-done-title">You're logged out</h2>
+          <p class="text-body-secondary mb-4">This is a demo, so you can sign right back in and keep exploring.</p>
+          <div class="d-flex flex-column flex-sm-row">
+            <button class="btn btn-primary" type="button" id="logout-done-btn" data-bs-dismiss="modal">Sign back in</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder links (href="#") show this instead of going nowhere -->
+  <div class="toast-stack position-fixed start-50 translate-middle-x p-3" role="status" aria-live="polite">
+    <div class="toast demo-toast" id="demo-toast">
+      <div class="d-flex align-items-center">
+        <p class="toast-body mb-0" id="demo-toast-msg"></p>
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="toast" aria-label="Close message"></button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
