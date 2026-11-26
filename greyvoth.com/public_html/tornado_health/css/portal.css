@@ -2,12 +2,13 @@
    Tornado Health member portal
    1. Tokens (raw values)    3. Base
    2. Bootstrap mapping      4. Components    5. Responsive + motion
-   Nothing below section 1 uses a raw color, shadow or radius value.
+   Nothing below section 1 uses a raw color, shadow, radius or font size
+   (section 2 repeats some colors as RGB triplets because Bootstrap needs them).
    ========================================================================== */
 
 /* 1. Tokens --------------------------------------------------------------- */
 :root {
-  /* Primary purple scale (300, 400, 500, 700 are reserved for future components) */
+  /* Primary purple scale (300 and 500 are reserved for future components) */
   --th-purple-50:  #f5f2fb;
   --th-purple-100: #ebe4f7;
   --th-purple-200: #d5c8ee;
@@ -35,9 +36,12 @@
 
   /* Type: system stack, fluid scale */
   --th-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --th-fs-3xs:  .6875rem;   /* avatar counter */
+  --th-fs-2xs:  .75rem;     /* bottom nav labels */
   --th-fs-xs:   .8125rem;
   --th-fs-sm:   .875rem;
   --th-fs-base: clamp(1rem, .97rem + .15vw, 1.0625rem);
+  --th-fs-nav-icon: 1.125rem;  /* bottom nav icons */
   --th-fs-h3:   clamp(1.0625rem, 1rem + .3vw, 1.1875rem);
   --th-fs-h2:   clamp(1.1875rem, 1.1rem + .45vw, 1.375rem);
   --th-fs-h1:   clamp(1.625rem, 1.4rem + 1.1vw, 2.125rem);
@@ -48,6 +52,10 @@
   --th-radius-sm: 6px;
   --th-radius-md: 12px;
   --th-radius-lg: 16px;
+  --th-radius-pill: 999px;   /* pills: counter, meter, sheet handle */
+  --th-radius-round: 50%;    /* circles: avatar, icon chips, chat button */
+  --th-ring-white: 0 0 0 2px var(--th-white);              /* separates the avatar counter from the avatar */
+  --th-edge-top: 0 -1px 0 var(--th-neutral-200);           /* bottom nav's top edge */
   --th-shadow-1: 0 1px 2px rgb(23 21 31 / .06), 0 1px 3px rgb(23 21 31 / .08);
   --th-shadow-2: 0 8px 24px rgb(23 21 31 / .12);
   --th-shadow-3: 0 12px 32px rgb(23 21 31 / .18);
@@ -57,11 +65,13 @@
   --th-header-h: 4rem;
   --th-bottomnav-h: 4.25rem;
   --th-target: 3rem;          /* 48px minimum touch target */
+  --th-control-sm: 2rem;      /* family switcher (32px) */
+  --th-control-md: 2.5rem;    /* small light button on the band (40px) */
   --th-chat-size: 3.5rem;
   --th-icon-chip: 2.5rem;
   --th-chat-w: 25rem;
-  --th-ease-out: cubic-bezier(.25, 1, .5, 1); /* ease-out-quart */
   --th-chat-h: 40rem;
+  --th-ease-out: cubic-bezier(.25, 1, .5, 1); /* ease-out-quart */
 }
 
 /* 2. Tokens -> Bootstrap variables ----------------------------------------- */
@@ -187,7 +197,8 @@ h3 { font-size: var(--th-fs-h3); }
   border-radius: var(--th-radius-sm);
 }
 .primary-nav .nav-link:hover,
-.primary-nav .nav-link[aria-expanded="true"] { background: var(--th-primary-tint); color: var(--th-primary); }
+.primary-nav .nav-link[aria-expanded="true"],
+.primary-nav .nav-link.is-current { background: var(--th-primary-tint); color: var(--th-primary); }  /* current section: same solid tint, stays on */
 .nav-divider { width: 1px; height: 1.5rem; background: var(--bs-border-color-translucent); }
 .account-link { border: 0; background: transparent; color: var(--bs-body-color); font-weight: 600; font-size: var(--th-fs-sm); white-space: nowrap; }
 .account-link:hover { color: var(--th-primary); }
@@ -195,7 +206,7 @@ h3 { font-size: var(--th-fs-h3); }
   display: block;
   width: 2rem;
   height: 2rem;
-  border-radius: 50%;
+  border-radius: var(--th-radius-round);
   background: var(--th-primary);
   color: var(--th-on-primary);
   font-size: var(--th-fs-xs);
@@ -203,6 +214,9 @@ h3 { font-size: var(--th-fs-h3); }
   line-height: 2rem;
   text-align: center;
 }
+
+/* Menus (megamenus, account, family): no outline, raised, tinted hover */
+.dropdown-menu { --bs-dropdown-link-hover-bg: var(--th-primary-tint); border: 0; box-shadow: var(--th-shadow-2); }
 
 /* Megamenu: full-width panel under the header, one per primary item */
 .mega-menu,
@@ -212,15 +226,15 @@ h3 { font-size: var(--th-fs-h3); }
   right: 0;
   width: 100%;
   margin: 0;
-  border: 0;
   border-radius: 0;
-  box-shadow: var(--th-shadow-2);
-  --bs-dropdown-link-hover-bg: var(--th-primary-tint);
   --bs-dropdown-link-active-bg: var(--th-primary-tint);
   --bs-dropdown-link-active-color: var(--th-primary);
 }
 .mega-cta { background: var(--th-primary-tint); border-radius: var(--th-radius-md); }
-.mega-group-title { margin-bottom: .25rem; padding-inline: var(--bs-dropdown-item-padding-x); font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bs-secondary-color); }
+/* Group titles: megamenus and the mobile More sheet share one look */
+.mega-group-title,
+.more-group-title { margin-bottom: .25rem; font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bs-secondary-color); }
+.mega-group-title { padding-inline: var(--bs-dropdown-item-padding-x); }
 .mega-link { display: flex; align-items: center; min-height: var(--th-target); border-radius: var(--th-radius-sm); font-weight: 600; white-space: normal; }
 
 /* Primary call to action inside a menu (megamenu panels, account menu) */
@@ -241,8 +255,10 @@ h3 { font-size: var(--th-fs-h3); }
 .dropdown-menu .menu-cta:focus-visible { background: var(--th-primary-hover); color: var(--th-on-primary); }
 
 /* Account menu: icon + label + count per row */
-.account-menu { --bs-dropdown-min-width: 16rem; --bs-dropdown-link-hover-bg: var(--th-primary-tint); box-shadow: var(--th-shadow-2); border: 0; }
-.account-menu .dropdown-item:not(.menu-cta) { display: flex; align-items: center; gap: .75rem; min-height: var(--th-target); }
+.account-menu { --bs-dropdown-min-width: 16rem; }
+/* Account and family menu rows: icon or initials, label, extra pushed right */
+.account-menu .dropdown-item:not(.menu-cta),
+.member-menu .dropdown-item { display: flex; align-items: center; gap: .75rem; min-height: var(--th-target); }
 .account-menu .fa-fw { color: var(--th-primary); }
 .account-menu .menu-cta { width: 100%; }
 /* Room on the right for the counter; the label then sits right next to its caret */
@@ -255,11 +271,11 @@ h3 { font-size: var(--th-fs-h3); }
   min-width: 1.25rem;
   height: 1.25rem;
   padding: 0 .25rem;
-  border-radius: 999px;
+  border-radius: var(--th-radius-pill);
   background: var(--th-danger-600);
   color: var(--th-white);
-  box-shadow: 0 0 0 2px var(--th-white);
-  font-size: .6875rem;
+  box-shadow: var(--th-ring-white);
+  font-size: var(--th-fs-3xs);
   font-weight: 700;
   line-height: 1.25rem;
   text-align: center;
@@ -273,7 +289,7 @@ h3 { font-size: var(--th-fs-h3); }
   box-shadow: var(--th-shadow-card);
 }
 
-/* Greeting status chips: quick facts that jump to their section */
+/* Greeting status chips (band only, no shadow): quick facts that jump to their section */
 .status-chip {
   display: inline-flex;
   align-items: center;
@@ -282,7 +298,6 @@ h3 { font-size: var(--th-fs-h3); }
   padding: 0 1rem;
   border-radius: var(--th-radius-md);
   background: var(--th-white);
-  box-shadow: var(--th-shadow-card);
   color: var(--bs-body-color);
   font-size: var(--th-fs-sm);
   font-weight: 600;
@@ -294,12 +309,27 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .greeting-band { --bs-heading-color: var(--th-white); background: var(--th-primary); color: var(--th-white); }
 .greeting-meta { color: var(--th-purple-200); font-size: var(--th-fs-sm); font-weight: 600; }
 .meta-divider { width: 1px; height: 1rem; align-self: center; background: var(--th-purple-400); }
+/* Band chips: one row on phones that scrolls sideways (the second chip peeks in); they wrap from 768px */
+/* A scroller clips what sits outside it, so 5px of padding (offset back with a negative margin) leaves room
+   for the 3px focus ring and its 2px offset. Nothing moves. */
+.band-chips { overflow-x: auto; scrollbar-width: none; padding: .3125rem; margin: -.3125rem; }
+.band-chips > li { flex: none; }
+@media (max-width: 767.98px) {
+  /* The date always gets its own line on phones, so its length (filled in by the script) can't reflow the band */
+  .meta-date { order: 1; flex-basis: 100%; }
+  /* Run the scrolling chips to the screen edge (no right inset where they're cut off);
+     the spacer lets the last chip stop at the page's 12px edge when scrolled to the end */
+  .band-chips { margin-right: -.75rem; padding-right: 0; scroll-padding-inline: .75rem; }  /* a chip scrolled into view keeps room for its ring */
+  .band-chips::after { content: ""; flex: none; width: .25rem; }
+}
+/* Plain facts (not links) sit as text in the meta line, so only links look like chips */
+.status-note { display: inline-flex; align-items: center; gap: .5rem; }
+.greeting-band :focus-visible { outline-color: var(--th-white); }
 
 /* Family member switcher (in the band's meta line) */
-.member-switch { display: inline-flex; align-items: center; gap: .375rem; min-height: 2rem; padding: 0 .625rem; border: 0; border-radius: var(--th-radius-sm); background: var(--th-purple-700); color: var(--th-white); font-weight: 600; }
+.member-switch { display: inline-flex; align-items: center; gap: .375rem; min-height: var(--th-control-sm); padding: 0 .625rem; border: 0; border-radius: var(--th-radius-sm); background: var(--th-purple-700); color: var(--th-white); font-weight: 600; }
 .member-switch:hover { background: var(--th-purple-600); }
-.member-menu { --bs-dropdown-min-width: 15rem; --bs-dropdown-link-hover-bg: var(--th-primary-tint); border: 0; box-shadow: var(--th-shadow-2); }
-.member-menu .dropdown-item { display: flex; align-items: center; gap: .75rem; min-height: var(--th-target); }
+.member-menu { --bs-dropdown-min-width: 15rem; }
 .member-menu .dropdown-item[aria-current="true"] { background: var(--th-primary-tint); color: var(--th-primary); }
 /* Menus opened from the band are white, so their focus ring goes back to purple */
 .greeting-band .dropdown-menu :focus-visible { outline-color: var(--th-focus); }
@@ -317,20 +347,25 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   --bs-btn-active-bg: var(--th-white);
   --bs-btn-active-color: var(--th-purple-900);
   --bs-btn-active-border-color: var(--th-white);
-  min-height: 2.5rem;
+  min-height: var(--th-control-md);
   padding-inline: 1rem;
-  font-weight: 600;
 }
-.greeting-band .status-chip { box-shadow: none; }
-/* Plain facts (not links) sit as text in the meta line, so only links look like chips */
-.status-note { display: inline-flex; align-items: center; gap: .5rem; }
-.greeting-band :focus-visible { outline-color: var(--th-white); }
 
 /* Status badges: flex-centered so the text sits in the true middle of the pill
    (Bootstrap's line-height: 1 sets system fonts slightly off-center) */
 .badge { display: inline-flex; align-items: center; min-height: 1.5rem; line-height: 1.2; }
+/* Center the label on its visible letters, not the font's line box. System fonts (Segoe UI especially)
+   reserve extra space above the letters, which made labels sit low. Browsers without text-box keep today's look. */
+.badge > span { text-box: trim-both cap alphabetic; }
+/* Font Awesome glyphs sit about .1em high when flexbox centers them (inline, FA relies on vertical-align: -.125em) */
+.badge > .fa-solid { transform: translateY(.09em); }
 /* Action needed sits on the lavender action strip: solid brand purple, white text, so it stays on palette */
 .action-badge { gap: .375rem; background: var(--th-primary); color: var(--th-white); }
+/* Status badges (claims, All clear): solid status color with white text, never a pale tint */
+.badge-success { background: var(--th-success-600); color: var(--th-white); }
+.badge-warning { background: var(--th-warning-600); color: var(--th-white); }
+.badge-danger { background: var(--th-danger-600); color: var(--th-white); }
+.badge-info { background: var(--th-info-600); color: var(--th-white); }
 
 /* Section card heading row */
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; }
@@ -338,7 +373,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .section-head .tap-target,
 .id-actions .btn { margin-block: -.75rem; }
 
-/* Icon chip (update rows, More sheet tiles) */
+/* Icon chip (update rows) */
 .icon-chip {
   display: inline-flex;
   align-items: center;
@@ -346,7 +381,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   flex-shrink: 0;
   width: var(--th-icon-chip);
   height: var(--th-icon-chip);
-  border-radius: 50%;
+  border-radius: var(--th-radius-round);
 }
 
 /* Action block: a compact tinted strip inside "To do", the page's single focus and only primary button */
@@ -361,6 +396,49 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 /* Recent claims: aligned table-like rows */
 .claim-row { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem; row-gap: .25rem; }
 .claim-row > :first-child { grid-row: span 2; }   /* phones: info left, amount over status right */
+.claim-amount { font-variant-numeric: tabular-nums; font-weight: 700; }
+
+/* Coverage: benefit lists (what you pay), people and approvals rows */
+.benefit-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: .625rem; }
+.benefit-row + .benefit-row { border-top: 1px solid var(--bs-border-color-translucent); }
+.benefit-row dt { font-weight: 400; }
+.benefit-row dd { margin: 0; font-weight: 600; text-align: end; font-variant-numeric: tabular-nums; }
+.benefit-note { display: block; font-size: var(--th-fs-sm); color: var(--bs-secondary-color); }
+.auth-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; }
+
+/* Page tabs (Coverage): a white bar of tabs; the open tab is a solid fill. Scrolls sideways on small screens. */
+.page-tabs {
+  flex-wrap: nowrap;
+  gap: .25rem;
+  padding: .375rem;
+  overflow-x: auto;
+  border-radius: var(--th-radius-lg);
+  background: var(--th-white);
+  box-shadow: var(--th-shadow-card);
+  scroll-margin-top: calc(var(--th-header-h) + 1rem);
+}
+.page-tabs .nav-link {
+  display: flex;
+  align-items: center;
+  min-height: var(--th-target);
+  padding: 0 1.25rem;
+  border-radius: var(--th-radius-md);
+  color: var(--bs-body-color);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.page-tabs .nav-link:hover { background: var(--th-primary-tint); color: var(--th-primary); }
+.page-tabs .nav-link.active { background: var(--th-primary); color: var(--th-on-primary); }
+
+/* Cost tables (Coverage tabs): service, what you pay, limits */
+.cost-table { --bs-table-border-color: var(--bs-border-color-translucent); }
+.cost-table thead th { font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bs-secondary-color); }
+.cost-table th,
+.cost-table td { padding: .75rem 1rem .75rem 0; vertical-align: top; }
+.cost-table tbody th { font-weight: 400; }
+.cost-table tbody td:nth-child(2) { font-weight: 600; font-variant-numeric: tabular-nums; }
+.cost-table tbody td:nth-child(3) { color: var(--bs-secondary-color); font-size: var(--th-fs-sm); }
+.cost-table tbody tr:last-child > * { border-bottom: 0; }
 
 /* Progress meter: native <progress>, styled for both engines */
 .meter {
@@ -369,23 +447,22 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   width: 100%;
   height: .75rem;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--th-radius-pill);
   overflow: hidden;
   background: var(--th-track);
   color: var(--th-primary);
 }
 .meter::-webkit-progress-bar { background: var(--th-track); }
-.meter::-webkit-progress-value { background: var(--th-primary); border-radius: 999px; }
-.meter::-moz-progress-bar { background: var(--th-primary); border-radius: 999px; }
+.meter::-webkit-progress-value { background: var(--th-primary); border-radius: var(--th-radius-pill); }
+.meter::-moz-progress-bar { background: var(--th-primary); border-radius: var(--th-radius-pill); }
+/* Thin meter: one per person under a family total */
+.meter-thin { height: .375rem; }
 
 /* Digital ID card */
 .id-card { background: var(--th-primary); color: var(--th-on-primary); border-radius: var(--th-radius-lg); }
-.id-card .site-logo { color: var(--th-on-primary); }
-.id-card .site-logo svg { width: 7rem; }
 .id-card dt { font-size: var(--th-fs-xs); font-weight: 400; opacity: .85; }
 .id-card dd { font-weight: 700; font-variant-numeric: tabular-nums; }
 
-/* Status line under actions: space is reserved so messages don't shift layout */
 /* Status lines take no space until they have something to say */
 .status-line:not(:empty) { margin-top: 1rem; }
 
@@ -396,8 +473,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .card .list-group-flush > .list-group-item:last-child { padding-bottom: 0; }
 
 /* Find a doctor */
-.find-form .form-control,
-.find-form .btn { min-height: var(--th-target); }
+.find-form .form-control { min-height: var(--th-target); }
 
 /* Log out dialog */
 .modal-content { border: 0; border-radius: var(--th-radius-lg); box-shadow: var(--th-shadow-3); }
@@ -408,10 +484,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 /* X sits 12px from the right edge, mirroring the text inset; the 48px hit area stays */
 .demo-toast .btn-close { background-position: right .75rem center; }
 
-/* Claim amount */
-.claim-amount { font-variant-numeric: tabular-nums; font-weight: 700; }
-
-/* Floating assistant button */
+/* Floating AI Chat button */
 .chat-fab {
   position: fixed;
   right: 1rem;
@@ -419,12 +492,15 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   z-index: 1030;
   width: var(--th-chat-size);
   height: var(--th-chat-size);
-  border-radius: 50%;
+  border-radius: var(--th-radius-round);
   box-shadow: var(--th-shadow-3);
 }
 .chat-panel { --bs-offcanvas-width: var(--th-chat-w); }
 .chat-log { overflow-y: auto; }
-.chat-chip { --bs-btn-font-size: var(--th-fs-sm); }
+/* Chat bubbles: AI Chat answers on the page tint, the member's questions on the primary tint, pushed right */
+.chat-bubble { border-radius: var(--th-radius-md); background: var(--bs-tertiary-bg); }
+.chat-bubble-user { align-self: flex-end; background: var(--th-primary-tint); color: var(--th-primary); }
+.chip-btn { --bs-btn-font-size: var(--th-fs-sm); }   /* small outline chips: AI Chat suggestions, popular searches */
 .chat-field { position: relative; }
 .chat-field .form-control { min-height: var(--th-target); padding-right: var(--th-target); }
 .chat-send {
@@ -445,7 +521,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   z-index: 1030;
   padding-bottom: env(safe-area-inset-bottom);
   background: var(--th-white);
-  box-shadow: 0 -1px 0 var(--bs-border-color-translucent);
+  box-shadow: var(--th-edge-top);
 }
 .bottom-nav ul { display: grid; grid-template-columns: repeat(5, 1fr); gap: .25rem; height: var(--th-bottomnav-h); padding: .375rem; }
 .bottom-nav a,
@@ -462,35 +538,55 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   border-radius: var(--th-radius-sm);
   background: transparent;
   color: var(--bs-secondary-color);
-  font-size: .75rem;
+  font-size: var(--th-fs-2xs);
   font-weight: 600;
   text-decoration: none;
 }
-.bottom-nav .fa-solid { font-size: 1.125rem; }
-.bottom-nav [aria-current="page"] { background: var(--th-primary-tint); color: var(--th-primary); }
+.bottom-nav .fa-solid { font-size: var(--th-fs-nav-icon); }
+.bottom-nav [aria-current="page"],
+.bottom-nav .is-current { background: var(--th-primary-tint); color: var(--th-primary); }
+/* Phones: the bar (and the chat button and message above it) tuck away while scrolling
+   and come back once scrolling stops. portal.js sets .nav-tucked; it never does under reduced motion. */
+.nav-tucked .bottom-nav { transform: translateY(100%); }
+.nav-tucked .chat-fab { transform: translateY(var(--th-bottomnav-h)); }
+.nav-tucked .toast-stack { bottom: env(safe-area-inset-bottom); }
 
-/* More sheet: tiles with an icon, title and one-line description */
+/* More sheet: the full site menu for phones, grouped like the megamenus; scrolls inside past 85% of the screen */
 .more-sheet { --bs-offcanvas-height: auto; border-radius: var(--th-radius-lg) var(--th-radius-lg) 0 0; padding-bottom: env(safe-area-inset-bottom); }
-.sheet-handle { width: 2.5rem; height: .25rem; border-radius: 999px; background: var(--bs-border-color-translucent); }
-.more-tile {
+.sheet-handle { width: 2.5rem; height: .25rem; border-radius: var(--th-radius-pill); background: var(--bs-border-color-translucent); }
+.offcanvas-bottom.more-sheet { max-height: 85vh; } /* beats Bootstrap's max-height: 100% */
+.more-group-title { padding-inline: .75rem; }
+/* The group for the section you're in: a light tint panel; the row for your exact tab turns white inside it */
+.more-group.is-current { padding-block: .5rem; border-radius: var(--th-radius-md); background: var(--th-primary-tint); }
+.more-group.is-current .more-group-title { padding-top: .25rem; color: var(--th-primary); }
+.more-group.is-current .more-link[aria-current] { background: var(--th-white); }
+.more-link {
   display: flex;
-  flex-direction: column;
-  gap: .5rem;
-  height: 100%;
-  border-radius: var(--th-radius-md);
-  background: var(--bs-tertiary-bg);
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  width: 100%;
+  min-height: var(--th-target);
+  padding: 0 .75rem;
+  border: 0;
+  border-radius: var(--th-radius-sm);
+  background: transparent;
   color: var(--bs-body-color);
+  font-weight: 600;
+  text-align: start;
   text-decoration: none;
 }
-.more-tile:hover { background: var(--th-primary-tint); color: var(--th-primary); }
-.more-tile .icon-chip { background: var(--th-white); color: var(--th-primary); }
-.more-tile small { color: var(--bs-secondary-color); line-height: 1.35; }
+.more-link:hover,
+.more-link[aria-current] { background: var(--th-primary-tint); color: var(--th-primary); }  /* the page or tab you're on */
+.more-link .fa-chevron-right { font-size: var(--th-fs-2xs); color: var(--bs-secondary-color); }
 
 /* 5. Responsive + motion --------------------------------------------------- */
 
-/* Phones: "My Account" stays for screen readers but only the avatar shows.
-   Bootstrap has no responsive .visually-hidden, so this mirrors it at one breakpoint. */
 @media (max-width: 575.98px) {
+  /* All five coverage tabs fit on a phone instead of scrolling out of sight */
+  .page-tabs .nav-link { flex: 1 0 auto; justify-content: center; padding: 0 .5rem; font-size: var(--th-fs-sm); }
+  /* "My Account" stays for screen readers but only the avatar shows.
+     Bootstrap has no responsive .visually-hidden, so this mirrors it at one breakpoint. */
   .account-label {
     position: absolute;
     width: 1px;
@@ -500,6 +596,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
     white-space: nowrap;
   }
   .site-logo svg { width: 9rem; }
+  .chat-panel { --bs-offcanvas-width: 100%; }   /* AI Chat takes the whole screen */
 }
 
 /* Below 992px the bottom nav takes over from the header nav */
@@ -515,12 +612,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   .claim-row > :first-child { grid-row: auto; }
 }
 
-/* Phones: the assistant takes the whole screen */
-@media (max-width: 575.98px) {
-  .chat-panel { --bs-offcanvas-width: 100%; }
-}
-
-/* Desktop: the assistant floats above the chat button instead of running full height */
+/* Desktop: AI Chat floats above the chat button instead of running full height */
 @media (min-width: 992px) {
   .offcanvas-end.chat-panel {
     top: auto;
@@ -540,10 +632,14 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   .primary-nav .nav-link,
   .dropdown-item,
   .status-chip,
-  .more-tile,
+  .more-link,
   .bottom-nav a,
   .bottom-nav button,
   .btn { transition: background-color 150ms var(--th-ease-out), color 150ms var(--th-ease-out); }
+
+  /* The bottom bar and chat button slide when the bar tucks away */
+  .bottom-nav { transition: transform 200ms var(--th-ease-out); }
+  .chat-fab { transition: background-color 150ms var(--th-ease-out), color 150ms var(--th-ease-out), transform 200ms var(--th-ease-out); }
 
   /* Menus drop in */
   .dropdown-menu.show { animation: th-drop-in 180ms var(--th-ease-out); }
@@ -553,7 +649,3 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 }
 @keyframes th-drop-in { from { opacity: 0; transform: translateY(-4px); } }
 @keyframes th-fade-in { from { opacity: 0; } }
-
-@media (prefers-reduced-motion: reduce) {
-  .offcanvas { transition: none; }
-}

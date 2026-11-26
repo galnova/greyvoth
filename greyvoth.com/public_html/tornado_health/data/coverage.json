@@ -1,0 +1,84 @@
+{
+  "_note": "Synthetic demo data for the Coverage page. Tornado Health and its members are fictional.",
+  "costs": {
+    "individual": { "deductible": 1500, "outOfPocket": 4000 },
+    "family": { "deductible": 3000, "outOfPocket": 8000 },
+    "spent": {
+      "roy": { "deductible": 640, "outOfPocket": 910 },
+      "keeley": { "deductible": 120, "outOfPocket": 180 },
+      "leo": { "deductible": 50, "outOfPocket": 95 }
+    }
+  },
+  "fsa": {
+    "elected": 1200,
+    "available": 420,
+    "useBy": "2027-12-31"
+  },
+  "limitsUsed": {
+    "physical-therapy": { "roy": 4 },
+    "chiropractic": {},
+    "skilled-nursing": {}
+  },
+  "dental": {
+    "deductible": 50,
+    "yearlyMax": 1500,
+    "used": { "roy": 0, "keeley": 180, "leo": 95 }
+  },
+  "vision": {
+    "nextAvailable": {
+      "roy": { "exam": "2028-03-14", "frames": null, "lenses": "2028-03-14", "contacts": null },
+      "keeley": { "exam": null, "frames": null, "lenses": null, "contacts": null },
+      "leo": { "exam": "2027-12-08", "frames": "2028-12-08", "lenses": "2027-12-08", "contacts": null }
+    }
+  },
+  "auths": [
+    {
+      "patient": "roy",
+      "title": "Knee MRI",
+      "detail": "Prior auth · Dr. Patel · Decision by Dec 2",
+      "status": "In review",
+      "tone": "info"
+    },
+    {
+      "patient": "roy",
+      "title": "Physical therapy, 12 visits",
+      "detail": "Prior auth · Approved Oct 30 · 4 of 12 used",
+      "status": "Approved",
+      "tone": "success"
+    },
+    {
+      "patient": "keeley",
+      "title": "Dermatology referral",
+      "detail": "Referral · Dr. Owens · Good through Mar 31",
+      "status": "Approved",
+      "tone": "success"
+    }
+  ],
+  "assistant": [
+    {
+      "prompt": "How close am I to my deductible?",
+      "answer": "You've paid $640 of your $1,500 deductible, so you have $860 to go. As a family you've paid $810 of $3,000. Once the family reaches $3,000, everyone's deductible is met.",
+      "keywords": ["deductible", "close", "met"]
+    },
+    {
+      "prompt": "What's my specialist copay?",
+      "answer": "A specialist visit is a $50 copay in network. Your PPO plan doesn't need a referral to see a specialist.",
+      "keywords": ["specialist", "copay", "referral"]
+    },
+    {
+      "prompt": "How much is left in my FSA?",
+      "answer": "You have $420 left of the $1,200 you set aside. Use it by Dec 31, 2027. Money you don't use doesn't carry over.",
+      "keywords": ["fsa", "flexible spending", "spending account"]
+    },
+    {
+      "prompt": "Does my plan cover glasses?",
+      "answer": "Yes, through Tornado Vision. You get a $150 allowance for frames every 24 months, and lenses are a $25 copay once a year. Your eye exam is a $10 copay once a year.",
+      "keywords": ["glasses", "frames", "lenses", "contacts", "vision", "eye"]
+    },
+    {
+      "prompt": "What does an MRI cost me?",
+      "answer": "Imaging like an MRI is 20% after your deductible, and it needs prior auth. You have $860 to go on your deductible, so you'd pay the in-network price until you reach it, then 20%. Your knee MRI request is still in review.",
+      "keywords": ["mri", "imaging", "ct", "scan"]
+    }
+  ]
+}

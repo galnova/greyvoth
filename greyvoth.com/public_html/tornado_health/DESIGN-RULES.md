@@ -1,7 +1,7 @@
 # Tornado Health design rules
 
 Living document for the Tornado Health member portal (portfolio demo, fictional brand, synthetic data).
-It becomes the pattern page in a later step. Updated after homepage revision 10 (family switcher, find a doctor, log out dialog, placeholder links, spacing pass).
+It becomes the pattern page in a later step. Updated after revision 15: the site is now multi-page (home and Coverage), with a generated shared shell.
 
 ## Principles
 
@@ -36,7 +36,7 @@ Measured: the header is one 64px row with no overflow at 992, 1024, 1100, 1199, 
 
 ## Tokens
 
-All raw values live in section 1 of `portal.css` (`--th-*`). Section 2 maps them to Bootstrap variables. Nothing below that uses a raw color.
+All raw values live in section 1 of `portal.css` (`--th-*`). Section 2 maps them to Bootstrap variables (repeating a few colors as RGB triplets, which Bootstrap needs). Nothing below that uses a raw color, shadow, radius or font size.
 
 ### Color
 
@@ -44,22 +44,23 @@ All raw values live in section 1 of `portal.css` (`--th-*`). Section 2 maps them
 |---|---|---|
 | purple-50 | `#F5F2FB` | Tints: hover, active tab, open nav item |
 | purple-100 | `#EBE4F7` | Action strip background (body text on it: 14.6:1) |
-| purple-200 | `#D5C8EE` | Meter track |
-| purple-300 to 500 | `#B7A2E0`, `#9478CD`, `#7354B5` | Reserved, decorative only |
-| purple-600 | `#5A3D98` | Focus ring |
-| purple-700 | `#472D7F` | Reserved |
-| purple-800 | `#3B1F6E` | Primary: buttons, links, meter fill, ID card, avatar |
-| purple-900 | `#26134A` | Primary hover |
+| purple-200 | `#D5C8EE` | Meter track, greeting meta text |
+| purple-300, 500 | `#B7A2E0`, `#7354B5` | Reserved, decorative only |
+| purple-400 | `#9478CD` | Meta-line dividers on the band (decorative) |
+| purple-600 | `#5A3D98` | Focus ring, family switcher hover |
+| purple-700 | `#472D7F` | Family switcher button |
+| purple-800 | `#3B1F6E` | Primary: buttons, links, meter fill, ID card, avatar, greeting band |
+| purple-900 | `#26134A` | Primary hover, AI Chat promo panel |
 | white | `#FFFFFF` | Surfaces |
 | neutral-50 | `#F7F6FA` | Page background, More tiles |
 | neutral-200 | `#E1DEE9` | Decorative card borders, dividers |
 | neutral-500 | `#6E6A7C` | Meaningful borders (inputs, outlines) |
 | neutral-600 | `#57536A` | Muted text |
 | neutral-900 | `#17151F` | Body text |
-| success | `#1E6B3A` on `#E3F3E8` | Processed, covered |
-| warning | `#8A4B00` on `#FDF0DC` | Needs info |
-| danger | `#B42318` on `#FDECEA` | Errors |
-| info | `#1D5C9E` on `#E6F0FB` | In review |
+| success | `#1E6B3A` (600), `#E3F3E8` (50) | Status badges: white on 600, 6.5:1 (Processed, All clear); 50 tints icon chips |
+| warning | `#8A4B00` (600), `#FDF0DC` (50) | Status badges: white on 600, 6.8:1 (Needs info); 50 tints icon chips |
+| danger | `#B42318` (600), `#FDECEA` (50) | White on 600, 6.6:1 (errors, avatar counter) |
+| info | `#1D5C9E` (600), `#E6F0FB` (50) | White on 600, 6.8:1 (In review); 50 tints icon chips |
 
 ### Contrast (measured, WCAG 2.2 AA)
 
@@ -92,8 +93,11 @@ System font stack, so there's no web font and no layout shift.
 | `--th-fs-h3` | `clamp(1.0625rem, 1rem + .3vw, 1.1875rem)` | Small headings |
 | `--th-fs-stat` | `clamp(1.625rem, 1.5rem + .5vw, 1.875rem)` | Amounts spent in Your plan |
 | `--th-fs-base` | `clamp(1rem, .97rem + .15vw, 1.0625rem)` | Body |
+| `--th-fs-nav-icon` | `1.125rem` | Bottom nav icons |
 | `--th-fs-sm` | `.875rem` | Nav, meta, helper text |
-| `--th-fs-xs` | `.8125rem` | ID card labels, avatar initials |
+| `--th-fs-xs` | `.8125rem` | ID card labels, avatar initials, megamenu group titles |
+| `--th-fs-2xs` | `.75rem` | Bottom nav labels |
+| `--th-fs-3xs` | `.6875rem` | Avatar counter |
 | `--th-measure` | `65ch` | Max line length (`.text-measure`) |
 
 ### Spacing, radii, elevation, targets
@@ -103,11 +107,25 @@ System font stack, so there's no web font and no layout shift.
   - **Cards:** 24px on every side (`card-body p-4`), 24px between cards (`gap-4` / `g-4`). Top and bottom space measure the same.
   - **Inside a card:** heading to content 16px (`mb-3`); a heading with a one-line description uses `mb-1`, then the description `mb-3`; a new group inside a card starts 24px down (`mt-4`).
   - **List rows** (claims, updates, suggestions): 16px apart, set once with `--bs-list-group-item-padding-y`. The first and last rows sit flush so they don't add to the card's 24px. Don't put `py-*` utilities on rows.
-  - **Status lines** (`.status-line`, `role="status"`) take no space until they show a message, then sit 16px below what they describe.
+  - **Status lines** (`.status-line`, `role="status"`) are muted small text (`text-body-secondary`, 7.4:1). They take no space until they show a message, then sit 16px below what they describe.
   - **48px hit areas next to headings or at a card's edge** (header links such as "See all claims", the ID card actions) overlap the space around them (negative block margin) so they don't make the card look padded unevenly.
-- **Radii:** 6px controls, 12px cards and tiles, 16px ID card and bottom sheet.
-- **Elevation:** `--th-shadow-card` (cards: soft two-layer shadow, no outline), `--th-shadow-1` (header), `-2` (megamenu), `-3` (chat button, chat panel, overlays).
-- **Targets:** `--th-target` is 48px. Every standalone link, button, tab, megamenu link and close button meets it.
+- **Radii:** `--th-radius-sm` 6px controls; `-md` 12px tiles, tinted panels, status chips and chat bubbles; `-lg` 16px cards, ID card, bottom sheet, chat panel and dialog; `-pill` for the avatar counter, meters and sheet handle; `-round` for the avatar, icon chips and chat button.
+- **Elevation:** `--th-shadow-card` (cards: soft two-layer shadow, no outline), `--th-shadow-1` (header), `-2` (megamenu), `-3` (chat button, chat panel, overlays). Two hairlines that aren't elevation: `--th-ring-white` (2px white ring around the avatar counter) and `--th-edge-top` (the bottom nav's 1px top edge).
+- **Targets:** `--th-target` is 48px. Every standalone link, button, tab, megamenu link and close button meets it. Smaller controls that sit on the band use `--th-control-sm` (32px family switcher) and `--th-control-md` (40px "Start a chat").
+
+## Pages and the shared shell
+
+| Page | File | Data | Status |
+|---|---|---|---|
+| Home | `index.html` | `data/member.json` | Built |
+| Coverage overview | `coverage.html` | `member.json` + `data/coverage.json` | Built |
+| Claim summary, Choices for care, Help center, Programs overview, Account overview | (planned) | one JSON file each | Outlined |
+
+- **Shared shell, generated:** `tools/build_shell.py` writes the header (megamenus, account menu) and everything after `<main>` (footer, bottom nav, More sheet, AI Chat, log out dialog, placeholder message) into every page listed in its `PAGES`. Edit the shell there and run `python tools/build_shell.py`; never hand-edit those regions (they're marked with comments). One `MENUS` list feeds the megamenus and the More sheet; `HREFS` lists the pages that exist, and everything else stays `#` (the "not part of the demo yet" message).
+- **Current page:** the section's top-nav button gets `.is-current` (the same solid tint as hover and open) plus a visually hidden "(current section)"; the overview link inside its megamenu gets `aria-current="page"`; the bottom-bar tab gets `aria-current="page"`.
+- **One script:** `js/portal.js` runs the shell on every page and the page's own section from `<body data-page="...">` (`home`, `coverage`). Each page section has `init` (its own controls), `render` (after the data loads) and `onViewing` (what the family switcher changes, and what it announces).
+- **Data:** `member.json` is shared (member, family, inbox, AI Chat); each page adds its own file. AI Chat shows the page's own suggested questions and can answer from both files.
+- **New page checklist:** copy the head and `<main>` pattern from an existing page, set `data-page`, add it to `PAGES` (and `HREFS`, plus `TABS` if it's a bottom-bar tab), run the build script, add its section to `portal.js`, add its data file.
 
 ## Components
 
@@ -149,19 +167,26 @@ My Account opens a small dropdown (`.account-menu`, right-aligned, 256px), not a
 - Tabs have 6px of space around the bar's edge and 4px between them, so the active fill never touches the edges or its neighbors.
 - Pads for `safe-area-inset-bottom`; the page adds matching bottom padding.
 - Hidden from 992px up, so only one nav landmark is ever exposed.
+- **Tucks while scrolling:** as the page scrolls, the bar slides down out of view (200ms, ease-out) and the chat button follows it; about 250ms after scrolling stops, both slide back. It stays put within 80px of the top or bottom of the page, while keyboard focus is inside it, while the More sheet is open, and always under reduced motion. Tabbing into the bar brings it back immediately.
 
 ### More sheet
-Bottom sheet (`offcanvas-bottom`, `role="dialog"`) with a drag-handle cue, a title and a 2-column grid of tiles:
-Find Care, Programs & Services, Help Center, All Forms, Referrals & Prior Auths, Who's Covered. Messages and notifications live in the account menu, which shows on every screen size.
-- Each tile has an icon chip, a title and a one-line description. Hover is a tint fill with no underline.
-- Focus moves in and is trapped; Esc and Close dismiss it; focus returns to the More tab.
+Bottom sheet (`offcanvas-bottom`, `role="dialog"`) with a drag-handle cue and a title. It is the full site menu for phones: everything the bottom bar doesn't already reach, grouped exactly like the desktop megamenus.
+- **Groups (h3, small uppercase, same style as the megamenu group titles):** Coverage · Claims · Find Care · Programs & Services · Support. Each group lists its overview page first (Choices for care, Programs overview, Help center), then every megamenu link. Left out because the bottom bar already has them: Coverage overview, Claim summary, ID Cards. Account items (Messages, Notifications, Addresses, Log out) live in the My Account menu, which shows on phones.
+- **Rows:** full-width 48px links with a small chevron on the right; tint fill on hover, no underline. "AI Chat" opens the chat panel (the sheet closes first).
+- **Section you're in:** the whole group for the current section (Coverage on coverage.html) sits on a light tint panel with a purple group title and a hidden "(current section)", generated by build_shell.py. The row for your exact tab turns white inside it.
+- **Where you are:** when the sheet opens, the row for the current page (and tab, for links like coverage.html#dental) gets the same light tint as the current bottom-bar tab and `aria-current="page"`. Placeholder links never match. On pages only More reaches (tab "More" in build_shell.py), the More tab itself gets the tint and a hidden "(current section)".
+- **Height:** grows with its content up to 85% of the screen, then scrolls inside; the title and close button stay put.
+- **One source:** the megamenus and this sheet are generated from the same `MENUS` list (build_nav.py), so they can't drift apart.
+- Focus moves in and is trapped; Esc and Close dismiss it; focus returns to the More tab. If a panel's opener is hidden when it closes (AI Chat opened from inside the sheet), focus goes to that panel's visible button instead (the chat button).
 - It closes automatically if the window widens to 992px or more.
 
 ### Greeting and status
+**On phones the band stays compact (198px at 375px, 24% of the screen):** 16px padding instead of 24px; the meta line wraps instead of stacking (the switcher and plan name share the first line and the date always takes its own second line, `.meta-date`, so the date filled in by the script can't reflow the band; 16px between wrapped lines, which looks even with the 8px above the h1 because the h1 has its own space above the letters); the h1 has 8px under it; and the chips stay on one row that scrolls sideways (`.band-chips`, no scrollbar), with the second chip peeking in. The row has 5px of padding offset by a negative margin, so the focus ring isn't clipped by the scroller, and a chip that gets focus scrolls fully into view (12px `scroll-padding`). The row runs to the screen edge (no right inset where chips are cut off); scrolled to the end, the last chip stops 12px from the edge, in line with the page. From 768px the chips wrap and the band is unchanged. The same rules apply to every page's band.
+
 A full-width band in the primary purple (`.greeting-band`) directly under the header. It is the page's one dark moment, kept slim: 24px padding top and bottom, no image, no extra height. Inside the page container: today's date (small, purple-200, 8.3:1), then the white H1 "Good morning/afternoon/evening, Roy" by local time (13.1:1), then a row of status chips:
 - "1 thing to do" (warning icon), which links to To do.
 - "$860 left on your deductible" (wallet icon), which links to Your plan.
-Only links get the white chip shape, so nothing looks clickable that isn't. The meta line above the H1 reads: family switcher | date | plan name and year (plain light-lavender text with the shield icon, not a link), separated by 1px pipes (`.meta-divider`). On phones the three stack and the pipes hide. The date is set as soon as the script runs, not after the data loads, so the line doesn't shift.
+Only links get the white chip shape, so nothing looks clickable that isn't. The meta line above the H1 (8px above it) reads: family switcher | date | plan name, with no plan year so longer plan names fit (plain light-lavender text with the shield icon, not a link), separated by 1px pipes (`.meta-divider`). On phones the three stack and the pipes hide. The date is set as soon as the script runs, not after the data loads, so the line doesn't shift.
 
 ### Family member switcher
 "Viewing: Roy ▾" is the first item in the meta line: a small purple-700 button (32px tall, 6px radius) that opens a dropdown of everyone on the plan (Roy, You · Keeley, Spouse · Leo, Son, age 9), each with initials, name and relationship. The current person has a tint fill, a check and `aria-current="true"`.
@@ -183,13 +208,13 @@ Card titled "To do". It holds two groups, ordered by priority:
 - Don't make the strip a hero: no oversized type, no extra height, no second button.
 
 ### Recent claims (main column)
-Card with the last 3 claims for the person being viewed, as aligned rows. From 768px: service and provider · date · "You owe $X" · status badge. On phones: details left, amount over status right. "See all claims →" sits in the header.
+Card with the last 3 claims for the person being viewed, as aligned rows. From 768px: service and provider · date · "You owe $X" · status badge. On phones: details left, amount over status, both flush with the right edge. "See all claims →" sits in the header.
 
 ### Your plan (side column)
 Card with deductible and out-of-pocket stacked. Each has a label with "of $X" on the right, the amount spent as the largest number in the column (`--th-fs-stat`), a native `<progress>` meter, and a text equivalent linked by `aria-describedby`.
 
 ### ID card (side column)
-Compact preview: logo, plan, member, member ID, Rx BIN and Rx PCN. "View →" in the header opens the full card. Download and Add to wallet are icon text buttons below. Mock results write to a `role="status"` line under them.
+Compact preview with no logo: the plan name on its own full line (so long names fit), then member, member ID, Rx BIN and Rx PCN. "View →" in the header opens the full card. Download and Add to wallet are icon text buttons below. Mock results write to a `role="status"` line under them.
 
 ### For you (side column)
 At most 2 suggestions, one row each: the title as an icon link, the reason as small text, and a dismiss button. Dismissals are saved in `localStorage` (try/catch); the next suggestion fills in, the change is announced, and focus moves to the next dismiss button.
@@ -206,6 +231,24 @@ Its own card spanning the page under the two columns, content stacked top to bot
 - **Done step:** after confirming, the same dialog shows "You're logged out" with a left-aligned "Sign back in" button (demo). The dialog's label switches to the new heading and focus moves to the button.
 - Esc, the backdrop and Stay signed in close it. Closing resets it to the confirm step and returns focus to the My Account button.
 
+### Coverage page
+Same band component as the home greeting: Viewing switcher | plan name | plan dates, then the h1 "Coverage" and two link chips ("$860 to go on your deductible" to the Deductible card, "$420 left in your FSA" to the FSA card). The AI Chat promo sits on the right ("Is it covered? Ask AI Chat").
+
+**Tabs:** Overview · Medical · Rx · Dental · Vision, in a white bar under the band (`.page-tabs`: Bootstrap tabs with the ARIA tab pattern; arrow keys move between them, Home and End jump to the first and last). The open tab is a solid brand-purple fill. On phones the five tabs share the width and use small type so all of them show at 375px.
+- **Each tab has an address** (`coverage.html#medical`, `#rx`, `#dental`, `#vision`), kept in step as people switch tabs. The megamenu and More sheet link Medical, Rx, Dental and Vision straight to their tab; Spending Accounts and Referrals & Prior Auths link to their card on Overview. A link to any card inside a tab opens that tab and scrolls to the card. After a link on the page (band chip, "All", megamenu), keyboard focus follows: to the tab for a tab link, or to the card's heading (made focusable with `tabindex="-1"`), because the browser otherwise drops focus to the page. Not on first load, and not while the More sheet is open (its focus trap keeps focus).
+- Dental and Vision are separate plans (other lines of business), so each gets its own tab and its own plan name.
+
+**Overview tab**
+- **Main column:** Deductible and Out-of-pocket max cards with the same structure: a one-line explanation of individual vs family limits; the family total (standard meter, "$2,190 to go for the family"); then "By person": one row per family member with name, "$640 of $1,500", a thin meter (`.meter-thin`, 6px) and "$860 to go", or a solid green "Met" badge once met.
+- **Meter names for screen readers:** each person's meter is named "Roy Kent, deductible" and described by its "$860 to go" or "Met"; the family meters are named "Family Deductible" and "Family Out-of-pocket max" (label plus card heading), the FSA meter "Flexible spending account Available". Every meter (here and on home) carries `aria-valuetext` such as "$640 of $1,500", so it isn't read as a bare percentage.
+- **Side column:** Common costs (6 in-network copays, "All" opens the Medical tab), Flexible spending account, Referrals & prior auths, Other insurance.
+
+**Medical, Rx, Dental, Vision tabs:** in-network cost tables (`.cost-table`: real `<table>` with row headers; columns Service, You pay, Limits). Benefit limits show what the person being viewed has used ("Roy has used 4 of 30"). Rx shows tiers for 30-day retail and 90-day mail order. Dental adds Yearly maximum (a thin meter per person, "Used up" badge when reached). Vision adds "When Roy can use it next" for exam, frames, lenses and contacts.
+
+- **Family switcher here:** changes the deductible chip, the referrals list, the limits used and the vision dates. Everyone's deductible and out-of-pocket rows always show.
+- **No primary button:** it's a reference page; nothing on it needs doing.
+- **Columns balanced:** on Overview both columns end within about 10px of each other at 1280px.
+
 ### Placeholder links
 Every link that still points to `#` shows a small primary-purple message at the bottom center ("This page isn't part of the demo yet.") with white text. The close X sits 12px from the right edge, mirroring the 12px text inset on the left, inside a 48px hit area instead of jumping to the top. It sits above the bottom nav on smaller screens, closes on its own after 5 seconds, and its container is a polite live region so screen readers hear it.
 - As real pages are added, give their links real hrefs; the message then stops for those links with no other change.
@@ -215,6 +258,8 @@ The assistant is always called **AI Chat** in the interface (panel title, button
 - **Button:** fixed, 56px, named "Open AI Chat". On phones and tablets it sits above the bottom nav.
 - **Panel size:** on desktop (992px and up) a floating card in the bottom-right, 400px wide and at most 640px tall, with 16px radius. On tablets it's a 400px side panel; on phones it fills the whole screen.
 - **Panel:** `offcanvas-end`, `role="dialog"`. Shows a demo note, then a message log (`role="log"`, `aria-live="polite"`, focusable so keyboard users can scroll it) and suggested questions as buttons.
+- **Suggested questions** are a starting point: once any question is asked (picked or typed), they are removed and focus goes to the input.
+- **Bubbles** (`.chat-bubble`, 12px radius, 16px padding from `p-3`): AI Chat answers on the page tint; the member's questions add `.chat-bubble-user` (primary tint, primary text, pushed right). The markup and the script use the same classes, so the two can't drift.
 - **Input at the bottom:** a labeled text field with the send arrow inside it.
 - Typed questions are matched to keywords in `member.json`; anything else gets a friendly fallback answer.
 - Focus is trapped while open; Esc returns focus to the chat button.
@@ -228,12 +273,18 @@ Short and quiet, so the page feels responsive without calling attention to itsel
 - All of it is off when the OS asks for reduced motion: meters render at their value, nothing fades or slides.
 - Don't add: scroll-triggered reveals, parallax, looping or attention-seeking animation, arrow nudges on hover (tried and removed), or motion on the action strip's button.
 
+### Badges
+24px tall, solid color with white text (status tones, brand purple for Action needed and counts).
+- **Optical centering:** the label sits in its own span with `text-box: trim-both cap alphabetic`, so it centers on the letters, not the font's line box. (Segoe UI reserves extra space above the letters, which made labels sit about 1.25px low.) Icons in badges move down .09em, because Font Awesome glyphs sit high when flexbox centers them.
+- Measured with letter pixels: every badge within 0.4px of center. Browsers without `text-box` keep the previous look.
+
 ### Links
 - Links and link-buttons with an icon use one class, `.link-icon`: inline-flex, icon vertically centered with the text, 8px gap, semibold, never underlined (including the dismiss X). Hover changes color only. Measured: every icon sits at 0px offset from its text's center.
 - Plain text links keep the underline.
 
 ### Focus
 One rule for everything: a 3px solid ring in purple-600 with a 2px offset. Bootstrap parts that remove the outline get it back at the same specificity.
+- Anything that scrolls (`overflow: auto`) clips the ring, so it needs at least 5px of padding around focusable children (the tab bar has 6px; the band chips get 5px offset by a negative margin).
 
 ### Footer
 Always at the bottom of the window, even on short pages (the body is a flex column and `main` grows). 24px padding top and bottom, 24px on the sides (12px wider than the page container, as requested).
