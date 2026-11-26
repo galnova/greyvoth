@@ -1,0 +1,227 @@
+{
+  "_note": "Synthetic demo data. Roy Kent and Tornado Health are fictional. No real member information.",
+  "member": {
+    "firstName": "Roy",
+    "lastName": "Kent",
+    "initials": "RK",
+    "memberId": "THK 482910573",
+    "group": "TH-04127",
+    "planName": "Tornado Gold PPO",
+    "planYear": {
+      "start": "2027-01-01",
+      "end": "2027-12-31"
+    },
+    "rx": {
+      "bin": "610279",
+      "pcn": "THRX",
+      "group": "TH-RX-88"
+    }
+  },
+  "plan": {
+    "deductible": {
+      "spent": 640,
+      "limit": 1500
+    },
+    "outOfPocket": {
+      "spent": 910,
+      "limit": 4000
+    }
+  },
+  "attention": [
+    {
+      "id": "claim-needs-info",
+      "icon": "fa-circle-exclamation",
+      "tone": "warning",
+      "status": "Needs info",
+      "title": "Send one form to finish your physical therapy claim",
+      "detail": "Richmond Physical Therapy, Nov 12. We need the accident form before we can pay this claim. You may owe $35.",
+      "action": {
+        "label": "Upload form",
+        "href": "#"
+      },
+      "actionNeeded": true,
+      "short": "Upload the accident form"
+    },
+    {
+      "id": "prior-auth-mri",
+      "icon": "fa-clock",
+      "tone": "info",
+      "status": "In review",
+      "title": "Knee MRI approval in review",
+      "detail": "Dr. Patel sent the request on Nov 18. We expect a decision by Dec 2. You don't need to do anything yet.",
+      "action": {
+        "label": "View request",
+        "href": "#"
+      },
+      "actionNeeded": false,
+      "short": "Decision by Dec 2"
+    },
+    {
+      "id": "wellness-visit",
+      "icon": "fa-calendar-check",
+      "tone": "success",
+      "status": "Covered at $0",
+      "title": "Wellness visit due",
+      "detail": "It's free with your plan. Book a visit before Dec 31.",
+      "action": {
+        "label": "Find a doctor",
+        "href": "#"
+      },
+      "actionNeeded": false,
+      "short": "Free · book by Dec 31"
+    }
+  ],
+  "claims": [
+    {
+      "id": "c-1042",
+      "service": "Physical therapy",
+      "provider": "Richmond Physical Therapy",
+      "date": "2027-11-12",
+      "youOwe": 35,
+      "status": "Needs info",
+      "tone": "warning",
+      "patient": "roy"
+    },
+    {
+      "id": "c-1040",
+      "patient": "keeley",
+      "service": "Dental cleaning",
+      "provider": "Bright Smile Dental",
+      "date": "2027-11-09",
+      "youOwe": 0,
+      "status": "Processed",
+      "tone": "success"
+    },
+    {
+      "id": "c-1037",
+      "service": "Office visit",
+      "provider": "Dr. Aisha Patel",
+      "date": "2027-11-05",
+      "youOwe": 25,
+      "status": "Processed",
+      "tone": "success",
+      "patient": "roy"
+    },
+    {
+      "id": "c-1033",
+      "patient": "leo",
+      "service": "Urgent care visit",
+      "provider": "Tornado Urgent Care Midtown",
+      "date": "2027-10-30",
+      "youOwe": 50,
+      "status": "Processed",
+      "tone": "success"
+    },
+    {
+      "id": "c-1029",
+      "service": "Lab work",
+      "provider": "Nelson Lab",
+      "date": "2027-10-28",
+      "youOwe": 0,
+      "status": "Processed",
+      "tone": "success",
+      "patient": "roy"
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "knee-care",
+      "icon": "fa-person-walking",
+      "title": "Knee care program",
+      "summary": "Free coaching and home exercises to help your knee heal.",
+      "why": "You've had physical therapy visits this year.",
+      "action": {
+        "label": "Learn more",
+        "href": "#"
+      }
+    },
+    {
+      "id": "virtual-care",
+      "icon": "fa-video",
+      "title": "Video visits for $0",
+      "summary": "See a doctor from home, day or night.",
+      "why": "Your plan covers video visits at no cost.",
+      "action": {
+        "label": "Start a visit",
+        "href": "#"
+      }
+    },
+    {
+      "id": "mail-order",
+      "icon": "fa-prescription-bottle-medical",
+      "title": "Save with 90-day mail order",
+      "summary": "Get 3 months of your medicine delivered at once.",
+      "why": "You refill a prescription every month. You could save about $60 a year.",
+      "action": {
+        "label": "See savings",
+        "href": "#"
+      }
+    }
+  ],
+  "assistant": [
+    {
+      "prompt": "What's my deductible?",
+      "answer": "You've paid $640 of your $1,500 deductible for 2027. You have $860 left before your plan starts paying more.",
+      "keywords": [
+        "deductible"
+      ]
+    },
+    {
+      "prompt": "Find an in-network urgent care",
+      "answer": "Richmond Urgent Care is in your network and 1.2 miles away. It's open until 9 p.m. Your copay is $50.",
+      "keywords": [
+        "urgent",
+        "urgent care",
+        "in-network",
+        "near me"
+      ]
+    },
+    {
+      "prompt": "Status of my prior auth",
+      "answer": "Your knee MRI request is in review. We expect a decision by Dec 2. We'll send you a message when it's done.",
+      "keywords": [
+        "prior auth",
+        "authorization",
+        "mri",
+        "approval"
+      ]
+    },
+    {
+      "prompt": "How do I get a new ID card?",
+      "answer": "You can download your ID card from this page or add it to your phone's wallet. A printed card takes 7 to 10 days by mail.",
+      "keywords": [
+        "id card",
+        "card",
+        "new card"
+      ]
+    }
+  ],
+  "assistantFallback": "I'm a demo, so I only know a few topics. Try asking about your deductible, urgent care, your prior authorization or your ID card.",
+  "inbox": {
+    "messages": 2,
+    "notifications": 3
+  },
+  "family": [
+    {
+      "id": "roy",
+      "firstName": "Roy",
+      "lastName": "Kent",
+      "initials": "RK",
+      "relation": "You"
+    },
+    {
+      "id": "keeley",
+      "firstName": "Keeley",
+      "lastName": "Kent",
+      "initials": "KK",
+      "relation": "Spouse"
+    },
+    {
+      "id": "leo",
+      "firstName": "Leo",
+      "lastName": "Kent",
+      "initials": "LK",
+      "relation": "Son, age 9"
+    }
+  ]
+}

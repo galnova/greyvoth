@@ -1,0 +1,559 @@
+/* ==========================================================================
+   Tornado Health member portal
+   1. Tokens (raw values)    3. Base
+   2. Bootstrap mapping      4. Components    5. Responsive + motion
+   Nothing below section 1 uses a raw color, shadow or radius value.
+   ========================================================================== */
+
+/* 1. Tokens --------------------------------------------------------------- */
+:root {
+  /* Primary purple scale (300, 400, 500, 700 are reserved for future components) */
+  --th-purple-50:  #f5f2fb;
+  --th-purple-100: #ebe4f7;
+  --th-purple-200: #d5c8ee;
+  --th-purple-300: #b7a2e0;
+  --th-purple-400: #9478cd;
+  --th-purple-500: #7354b5;
+  --th-purple-600: #5a3d98;
+  --th-purple-700: #472d7f;
+  --th-purple-800: #3b1f6e;
+  --th-purple-900: #26134a;
+
+  /* Neutrals */
+  --th-white:       #ffffff;
+  --th-neutral-50:  #f7f6fa;
+  --th-neutral-200: #e1dee9;
+  --th-neutral-500: #6e6a7c;
+  --th-neutral-600: #57536a;
+  --th-neutral-900: #17151f;
+
+  /* Status: text color on its tint */
+  --th-success-600: #1e6b3a;  --th-success-50: #e3f3e8;
+  --th-warning-600: #8a4b00;  --th-warning-50: #fdf0dc;
+  --th-danger-600:  #b42318;  --th-danger-50:  #fdecea;
+  --th-info-600:    #1d5c9e;  --th-info-50:    #e6f0fb;
+
+  /* Type: system stack, fluid scale */
+  --th-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --th-fs-xs:   .8125rem;
+  --th-fs-sm:   .875rem;
+  --th-fs-base: clamp(1rem, .97rem + .15vw, 1.0625rem);
+  --th-fs-h3:   clamp(1.0625rem, 1rem + .3vw, 1.1875rem);
+  --th-fs-h2:   clamp(1.1875rem, 1.1rem + .45vw, 1.375rem);
+  --th-fs-h1:   clamp(1.625rem, 1.4rem + 1.1vw, 2.125rem);
+  --th-fs-stat: clamp(1.625rem, 1.5rem + .5vw, 1.875rem);
+  --th-measure: 65ch;
+
+  /* Radii and elevation */
+  --th-radius-sm: 6px;
+  --th-radius-md: 12px;
+  --th-radius-lg: 16px;
+  --th-shadow-1: 0 1px 2px rgb(23 21 31 / .06), 0 1px 3px rgb(23 21 31 / .08);
+  --th-shadow-2: 0 8px 24px rgb(23 21 31 / .12);
+  --th-shadow-3: 0 12px 32px rgb(23 21 31 / .18);
+  --th-shadow-card: 0 1px 2px rgb(23 21 31 / .04), 0 6px 20px rgb(23 21 31 / .06);
+
+  /* Layout */
+  --th-header-h: 4rem;
+  --th-bottomnav-h: 4.25rem;
+  --th-target: 3rem;          /* 48px minimum touch target */
+  --th-chat-size: 3.5rem;
+  --th-icon-chip: 2.5rem;
+  --th-chat-w: 25rem;
+  --th-ease-out: cubic-bezier(.25, 1, .5, 1); /* ease-out-quart */
+  --th-chat-h: 40rem;
+}
+
+/* 2. Tokens -> Bootstrap variables ----------------------------------------- */
+:root {
+  --th-primary:       var(--th-purple-800);
+  --th-primary-hover: var(--th-purple-900);
+  --th-on-primary:    var(--th-white);
+  --th-primary-tint:  var(--th-purple-50);
+  --th-focus:         var(--th-purple-600);
+  --th-track:         var(--th-purple-200);
+
+  --bs-font-sans-serif: var(--th-font);
+  --bs-body-font-size: var(--th-fs-base);
+  --bs-body-line-height: 1.5;
+  --bs-body-color: var(--th-neutral-900);
+  --bs-body-color-rgb: 23, 21, 31;
+  --bs-body-bg: var(--th-white);
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-tertiary-bg: var(--th-neutral-50);
+  --bs-tertiary-bg-rgb: 247, 246, 250;
+  --bs-secondary-color: var(--th-neutral-600);
+  --bs-heading-color: var(--th-neutral-900);
+  --bs-emphasis-color: var(--th-neutral-900);
+  --bs-border-color: var(--th-neutral-500);
+  --bs-border-color-translucent: var(--th-neutral-200);
+
+  --bs-primary: var(--th-purple-800);
+  --bs-primary-rgb: 59, 31, 110;
+  --bs-primary-text-emphasis: var(--th-purple-800);
+  --bs-primary-bg-subtle: var(--th-purple-50);
+  --bs-link-color: var(--th-purple-800);
+  --bs-link-color-rgb: 59, 31, 110;
+  --bs-link-hover-color: var(--th-purple-900);
+  --bs-link-hover-color-rgb: 38, 19, 74;
+  --bs-focus-ring-color: var(--th-purple-600);
+
+  --bs-success-text-emphasis: var(--th-success-600);  --bs-success-bg-subtle: var(--th-success-50);
+  --bs-warning-text-emphasis: var(--th-warning-600);  --bs-warning-bg-subtle: var(--th-warning-50);
+  --bs-danger-text-emphasis:  var(--th-danger-600);   --bs-danger-bg-subtle:  var(--th-danger-50);
+  --bs-info-text-emphasis:    var(--th-info-600);     --bs-info-bg-subtle:    var(--th-info-50);
+
+  --bs-border-radius: var(--th-radius-sm);
+  --bs-border-radius-lg: var(--th-radius-md);
+  --bs-border-radius-xl: var(--th-radius-lg);
+  --bs-box-shadow-sm: var(--th-shadow-1);
+  --bs-box-shadow: var(--th-shadow-2);
+  --bs-box-shadow-lg: var(--th-shadow-3);
+}
+
+/* 3. Base ------------------------------------------------------------------ */
+h1, h2, h3 { font-weight: 700; line-height: 1.25; }
+h1 { font-size: var(--th-fs-h1); letter-spacing: -.015em; }
+h2 { font-size: var(--th-fs-h2); scroll-margin-top: calc(var(--th-header-h) + 1rem); }   /* in-page jumps land below the sticky header */
+h3 { font-size: var(--th-fs-h3); }
+.text-measure { max-width: var(--th-measure); }
+
+/* One focus style everywhere. Bootstrap parts that remove the outline
+   (.btn, .nav-link, .btn-close, .dropdown-item, .form-control) get it back here. */
+:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.btn-close:focus-visible,
+.dropdown-item:focus-visible,
+.form-control:focus {
+  outline: 3px solid var(--th-focus);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* Links and link-buttons that carry an icon: icon centered with the text, never underlined */
+.link-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.link-icon:hover,
+.link-icon:focus-visible { color: var(--th-primary-hover); text-decoration: none; }
+
+/* Standalone links and close buttons get a full 48px tap size */
+.tap-target { display: inline-flex; align-items: center; justify-content: center; min-width: var(--th-target); min-height: var(--th-target); }
+.btn-close { min-width: var(--th-target); min-height: var(--th-target); }
+
+/* 4. Components ------------------------------------------------------------ */
+
+/* Buttons: Bootstrap hard-codes its button colors, so map them to tokens once */
+.btn { --bs-btn-font-weight: 600; min-height: var(--th-target); }
+.btn-primary {
+  --bs-btn-color: var(--th-on-primary);
+  --bs-btn-bg: var(--th-primary);
+  --bs-btn-border-color: var(--th-primary);
+  --bs-btn-hover-color: var(--th-on-primary);
+  --bs-btn-hover-bg: var(--th-primary-hover);
+  --bs-btn-hover-border-color: var(--th-primary-hover);
+  --bs-btn-active-color: var(--th-on-primary);
+  --bs-btn-active-bg: var(--th-primary-hover);
+  --bs-btn-active-border-color: var(--th-primary-hover);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--th-primary);
+  --bs-btn-border-color: var(--th-primary);
+  --bs-btn-hover-color: var(--th-primary);
+  --bs-btn-hover-bg: var(--th-primary-tint);
+  --bs-btn-hover-border-color: var(--th-primary);
+  --bs-btn-active-color: var(--th-primary);
+  --bs-btn-active-bg: var(--th-primary-tint);
+  --bs-btn-active-border-color: var(--th-primary);
+}
+
+/* Header: one slim row */
+.site-header { background: var(--th-white); box-shadow: var(--th-shadow-1); }
+.header-bar { min-height: var(--th-header-h); }
+.site-logo { color: var(--th-primary); }
+.site-logo svg { display: block; width: 10rem; height: auto; aspect-ratio: 230 / 44; }
+.primary-nav .nav-link {
+  display: flex;
+  align-items: center;
+  min-height: var(--th-target);
+  color: var(--bs-body-color);
+  font-weight: 600;
+  font-size: var(--th-fs-sm);
+  border-radius: var(--th-radius-sm);
+}
+.primary-nav .nav-link:hover,
+.primary-nav .nav-link[aria-expanded="true"] { background: var(--th-primary-tint); color: var(--th-primary); }
+.nav-divider { width: 1px; height: 1.5rem; background: var(--bs-border-color-translucent); }
+.account-link { border: 0; background: transparent; color: var(--bs-body-color); font-weight: 600; font-size: var(--th-fs-sm); white-space: nowrap; }
+.account-link:hover { color: var(--th-primary); }
+.avatar {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--th-primary);
+  color: var(--th-on-primary);
+  font-size: var(--th-fs-xs);
+  font-weight: 700;
+  line-height: 2rem;
+  text-align: center;
+}
+
+/* Megamenu: full-width panel under the header, one per primary item */
+.mega-menu,
+.mega-menu[data-bs-popper] {
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: var(--th-shadow-2);
+  --bs-dropdown-link-hover-bg: var(--th-primary-tint);
+  --bs-dropdown-link-active-bg: var(--th-primary-tint);
+  --bs-dropdown-link-active-color: var(--th-primary);
+}
+.mega-cta { background: var(--th-primary-tint); border-radius: var(--th-radius-md); }
+.mega-group-title { margin-bottom: .25rem; padding-inline: var(--bs-dropdown-item-padding-x); font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bs-secondary-color); }
+.mega-link { display: flex; align-items: center; min-height: var(--th-target); border-radius: var(--th-radius-sm); font-weight: 600; white-space: normal; }
+
+/* Primary call to action inside a menu (megamenu panels, account menu) */
+.dropdown-menu .menu-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  width: auto;
+  min-height: var(--th-target);
+  padding: 0 1.25rem;
+  border-radius: var(--th-radius-sm);
+  background: var(--th-primary);
+  color: var(--th-on-primary);
+  font-weight: 600;
+}
+.dropdown-menu .menu-cta:hover,
+.dropdown-menu .menu-cta:focus-visible { background: var(--th-primary-hover); color: var(--th-on-primary); }
+
+/* Account menu: icon + label + count per row */
+.account-menu { --bs-dropdown-min-width: 16rem; --bs-dropdown-link-hover-bg: var(--th-primary-tint); box-shadow: var(--th-shadow-2); border: 0; }
+.account-menu .dropdown-item:not(.menu-cta) { display: flex; align-items: center; gap: .75rem; min-height: var(--th-target); }
+.account-menu .fa-fw { color: var(--th-primary); }
+.account-menu .menu-cta { width: 100%; }
+/* Room on the right for the counter; the label then sits right next to its caret */
+.avatar-wrap { position: relative; margin-right: 1rem; }
+.account-link.dropdown-toggle::after { margin-left: .375rem; }
+.avatar-count {
+  position: absolute;
+  top: -.5rem;
+  right: -.875rem;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 .25rem;
+  border-radius: 999px;
+  background: var(--th-danger-600);
+  color: var(--th-white);
+  box-shadow: 0 0 0 2px var(--th-white);
+  font-size: .6875rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+/* Cards: no outline, soft layered elevation, larger radius */
+.card {
+  --bs-card-border-width: 0;
+  --bs-card-border-radius: var(--th-radius-lg);
+  --bs-card-inner-border-radius: var(--th-radius-lg);
+  box-shadow: var(--th-shadow-card);
+}
+
+/* Greeting status chips: quick facts that jump to their section */
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  min-height: var(--th-target);
+  padding: 0 1rem;
+  border-radius: var(--th-radius-md);
+  background: var(--th-white);
+  box-shadow: var(--th-shadow-card);
+  color: var(--bs-body-color);
+  font-size: var(--th-fs-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primary); }
+
+/* Greeting band: the page's one slim, dark moment. Same height as before; white chips sit on it. */
+.greeting-band { --bs-heading-color: var(--th-white); background: var(--th-primary); color: var(--th-white); }
+.greeting-meta { color: var(--th-purple-200); font-size: var(--th-fs-sm); font-weight: 600; }
+.meta-divider { width: 1px; height: 1rem; align-self: center; background: var(--th-purple-400); }
+
+/* Family member switcher (in the band's meta line) */
+.member-switch { display: inline-flex; align-items: center; gap: .375rem; min-height: 2rem; padding: 0 .625rem; border: 0; border-radius: var(--th-radius-sm); background: var(--th-purple-700); color: var(--th-white); font-weight: 600; }
+.member-switch:hover { background: var(--th-purple-600); }
+.member-menu { --bs-dropdown-min-width: 15rem; --bs-dropdown-link-hover-bg: var(--th-primary-tint); border: 0; box-shadow: var(--th-shadow-2); }
+.member-menu .dropdown-item { display: flex; align-items: center; gap: .75rem; min-height: var(--th-target); }
+.member-menu .dropdown-item[aria-current="true"] { background: var(--th-primary-tint); color: var(--th-primary); }
+/* Menus opened from the band are white, so their focus ring goes back to purple */
+.greeting-band .dropdown-menu :focus-visible { outline-color: var(--th-focus); }
+
+/* AI Chat promo on the band: a darker panel, light button, no border */
+.chat-promo { border-radius: var(--th-radius-md); background: var(--th-purple-900); color: var(--th-purple-100); }
+.chat-promo-title { font-size: var(--th-fs-base); color: var(--th-white); }
+.chat-promo-btn {
+  --bs-btn-bg: var(--th-purple-100);
+  --bs-btn-color: var(--th-purple-900);
+  --bs-btn-border-color: var(--th-purple-100);
+  --bs-btn-hover-bg: var(--th-white);
+  --bs-btn-hover-color: var(--th-purple-900);
+  --bs-btn-hover-border-color: var(--th-white);
+  --bs-btn-active-bg: var(--th-white);
+  --bs-btn-active-color: var(--th-purple-900);
+  --bs-btn-active-border-color: var(--th-white);
+  min-height: 2.5rem;
+  padding-inline: 1rem;
+  font-weight: 600;
+}
+.greeting-band .status-chip { box-shadow: none; }
+/* Plain facts (not links) sit as text in the meta line, so only links look like chips */
+.status-note { display: inline-flex; align-items: center; gap: .5rem; }
+.greeting-band :focus-visible { outline-color: var(--th-white); }
+
+/* Status badges: flex-centered so the text sits in the true middle of the pill
+   (Bootstrap's line-height: 1 sets system fonts slightly off-center) */
+.badge { display: inline-flex; align-items: center; min-height: 1.5rem; line-height: 1.2; }
+/* Action needed sits on the lavender action strip: solid brand purple, white text, so it stays on palette */
+.action-badge { gap: .375rem; background: var(--th-primary); color: var(--th-white); }
+
+/* Section card heading row */
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; }
+/* 48px hit areas that shouldn't add visible height: the hit area overlaps the padding around it */
+.section-head .tap-target,
+.id-actions .btn { margin-block: -.75rem; }
+
+/* Icon chip (update rows, More sheet tiles) */
+.icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--th-icon-chip);
+  height: var(--th-icon-chip);
+  border-radius: 50%;
+}
+
+/* Action block: a compact tinted strip inside "To do", the page's single focus and only primary button */
+.action-block { background: var(--th-purple-100); border-radius: var(--th-radius-md); }
+
+/* Update row: icon chip + linked title + short note */
+.update-row { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: .75rem; }
+
+/* Plan figures: the amount spent is the largest number in the side column */
+.stat-value { font-size: var(--th-fs-stat); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+
+/* Recent claims: aligned table-like rows */
+.claim-row { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem; row-gap: .25rem; }
+.claim-row > :first-child { grid-row: span 2; }   /* phones: info left, amount over status right */
+
+/* Progress meter: native <progress>, styled for both engines */
+.meter {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: .75rem;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--th-track);
+  color: var(--th-primary);
+}
+.meter::-webkit-progress-bar { background: var(--th-track); }
+.meter::-webkit-progress-value { background: var(--th-primary); border-radius: 999px; }
+.meter::-moz-progress-bar { background: var(--th-primary); border-radius: 999px; }
+
+/* Digital ID card */
+.id-card { background: var(--th-primary); color: var(--th-on-primary); border-radius: var(--th-radius-lg); }
+.id-card .site-logo { color: var(--th-on-primary); }
+.id-card .site-logo svg { width: 7rem; }
+.id-card dt { font-size: var(--th-fs-xs); font-weight: 400; opacity: .85; }
+.id-card dd { font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* Status line under actions: space is reserved so messages don't shift layout */
+/* Status lines take no space until they have something to say */
+.status-line:not(:empty) { margin-top: 1rem; }
+
+/* Lists inside cards: rows are 16px apart; the first and last rows sit flush,
+   so the card's own 24px padding is the only space at its top and bottom */
+.card .list-group-flush { --bs-list-group-item-padding-x: 0; --bs-list-group-item-padding-y: 1rem; }
+.card .list-group-flush > .list-group-item:first-child { padding-top: 0; }
+.card .list-group-flush > .list-group-item:last-child { padding-bottom: 0; }
+
+/* Find a doctor */
+.find-form .form-control,
+.find-form .btn { min-height: var(--th-target); }
+
+/* Log out dialog */
+.modal-content { border: 0; border-radius: var(--th-radius-lg); box-shadow: var(--th-shadow-3); }
+
+/* Placeholder-link message: bottom center, above the bottom nav on smaller screens */
+.toast-stack { bottom: 0; z-index: 1090; }
+.demo-toast { --bs-toast-bg: var(--th-primary); --bs-toast-color: var(--th-white); --bs-toast-border-width: 0; --bs-toast-max-width: 22rem; box-shadow: var(--th-shadow-3); }
+/* X sits 12px from the right edge, mirroring the text inset; the 48px hit area stays */
+.demo-toast .btn-close { background-position: right .75rem center; }
+
+/* Claim amount */
+.claim-amount { font-variant-numeric: tabular-nums; font-weight: 700; }
+
+/* Floating assistant button */
+.chat-fab {
+  position: fixed;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  z-index: 1030;
+  width: var(--th-chat-size);
+  height: var(--th-chat-size);
+  border-radius: 50%;
+  box-shadow: var(--th-shadow-3);
+}
+.chat-panel { --bs-offcanvas-width: var(--th-chat-w); }
+.chat-log { overflow-y: auto; }
+.chat-chip { --bs-btn-font-size: var(--th-fs-sm); }
+.chat-field { position: relative; }
+.chat-field .form-control { min-height: var(--th-target); padding-right: var(--th-target); }
+.chat-send {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--th-target);
+  height: var(--th-target);
+  border: 0;
+  background: transparent;
+  color: var(--th-primary);
+}
+
+/* Bottom nav (phones and tablets) */
+.bottom-nav {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 1030;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: var(--th-white);
+  box-shadow: 0 -1px 0 var(--bs-border-color-translucent);
+}
+.bottom-nav ul { display: grid; grid-template-columns: repeat(5, 1fr); gap: .25rem; height: var(--th-bottomnav-h); padding: .375rem; }
+.bottom-nav a,
+.bottom-nav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .25rem;
+  width: 100%;
+  height: 100%;
+  min-height: var(--th-target);
+  border: 0;
+  border-radius: var(--th-radius-sm);
+  background: transparent;
+  color: var(--bs-secondary-color);
+  font-size: .75rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.bottom-nav .fa-solid { font-size: 1.125rem; }
+.bottom-nav [aria-current="page"] { background: var(--th-primary-tint); color: var(--th-primary); }
+
+/* More sheet: tiles with an icon, title and one-line description */
+.more-sheet { --bs-offcanvas-height: auto; border-radius: var(--th-radius-lg) var(--th-radius-lg) 0 0; padding-bottom: env(safe-area-inset-bottom); }
+.sheet-handle { width: 2.5rem; height: .25rem; border-radius: 999px; background: var(--bs-border-color-translucent); }
+.more-tile {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  height: 100%;
+  border-radius: var(--th-radius-md);
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-body-color);
+  text-decoration: none;
+}
+.more-tile:hover { background: var(--th-primary-tint); color: var(--th-primary); }
+.more-tile .icon-chip { background: var(--th-white); color: var(--th-primary); }
+.more-tile small { color: var(--bs-secondary-color); line-height: 1.35; }
+
+/* 5. Responsive + motion --------------------------------------------------- */
+
+/* Phones: "My Account" stays for screen readers but only the avatar shows.
+   Bootstrap has no responsive .visually-hidden, so this mirrors it at one breakpoint. */
+@media (max-width: 575.98px) {
+  .account-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .site-logo svg { width: 9rem; }
+}
+
+/* Below 992px the bottom nav takes over from the header nav */
+@media (max-width: 991.98px) {
+  body { padding-bottom: calc(var(--th-bottomnav-h) + var(--th-chat-size) + 2rem + env(safe-area-inset-bottom)); }
+  .chat-fab { bottom: calc(var(--th-bottomnav-h) + 1rem + env(safe-area-inset-bottom)); }
+  .toast-stack { bottom: calc(var(--th-bottomnav-h) + env(safe-area-inset-bottom)); }
+}
+
+/* From 768px: claims in four aligned columns */
+@media (min-width: 768px) {
+  .claim-row { grid-template-columns: 1fr 7rem 8rem 7rem; }
+  .claim-row > :first-child { grid-row: auto; }
+}
+
+/* Phones: the assistant takes the whole screen */
+@media (max-width: 575.98px) {
+  .chat-panel { --bs-offcanvas-width: 100%; }
+}
+
+/* Desktop: the assistant floats above the chat button instead of running full height */
+@media (min-width: 992px) {
+  .offcanvas-end.chat-panel {
+    top: auto;
+    right: 1rem;
+    bottom: 1rem;
+    height: min(var(--th-chat-h), calc(100vh - 2rem));
+    border: 0;
+    border-radius: var(--th-radius-lg);
+    box-shadow: var(--th-shadow-3);
+    overflow: hidden;
+  }
+}
+
+/* Motion: short, ease-out, opacity and transform only. Off when the OS asks for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Hover fills fade instead of snapping */
+  .primary-nav .nav-link,
+  .dropdown-item,
+  .status-chip,
+  .more-tile,
+  .bottom-nav a,
+  .bottom-nav button,
+  .btn { transition: background-color 150ms var(--th-ease-out), color 150ms var(--th-ease-out); }
+
+  /* Menus drop in */
+  .dropdown-menu.show { animation: th-drop-in 180ms var(--th-ease-out); }
+
+  /* Loaded content fades in over its placeholder (placeholders match its size, so nothing shifts) */
+  [data-list]:not([aria-busy]) > * { animation: th-fade-in 300ms var(--th-ease-out) both; }
+}
+@keyframes th-drop-in { from { opacity: 0; transform: translateY(-4px); } }
+@keyframes th-fade-in { from { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .offcanvas { transition: none; }
+}
