@@ -26,7 +26,7 @@
   <script src="js/portal.js" defer></script>
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100" data-page="components">
-  <a class="visually-hidden-focusable position-absolute top-0 start-0 z-3 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
+  <a class="skip-link visually-hidden-focusable position-absolute top-0 start-0 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
 
   <!-- Header: one copy in partials/header.html, loaded here by js/portal.js -->
   <div class="shell-header" data-include="partials/header.html"></div>
@@ -50,7 +50,6 @@
     </header>
 
     <div class="container-xl pt-4 pb-5">
-      <p class="visually-hidden" role="status" id="live-status"></p>
       <div class="notice notice-danger mb-4" role="alert" id="load-error" hidden>
         <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span>We couldn't load your information. Refresh the page to try again.</span>
       </div>
@@ -154,7 +153,7 @@
                     <ol class="list-unstyled d-flex flex-wrap align-items-center gap-2 mb-0"><li><a href="#">Claims</a></li><li aria-current="page">Physical therapy</li></ol>
                   </nav>
                   <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0" aria-label="Chip examples">
-                    <li><a class="status-chip" href="#"><i class="fa-solid fa-circle-exclamation text-primary" aria-hidden="true"></i><span>1 claim needs info</span></a></li>
+                    <li><a class="status-chip" href="#"><i class="fa-solid fa-circle-exclamation text-warning-emphasis" aria-hidden="true"></i><span>1 claim needs info</span></a></li>
                     <li><button class="btn btn-light btn-sm chat-promo-btn" type="button">Start a chat</button></li>
                   </ul>
                 </div>
@@ -281,7 +280,7 @@
                 <div class="vstack gap-3">
                   <div class="person-tile"><span class="avatar" aria-hidden="true">KK</span><div><p class="fw-semibold mb-0">Keeley Kent</p><p class="small text-body-secondary mb-0">Spouse · Member ID THK 482910573 02</p></div></div>
                   <div class="icon-heading"><span class="program-art" aria-hidden="true"><i class="fa-solid fa-person-walking"></i></span><p class="program-title mb-0">Icon tile and title on one row</p></div>
-                  <label class="est-place is-chosen" for="comp-place"><input class="form-check-input" type="radio" name="comp-place" id="comp-place" checked><span class="est-place-name"><span class="fw-semibold d-block">Northside Open MRI</span><span class="small text-body-secondary">6.8 mi · Price $760</span></span><span class="est-place-cost"><span class="fw-bold d-block">$760</span><span class="small text-body-secondary">you pay</span></span></label>
+                  <label class="est-place is-chosen" for="comp-place"><input class="form-check-input" type="radio" name="comp-place" id="comp-place" checked><span><span class="fw-semibold d-block">Northside Open MRI</span><span class="small text-body-secondary">6.8 mi · Price $760</span></span><span class="est-place-cost"><span class="fw-bold d-block">$760</span><span class="small text-body-secondary">you pay</span></span></label>
                 </div>
                 <p class="comp-label"><code>.person-tile</code> <code>.icon-heading</code> + <code>.program-art</code> (never bigger than the logo) <code>.est-place</code></p>
               </div>

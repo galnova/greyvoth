@@ -1,11 +1,29 @@
 /* Tornado Health member portal: one script for every page.
    The shared shell (account menu counts, family switcher, AI Chat, dialogs, placeholder links,
    bottom nav) runs everywhere. Page sections run only on their own page (<body data-page="...">).
-   Sections: helpers, state, shell, shared pieces, home page, coverage page, claims page, claim details + EOB, find care, programs, ID cards, Message Center, Help center, Account overview, AI Chat, dialogs, placeholder links,
-   bottom nav + More sheet, start. No dependencies beyond Bootstrap.
+   Sections: shared helpers, sign in, the shared header and footer, then (in start) helpers, state, shell, shared
+   pieces, and one module per page (home, coverage, claims, claim details + EOB, find care, programs, ID cards,
+   Message Center, Help center, Account overview, provider, cost estimate, approval details, appeal), AI Chat,
+   dialogs, placeholder links, reset demo, bottom nav + More sheet, start. No dependencies beyond Bootstrap.
    First of all it loads the shared header and footer (partials/) into the page, then starts the rest. */
 (() => {
   "use strict";
+
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+  // Build an element from a tag, attributes and children (strings become text nodes, never HTML)
+  const h = (tag, attrs = {}, ...children) => {
+    const el = document.createElement(tag);
+    Object.entries(attrs).forEach(([k, v]) => {
+      if (k === "class") el.className = v;
+      else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+      else el.setAttribute(k, v);
+    });
+    children.flat().forEach((c) => c != null && el.append(c));
+    return el;
+  };
+  const icon = (name) => h("i", { class: `fa-solid ${name}`, "aria-hidden": "true" });
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   /* Form errors (every form): a field's error line is its id + "-error". Showing one marks the field invalid and
      links it to the message; clearing it unlinks it. A hint the field points to (data-hint) stays linked. */
@@ -26,41 +44,41 @@
     if (bad) bad[0].focus();
     return !bad;
   }
+  // A field's error line, hidden until it has something to say
+  const errorLine = (id) => h("p", { class: "small text-danger-emphasis fw-semibold mt-2 mb-0", id: `${id}-error`, hidden: "" });
 
   /* Sign in (signin.html) ---------------------------------------------------------
      Signed out, so no portal shell: this runs instead of everything below. Any email and password work (demo). */
   function signInPage() {
-    const q = (s) => document.querySelector(s);
-    q('[data-field="year"]').textContent = String(new Date().getFullYear());
-    if (new URLSearchParams(location.search).has("signed-out")) q("#signed-out").hidden = false;
+    $('[data-field="year"]').textContent = String(new Date().getFullYear());
+    if (new URLSearchParams(location.search).has("signed-out")) $("#signed-out").hidden = false;
     // Placeholder links say so instead of jumping to the top (the toast lives in the portal shell, so: a status line)
     document.addEventListener("click", (e) => {
       if (!e.target.closest('a[href="#"]')) return;
       e.preventDefault();
-      const note = q("#signed-out");
+      const note = $("#signed-out");
       note.className = "notice notice-info mb-4";
       note.querySelector("i").className = "fa-solid fa-circle-info";
       note.querySelector("span").textContent = "That isn't part of the demo yet. Choose Sign in to explore the portal.";
       note.hidden = false;
     });
     // Show or hide the password; the button says which it will do
-    const pw = q("#signin-password");
-    const toggle = q(".password-toggle");
+    const pw = $("#signin-password");
+    const toggle = $(".password-toggle");
     toggle.addEventListener("click", () => {
       const show = pw.type === "password";
       pw.type = show ? "text" : "password";
-      toggle.setAttribute("aria-pressed", String(show));
       toggle.querySelector("span").textContent = show ? "Hide" : "Show";
       toggle.querySelector("i").className = `fa-solid ${show ? "fa-eye-slash" : "fa-eye"}`;
     });
-    q("#signin-form").addEventListener("submit", (e) => {
+    $("#signin-form").addEventListener("submit", (e) => {
       e.preventDefault();
-      const email = q("#signin-email");
+      const email = $("#signin-email");
       if (!checkFields([
-        [email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()) ? "" : "Enter the email you use for Tornado Health."],
+        [email, EMAIL_RE.test(email.value.trim()) ? "" : "Enter the email you use for Tornado Health."],
         [pw, pw.value ? "" : "Enter your password."],
       ])) return;
-      const btn = q(".signin-submit");
+      const btn = $(".signin-submit");
       btn.disabled = true;
       btn.textContent = "Signing in…";
       // Demo details: empty the fields first, so the browser doesn't offer to save a made-up password
@@ -80,13 +98,7 @@
      Where you are comes from the page's h1: each megamenu button and bottom-bar tab lists the headings of its
      pages in data-pages ("Coverage|ID Cards"). A heading that starts with one of them is a match. */
   const CURRENT = " (current section)";
-  const make = (tag, attrs = {}, ...children) => {
-    const el = document.createElement(tag);
-    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
-    el.append(...children);
-    return el;
-  };
-  const note = () => make("span", { class: "visually-hidden" }, CURRENT);
+  const note = () => h("span", { class: "visually-hidden" }, CURRENT);
 
   function markCurrent() {
     const heading = (document.querySelector("main h1")?.textContent || "").replace(/\s+/g, " ").trim();
@@ -118,24 +130,24 @@
   function buildMoreSheet(section) {
     const nav = document.querySelector("#more-sheet nav");
     const inBar = new Set([...document.querySelectorAll(".bottom-nav a")].map((a) => a.getAttribute("href")));
-    const chevron = () => make("i", { class: "fa-solid fa-chevron-right", "aria-hidden": "true" });
+    const chevron = () => icon("fa-chevron-right");
     document.querySelectorAll(".primary-nav .nav-item.dropdown").forEach((menu, i) => {
       const label = menu.querySelector("[data-bs-toggle='dropdown']").firstChild.textContent.trim();
       const id = `more-${label.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
       const overview = { href: menu.querySelector(".menu-cta").getAttribute("href"), text: menu.querySelector(".mega-cta .fw-bold").textContent.trim() };
       const links = [...menu.querySelectorAll(".mega-link")].map((x) => (x.tagName === "A" ? { href: x.getAttribute("href"), text: x.textContent.trim() } : { button: x, text: x.textContent.trim() }));
       const rows = [overview, ...links].filter((item) => !(item.href && inBar.has(item.href))).map((item) => {
-        if (item.href) return make("li", {}, make("a", { class: "more-link", href: item.href }, item.text, chevron()));
+        if (item.href) return h("li", {}, h("a", { class: "more-link", href: item.href }, item.text, chevron()));
         const button = item.button.cloneNode(false); // keeps what it does (AI Chat opens the chat panel)
         button.className = "more-link";
         button.append(item.text, chevron());
-        return make("li", {}, button);
+        return h("li", {}, button);
       });
       const current = Boolean(section) && menu.contains(section);
-      const title = make("h3", { class: "more-group-title", id }, label);
+      const title = h("h3", { class: "more-group-title", id }, label);
       if (current) title.append(note());
-      nav.append(make("div", { class: `more-group${current ? " is-current" : ""}` },
-        title, make("ul", { class: "list-unstyled mb-0", "aria-labelledby": id }, ...rows)));
+      nav.append(h("div", { class: `more-group${current ? " is-current" : ""}` },
+        title, h("ul", { class: "list-unstyled mb-0", "aria-labelledby": id }, ...rows)));
     });
   }
 
@@ -157,8 +169,6 @@
   function start() {
 
     /* Helpers -------------------------------------------------------------- */
-    const $ = (sel, root = document) => root.querySelector(sel);
-    const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
     const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
     const money = (n) => usd.format(n);
     const toDate = (iso) => new Date(`${iso}T12:00:00`);
@@ -171,24 +181,24 @@
     };
 
     const setField = (name, value) => $$(`[data-field="${name}"]`).forEach((el) => { el.textContent = value; });
-    const announce = (msg) => { const el = $("#live-status"); el.textContent = ""; requestAnimationFrame(() => { el.textContent = msg; }); };
+    // Say something in a status line: emptied first, then filled on the next frame, so a repeat is read again
+    const speak = (el, msg) => { el.textContent = ""; requestAnimationFrame(() => { el.textContent = msg; }); };
+    const announce = (msg) => speak($("#live-status"), msg);
 
-    // Build an element from a tag, attributes and children (strings become text nodes, never HTML)
-    const h = (tag, attrs = {}, ...children) => {
-      const el = document.createElement(tag);
-      Object.entries(attrs).forEach(([k, v]) => {
-        if (k === "class") el.className = v;
-        else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
-        else el.setAttribute(k, v);
-      });
-      children.flat().forEach((c) => c != null && el.append(c));
-      return el;
-    };
-    const icon = (name) => h("i", { class: `fa-solid ${name}`, "aria-hidden": "true" });
     const srOnly = (text) => h("span", { class: "visually-hidden" }, text);
     const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
-    // Move focus to something that isn't a control (a heading or notice), e.g. after the button that was there is gone
-    const focusEl = (el) => { if (!el) return; if (!el.hasAttribute("tabindex")) el.tabIndex = -1; el.focus(); };
+    // Move focus somewhere, e.g. after the button that was there is gone. A heading or notice gets tabindex="-1" so it
+    // can take focus; a control (a button, a link) is left as it is, so it stays in the Tab order.
+    const focusEl = (el, opts) => { if (!el) return; if (el.tabIndex < 0 && !el.hasAttribute("tabindex")) el.tabIndex = -1; el.focus(opts); };
+    // "Your" or "Keeley's"
+    const possessive = (p, start = false) => (p.relation === "You" ? (start ? "Your" : "your") : `${p.firstName}'s`);
+    // A person in a "Who it's for" list
+    const optionName = (p) => (p.relation === "You" ? `${p.firstName} (you)` : p.firstName);
+    // Links: on to somewhere (arrow after), or back (arrow before)
+    const arrowLink = (text, href) => h("a", { class: "link-icon", href }, text, icon("fa-arrow-right"));
+    const backLink = (text, href) => h("a", { class: "link-icon", href }, icon("fa-arrow-left"), text);
+    // A label and its value in a <dl>
+    const pair = (label, value) => h("div", {}, h("dt", {}, label), h("dd", {}, value));
     // Home and mailing address: changed on Account overview (remembered here), used by ID Cards for new cards
     const ADDRESS = "th-address";
     const APPEALS = "th-appeals"; // appeals sent in the demo, by claim id
@@ -244,6 +254,15 @@
     let viewing = "roy";
     let chatAnswers = [];
     let chatFallback = "I can't answer right now.";
+    let memberData = null; // member.json
+    let today = "";        // the demo's date, on its plan year (member.json)
+    // Contact details and the home address: member.json, plus changes made on Account overview (remembered here).
+    // Account, ID Cards and Provider all read them, so a change shows up everywhere.
+    const CONTACT = "th-account-contact";
+    const contactInfo = () => ({ ...memberData.contact, ...(store.get(CONTACT) || {}) });
+    const homeAddress = () => ({ ...memberData.address, ...(store.get(ADDRESS) || {}) });
+    // Each person's member ID ends in their place on the plan: 01, 02, 03
+    const memberSuffix = (p) => String(family.indexOf(p) + 1).padStart(2, "0");
 
     /* Inbox: member.json lists what's unread. Reading something remembers its id (localStorage), so the counts
        drop everywhere: avatar counter, account menu, Message Center tabs. A count of 0 hides its badge. */
@@ -269,6 +288,8 @@
 
     const renderShell = (data, pageData) => {
       const { member } = data;
+      memberData = data;
+      today = data.today;
       setField("initials", member.initials);
       inbox = data.inbox;
       renderInboxCounts();
@@ -320,10 +341,11 @@
 
     // Claim row: service and provider, date, what you owe, status (aligned columns from 768px).
     // The detailed row (Claims page) links the service to its details and adds billed, plan paid and the EOB link.
+    const decided = (c) => c.status === "Processed" || c.status === "Not covered"; // decided claims have an EOB
     const owed = (c) => (c.youOwe == null ? "Pending" : `You owe ${money(c.youOwe)}`);
     const claimRow = (c, detailed = false) => {
       const when = shortDate(c.date);
-      const hasEob = c.status === "Processed" || c.status === "Not covered"; // decided claims have an EOB
+      const hasEob = decided(c);
       return h("li", { class: `${detailed ? "claim-card" : "list-group-item"} claim-row` },
         h("div", {},
           detailed
@@ -368,9 +390,9 @@
       // "For you": one line each, a short reason, and a dismiss button
       const recRow = (r) => h("li", { class: "list-group-item d-flex align-items-start gap-2", id: `rec-${r.id}` },
         h("div", { class: "flex-grow-1" },
-          h("a", { class: "link-icon", href: r.action.href }, r.title, icon("fa-arrow-right")),
+          arrowLink(r.title, r.action.href),
           h("p", { class: "small text-body-secondary mb-0" }, r.why)),
-        h("button", { class: "btn btn-link link-icon tap-target text-body-secondary p-0", type: "button", "aria-label": `Dismiss ${r.title}`, onclick: () => dismissRec(r) }, icon("fa-xmark")));
+        h("button", { class: "btn btn-link link-icon tap-target dismiss-btn text-body-secondary p-0", type: "button", "aria-label": `Dismiss ${r.title}`, onclick: () => dismissRec(r) }, icon("fa-xmark")));
       function dismissRec(r) {
         const dismissed = store.get(DISMISSED) || [];
         store.set(DISMISSED, [...new Set([...dismissed, r.id])]);
@@ -378,13 +400,8 @@
         announce(`${r.title} dismissed.`);
         // Keep keyboard focus in a sensible place: the next dismiss button, or (card gone) the ID card heading above it
         const nextBtn = $('[data-list="recommendations"] button');
-        if (nextBtn) {
-          nextBtn.focus();
-        } else {
-          const heading = $("#id-title");
-          heading.tabIndex = -1;
-          heading.focus();
-        }
+        if (nextBtn) nextBtn.focus();
+        else focusEl($("#id-title"));
       }
 
       // Listeners for the page's own controls (run as soon as the script loads)
@@ -440,7 +457,6 @@
     /* Coverage page ---------------------------------------------------------- */
     const coverage = (() => {
       let cov = null;
-      const possessive = (p, start = false) => (p.relation === "You" ? (start ? "Your" : "your") : `${p.firstName}'s`);
 
       // One person's progress toward a limit: name and amount, a thin bar, then what's left or a done badge
       const progressRow = (p, list, label, spent, limit, leftText, done) => {
@@ -522,8 +538,7 @@
         (target === pane ? $(".page-tabs") : target).scrollIntoView({ block: "start" });
         if (follow !== true || $(".offcanvas.show")) return;
         const focusTarget = target === pane ? tab : target;
-        if (focusTarget.tabIndex < 0 && !focusTarget.hasAttribute("tabindex")) focusTarget.tabIndex = -1;
-        focusTarget.focus({ preventScroll: true });
+        focusEl(focusTarget, { preventScroll: true });
       }
 
       function init() {
@@ -656,7 +671,6 @@
     })();
 
     /* Claim details and EOB: one claim, picked by ?id= in the address ---------- */
-    const decided = (c) => c.status === "Processed" || c.status === "Not covered";
     // ?id= picks the claim; without one, the claim that needs something, else the newest
     const claimFromUrl = (claims) => claims.find((c) => c.id === new URLSearchParams(location.search).get("id")) || claims.find((c) => c.action) || claims[0];
     const patientName = (c) => { const p = family.find((f) => f.id === c.patient); return `${p.firstName} ${p.lastName}`; };
@@ -686,7 +700,6 @@
         }
         return list;
       }
-      const stepRow = timelineStep;
 
       // Cost breakdown: billed, network discount, allowed, plan paid, then the member's share
       function costRows(c) {
@@ -703,7 +716,6 @@
       }
       const lineRow = (l) => h("tr", {}, h("th", { scope: "row" }, l.service), h("td", {}, money(l.billed)),
         h("td", {}, l.planPaid == null ? "Pending" : money(l.planPaid)), h("td", {}, l.youOwe == null ? "Pending" : money(l.youOwe)));
-      const arrowLink = (text, href) => h("a", { class: "link-icon", href }, text, icon("fa-arrow-right"));
 
       // What happens next, by status
       function next(c) {
@@ -728,7 +740,7 @@
           renderList("action", actionBlock({ ...c.action, action: c.action }));
         }
         renderList("status-badge", [badge(c.tone, c.status)]);
-        renderList("timeline", steps(c).map(stepRow));
+        renderList("timeline", steps(c).map(timelineStep));
         renderList("cost", costRows(c));
         setField("oweLabel", decided(c) ? "You owe" : "You may owe");
         setField("oweAmount", c.youOwe == null ? "Pending" : money(c.youOwe));
@@ -824,7 +836,7 @@
       // Your doctors: the person being viewed
       function renderDoctors() {
         const p = person();
-        setField("doctorsTitle", p.relation === "You" ? "Your doctors" : `${p.firstName}'s doctors`);
+        setField("doctorsTitle", `${possessive(p, true)} doctors`);
         const mine = care.yourDoctors[viewing] || [];
         renderList("doctors", mine.length ? mine.map(({ provider, lastVisit }) => {
           const pr = providerById(provider);
@@ -883,10 +895,10 @@
       const art = (name) => h("span", { class: "program-art", "aria-hidden": "true" }, icon(name));
       const enrolledIds = () => [...(prog.enrolled[viewing] || []), ...((store.get(ENROLLED) || {})[viewing] || [])];
       const isEnrolled = (id) => enrolledIds().includes(id);
-      // The button that was pressed is gone after enrolling: move focus to what replaced it
       // Programs that fit the person being viewed: kids' programs for children, the rest for adults
       const fits = (x) => x.for === "all" || x.for === (person().isChild ? "child" : "adult");
 
+      // The button that was pressed is gone after enrolling: the callers move focus to what replaced it
       function enroll(program) {
         const saved = store.get(ENROLLED) || {};
         saved[viewing] = [...new Set([...(saved[viewing] || []), program.id])];
@@ -912,7 +924,7 @@
           : [
             h("button", { class: "btn btn-primary px-4", type: "button", onclick: () => { enroll(program); focusEl($('[data-list="rec-actions"] .notice')); } },
               "Enroll", srOnly(` in ${program.title}`)),
-            h("a", { class: "link-icon", href: "#" }, "Learn more", srOnly(` about ${program.title}`), icon("fa-arrow-right")),
+            arrowLink(["Learn more", srOnly(` about ${program.title}`)], "#"),
           ]);
       }
 
@@ -983,17 +995,11 @@
       let modalType = null;
 
       const cardOf = (type) => ic.cards.find((c) => c.type === type);
-      const memberId = (card) => `${card.idPrefix} ${baseId} ${String(family.indexOf(person()) + 1).padStart(2, "0")}`;
+      const memberId = (card) => `${card.idPrefix} ${baseId} ${memberSuffix(person())}`;
       const orderedOn = (card) => (store.get(ORDERS) || {})[`${viewing}:${card.type}`];
-      const owner = () => (person().relation === "You" ? "Your" : `${person().firstName}'s`);
       const modalOpen = () => modalEl.classList.contains("show");
       // While the full-screen view is open, messages go to its own status line (the page behind it is hidden)
-      const say = (msg) => {
-        if (!modalOpen()) { announce(msg); return; }
-        const el = $("#idc-modal-status");
-        el.textContent = "";
-        requestAnimationFrame(() => { el.textContent = msg; });
-      };
+      const say = (msg) => { if (modalOpen()) speak($("#idc-modal-status"), msg); else announce(msg); };
 
       // The logo, from the same symbol as the header's
       const logo = () => {
@@ -1007,7 +1013,6 @@
         svg.append(use);
         return svg;
       };
-      const pair = (label, value) => h("div", {}, h("dt", {}, label), h("dd", {}, value));
 
       // Front: logo and kind, plan, who, plan numbers, and what you pay along the bottom
       const front = (card) => h("div", { class: `idc-face idc-front idc-${card.type}` },
@@ -1043,7 +1048,7 @@
         const frame = h("iframe", { class: "idc-print-frame", title: "Card for printing", "aria-hidden": "true", tabindex: "-1" });
         document.body.append(frame);
         const doc = frame.contentDocument;
-        doc.title = `${owner()} ${card.label.toLowerCase()} card | Tornado Health`;
+        doc.title = `${possessive(person(), true)} ${card.label.toLowerCase()} card | Tornado Health`;
         const sheets = $$('link[rel="stylesheet"]').map((l) => doc.importNode(l, true));
         const loaded = sheets.map((l) => new Promise((done) => { l.onload = done; l.onerror = done; }));
         doc.head.append(...sheets);
@@ -1061,9 +1066,9 @@
       function openOrder(card, where, area, btn) {
         if (btn.getAttribute("aria-expanded") === "true") { closeOrder(area, btn); return; }
         const id = `idc-order-${card.type}-${where}`;
-        area.replaceChildren(h("div", { class: "idc-order", id, role: "group", "aria-labelledby": `${id}-title` },
+        area.replaceChildren(h("div", { class: "idc-order tint-panel", id, role: "group", "aria-labelledby": `${id}-title` },
           h("p", { class: "fw-semibold mb-1", id: `${id}-title` }, `Mail a new ${card.label.toLowerCase()} card for ${person().firstName}?`),
-          h("p", { class: "small text-body-secondary mb-3" }, `We'll send it to ${store.get(ADDRESS) ? addressLines(store.get(ADDRESS)).join(", ") : ic.mailingAddress}. It arrives in 7 to 10 days, and the digital card works until then.`),
+          h("p", { class: "small text-body-secondary mb-3" }, `We'll send it to ${addressLines(homeAddress()).join(", ")}. It arrives in 7 to 10 days, and the digital card works until then.`),
           h("div", { class: "d-flex flex-wrap gap-2" },
             h("button", { class: "btn btn-primary btn-sm px-4", type: "button", onclick: () => placeOrder(card, where) }, "Order card"),
             h("button", { class: "btn btn-outline-primary btn-sm px-4", type: "button", onclick: () => closeOrder(area, btn) }, "Cancel"))));
@@ -1114,10 +1119,10 @@
       function renderPage() {
         ic.cards.forEach((card) => {
           const section = $(`[data-idc="${card.type}"]`);
-          $("[data-idc-for]", section).textContent = `${owner()} card, ${card.useAt}`;
+          $("[data-idc-for]", section).textContent = `${possessive(person(), true)} card, ${card.useAt}`;
           const [view, actions, area] = controls(card, "page");
           // Phones: the card is the button (stretched over it) that opens the full-screen view
-          const open = h("button", { class: "btn btn-outline-primary w-100 mt-3 d-md-none stretched-link idc-open d-inline-flex align-items-center justify-content-center", type: "button", onclick: () => openModal(card.type) },
+          const open = h("button", { class: "btn btn-outline-primary w-100 mt-3 d-md-none stretched-link idc-open d-flex align-items-center justify-content-center", type: "button", onclick: () => openModal(card.type) },
             icon("fa-expand"), "Open card", srOnly(`: ${card.label.toLowerCase()}, full screen`));
           const slot = $("[data-idc-slot]", section);
           slot.replaceChildren(view, actions, open, area);
@@ -1127,7 +1132,7 @@
 
       function renderModal() {
         const card = cardOf(modalType);
-        $("#idc-modal-title").textContent = `${owner()} ${card.label.toLowerCase()} card`;
+        $("#idc-modal-title").textContent = `${possessive(person(), true)} ${card.label.toLowerCase()} card`;
         $("[data-idc-modal-body]").replaceChildren(...controls(card, "modal"));
       }
       function openModal(type) {
@@ -1167,7 +1172,7 @@
       const REPLIES = "th-replies";
       const pane = () => $("[data-msg-pane]");
       // "Now" on the demo's timeline (its plan year), so new messages sort above the samples
-      const nowAt = () => `${box.today}T${new Date().toTimeString().slice(0, 5)}`;
+      const nowAt = () => `${today}T${new Date().toTimeString().slice(0, 5)}`;
       const when = (at) => new Date(at).toLocaleString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" });
       const isUnread = (id) => inbox.messages.includes(id) && !isRead(id);
       const noteUnread = (n) => inbox.notifications.includes(n.id) && !isRead(n.id);
@@ -1260,7 +1265,7 @@
             h("li", {}, h("a", { class: "msg-attach", href: "#" }, icon(fileIcon(f.name)), h("span", {}, f.name), h("span", { class: "msg-attach-size" }, f.size)))))
           : null,
         m.links?.length
-          ? h("p", { class: "msg-links mb-0" }, m.links.map((l) => h("a", { class: "link-icon", href: l.href }, l.label, icon("fa-arrow-right"))))
+          ? h("p", { class: "msg-links mb-0" }, m.links.map((l) => arrowLink(l.label, l.href)))
           : null);
 
       // A labelled control with an optional hint and an error line (hidden until it has something to say)
@@ -1271,7 +1276,7 @@
           h("label", { class: "form-label fw-semibold", for: id }, label),
           control,
           hint ? h("p", { class: "form-text mt-1 mb-0", id: `${id}-hint` }, hint) : null,
-          h("p", { class: "small text-danger-emphasis fw-semibold mt-2 mb-0", id: `${id}-error`, hidden: "" }));
+          errorLine(id));
       };
 
       function replyForm(t) {
@@ -1295,7 +1300,7 @@
 
       function composeView() {
         const topic = h("select", { class: "form-select" }, h("option", { value: "" }, "Choose a topic"), box.topics.map((x) => h("option", { value: x }, x)));
-        const about = h("select", { class: "form-select" }, family.map((p) => h("option", { value: p.id }, p.relation === "You" ? `${p.firstName} (you)` : p.firstName)));
+        const about = h("select", { class: "form-select" }, family.map((p) => h("option", { value: p.id }, optionName(p))));
         const subject = h("input", { class: "form-control", type: "text", maxlength: "80", autocomplete: "off" });
         const body = h("textarea", { class: "form-control", rows: "6", maxlength: "2000" });
         const files = h("input", { class: "form-control", type: "file", multiple: "", accept: ".pdf,.jpg,.jpeg,.png,.heic" });
@@ -1332,7 +1337,7 @@
         const unread = noteUnread(n);
         return h("li", { class: `list-group-item action-row${unread ? " is-unread" : ""}` },
           h("span", { class: `icon-chip bg-${n.tone}-subtle text-${n.tone}-emphasis`, "aria-hidden": "true" }, icon(n.icon)),
-          h("div", { class: "note-text" },
+          h("div", {},
             h("p", { class: "note-title mb-1" }, unread ? h("span", { class: "msg-dot", "aria-hidden": "true" }) : null, unread ? srOnly("New: ") : null, n.title),
             h("p", { class: "small text-body-secondary mb-0" }, `${n.detail} · `, h("time", { class: "text-nowrap", datetime: n.date }, shortDate(n.date)))),
           h("a", { class: "link-icon row-action", href: n.action.href, onclick: () => markRead([n.id]) }, n.action.label, srOnly(`: ${n.title}`), icon("fa-arrow-right")));
@@ -1455,28 +1460,21 @@
     // (plus anything changed here, remembered in localStorage) and runs the edit forms, switches and sign-out.
     const accountPage = (() => {
       let acct = null;
-      const CONTACT = "th-account-contact";
       const PREFS = "th-preferences";
       const SIGNED_OUT = "th-signed-out-others";
-      const contact = () => ({ ...acct.contact, ...(store.get(CONTACT) || {}) });
-      const address = () => ({ ...acct.address, ...(store.get(ADDRESS) || {}) });
       const prefs = () => ({ ...acct.preferences, ...(store.get(PREFS) || {}) });
       // Each section's own status line (role="status"): says what was saved, right where it happened
-      const saved = (name, msg) => {
-        const el = $(`[data-saved="${name}"]`);
-        el.textContent = "";
-        requestAnimationFrame(() => { el.textContent = msg; });
-      };
+      const saved = (name, msg) => speak($(`[data-saved="${name}"]`), msg);
 
       function renderContact() {
-        const c = contact();
+        const c = contactInfo();
         setField("acctEmail", c.email);
         setField("acctPhone", c.phone);
         setField("acctLanguage", c.language);
         setField("acctPhoneLast4", c.phone.replace(/\D/g, "").slice(-4));
       }
       function renderAddress() {
-        const [line1, line2] = addressLines(address());
+        const [line1, line2] = addressLines(homeAddress());
         setField("addrLine1", line1);
         setField("addrLine2", line2);
       }
@@ -1491,12 +1489,12 @@
       }
       // One tile per person; member IDs end in their place on the plan (01, 02, 03), as on their ID cards
       function renderCovered(member) {
-        renderList("covered", family.map((p, i) => h("li", { class: "col" }, h("div", { class: "person-tile" },
+        renderList("covered", family.map((p) => h("li", { class: "col" }, h("div", { class: "person-tile" },
           h("span", { class: "avatar", "aria-hidden": "true" }, p.initials),
           h("div", {},
             h("p", { class: "fw-semibold mb-0" }, `${p.firstName} ${p.lastName}`),
             h("p", { class: "small text-body-secondary mb-1" }, p.relation === "You" ? "You · Subscriber" : p.relation),
-            h("p", { class: "small mb-0" }, `Member ID ${member.memberId} ${String(i + 1).padStart(2, "0")}`),
+            h("p", { class: "small mb-0" }, `Member ID ${member.memberId} ${memberSuffix(p)}`),
             h("p", { class: "small text-body-secondary mb-0" }, `Born ${longDate(acct.people[p.id].dob)}`))))));
       }
 
@@ -1525,7 +1523,7 @@
 
       function wire() {
         editable("contact", () => {
-          const c = contact();
+          const c = contactInfo();
           $("#acct-email").value = c.email;
           $("#acct-phone").value = c.phone;
           $("#acct-language").value = c.language;
@@ -1534,7 +1532,7 @@
           const phone = $("#acct-phone");
           const digits = phone.value.replace(/\D/g, "").replace(/^1(?=\d{10}$)/, "");
           if (!checkFields([
-            [email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()) ? "" : "Enter an email address, like name@example.com."],
+            [email, EMAIL_RE.test(email.value.trim()) ? "" : "Enter an email address, like name@example.com."],
             [phone, digits.length === 10 ? "" : "Enter a 10-digit phone number."],
           ])) return false;
           store.set(CONTACT, { email: email.value.trim(), phone: `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`, language: $("#acct-language").value });
@@ -1545,7 +1543,7 @@
 
         const f = (id) => $(`#addr-${id}`);
         editable("address", () => {
-          const a = address();
+          const a = homeAddress();
           ["street", "unit", "city", "state", "zip"].forEach((k) => { f(k).value = a[k] || ""; });
         }, () => {
           const v = (k) => f(k).value.trim();
@@ -1580,7 +1578,7 @@
         const { member } = data;
         setField("acctName", `${member.firstName} ${member.lastName}`);
         setField("acctDob", longDate(acct.people[family[0].id].dob));
-        setField("acctMemberId", `${member.memberId} 01`);
+        setField("acctMemberId", `${member.memberId} ${memberSuffix(family[0])}`);
         setField("acctGroup", member.group);
         setField("acctEmployer", acct.employer);
         setField("acctPlanYear", `${shortDate(member.planYear.start)} to ${longDate(member.planYear.end)}`);
@@ -1602,7 +1600,6 @@
     const providerPage = (() => {
       let care = null;
       let pr = null;
-      let member = null;
       // Someone in the family already sees them: booking works even when they aren't taking new patients
       const seenBy = () => family.filter((p) => (care.yourDoctors[p.id] || []).some((d) => d.provider === pr.id));
 
@@ -1614,7 +1611,7 @@
         renderList("provider-badges", [
           badge("success", "In network"),
           pr.accepting ? badge("success", "Taking new patients") : badge("warning", "Not taking new patients"),
-          ...seenBy().map((p) => badge("info", p.relation === "You" ? "Your doctor" : `${p.firstName}'s doctor`)),
+          ...seenBy().map((p) => badge("info", `${possessive(p, true)} doctor`)),
         ]);
         setField("providerAbout", pr.about);
         setField("providerSpecialty", pr.specialty);
@@ -1624,7 +1621,7 @@
         setField("providerCost", pr.cost.replace(" copay", ""));
         setField("providerPractice", pr.practice);
         setField("providerAddress", pr.address);
-        setField("providerDistance", `${pr.distance} miles from ${member.zip || "48201"}`);
+        setField("providerDistance", `${pr.distance} miles from ${homeAddress().zip}`);
         const phone = $("[data-provider-phone]");
         phone.textContent = pr.phone;
         phone.href = `tel:+1${pr.phone.replace(/\D/g, "")}`;
@@ -1644,22 +1641,22 @@
         if (!pr.accepting && !patients.length) {
           card.replaceChildren(title("Not taking new patients"),
             h("p", { class: "small text-body-secondary mb-3" }, `${pr.name} isn't seeing new patients right now. These ${pr.specialty.toLowerCase()} providers are in network:`),
-            h("a", { class: "link-icon", href: `find-care.html?q=${encodeURIComponent(pr.specialty)}` }, `Find ${pr.specialty.toLowerCase()}`, h("i", { class: "fa-solid fa-arrow-right", "aria-hidden": "true" })));
+            arrowLink(`Find ${pr.specialty.toLowerCase()}`, `find-care.html?q=${encodeURIComponent(pr.specialty)}`));
           return;
         }
         const who = patients.length && !pr.accepting ? patients : family;
-        const today = toDate(pr.next || "2027-11-29");
+        const first = toDate(pr.next || today); // the next opening, or the demo's today
         const iso = (d) => d.toISOString().slice(0, 10);
         const field = (id, label, control, error) => h("div", { class: "mb-3" },
           h("label", { class: "form-label small fw-semibold", for: id }, label), control,
-          error ? h("p", { class: "small text-danger-emphasis fw-semibold mt-2 mb-0", id: `${id}-error`, hidden: "" }) : null);
-        const date = h("input", { class: "form-control", type: "date", id: "book-date", min: iso(today), value: iso(today) });
-        const person = h("select", { class: "form-select", id: "book-who" }, who.map((p) => h("option", { value: p.id }, p.relation === "You" ? `${p.firstName} (you)` : p.firstName)));
+          error ? errorLine(id) : null);
+        const date = h("input", { class: "form-control", type: "date", id: "book-date", min: iso(first), value: iso(first) });
+        const whoSelect = h("select", { class: "form-select", id: "book-who" }, who.map((p) => h("option", { value: p.id }, optionName(p))));
         const radio = (name, value, label, checked) => h("div", { class: "form-check" },
           h("input", { class: "form-check-input", type: "radio", name, id: `${name}-${value}`, value, ...(checked && { checked: "" }) }),
           h("label", { class: "form-check-label", for: `${name}-${value}` }, label));
         const form = h("form", { novalidate: "", "aria-labelledby": "book-title" },
-          field("book-who", "Who it's for", person),
+          field("book-who", "Who it's for", whoSelect),
           field("book-date", "Earliest day that works", date, true),
           h("fieldset", { class: "mb-3" }, h("legend", { class: "form-label small fw-semibold mb-1" }, "Time of day"),
             h("div", { class: "d-flex flex-wrap column-gap-4" }, radio("book-time", "morning", "Morning", true), radio("book-time", "afternoon", "Afternoon"))),
@@ -1671,14 +1668,11 @@
           h("button", { class: "btn btn-primary w-100", type: "submit" }, "Request a visit"));
         form.addEventListener("submit", (e) => {
           e.preventDefault();
-          const err = $("#book-date-error");
           const ok = date.value && date.value >= date.min;
-          err.textContent = ok ? "" : `Choose ${shortDate(date.min)} or later.`;
-          err.hidden = ok;
-          if (!ok) { date.setAttribute("aria-invalid", "true"); date.setAttribute("aria-describedby", err.id); date.focus(); return; }
-          const p = family.find((f) => f.id === person.value);
+          if (!checkFields([[date, ok ? "" : `Choose ${shortDate(date.min)} or later.`]])) return;
+          const p = family.find((f) => f.id === whoSelect.value);
           const note = h("p", { class: "notice notice-success mb-0", tabindex: "-1" }, icon("fa-circle-check"),
-            h("span", {}, `Request sent for ${p.firstName}. ${pr.practice} will call ${member.phone || "you"} within 1 business day to set a time, from ${shortDate(date.value)} on.`));
+            h("span", {}, `Request sent for ${p.firstName}. ${pr.practice} will call ${contactInfo().phone} within 1 business day to set a time, from ${shortDate(date.value)} on.`));
           card.replaceChildren(title("Visit requested"), note);
           note.focus();
           announce("Visit requested.");
@@ -1690,7 +1684,6 @@
 
       function render(data, pageData) {
         care = pageData;
-        member = { zip: "48201", phone: "(313) 555-0142", ...data.member };
         pr = care.providers.find((x) => x.id === new URLSearchParams(location.search).get("id"));
         if (!pr) {
           $("[data-provider]").hidden = true;
@@ -1749,9 +1742,15 @@
         const s = service();
         renderList("est-places", sorted(s).map((pl) => h("label", { class: `est-place${pl.i === place ? " is-chosen" : ""}`, for: `est-place-${pl.i}` },
           h("input", { class: "form-check-input", type: "radio", name: "est-place", id: `est-place-${pl.i}`, value: String(pl.i), ...(pl.i === place && { checked: "" }) }),
-          h("span", { class: "est-place-name" }, h("span", { class: "fw-semibold d-block" }, pl.name), h("span", { class: "small text-body-secondary" }, `${pl.distance} mi · Price ${money(pl.price)}`)),
+          h("span", {}, h("span", { class: "fw-semibold d-block" }, pl.name), h("span", { class: "small text-body-secondary" }, `${pl.distance} mi · Price ${money(pl.price)}`)),
           h("span", { class: "est-place-cost" }, h("span", { class: "fw-bold d-block" }, money(pl.you)), h("span", { class: "small text-body-secondary" }, "you pay")))));
-        $$('input[name="est-place"]').forEach((r) => r.addEventListener("change", () => { place = Number(r.value); renderPlaces(); renderEstimate(); $(`#est-place-${place}`).focus(); }));
+        $$('input[name="est-place"]').forEach((r) => r.addEventListener("change", () => {
+          place = Number(r.value);
+          renderPlaces();
+          renderEstimate();
+          $(`#est-place-${place}`).focus();
+          announce(`Estimate updated: ${$("[data-field='estYouPay']").textContent} at ${service().places[place].name}.`);
+        }));
       }
       function renderEstimate() {
         const s = service();
@@ -1804,9 +1803,6 @@
 
     /* Approval details page (auth.html?id=a-mri): prior authorizations and referrals ---------- */
     const authPage = (() => {
-      const arrow = (text, href) => h("a", { class: "link-icon", href }, text, icon("fa-arrow-right"));
-      const fact = (label, value) => h("div", {}, h("dt", {}, label), h("dd", {}, value));
-
       function render(data, cov) {
         const a = cov.auths.find((x) => x.id === new URLSearchParams(location.search).get("id"));
         if (!a) {
@@ -1825,13 +1821,13 @@
         setField("authNext", a.next);
         renderList("auth-timeline", a.steps.map(timelineStep));
         renderList("auth-details", [
-          fact(a.kind === "Referral" ? "Referred to" : "What's requested", a.service),
-          fact("For", `${who.firstName} ${who.lastName}`),
-          fact("Requested by", a.requestedBy),
-          fact("Where", a.where),
-          fact("Reason given", a.reason),
-          fact(a.validTo ? "Good through" : "Decision by", longDate(a.validTo || a.decisionBy)),
-          fact("Reference number", a.reference),
+          pair(a.kind === "Referral" ? "Referred to" : "What's requested", a.service),
+          pair("For", `${who.firstName} ${who.lastName}`),
+          pair("Requested by", a.requestedBy),
+          pair("Where", a.where),
+          pair("Reason given", a.reason),
+          pair(a.validTo ? "Good through" : "Decision by", longDate(a.validTo || a.decisionBy)),
+          pair("Reference number", a.reference),
         ]);
         if (a.visits) {
           $("[data-auth-visits]").hidden = false;
@@ -1842,10 +1838,10 @@
           fillMeter(meter, a.visits.used);
         }
         renderList("auth-actions", [
-          a.estimate ? h("li", {}, arrow("Estimate what you'd pay", `estimate.html?service=${a.estimate}`)) : null,
-          a.provider ? h("li", {}, arrow(`See ${a.whereShort || a.where}`, `provider.html?id=${a.provider}`)) : null,
-          h("li", {}, arrow("Ask us about this", "messages.html?new=1#messages")),
-          h("li", {}, arrow("All approvals", "coverage.html#auths-title")),
+          a.estimate ? h("li", {}, arrowLink("Estimate what you'd pay", `estimate.html?service=${a.estimate}`)) : null,
+          a.provider ? h("li", {}, arrowLink(`See ${a.whereShort || a.where}`, `provider.html?id=${a.provider}`)) : null,
+          h("li", {}, arrowLink("Ask us about this", "messages.html?new=1#messages")),
+          h("li", {}, arrowLink("All approvals", "coverage.html#auths-title")),
         ].filter(Boolean));
       }
 
@@ -1855,7 +1851,6 @@
     /* Appeal page (appeal.html?claim=c-1009): three steps, then a confirmation -------------- */
     // A sent appeal is remembered (localStorage), so the page and the claim show it from then on.
     const appealPage = (() => {
-      const TODAY = "2027-11-24"; // the demo's date (its plan year)
       let claim = null;
       let step = 1;
       const answers = { reason: "covered", details: "", files: [], contact: "message" };
@@ -1888,7 +1883,7 @@
           h("label", { class: "form-label fw-semibold", for: "appeal-details" }, "Tell us what happened"),
           h("p", { class: "form-text mt-0 mb-2", id: "appeal-details-hint" }, "In your own words. Include anything the claim decision missed."),
           details,
-          h("p", { class: "small text-danger-emphasis fw-semibold mt-2 mb-0", id: "appeal-details-error", hidden: "" }),
+          errorLine("appeal-details"),
           buttons("Continue", false));
         form.addEventListener("submit", (e) => {
           e.preventDefault();
@@ -1922,23 +1917,22 @@
 
       function stepThree() {
         const confirm = h("input", { class: "form-check-input", type: "checkbox", id: "appeal-confirm" });
-        const row = (label, value) => h("div", {}, h("dt", {}, label), h("dd", {}, value));
         const form = h("form", { novalidate: "" },
           h("dl", { class: "acct-dl appeal-review mb-4" },
-            row("Claim", `${claim.service}, ${longDate(claim.date)}`),
-            row("Reason", REASONS[answers.reason]),
-            row("What happened", answers.details),
-            row("Documents", answers.files.length ? answers.files.join(", ") : "None"),
-            row("We'll reach you by", CONTACT[answers.contact])),
+            pair("Claim", `${claim.service}, ${longDate(claim.date)}`),
+            pair("Reason", REASONS[answers.reason]),
+            pair("What happened", answers.details),
+            pair("Documents", answers.files.length ? answers.files.join(", ") : "None"),
+            pair("We'll reach you by", CONTACT[answers.contact])),
           h("div", { class: "form-check signin-check" }, confirm,
             h("label", { class: "form-check-label", for: "appeal-confirm" }, "What I've told you is true, to the best of my knowledge.")),
-          h("p", { class: "small text-danger-emphasis fw-semibold mt-2 mb-0", id: "appeal-confirm-error", hidden: "" }),
+          errorLine("appeal-confirm"),
           buttons("Send appeal"));
         form.addEventListener("submit", (e) => {
           e.preventDefault();
           if (!checkFields([[confirm, confirm.checked ? "" : "Check the box to confirm before you send."]])) return;
           const saved = store.get(APPEALS) || {};
-          saved[claim.id] = { ref: `APL-${claim.number.slice(-6)}`, filed: TODAY, decisionBy: addDays(TODAY, 30), contact: answers.contact };
+          saved[claim.id] = { ref: `APL-${claim.number.slice(-6)}`, filed: today, decisionBy: addDays(today, 30), contact: answers.contact };
           store.set(APPEALS, saved);
           step = 4;
           renderStep(true);
@@ -1952,18 +1946,18 @@
         return [heading("Appeal sent"),
           h("p", { class: "notice notice-success mt-3 mb-4" }, icon("fa-circle-check"), h("span", {}, `We got your appeal for ${claim.service}. Your reference number is ${a.ref}.`)),
           h("dl", { class: "acct-dl mb-4" },
-            h("div", {}, h("dt", {}, "Sent"), h("dd", {}, longDate(a.filed))),
-            h("div", {}, h("dt", {}, "Decision by"), h("dd", {}, longDate(a.decisionBy))),
-            h("div", {}, h("dt", {}, "We'll reach you by"), h("dd", {}, CONTACT[a.contact])),
-            h("div", {}, h("dt", {}, "Reference number"), h("dd", {}, a.ref))),
+            pair("Sent", longDate(a.filed)),
+            pair("Decision by", longDate(a.decisionBy)),
+            pair("We'll reach you by", CONTACT[a.contact]),
+            pair("Reference number", a.ref)),
           h("h3", { class: "acct-subtitle mb-2" }, "What happens next"),
           h("ol", { class: "statement-list mb-4" },
             h("li", {}, "A reviewer who wasn't part of the first decision looks at your claim and anything you sent."),
             h("li", {}, "If we need more, we'll ask. You can also send more any time by secure message."),
             h("li", {}, `You'll hear from us by ${longDate(a.decisionBy)}. You don't need to pay the bill for this claim while we review it.`)),
           h("div", { class: "d-flex flex-wrap column-gap-4 row-gap-2" },
-            h("a", { class: "link-icon", href: `claim-detail.html?id=${claim.id}` }, "Back to the claim", icon("fa-arrow-right")),
-            h("a", { class: "link-icon", href: "messages.html#messages" }, "Message Center", icon("fa-arrow-right")))];
+            backLink("Back to the claim", `claim-detail.html?id=${claim.id}`),
+            arrowLink("Message Center", "messages.html#messages"))];
       }
 
       function renderStep(focus) {
@@ -1981,7 +1975,7 @@
         if (!claim || claim.status !== "Not covered") {
           pane().replaceChildren(heading("This claim can't be appealed here"),
             h("p", { class: "mb-3" }, "Appeals are for claims we didn't cover. If something about another claim looks wrong, message us and we'll look into it."),
-            h("a", { class: "link-icon", href: "claims.html" }, "Back to claims", icon("fa-arrow-right")));
+            backLink("Back to claims", "claims.html"));
           $("#appeal-claim-title").closest(".col-lg-4").hidden = true;
           return;
         }
@@ -2098,7 +2092,6 @@
     // The More sheet belongs to the bottom nav: close it if the window grows to desktop width
     const desktop = matchMedia("(min-width: 992px)");
     const moreSheet = $("#more-sheet");
-    // Mark the row for where you are: same page, and the same tab when the link names one (coverage.html#dental)
     // A More link to a spot on this same page (a Coverage tab): close the sheet first, then go there,
     // so the tab doesn't open hidden behind the sheet and focus isn't lost inside it
     moreSheet.addEventListener("click", (e) => {
@@ -2111,6 +2104,7 @@
       }, { once: true });
       bootstrap.Offcanvas.getOrCreateInstance(moreSheet).hide();
     });
+    // Mark the row for where you are: same page, and the same tab when the link names one (coverage.html#dental)
     moreSheet.addEventListener("show.bs.offcanvas", () => {
       $$(".more-link[href]").forEach((link) => {
         const url = new URL(link.href);

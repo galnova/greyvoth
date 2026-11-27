@@ -1,5 +1,8 @@
   <!-- Footer, bottom nav, More sheet, AI Chat, log out dialog, placeholder message. The only copy: js/portal.js loads it
        into every page. Bottom-bar tabs list the h1 headings of their pages in data-pages, like the megamenu buttons. -->
+  <!-- Status messages for screen readers (announce() in js/portal.js): one for every page -->
+  <p class="visually-hidden" role="status" id="live-status"></p>
+
   <footer class="border-top bg-body py-4">
     <div class="container-xl px-4">
       <nav aria-label="Footer">
@@ -56,7 +59,7 @@
   <div class="offcanvas offcanvas-end chat-panel" role="dialog" tabindex="-1" id="assistant" aria-labelledby="assistant-title">
     <div class="offcanvas-header border-bottom">
       <h2 class="offcanvas-title d-flex align-items-center gap-2" id="assistant-title">
-        AI Chat <span class="badge bg-primary-subtle text-primary-emphasis"><span>SuperCharged</span></span>
+        AI Chat <span class="badge bg-primary"><span>SuperCharged</span></span>
       </h2>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close AI Chat"></button>
     </div>

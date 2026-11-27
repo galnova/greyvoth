@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Case Study | Tornado Health</title>
-  <meta name="description" content="How the Tornado Health member portal was designed and built with an AI coding agent: the problem, the decisions and the results.">
+  <meta name="description" content="How the Tornado Health member portal was designed and built with an AI coding agent, with a human in the loop: the problem, the decisions and the results.">
   <meta name="robots" content="noindex">
   <meta name="color-scheme" content="light">
 
@@ -26,7 +26,7 @@
   <script src="js/portal.js" defer></script>
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100" data-page="casestudy">
-  <a class="visually-hidden-focusable position-absolute top-0 start-0 z-3 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
+  <a class="skip-link visually-hidden-focusable position-absolute top-0 start-0 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
 
   <!-- Header: one copy in partials/header.html, loaded here by js/portal.js -->
   <div class="shell-header" data-include="partials/header.html"></div>
@@ -36,13 +36,12 @@
     <header class="greeting-band">
       <div class="container-xl py-3 py-md-4">
         <p class="band-facts mb-1">Case study · Product design and front end · November 2026</p>
-        <h1 class="mb-1">Tornado Health: a member portal, designed and built with AI</h1>
-        <p class="band-facts mb-0">A 20-page health plan portal, accessible and data-driven, built in one day by directing an AI coding agent.</p>
+        <h1 class="mb-1">Tornado Health: a member portal, designed and built with AI, with a human in the loop</h1>
+        <p class="band-facts mb-0">A 22-page health plan portal, accessible and data-driven, built in about 20 hours by directing an AI coding agent.</p>
       </div>
     </header>
 
     <div class="container-xl pt-4 pb-5">
-      <p class="visually-hidden" role="status" id="live-status"></p>
       <div class="notice notice-danger mb-4" role="alert" id="load-error" hidden>
         <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span>We couldn't load your information. Refresh the page to try again.</span>
       </div>
@@ -87,24 +86,140 @@
               <ul class="statement-list">
                 <li><strong>Rules that stick:</strong> my design preferences (no borders on rounded shapes, solid active states, no em dashes, images never bigger than the logo) were saved as standing rules, so I stopped repeating myself.</li>
                 <li><strong>A living spec:</strong> every decision went into DESIGN-RULES.md, about 490 lines by the end.</li>
-                <li><strong>Review agents:</strong> three reviewers (structure, design system, accessibility), switched off during small edits and run at checkpoints.</li>
+                <li><strong>Review agents:</strong> three reviewers (structure, design system, accessibility), switched off during small edits and run at checkpoints. They checked Home and Coverage along the way, then the whole site at the end.</li>
+                <li><strong>A cleanup before the final review:</strong> an audit for unused and duplicate code. It removed dead styles and an unused color token, merged five copies of the form-error code into one, turned three look-alike panel classes into one, merged about a dozen rules that set the same thing, and cut the script by 34 lines. Then every check ran again to prove nothing looked or worked differently.</li>
+                <li><strong>The final review:</strong> the three agents went over all 22 pages and only reported; I approved their fixes as one list. They found what the automatic checks can't: checkboxes, radios, switches and selects showed no focus ring; the skip link was hidden under the sticky header; tabbing could hide controls under the header and the phone bottom bar; one table scrolled the page sideways at 320px; and a bug took two buttons out of the Tab order. Also some Bootstrap blue left over, dividers drawn too dark, off-scale padding, and copies of the same helper. All fixed, then every check ran again.</li>
                 <li><strong>Proof, not promises:</strong> after each change, automated checks in a real browser: accessibility (axe), HTML validation, layout shift, sideways scrolling and the actual flows (sign in, order a card, send an appeal).</li>
+              </ul>
+
+              <h2 id="cs-testing">How it was tested</h2>
+              <p>Every check below ran in a real browser after each change, and all of them again after the final cleanup.</p>
+              <ul class="cs-tests list-unstyled">
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Accessibility, WCAG 2.2 AA</p><span class="badge badge-success"><span>0 violations</span></span></div><p class="small text-body-secondary mb-0">axe-core 4.14.1 (every WCAG 2.0, 2.1 and 2.2 A and AA rule, plus best practices) in a real browser, Microsoft Edge 158. All 22 pages at 375px and 1280px, and in their states: form errors, open menus and dialogs, the phone menu, flipped ID cards, search results and empty states, sent messages, each appeal step.</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">What axe can&#x27;t see</p><span class="badge badge-success"><span>Fixed and re-measured</span></span></div><p class="small text-body-secondary mb-0">Scripted measurements: checkbox and radio outlines (1.8:1 contrast, now 5:1), where focus lands after every action, no focus ring drawn on arrival, and the optical centering of arrows, badges and counters, measured in pixels.</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Valid HTML</p><span class="badge badge-success"><span>0 errors</span></span></div><p class="small text-body-secondary mb-0">html-validate 8.18.2, standard rules, on all 22 pages, both shared partials, and each page as rendered in the browser.</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Consistent structure</p><span class="badge badge-success"><span>0 problems</span></span></div><p class="small text-body-secondary mb-0">A script checks every page: the same head (Bootstrap and Font Awesome from a CDN with integrity hashes), one h1, landmarks, heading order, unique ids, no inline styles, no !important.</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Links</p><span class="badge badge-success"><span>0 broken</span></span></div><p class="small text-body-secondary mb-0">Every link and #section jump on all pages and in the shared header and footer, checked against real files and ids.</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Layout shift while loading</p><span class="badge badge-success"><span>Under 0.01 everywhere</span></span></div><p class="small text-body-secondary mb-0">On a slowed connection (150ms latency, about 1.6 Mbps, 4× slower CPU) with an empty cache, every page at 320, 375, 768 and 1280px. Worst: 0.008 (Claims, 320px). Before the fixes: up to 0.45.</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Small screens and zoom</p><span class="badge badge-success"><span>No sideways scrolling</span></span></div><p class="small text-body-secondary mb-0">Every page at 375px and 1280px; most also at 320, 768, 1024 and 1440px. 320px wide is the same as 400% zoom on a laptop.</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Real tasks</p><span class="badge badge-success"><span>All pass, no errors</span></span></div><p class="small text-body-secondary mb-0">Scripted in the browser: sign in and out, search for care and book a visit, estimate a cost, flip, print and order ID cards, read, reply to and write messages, clear notifications, edit contact info and address, switch preferences, send an appeal, enroll in a program, reset the demo, and the 404 page at a deep address.</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Code cleanup</p><span class="badge badge-success"><span>No visible change</span></span></div><p class="small text-body-secondary mb-0">An audit for unused and duplicate code, then every check above run again.</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Speed (Lighthouse)</p><span class="badge badge-warning"><span>Mobile 86</span></span></div><p class="small text-body-secondary mb-0">On the home page, earlier in the build: Accessibility 100 and Best Practices 100 on desktop and mobile; Performance 96 on desktop, 86 on mobile (main content in 3.3 seconds, mostly the shared libraries).</p></li>
+                <li class="cs-test"><div class="cs-test-head"><p class="fw-semibold mb-0">Review agents</p><span class="badge badge-success"><span>All fixes applied</span></span></div><p class="small text-body-secondary mb-0">Three reviewers (structure, design system, accessibility) checked Home and Coverage at checkpoints, then all 22 pages in a final pass. Every fix they proposed was applied, then every check above ran again.</p></li>
+              </ul>
+              <p class="mb-2"><strong>Not tested yet:</strong></p>
+              <ul class="statement-list">
+                <li>With screen readers (NVDA, VoiceOver) and by people who use them.</li>
+                <li>In Safari and Firefox, and on real phones. Testing used Edge (Chromium) at phone and desktop sizes.</li>
+                <li>Text-only zoom to 200% and Windows high contrast mode.</li>
+                <li>With members, in usability sessions.</li>
+                <li>A Level Access scan of the whole site.</li>
               </ul>
 
               <h2 id="cs-results">Results</h2>
               <ul class="statement-list">
-                <li><strong>20 pages</strong> and a live design system, from 11 data files, one stylesheet and one script.</li>
+                <li><strong>22 pages</strong> and a live design system, from 11 data files, one stylesheet and one script.</li>
                 <li><strong>No accessibility violations</strong> (axe, WCAG 2.2 AA) on every portal page at phone and desktop widths, in their interactive states too.</li>
                 <li><strong>Valid HTML</strong> on every page and both shared partials.</li>
-                <li><strong>No layout shift above 0.01</strong> on any page measured, on a slow connection with an empty cache.</li>
+                <li><strong>No layout shift above 0.01</strong> on any page, on a slow connection with an empty cache.</li>
                 <li><strong>No sideways scrolling</strong> from 320px phones up.</li>
               </ul>
 
               <h2 id="cs-next">What I'd do next</h2>
-              <ul class="statement-list mb-0">
+              <ul class="statement-list">
                 <li><strong>Test it with people.</strong> This was designed from experience and heuristics, not research. Usability sessions with members, including screen reader users, come first.</li>
                 <li><strong>Speed.</strong> On phones the main content takes about 3.2 seconds to appear, mostly from shared libraries; that's worth tuning.</li>
                 <li><strong>Pharmacy.</strong> Refills and drug costs are the biggest member task the demo leaves out.</li>
+              </ul>
+              <h2 id="cs-production">Taking it to production: Angular and AEM</h2>
+              <p>If this became a real portal on Angular and Adobe Experience Manager, the deciding line is simple: <strong>AEM owns content; Angular and an API layer own member data.</strong> Health information never goes into AEM. AEM runs headless, with authors editing in Universal Editor, and Angular reads its content through saved GraphQL queries.</p>
+              <table class="table cs-table">
+                <caption class="visually-hidden">Who owns what in production</caption>
+                <thead><tr><th scope="col">Layer</th><th scope="col">Owns</th><th scope="col">Replaces</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">AEM (Cloud Service, headless)</th><td>Content authors edit without a developer: menus, Help center answers, program and behavioral health copy, legal pages, banners</td><td><code>partials/header.html</code>, the FAQ markup, page copy</td></tr>
+                  <tr><th scope="row">Angular app</th><td>The signed-in portal: routes, components, state, forms</td><td><code>portal.js</code> page modules</td></tr>
+                  <tr><th scope="row">API layer</th><td>Claims, coverage, ID cards, messages and providers, from the plan's systems and standard FHIR APIs (Node or Java)</td><td><code>data/*.json</code></td></tr>
+                  <tr><th scope="row">Identity</th><td>Sign-in with two-step verification through an OIDC provider (Okta, Ping)</td><td><code>signin.html</code> (demo)</td></tr>
+                </tbody>
+              </table>
+              <h3 class="acct-subtitle mb-2">How the prototype translates</h3>
+              <table class="table cs-table">
+                <caption class="visually-hidden">How the prototype translates</caption>
+                <thead><tr><th scope="col">Prototype</th><th scope="col">Angular and AEM</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Shared header and footer, current section from the page's heading</th><td>A <code>ShellComponent</code>; menu items authored in AEM; the current section from the Angular router</td></tr>
+                  <tr><th scope="row">Page modules (<code>claimsPage</code>, <code>idcardsPage</code>)</th><td>One lazy-loaded route per feature, standalone components</td></tr>
+                  <tr><th scope="row">The family switcher</th><td>A <code>MemberContextService</code> built on signals</td></tr>
+                  <tr><th scope="row"><code>setFieldError</code> and <code>checkFields</code></th><td>Reactive forms and one <code>&lt;th-field-error&gt;</code> component</td></tr>
+                  <tr><th scope="row">Placeholders and waiting content</th><td>Route resolvers and skeleton components, with the same no-shift rule</td></tr>
+                  <tr><th scope="row"><code>--th-*</code> tokens and <code>portal.css</code></th><td>A shared design-token package; Bootstrap stays, or Angular CDK</td></tr>
+                  <tr><th scope="row"><code>components.html</code></th><td>Storybook, with accessibility checks on every story</td></tr>
+                  <tr><th scope="row">The checks run by hand during the build</th><td>The same checks, automatic on every change before it merges</td></tr>
+                </tbody>
+              </table>
+              <h3 class="acct-subtitle mb-2">A taste of the code</h3>
+              <div class="vstack gap-2 mb-4">
+              <details class="cs-code">
+                <summary><span><span class="fw-semibold d-block">Claims for the member being viewed</span><span class="small text-body-secondary">Replaces the claims page module and claims.json</span></span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <pre tabindex="0" aria-label="Claims for the member being viewed, code"><code>@Injectable({ providedIn: &#x27;root&#x27; })
+export class ClaimsService {
+  private http = inject(HttpClient);
+  private member = inject(MemberContextService);
+
+  readonly claims = toSignal(
+    toObservable(this.member.viewingId).pipe(
+      switchMap(id =&gt; this.http.get&lt;Claim[]&gt;(`/api/members/${id}/claims`))
+    ),
+    { initialValue: [] }
+  );
+}</code></pre>
+              </details>
+              <details class="cs-code">
+                <summary><span><span class="fw-semibold d-block">The claims list</span><span class="small text-body-secondary">Replaces the list markup built in portal.js</span></span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <pre tabindex="0" aria-label="The claims list, code"><code>&lt;ul class=&quot;list-unstyled vstack gap-3&quot; [attr.aria-busy]=&quot;loading()&quot;&gt;
+  @for (claim of claims.claims(); track claim.id) {
+    &lt;li&gt;&lt;th-claim-card [claim]=&quot;claim&quot; /&gt;&lt;/li&gt;
+  } @empty {
+    &lt;li class=&quot;small text-body-secondary&quot;&gt;No claims for {{ member.viewing().firstName }} yet.&lt;/li&gt;
+  }
+&lt;/ul&gt;</code></pre>
+              </details>
+              <details class="cs-code">
+                <summary><span><span class="fw-semibold d-block">Help center answers, authored in AEM</span><span class="small text-body-secondary">Replaces the FAQ markup in help.html</span></span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <pre tabindex="0" aria-label="Help center answers, authored in AEM, code"><code>query HelpFaqs($topic: String) {
+  faqList(filter: { topic: { _expressions: [{ value: $topic }] } }) {
+    items { id question answer { plaintext } topic keywords }
+  }
+}
+
+// Angular: a persisted query, cached at the edge
+this.http.get&lt;FaqResponse&gt;(`${AEM_HOST}/graphql/execute.json/tornado/help-faqs;topic=claims`);</code></pre>
+              </details>
+              <details class="cs-code">
+                <summary><span><span class="fw-semibold d-block">One field-error component</span><span class="small text-body-secondary">Replaces setFieldError</span></span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <pre tabindex="0" aria-label="One field-error component, code"><code>@Component({
+  selector: &#x27;th-field-error&#x27;,
+  standalone: true,
+  template: `@if (control.invalid &amp;&amp; control.touched) {
+    &lt;p class=&quot;small text-danger-emphasis fw-semibold mt-2 mb-0&quot; [id]=&quot;id&quot;&gt;{{ message }}&lt;/p&gt;
+  }`
+})
+export class FieldErrorComponent {
+  @Input({ required: true }) control!: AbstractControl;
+  @Input({ required: true }) id!: string;
+  @Input({ required: true }) message!: string;
+}</code></pre>
+              </details>
+              </div>
+              <h3 class="acct-subtitle mb-2">What it would take</h3>
+              <p>Roughly <strong>4 to 6 months with 4 to 6 people</strong> (a rough estimate): two Angular developers, one AEM developer, one backend developer for the API layer, a designer, and part-time QA and accessibility. The prototype shortens it, because the design rules, components, copy, edge cases and accessibility patterns are already decided and written down.</p>
+              <p class="mb-2">The real risks aren't front-end work:</p>
+              <ul class="statement-list mb-0">
+                <li><strong>Getting at the plan's systems:</strong> claims and member data, through FHIR or older internal services.</li>
+                <li><strong>HIPAA:</strong> a business associate agreement with each vendor, plus logging and data handling.</li>
+                <li><strong>Identity:</strong> signing members in, and how family members can see each other's information.</li>
+                <li><strong>Price data:</strong> real price-transparency files for the cost estimate.</li>
               </ul>
             </div>
           </article>
@@ -117,14 +232,15 @@
               <h2 class="mb-3" id="cs-glance-title">At a glance</h2>
               <dl class="acct-dl cs-glance mb-4">
                 <div><dt>My role</dt><dd>Product designer and director</dd></div>
-                <div><dt>Timeline</dt><dd>One day, Nov 26, 2026 (about 14 hours)</dd></div>
+                <div><dt>Timeline</dt><dd>About 16 hours, starting Nov 26, 2026</dd></div>
                 <div><dt>Built with</dt><dd>Claude Code (Opus 5.5), Bootstrap 5.3, Font Awesome 6.7, vanilla JavaScript</dd></div>
                 <div><dt>Checked with</dt><dd>axe-core, html-validate, headless Edge</dd></div>
-                <div><dt>Scale</dt><dd>20 pages · 158 prompts</dd></div>
+                <div><dt>Scale</dt><dd>22 pages · 158 prompts</dd></div>
               </dl>
               <ul class="list-unstyled vstack gap-3 mb-0">
                 <li><a class="btn btn-primary w-100 d-inline-flex align-items-center justify-content-center" href="index.html">Try the portal</a></li>
                 <li><a class="link-icon" href="components.html">See the design system<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+                <li><a class="link-icon" href="#cs-production">How it would be built<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
                 <li><a class="link-icon" href="prompts.html">Read every prompt<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
                 <li><a class="link-icon" href="accessibility.html">Accessibility statement<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
               </ul>

@@ -27,7 +27,7 @@
   <script src="js/portal.js" defer></script>
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100" data-page="findcare">
-  <a class="visually-hidden-focusable position-absolute top-0 start-0 z-3 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
+  <a class="skip-link visually-hidden-focusable position-absolute top-0 start-0 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
 
   <!-- Header: one copy in partials/header.html, loaded here by js/portal.js -->
   <div class="shell-header" data-include="partials/header.html"></div>
@@ -59,7 +59,6 @@
     </header>
 
     <div class="container-xl py-4">
-      <p class="visually-hidden" role="status" id="live-status"></p>
       <div class="notice notice-danger mb-4" role="alert" id="load-error" hidden>
         <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span>We couldn't load your information. Refresh the page to try again.</span>
       </div>
@@ -106,7 +105,7 @@
               </div>
 
               <!-- Results: hidden until the first search -->
-              <div class="care-results mt-4" id="care-results" hidden>
+              <div class="mt-4" id="care-results" hidden>
                 <h3 class="small fw-semibold text-body-secondary mb-1" id="care-results-title" tabindex="-1">Results</h3>
                 <p class="small mb-2" data-field="careCount"></p>
                 <ul class="list-group list-group-flush" data-list="providers" aria-labelledby="care-results-title"></ul>
@@ -177,9 +176,9 @@
             <div class="card-body p-4">
               <h2 class="mb-1" id="behavioral-title">Behavioral health support</h2>
               <p class="small text-body-secondary mb-3">Talk to a counselor any time. It's free and confidential.</p>
-              <p class="mb-3"><a class="care-phone" href="tel:+18005550130">1-800-555-0130</a> <span class="small text-body-secondary">· 24/7</span></p>
+              <p class="mb-3"><a class="help-phone" href="tel:+18005550130">1-800-555-0130</a> <span class="small text-body-secondary">· 24/7</span></p>
               <div class="d-flex flex-wrap gap-2 column-gap-4">
-                <a class="link-icon" href="#find-title" data-care-search="Therapist">Find a therapist <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <button class="btn btn-link link-icon p-0" type="button" data-care-search="Therapist">Find a therapist <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
                 <a class="link-icon" href="behavioral-health.html">All support <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
               </div>
             </div>

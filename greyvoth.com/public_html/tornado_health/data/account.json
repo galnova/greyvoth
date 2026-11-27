@@ -12,18 +12,6 @@
       "dob": "2018-06-05"
     }
   },
-  "contact": {
-    "email": "roy.kent@example.com",
-    "phone": "(313) 555-0142",
-    "language": "English"
-  },
-  "address": {
-    "street": "1428 Elm Street",
-    "unit": "",
-    "city": "Detroit",
-    "state": "MI",
-    "zip": "48201"
-  },
   "preferences": {
     "paperless": true,
     "emailClaims": true,
@@ -34,7 +22,6 @@
   },
   "security": {
     "passwordChanged": "2027-09-03",
-    "twoStep": true,
     "otherDevices": 2
   },
   "assistant": [

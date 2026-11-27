@@ -80,7 +80,7 @@ Text needs 4.5:1 (3:1 at 24px+ or 19px+ bold). UI parts and focus indicators nee
 | Focus ring vs page (UI) | 8.2 |
 | Input and outline borders (UI) | 5.2 |
 
-Cards have no border; they're separated by surface color, shadow and spacing. Dividers inside cards (`neutral-200`, 1.7:1) are decorative.
+Cards have no border; they're separated by surface color, shadow and spacing. Dividers inside cards and between list and table rows (`neutral-200`, 1.7:1) are decorative. Bootstrap draws list-group, table and border-utility lines with `--bs-border-color`, which here is the darker field outline (neutral-500), so those are set to neutral-200 once in the CSS; neutral-500 is only for field, checkbox and radio outlines.
 
 ### Type
 
@@ -107,9 +107,10 @@ System font stack, so there's no web font and no layout shift.
   - **Cards:** 24px on every side (`card-body p-4`), 24px between cards (`gap-4` / `g-4`). Top and bottom space measure the same.
   - **Inside a card:** heading to content 16px (`mb-3`); a heading with a one-line description uses `mb-1`, then the description `mb-3`; a new group inside a card starts 24px down (`mt-4`).
   - **List rows** (claims, updates, suggestions): 16px apart, set once with `--bs-list-group-item-padding-y`. The first and last rows sit flush so they don't add to the card's 24px. Don't put `py-*` utilities on rows.
+  - **Panels and rows inside a card** (claim cards, messages, the order panel, Estimate's panels and places, example panels): 16px padding. No 20px steps.
   - **Status lines** (`.status-line`, `role="status"`) are muted small text (`text-body-secondary`, 7.4:1). They take no space until they show a message, then sit 16px below what they describe.
   - **48px hit areas next to headings or at a card's edge** (header links such as "See all claims", the ID card actions) overlap the space around them (negative block margin) so they don't make the card look padded unevenly.
-- **Radii:** `--th-radius-sm` 6px controls; `-md` 12px tiles, tinted panels, status chips and chat bubbles; `-lg` 16px cards, ID card, bottom sheet, chat panel and dialog; `-pill` for the avatar counter, meters and sheet handle; `-round` for the avatar, icon chips and chat button.
+- **Radii:** `--th-radius-sm` 6px controls (small buttons too: `--bs-border-radius-sm` is mapped to it); `-md` 12px tiles, tinted panels, status chips and chat bubbles; `-lg` 16px cards, ID card, bottom sheet, chat panel and dialog; `-pill` for the avatar counter, meters and sheet handle; `-round` for the avatar, icon chips and chat button.
 - **Elevation:** `--th-shadow-card` (cards: soft two-layer shadow, no outline), `--th-shadow-1` (header), `-2` (megamenu), `-3` (chat button, chat panel, overlays). Two hairlines that aren't elevation: `--th-ring-white` (2px white ring around the avatar counter) and `--th-edge-top` (the bottom nav's 1px top edge).
 - **Targets:** `--th-target` is 48px. Every standalone link, button, tab, megamenu link and close button meets it. Smaller controls that sit on the band use `--th-control-sm` (32px family switcher) and `--th-control-md` (40px "Start a chat").
 
@@ -122,7 +123,7 @@ System font stack, so there's no web font and no layout shift.
 | Claim summary | `claims.html` | `member.json` + `data/claims.json` (also used by Home's Recent claims) | Built |
 | Claim details | `claim-detail.html?id=c-1042` | `member.json` + `data/claims.json` | Built |
 | EOB | `eob.html?id=c-1037` | `member.json` + `data/claims.json` | Built |
-| Choices for care (Find Care) | `find-care.html` | `member.json` + `data/findcare.json` | Built |
+| Care Decisions (Find Care) | `find-care.html` | `member.json` + `data/findcare.json` | Built |
 | Programs overview | `programs.html` | `member.json` + `data/programs.json` | Built |
 | ID Cards | `idcards.html` | `member.json` + `data/idcards.json` | Built |
 | Message Center | `messages.html` (`#messages`, `#notifications`) | `member.json` + `data/messages.json` | Built |
@@ -172,7 +173,7 @@ My Account opens a small dropdown (`.account-menu`, right-aligned, 256px), not a
 |---|---|---|
 | Coverage | Coverage overview | **Your benefits:** Medical, Rx, Dental, Vision, Spending Accounts · **Your plan:** ID Cards, Who's Covered, Coordination of Benefits, Referrals & Prior Auths |
 | Claims | Claim summary | EOBs (Explanation of Benefits). Claim details aren't in the menu: they open from an individual claim. |
-| Find Care | Choices for care | Find a Doctor, Behavioral Health Support, Get a Second Opinion, Estimate Your Cost |
+| Find Care | Care Decisions | Find a Doctor, Behavioral Health Support, Get a Second Opinion, Estimate Your Cost |
 | Programs & Services | Programs overview | Health Care & Well-Being, Rewards & Perks |
 | Support | Help center | **Get help:** Contact Us, FAQ, AI Chat (opens the chat panel), Website Feedback · **Forms:** All Forms |
 
@@ -192,7 +193,7 @@ My Account opens a small dropdown (`.account-menu`, right-aligned, 256px), not a
 
 ### More sheet
 Bottom sheet (`offcanvas-bottom`, `role="dialog"`) with a drag-handle cue and a title. It is the full site menu for phones: everything the bottom bar doesn't already reach, grouped exactly like the desktop megamenus.
-- **Groups (h3, small uppercase, same style as the megamenu group titles):** Coverage · Claims · Find Care · Programs & Services · Support. Each group lists its overview page first (Choices for care, Programs overview, Help center), then every megamenu link. Left out because the bottom bar already has them: Coverage overview, Claim summary, ID Cards. Account items (Messages, Notifications, Addresses, Log out) live in the My Account menu, which shows on phones.
+- **Groups (h3, small uppercase, same style as the megamenu group titles):** Coverage · Claims · Find Care · Programs & Services · Support. Each group lists its overview page first (Care Decisions, Programs overview, Help center), then every megamenu link. Left out because the bottom bar already has them: Coverage overview, Claim summary, ID Cards. Account items (Messages, Notifications, Addresses, Log out) live in the My Account menu, which shows on phones.
 - **Rows:** full-width 48px links with a small chevron on the right; tint fill on hover, no underline. "AI Chat" opens the chat panel (the sheet closes first).
 - **Section you're in:** the whole group for the current section (Coverage on coverage.html) sits on a light tint panel with a purple group title and a hidden "(current section)", marked by portal.js from the page's h1. The row for your exact tab turns white inside it.
 - **Where you are:** when the sheet opens, the row for the current page (and tab, for links like coverage.html#dental) gets the same light tint as the current bottom-bar tab and `aria-current="page"`. Placeholder links never match. On pages only More reaches (listed in the More tab's `data-pages`: Find care, Programs & Services), the More tab itself gets the tint and a hidden "(current section)".
@@ -214,7 +215,7 @@ Only links get the white chip shape, so nothing looks clickable that isn't. The 
 - Choosing someone updates the button, filters Recent claims to that person (title becomes "Leo's recent claims"; an empty list says "No recent claims for Leo."), announces the change, and returns focus to the switcher.
 - In this demo the To do list and plan totals stay on the subscriber. Family members come from `family` in `member.json`; each claim has a `patient`.
 - The band's white focus ring switches back to purple inside the (white) menu.
-Chips are white, 12px radius, 48px tall, with no shadow on the band. The focus ring turns white inside the band so it stays visible. Linked chips tint on hover. Headings have `scroll-margin-top` so jumps land below the sticky header.
+Chips are white, 12px radius, 48px tall, with no shadow on the band. The focus ring turns white inside the band so it stays visible. Linked chips tint on hover. The page has `scroll-padding` so jumps, and anything focused, land clear of the sticky header (and of the bottom bar on phones).
 
 ### AI Chat promo (band, desktop only)
 The right third of the greeting band, aligned with the side column below. A darker panel (purple-900, 12px radius, no border) with an inline chat icon and the title "Questions? Ask AI Chat" (h2), one line of copy, and a small light "Start a chat" button that opens the chat panel.
@@ -294,7 +295,7 @@ One statement card (`.eob-doc`), opened from a claim card's EOB link. Breadcrumb
 - **Amount tables:** every money column is regular weight and the same color; "You owe" and the total row are bold. Discounts use a real minus sign, not a hyphen or dash.
 
 ### Find Care page (`find-care.html`)
-The "Choices for care" overview. On phones it's reached from More, so the More tab lights up and the More sheet highlights the Find Care group and the "Choices for care" row. The menu's Find a Doctor, Behavioral Health Support, Get a Second Opinion and Estimate Your Cost link to their cards here.
+The "Care Decisions" overview. On phones it's reached from More, so the More tab lights up and the More sheet highlights the Find Care group and the "Care Decisions" row. The menu's Find a Doctor, Behavioral Health Support, Get a Second Opinion and Estimate Your Cost link to their cards here.
 - **Band:** Viewing switcher | plan name, h1 "Find care", chips "Find a doctor" and "Compare care options".
 - **Emergency first:** a danger notice above everything: call 911 or go to the ER; in a mental health crisis, call or text 988.
 - **Find a doctor (main column):** name/specialty/condition plus ZIP, "Accepting new patients only", and Search as the page's only filled primary button. Errors sit under their field (`aria-invalid`, focus moves to the field). Popular searches run a search. Results (hidden until the first search) are rows: the provider as a link, specialty and practice, distance and next opening, the visit cost in bold and a "New patients" badge or "Not taking new patients". The count is announced; chips and the side links move focus to the Results heading.
@@ -335,7 +336,7 @@ Reached from the account menu: **Messages** opens `messages.html#messages`, **No
 - **New message:** Topic (required) and Who it's about side by side, Subject (required), Message (required, with the emergency hint), Attach files (optional; PDFs or photos; not uploaded in the demo), then **Send message** and Cancel. Errors appear under each field (`aria-invalid`, described by the error and hint), and focus goes to the first one. Sending opens the new conversation at the top of the Inbox and focuses the "We got your message" notice.
 - **Read and unread:** `member.json` lists the unread ids (`inbox.messages`, `inbox.notifications`). Opening a conversation, following a notification, or Mark all as read remembers the id (localStorage, `th-read`), so the avatar counter, the account menu badges and the tab counts drop on every page. A count of 0 hides its badge (`data-hide-zero`). Messages and replies written in the demo are remembered too.
 - **Notifications:** one card. Header: h2 and **Mark all as read** (only while something is new). **New** first, then **Earlier** (small uppercase group titles); with nothing new, "You're all caught up." Each row: an icon chip in its tone (Bootstrap subtle background), the title (bold with a dot when new), detail and date, and its action on the right ("View claim →", "Upload form →"; under the text on phones). Following the action reads it. A closing line links to notification settings (placeholder).
-- **Data:** `data/messages.json`: `today` (the demo's date, so new messages sort above the samples), topics, threads (sender, topic, who it's about, messages with attachments and links), notifications (icon, tone, title, detail, date, action) and AI Chat questions (reply time, sending a photo of a form, who can see messages).
+- **Data:** `data/messages.json`: topics, threads (sender, topic, who it's about, messages with attachments and links), notifications (icon, tone, title, detail, date, action) and AI Chat questions (reply time, sending a photo of a form, who can see messages).
 
 ### Help center page (`help.html`)
 Reached from the Support menu (Help center; Contact Us, FAQ and All Forms jump to its sections) and the footer's "Help & contact". It lights up Support, and More on phones. No family switcher. Band: h1 "Help center" and two jump chips, **Contact us** and **Forms** (so phones can skip down). No AI Chat promo.
@@ -351,7 +352,7 @@ Reached from the Support menu (Help center; Contact Us, FAQ and All Forms jump t
 
 ### Account overview page (`account.html`)
 The account menu's **Account overview** (its filled button, marked current on this page), **Addresses** (`#addresses-title`) and **Other options** (`#preferences-title`) open it; so do the Message Center's "notification settings" link and the Help center's address answer. No megamenu or bottom tab lights up, and there's no family switcher (the account is the subscriber's). Band: h1 and four jump chips (Your details, Who's covered, Preferences, Sign-in and security).
-- **Written into the page:** current details are in the HTML (`data-field`), so nothing shifts while `data/account.json` loads; the script fills them from the data plus anything changed here.
+- **Written into the page:** current details are in the HTML (`data-field`), so nothing shifts while `data/account.json` loads; the script fills them from the data plus anything changed here. Contact details and the home address live in `member.json` (with the demo's date, `today`), so a change here also shows on ID Cards (where a new card is mailed) and Provider (the ZIP for distances, the phone the office calls).
 - **Your details:** contact info on the left (name, date of birth, member ID, email, mobile, language for calls and letters; label over value, two across, one on small phones) and the **home and mailing address** in a tinted panel on the right. Each has **Edit**, which swaps the details for a form in place: labelled fields, errors under each field (email format, 10-digit phone; street, city, 2-letter state, 5-digit ZIP), focus on the first problem, **Save** and Cancel. Save or Cancel returns focus to Edit, and a status line says what was saved. Changes are remembered in this browser (demo).
 - **One address everywhere:** a saved address is what ID Cards shows when you order a card ("We'll send it to…").
 - **Who's covered:** the plan line (plan, group, employer, plan year), then one gray tile per person, three across: avatar, name, relation ("You · Subscriber"), member ID (01, 02, 03, matching their ID cards) and date of birth; "ID cards →" in the header.
@@ -413,6 +414,7 @@ The design system, live: the footer links it ("Components"). Every example is th
 
 ### Case study (`case-study.html`) and prompt log (`prompts.html`)
 The footer's **Case study** link (after Components). Written for portfolio reviewers, in Keith's voice: overview, the problem, goals, key decisions, how the AI work was directed, measured results and honest next steps (no user research yet), in the long-form `.statement` style, with an **At a glance** side card (role, timeline, tools, scale, and links: Try the portal, the design system, every prompt, the accessibility statement). It says plainly that this is a concept, not client work.
+- **Taking it to production (`#cs-production`, last section):** the Angular and AEM version in brief: who owns what (AEM content, Angular and an API layer for member data, never health data in AEM), how each prototype piece translates, four folded code samples (`details.cs-code`, focusable `pre` that scrolls inside itself), and effort and risks, labeled a rough estimate. Linked from At a glance ("How it would be built").
 - **Every prompt (`prompts.html`):** the 158 prompts, in order and exactly as typed (typos kept), from the point the project was named Tornado Health; earlier, unrelated prompts are left out. Each shows its number, time (Eastern) and "While working" when it was sent mid-task. Nothing pasted is shown (a prompt that was only a paste is left out; one with typed words keeps just those). The one long typed prompt folds behind "Show the full prompt". System notices and interruption markers are left out. Generated from the session transcript into static HTML.
 
 ### Placeholder links
@@ -454,45 +456,45 @@ Every notification-style message uses one component: `.notice` plus a tone (`.no
 ### Links
 - Links and link-buttons with an icon use one class, `.link-icon`: inline-flex, icon vertically centered with the text, 8px gap, semibold, never underlined (including the dismiss X). Hover changes color only. Measured: every icon sits at 0px offset from its text's center.
 - Plain text links keep the underline.
+- **Back links** ("All messages", "Back to the claim", "Back to claims") put a left arrow before the text; links on to somewhere put a right arrow after it.
 
 ### Focus
-One rule for everything: a 3px solid ring in purple-600 with a 2px offset. Bootstrap parts that remove the outline get it back at the same specificity.
+One rule for everything: a 3px solid ring in purple-600 with a 2px offset. Bootstrap parts that remove the outline get it back at the same specificity, including selects, checkboxes, radios and switches (Bootstrap's `:focus { outline: 0 }` otherwise wins). Fields keep their gray outline while focused; the ring shows focus, not a light blue border.
+- **Never hidden under the bars (WCAG 2.4.11):** `scroll-padding` on the page keeps whatever is scrolled to clear of the sticky header, and below 992px of the bottom bar and chat button.
+- **Skip to main content** (`.skip-link`) sits above the sticky header when focused.
 - Anything that scrolls (`overflow: auto`) clips the ring, so it needs at least 5px of padding around focusable children (the tab bar has 6px; the band chips get 5px offset by a negative margin).
 
 ### Shared details added with these pages
 - **Reset demo (footer):** clears everything the demo remembered (localStorage keys starting `th-`) and returns to Home, which says "The demo is back to where it started." Staying put could undo it (an open message would be read again).
 - **Bottom nav:** tabs share the bar equally with flex, however many there are.
-- **More sheet:** a hairline between groups, centered in the gap (never on the current group's rounded panel).
+- **More sheet:** a hairline between groups, centered in the gap (never on the current group's rounded panel). No border on its rounded top.
+- **Menus:** a pressed item turns the brand tint, never Bootstrap blue (every menu, not just the megamenus).
 - **Fields with an error:** a red outline (danger-600) to match the message under them; the focus ring stays purple. **Password fields** are 48px tall, so Show/Hide sits centered.
 - **Loading placeholders pulse** with Bootstrap 5's own `placeholder-glow` animation (the card-shaped placeholder too); it's off under reduced motion.
 - **Checks and radios:** brand purple when chosen; the unchecked outline is neutral-500 (3:1 against white). **Disabled buttons:** the brand purple, faded (Bootstrap's default is blue).
 - **Timeline rows** are one shared helper (`timelineStep`) for claims and approvals.
-- **One of each, no copies:** form errors go through one helper (`setFieldError`, and `checkFields` to show several and focus the first problem) on every form; one `focusEl` moves focus to a heading or notice. One `.tint-panel` (menu call-to-action box, Programs' "What you get", the account address), one `.action-row` with `.row-action` (notifications, sign-in and security), one `.measure`. Rules that set the same thing share one selector list instead of repeating it.
+- **One of each, no copies:** form errors go through one helper (`setFieldError`, and `checkFields` to show several and focus the first problem) on every form; one `focusEl` moves focus to a heading or notice. One `.tint-panel` (menu call-to-action box, Programs' "What you get", the account address), one `.action-row` with `.row-action` (notifications, sign-in and security), one `.measure`, one `.help-phone` for a phone line to call. In the script, one copy of each builder: `h` and `icon`, `pair` (a label and value), `arrowLink` and `backLink`, `errorLine` (a field's error line), `speak` (every status line), `possessive` ("Your" or "Keeley's") and `memberSuffix` (01, 02, 03). `focusEl` adds `tabindex="-1"` only to things that can't take focus, so controls it focuses stay in the Tab order. One live region (`#live-status`), in the shared footer. Rules that set the same thing share one selector list instead of repeating it.
 
 ### Footer
 Always at the bottom of the window, even on short pages (the body is a flex column and `main` grows). 24px padding top and bottom, 24px on the sides (12px wider than the page container, as requested).
 Help & contact (Help center) · Accessibility statement · Privacy · Language assistance · Nondiscrimination notice (the last three are placeholders). Under them: the year, **Reset demo** and **Components**.
 
-## Test results (homepage, revision 10)
+## Test results (whole site, final build)
 
-| Test | Result |
-|---|---|
-| axe-core 4 (WCAG 2.0–2.2 A/AA + best practice) at 1280, 1024 and 375px, with the assistant, More sheet, each of the 5 megamenus, the account menu, the family menu, the search error, the placeholder message and both log out steps open | 0 violations in all 20 runs |
-| Lighthouse 12, desktop | Accessibility 100 · Best Practices 100 · Performance 96 (LCP 1.1s, CLS 0.005) |
-| Lighthouse 12, mobile | Accessibility 100 · Best Practices 100 · Performance 86 (LCP 3.3s, CLS 0.004) |
-| W3C HTML validator | 0 errors, 0 warnings |
-| Header fit, 992 to 1920px | One 64px row at every width tested |
-| Reflow and text spacing at 320px | No overflow |
-| Esc closes the assistant and returns focus | Pass |
-| More sheet closes when resized to desktop | Pass |
-| Footer sits at the bottom of a 2600px-tall window | Pass |
-| Assistant on phones fills the screen | Pass (844px on an 844px screen) |
-| Card padding, measured to the first and last text | 22–26px top and bottom on every card at 1280px |
-| Family switcher filters claims and returns focus | Pass (Roy 3, Keeley 1, Leo 1) |
-| For you disappears after the last dismiss, and stays gone on reload | Pass; focus moves to the ID card heading |
-| Log out: confirm, done state, Esc resets and returns focus | Pass |
-| Placeholder links show the message and stay on the page | Pass |
+Published on the case study (`case-study.html#cs-testing`). Tools: axe-core 4.14.1, html-validate 8.18.2, puppeteer-core 23.11.1 driving Microsoft Edge 158 (headless).
 
-SEO scores 60 only because of the intentional `noindex`.
-Mobile load time misses the 2.5s target because the full Bootstrap stylesheet comes from the CDN; fixing it would mean self-hosting a trimmed copy.
-Still to check by hand: an NVDA or VoiceOver read-through, and 200% zoom on a real device.
+| Check | How and where | Result |
+|---|---|---|
+| Accessibility, WCAG 2.2 AA | axe-core 4.14.1 (every WCAG 2.0, 2.1 and 2.2 A and AA rule, plus best practices) in a real browser, Microsoft Edge 158. All 22 pages at 375px and 1280px, and in their states: form errors, open menus and dialogs, the phone menu, flipped ID cards, search results and empty states, sent messages, each appeal step. | 0 violations |
+| What axe can't see | Scripted measurements: checkbox and radio outlines (1.8:1 contrast, now 5:1), where focus lands after every action, no focus ring drawn on arrival, and the optical centering of arrows, badges and counters, measured in pixels. | Fixed and re-measured |
+| Valid HTML | html-validate 8.18.2, standard rules, on all 22 pages, both shared partials, and each page as rendered in the browser. | 0 errors |
+| Consistent structure | A script checks every page: the same head (Bootstrap and Font Awesome from a CDN with integrity hashes), one h1, landmarks, heading order, unique ids, no inline styles, no !important. | 0 problems |
+| Links | Every link and #section jump on all pages and in the shared header and footer, checked against real files and ids. | 0 broken |
+| Layout shift while loading | On a slowed connection (150ms latency, about 1.6 Mbps, 4× slower CPU) with an empty cache, every page at 320, 375, 768 and 1280px. Worst: 0.008 (Claims, 320px). Before the fixes: up to 0.45. | Under 0.01 everywhere |
+| Small screens and zoom | Every page at 375px and 1280px; most also at 320, 768, 1024 and 1440px. 320px wide is the same as 400% zoom on a laptop. | No sideways scrolling |
+| Real tasks | Scripted in the browser: sign in and out, search for care and book a visit, estimate a cost, flip, print and order ID cards, read, reply to and write messages, clear notifications, edit contact info and address, switch preferences, send an appeal, enroll in a program, reset the demo, and the 404 page at a deep address. | All pass, no errors |
+| Code cleanup | An audit for unused and duplicate code, then every check above run again. | No visible change |
+| Speed (Lighthouse) | On the home page, earlier in the build: Accessibility 100 and Best Practices 100 on desktop and mobile; Performance 96 on desktop, 86 on mobile (main content in 3.3 seconds, mostly the shared libraries). | Mobile 86 |
+| Review agents | Three reviewers (structure, design system, accessibility) checked Home and Coverage at checkpoints, then all 22 pages in a final pass. Every fix they proposed was applied, then every check above ran again. | Done, all fixes applied |
+
+**Not tested yet:** screen readers (NVDA, VoiceOver) and their users; Safari, Firefox and real phones; text-only zoom to 200%; Windows high contrast; usability sessions with members; a Level Access scan.
