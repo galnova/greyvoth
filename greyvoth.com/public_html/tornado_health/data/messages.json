@@ -1,0 +1,219 @@
+{
+  "_note": "Synthetic demo data. Tornado Health, its staff and members are fictional. Dates follow the demo's plan year.",
+  "today": "2027-11-24",
+  "topics": [
+    "Claims and bills",
+    "Coverage and benefits",
+    "ID cards",
+    "Pharmacy",
+    "Finding care",
+    "Something else"
+  ],
+  "threads": [
+    {
+      "id": "t-1",
+      "subject": "We need an accident form for your physical therapy claim",
+      "topic": "Claims and bills",
+      "about": "roy",
+      "from": "Claims team",
+      "messages": [
+        {
+          "mine": false,
+          "name": "Claims team",
+          "at": "2027-11-20T09:14",
+          "body": "Hi Roy,\n\nWe're holding your Nov 12 physical therapy claim from Richmond Physical Therapy until we get an accident form. It tells us whether another insurer should pay first.\n\nThe form is attached. Fill it out and upload it from the claim, or reply here with a photo of it. Once we have it, we'll finish the claim within 5 business days.\n\nClaims team, Tornado Health",
+          "attachments": [
+            {
+              "name": "Accident form.pdf",
+              "size": "84 KB"
+            }
+          ],
+          "links": [
+            {
+              "label": "View claim",
+              "href": "claim-detail.html?id=c-1042"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-2",
+      "subject": "Your knee MRI request is in review",
+      "topic": "Coverage and benefits",
+      "about": "roy",
+      "from": "Prior authorization team",
+      "messages": [
+        {
+          "mine": false,
+          "name": "Prior authorization team",
+          "at": "2027-11-18T15:40",
+          "body": "Hi Roy,\n\nWe got Dr. Patel's request for a knee MRI on Nov 18. A nurse reviewer is looking at it now, and we expect a decision by Dec 2.\n\nYou don't need to do anything. We'll message you and Dr. Patel's office as soon as there's a decision.\n\nPrior authorization team, Tornado Health",
+          "links": [
+            {
+              "label": "View request",
+              "href": "coverage.html#auths-title"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-3",
+      "subject": "Is Keeley's cleaning covered?",
+      "topic": "Coverage and benefits",
+      "about": "keeley",
+      "from": "Member services",
+      "messages": [
+        {
+          "mine": true,
+          "at": "2027-11-09T16:02",
+          "body": "Hi, is Keeley's cleaning today covered all the way? The office said we might get a bill."
+        },
+        {
+          "mine": false,
+          "name": "Maya, Member services",
+          "at": "2027-11-10T10:31",
+          "body": "Hi Roy,\n\nYes. Cleanings and exams are covered at 100% in network, twice a year, and Bright Smile Dental is in network. The claim from Keeley's visit was processed at $0 for you, so you shouldn't get a bill. If one arrives, reply here and we'll sort it out with the office.\n\nMaya, Member services",
+          "links": [
+            {
+              "label": "View claim",
+              "href": "claim-detail.html?id=c-1040"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-4",
+      "subject": "Welcome to Tornado Health",
+      "topic": "Something else",
+      "about": "roy",
+      "from": "Tornado Health",
+      "messages": [
+        {
+          "mine": false,
+          "name": "Tornado Health",
+          "at": "2027-01-02T08:00",
+          "body": "Welcome, Roy.\n\nYour plan started Jan 1. Your ID cards are ready in the portal, and you can message us here any time. We reply within 1 business day.",
+          "links": [
+            {
+              "label": "See your ID cards",
+              "href": "idcards.html"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "id": "n-1",
+      "date": "2027-11-21",
+      "icon": "fa-file-medical",
+      "tone": "info",
+      "title": "We got your knee X-ray claim",
+      "detail": "Richmond Imaging, Nov 19. We'll process it within 30 days.",
+      "action": {
+        "label": "View claim",
+        "href": "claim-detail.html?id=c-1045"
+      }
+    },
+    {
+      "id": "n-2",
+      "date": "2027-11-20",
+      "icon": "fa-circle-exclamation",
+      "tone": "warning",
+      "title": "A claim needs your accident form",
+      "detail": "Physical therapy, Nov 12. We can't finish it until we get the form.",
+      "action": {
+        "label": "Upload form",
+        "href": "claim-detail.html?id=c-1042"
+      }
+    },
+    {
+      "id": "n-3",
+      "date": "2027-11-18",
+      "icon": "fa-clock",
+      "tone": "info",
+      "title": "Knee MRI request in review",
+      "detail": "Expect a decision by Dec 2. You don't need to do anything.",
+      "action": {
+        "label": "View request",
+        "href": "coverage.html#auths-title"
+      }
+    },
+    {
+      "id": "n-4",
+      "date": "2027-11-07",
+      "icon": "fa-file-invoice-dollar",
+      "tone": "success",
+      "title": "Your EOB is ready",
+      "detail": "Office visit with Dr. Aisha Patel, Nov 5. You owe $25.",
+      "action": {
+        "label": "View EOB",
+        "href": "eob.html?id=c-1037"
+      }
+    },
+    {
+      "id": "n-5",
+      "date": "2027-11-03",
+      "icon": "fa-gift",
+      "tone": "primary",
+      "title": "You earned 250 reward points",
+      "detail": "For your flu shot. You have 1,250 points.",
+      "action": {
+        "label": "See rewards",
+        "href": "programs.html#rewards-title"
+      }
+    },
+    {
+      "id": "n-6",
+      "date": "2027-10-30",
+      "icon": "fa-calendar-check",
+      "tone": "success",
+      "title": "Your wellness visit is due",
+      "detail": "It's free with your plan. Book a visit before Dec 31.",
+      "action": {
+        "label": "Find a doctor",
+        "href": "find-care.html"
+      }
+    }
+  ],
+  "assistant": [
+    {
+      "prompt": "How fast do you reply?",
+      "answer": "We reply to messages within 1 business day, usually sooner. For anything urgent, call Member services at 1-800-555-0142. In an emergency, call 911.",
+      "keywords": [
+        "how fast",
+        "reply",
+        "response",
+        "how long",
+        "wait"
+      ]
+    },
+    {
+      "prompt": "Can I send a photo of a form?",
+      "answer": "Yes. In a new message, use Attach files to add a photo or PDF of the form. On a claim that needs a form, you can also upload it from the claim itself.",
+      "keywords": [
+        "photo",
+        "picture",
+        "attach",
+        "upload",
+        "form",
+        "file"
+      ]
+    },
+    {
+      "prompt": "Who can see my messages?",
+      "answer": "Only you and the Tornado Health team handling your question. Messages are secure, and family members on your plan can't read them unless they sign in as you.",
+      "keywords": [
+        "who can see",
+        "private",
+        "privacy",
+        "secure",
+        "read my"
+      ]
+    }
+  ]
+}

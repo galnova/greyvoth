@@ -1,0 +1,40 @@
+{
+  "_note": "Synthetic demo data. Tornado Health and its phone numbers (555-01xx) are fictional.",
+  "assistant": [
+    {
+      "prompt": "How do I reach a person?",
+      "answer": "Call Member services at 1-800-555-0142, Monday to Friday, 8 am to 8 pm ET (TTY 711). Or send a secure message from the Message Center; we reply within 1 business day.",
+      "keywords": [
+        "person",
+        "human",
+        "talk",
+        "call",
+        "phone",
+        "reach",
+        "contact"
+      ]
+    },
+    {
+      "prompt": "Where do I find claim forms?",
+      "answer": "They're under Forms on the Help center: the medical claim form, accident form, appeal request, mail order form and permission to share. Each is a PDF you can print or fill in.",
+      "keywords": [
+        "form",
+        "forms",
+        "pdf",
+        "claim form",
+        "appeal"
+      ]
+    },
+    {
+      "prompt": "Is there a 24/7 nurse line?",
+      "answer": "Yes. Call 1-800-555-0177 any time to talk with a registered nurse. It's free with your plan. In an emergency, call 911.",
+      "keywords": [
+        "nurse",
+        "24/7",
+        "after hours",
+        "night",
+        "advice"
+      ]
+    }
+  ]
+}

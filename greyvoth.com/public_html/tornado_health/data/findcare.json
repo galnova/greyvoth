@@ -1,0 +1,437 @@
+{
+  "_note": "Synthetic demo data for the Find Care page. The providers and Tornado Health are fictional.",
+  "providers": [
+    {
+      "id": "p-patel",
+      "name": "Dr. Aisha Patel",
+      "specialty": "Primary care",
+      "practice": "Richmond Family Medicine",
+      "distance": 1.2,
+      "accepting": true,
+      "cost": "$25 copay",
+      "next": "2027-12-03",
+      "keywords": [
+        "primary care",
+        "family medicine",
+        "doctor",
+        "checkup",
+        "physical"
+      ],
+      "address": "2150 Grand River Ave, Suite 300, Detroit, MI 48201",
+      "phone": "(313) 555-0110",
+      "hours": [
+        "Mon to Fri, 8 am to 5 pm",
+        "Sat, 9 am to noon"
+      ],
+      "languages": [
+        "English",
+        "Hindi",
+        "Gujarati"
+      ],
+      "visitTypes": [
+        "In person",
+        "Video"
+      ],
+      "hospital": "Richmond General Hospital",
+      "about": "Dr. Patel cares for adults of all ages, with a focus on prevention, long-term conditions and joint pain. She's been with Richmond Family Medicine for 12 years."
+    },
+    {
+      "id": "p-okafor",
+      "name": "Dr. James Okafor",
+      "specialty": "Primary care",
+      "practice": "Midtown Internal Medicine",
+      "distance": 2.8,
+      "accepting": true,
+      "cost": "$25 copay",
+      "next": "2027-12-01",
+      "keywords": [
+        "primary care",
+        "internal medicine",
+        "doctor",
+        "checkup",
+        "physical"
+      ],
+      "address": "410 W Canfield St, Detroit, MI 48201",
+      "phone": "(313) 555-0111",
+      "hours": [
+        "Mon to Fri, 8 am to 5 pm"
+      ],
+      "languages": [
+        "English",
+        "Igbo"
+      ],
+      "visitTypes": [
+        "In person",
+        "Video"
+      ],
+      "hospital": "Midtown Medical Center",
+      "about": "Dr. Okafor practices internal medicine for adults, including diabetes, heart health and yearly physicals."
+    },
+    {
+      "id": "p-chen",
+      "name": "Dr. Maria Chen",
+      "specialty": "Pediatrics",
+      "practice": "Little Tornado Pediatrics",
+      "distance": 1.9,
+      "accepting": false,
+      "cost": "$25 copay",
+      "next": "2027-12-09",
+      "keywords": [
+        "pediatrics",
+        "pediatrician",
+        "child",
+        "kids",
+        "children"
+      ],
+      "address": "88 E Ferry St, Detroit, MI 48202",
+      "phone": "(313) 555-0112",
+      "hours": [
+        "Mon to Fri, 8 am to 5 pm",
+        "Sat, 9 am to 1 pm"
+      ],
+      "languages": [
+        "English",
+        "Mandarin",
+        "Spanish"
+      ],
+      "visitTypes": [
+        "In person",
+        "Video"
+      ],
+      "hospital": "Children's Hospital of Michigan",
+      "about": "Dr. Chen sees children from newborns to 18, including well-child visits, vaccines and asthma care."
+    },
+    {
+      "id": "p-hughes",
+      "name": "Dr. Tara Hughes",
+      "specialty": "Pediatrics",
+      "practice": "Northside Kids Clinic",
+      "distance": 4.6,
+      "accepting": true,
+      "cost": "$25 copay",
+      "next": "2027-12-05",
+      "keywords": [
+        "pediatrics",
+        "pediatrician",
+        "child",
+        "kids",
+        "children"
+      ],
+      "address": "17400 Livernois Ave, Detroit, MI 48221",
+      "phone": "(313) 555-0113",
+      "hours": [
+        "Mon to Fri, 7:30 am to 6 pm"
+      ],
+      "languages": [
+        "English"
+      ],
+      "visitTypes": [
+        "In person"
+      ],
+      "hospital": "Children's Hospital of Michigan",
+      "about": "Dr. Hughes cares for kids and teens, with early and late appointments for school days."
+    },
+    {
+      "id": "p-owens",
+      "name": "Dr. Lena Owens",
+      "specialty": "Dermatology",
+      "practice": "Clear Skin Dermatology",
+      "distance": 3.4,
+      "accepting": true,
+      "cost": "$50 copay",
+      "next": "2027-12-12",
+      "keywords": [
+        "dermatology",
+        "dermatologist",
+        "skin",
+        "rash",
+        "acne",
+        "mole"
+      ],
+      "address": "3800 Woodward Ave, Suite 210, Detroit, MI 48201",
+      "phone": "(313) 555-0114",
+      "hours": [
+        "Mon to Thu, 8 am to 5 pm",
+        "Fri, 8 am to noon"
+      ],
+      "languages": [
+        "English",
+        "French"
+      ],
+      "visitTypes": [
+        "In person",
+        "Video"
+      ],
+      "hospital": "Midtown Medical Center",
+      "about": "Dr. Owens treats skin conditions like acne, eczema and psoriasis, and does yearly skin checks."
+    },
+    {
+      "id": "p-rivera",
+      "name": "Dr. Sam Rivera",
+      "specialty": "Dermatology",
+      "practice": "Riverside Dermatology",
+      "distance": 5.1,
+      "accepting": true,
+      "cost": "$50 copay",
+      "next": "2028-01-06",
+      "keywords": [
+        "dermatology",
+        "dermatologist",
+        "skin",
+        "rash",
+        "acne",
+        "mole"
+      ],
+      "address": "1 Riverside Dr, Detroit, MI 48207",
+      "phone": "(313) 555-0115",
+      "hours": [
+        "Mon to Fri, 8 am to 5 pm"
+      ],
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "visitTypes": [
+        "In person"
+      ],
+      "hospital": "Riverside Hospital",
+      "about": "Dr. Rivera offers medical and surgical dermatology, including skin cancer screening."
+    },
+    {
+      "id": "p-rpt",
+      "name": "Richmond Physical Therapy",
+      "specialty": "Physical therapy",
+      "practice": "Richmond Physical Therapy",
+      "distance": 1.5,
+      "accepting": true,
+      "cost": "$35 copay",
+      "next": "2027-11-30",
+      "keywords": [
+        "physical therapy",
+        "pt",
+        "rehab",
+        "knee",
+        "back pain"
+      ],
+      "address": "2160 Grand River Ave, Detroit, MI 48201",
+      "phone": "(313) 555-0116",
+      "hours": [
+        "Mon to Fri, 7 am to 7 pm",
+        "Sat, 8 am to noon"
+      ],
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "visitTypes": [
+        "In person"
+      ],
+      "hospital": null,
+      "about": "Physical therapy after injuries and surgery, including knee, back and shoulder rehab, with early and evening visits."
+    },
+    {
+      "id": "p-nair",
+      "name": "Dr. Priya Nair",
+      "specialty": "Orthopedics",
+      "practice": "Richmond Orthopedics",
+      "distance": 2.2,
+      "accepting": true,
+      "cost": "$50 copay",
+      "next": "2027-12-08",
+      "keywords": [
+        "orthopedics",
+        "orthopedic",
+        "knee",
+        "bone",
+        "joint",
+        "sports injury"
+      ],
+      "address": "2200 Grand River Ave, Suite 500, Detroit, MI 48201",
+      "phone": "(313) 555-0117",
+      "hours": [
+        "Mon to Fri, 8 am to 5 pm"
+      ],
+      "languages": [
+        "English",
+        "Malayalam"
+      ],
+      "visitTypes": [
+        "In person",
+        "Video"
+      ],
+      "hospital": "Richmond General Hospital",
+      "about": "Dr. Nair specializes in knee and sports injuries, from first visit through surgery and recovery."
+    },
+    {
+      "id": "p-lee",
+      "name": "Jordan Lee, LCSW",
+      "specialty": "Therapist",
+      "practice": "Calm Harbor Counseling",
+      "distance": 0.9,
+      "accepting": true,
+      "cost": "$25 copay",
+      "next": "2027-12-02",
+      "keywords": [
+        "therapist",
+        "therapy",
+        "counseling",
+        "counselor",
+        "mental health",
+        "anxiety",
+        "depression",
+        "behavioral"
+      ],
+      "address": "55 W Willis St, Detroit, MI 48201",
+      "phone": "(313) 555-0118",
+      "hours": [
+        "Mon to Thu, 9 am to 8 pm",
+        "Fri, 9 am to 3 pm"
+      ],
+      "languages": [
+        "English",
+        "Korean"
+      ],
+      "visitTypes": [
+        "In person",
+        "Video"
+      ],
+      "hospital": null,
+      "about": "Jordan Lee is a licensed clinical social worker who helps adults with anxiety, stress, grief and life changes."
+    },
+    {
+      "id": "p-morales",
+      "name": "Dr. Elena Morales",
+      "specialty": "Psychiatry",
+      "practice": "Midtown Behavioral Health",
+      "distance": 3.0,
+      "accepting": false,
+      "cost": "$25 copay",
+      "next": "2028-01-14",
+      "keywords": [
+        "psychiatry",
+        "psychiatrist",
+        "mental health",
+        "medication",
+        "anxiety",
+        "depression",
+        "behavioral"
+      ],
+      "address": "4201 Cass Ave, Detroit, MI 48201",
+      "phone": "(313) 555-0119",
+      "hours": [
+        "Mon to Fri, 8 am to 5 pm"
+      ],
+      "languages": [
+        "English",
+        "Spanish"
+      ],
+      "visitTypes": [
+        "In person",
+        "Video"
+      ],
+      "hospital": "Midtown Medical Center",
+      "about": "Dr. Morales is a psychiatrist who diagnoses and treats depression, anxiety and ADHD, including medication management."
+    },
+    {
+      "id": "p-tuc",
+      "name": "Tornado Urgent Care Midtown",
+      "specialty": "Urgent care",
+      "practice": "Walk-ins welcome, open until 9 p.m.",
+      "distance": 2.0,
+      "accepting": true,
+      "cost": "$50 copay",
+      "next": null,
+      "keywords": [
+        "urgent care",
+        "urgent",
+        "walk-in",
+        "sprain",
+        "stitches"
+      ],
+      "address": "3990 Woodward Ave, Detroit, MI 48201",
+      "phone": "(313) 555-0120",
+      "hours": [
+        "Every day, 8 am to 9 pm"
+      ],
+      "languages": [
+        "English",
+        "Spanish",
+        "Arabic"
+      ],
+      "visitTypes": [
+        "Walk-in"
+      ],
+      "hospital": null,
+      "about": "Walk-in care for colds, sprains, cuts, fevers and infections. No appointment needed; most visits take under an hour."
+    }
+  ],
+  "yourDoctors": {
+    "roy": [
+      {
+        "provider": "p-patel",
+        "lastVisit": "2027-11-05"
+      },
+      {
+        "provider": "p-nair",
+        "lastVisit": "2027-10-14"
+      },
+      {
+        "provider": "p-rpt",
+        "lastVisit": "2027-11-12"
+      }
+    ],
+    "keeley": [
+      {
+        "provider": "p-owens",
+        "lastVisit": "2027-10-21"
+      }
+    ],
+    "leo": [
+      {
+        "provider": "p-chen",
+        "lastVisit": "2027-08-20"
+      }
+    ]
+  },
+  "assistant": [
+    {
+      "prompt": "Where should I go for a sprain?",
+      "answer": "Urgent care is a good fit for a sprain: a $50 copay, walk-ins welcome, and they can do X-rays. Tornado Urgent Care Midtown is 2 miles away and open until 9 p.m. Go to the ER if the bone looks out of place or you can't put any weight on it.",
+      "keywords": [
+        "sprain",
+        "twisted",
+        "ankle",
+        "wrist"
+      ]
+    },
+    {
+      "prompt": "Is a video visit free?",
+      "answer": "Yes. Video visits are $0 on your plan, 24/7. They're good for colds, rashes, pink eye and prescription refills.",
+      "keywords": [
+        "video",
+        "virtual",
+        "telehealth",
+        "free"
+      ]
+    },
+    {
+      "prompt": "Find a therapist near me",
+      "answer": "Jordan Lee, LCSW at Calm Harbor Counseling is 0.9 miles away and taking new patients. Office visits are a $25 copay. You can also call the behavioral health line any time, free.",
+      "keywords": [
+        "therapist",
+        "counselor",
+        "counseling",
+        "mental health"
+      ]
+    },
+    {
+      "prompt": "Do I need a referral?",
+      "answer": "No. Your PPO plan lets you see any in-network specialist without a referral. Some services, like MRIs and hospital stays, need prior approval.",
+      "keywords": [
+        "referral",
+        "specialist",
+        "approval"
+      ]
+    }
+  ]
+}

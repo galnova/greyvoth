@@ -1,0 +1,232 @@
+{
+  "_note": "Synthetic demo data. Places and prices are fictional in-network rates. Coinsurance and copays match coverage.json.",
+  "groups": [
+    {
+      "id": "imaging",
+      "label": "Scans and tests"
+    },
+    {
+      "id": "visits",
+      "label": "Visits"
+    },
+    {
+      "id": "procedures",
+      "label": "Procedures"
+    }
+  ],
+  "services": [
+    {
+      "id": "knee-mri",
+      "group": "imaging",
+      "name": "MRI, knee",
+      "kind": "coinsurance",
+      "coinsurance": 0.2,
+      "notes": [
+        {
+          "tone": "info",
+          "icon": "fa-circle-info",
+          "text": "This needs approval from us first; your doctor asks for it.",
+          "link": {
+            "label": "See your approvals",
+            "href": "coverage.html#auths-title"
+          }
+        }
+      ],
+      "places": [
+        {
+          "name": "Richmond Imaging",
+          "distance": 2.3,
+          "price": 1180
+        },
+        {
+          "name": "Midtown Medical Center",
+          "distance": 3.1,
+          "price": 1940
+        },
+        {
+          "name": "Northside Open MRI",
+          "distance": 6.8,
+          "price": 760
+        }
+      ]
+    },
+    {
+      "id": "knee-xray",
+      "group": "imaging",
+      "name": "X-ray, knee",
+      "kind": "coinsurance",
+      "coinsurance": 0.2,
+      "places": [
+        {
+          "name": "Richmond Imaging",
+          "distance": 2.3,
+          "price": 160
+        },
+        {
+          "name": "Midtown Medical Center",
+          "distance": 3.1,
+          "price": 240
+        },
+        {
+          "name": "Tornado Urgent Care Midtown",
+          "distance": 2.0,
+          "price": 120
+        }
+      ]
+    },
+    {
+      "id": "labs",
+      "group": "imaging",
+      "name": "Lab work, basic panel",
+      "kind": "coinsurance",
+      "coinsurance": 0.2,
+      "places": [
+        {
+          "name": "Nelson Lab",
+          "distance": 1.4,
+          "price": 45
+        },
+        {
+          "name": "Midtown Medical Center",
+          "distance": 3.1,
+          "price": 130
+        }
+      ]
+    },
+    {
+      "id": "specialist",
+      "group": "visits",
+      "name": "Specialist visit",
+      "kind": "copay",
+      "copay": 50,
+      "places": [
+        {
+          "name": "Richmond Orthopedics",
+          "distance": 2.2,
+          "price": 210
+        },
+        {
+          "name": "Clear Skin Dermatology",
+          "distance": 3.4,
+          "price": 180
+        }
+      ]
+    },
+    {
+      "id": "pt",
+      "group": "visits",
+      "name": "Physical therapy visit",
+      "kind": "copay",
+      "copay": 35,
+      "places": [
+        {
+          "name": "Richmond Physical Therapy",
+          "distance": 1.5,
+          "price": 140
+        },
+        {
+          "name": "Riverside Rehab",
+          "distance": 5.0,
+          "price": 165
+        }
+      ]
+    },
+    {
+      "id": "urgent",
+      "group": "visits",
+      "name": "Urgent care visit",
+      "kind": "copay",
+      "copay": 50,
+      "places": [
+        {
+          "name": "Tornado Urgent Care Midtown",
+          "distance": 2.0,
+          "price": 190
+        }
+      ]
+    },
+    {
+      "id": "er",
+      "group": "visits",
+      "name": "Emergency room visit",
+      "kind": "copay",
+      "copay": 250,
+      "notes": [
+        {
+          "tone": "info",
+          "icon": "fa-circle-info",
+          "text": "The copay is waived if you're admitted to the hospital. In an emergency, go to the nearest ER or call 911."
+        }
+      ],
+      "places": [
+        {
+          "name": "Riverside Hospital",
+          "distance": 5.1,
+          "price": 2100
+        },
+        {
+          "name": "Midtown Medical Center",
+          "distance": 3.1,
+          "price": 2400
+        }
+      ]
+    },
+    {
+      "id": "colonoscopy",
+      "group": "procedures",
+      "name": "Colonoscopy, screening",
+      "kind": "preventive",
+      "notes": [
+        {
+          "tone": "success",
+          "icon": "fa-circle-check",
+          "text": "Screening is free as preventive care. If something is found and removed, other costs may apply."
+        }
+      ],
+      "places": [
+        {
+          "name": "Riverside GI Center",
+          "distance": 5.0,
+          "price": 1200
+        },
+        {
+          "name": "Midtown Medical Center",
+          "distance": 3.1,
+          "price": 1650
+        }
+      ]
+    }
+  ],
+  "assistant": [
+    {
+      "prompt": "Why is the MRI cheaper at one place?",
+      "answer": "Each in-network place agrees its own price with us. Until you meet your deductible you pay that price, so the place you choose can change your cost by hundreds of dollars.",
+      "keywords": [
+        "cheaper",
+        "price",
+        "different",
+        "why",
+        "mri"
+      ]
+    },
+    {
+      "prompt": "What counts toward my deductible?",
+      "answer": "Most care you pay for before the plan pays more: scans, tests, hospital care. Copays for visits don't count toward the deductible, but they do count toward your out-of-pocket maximum.",
+      "keywords": [
+        "deductible",
+        "counts",
+        "toward"
+      ]
+    },
+    {
+      "prompt": "Is this estimate exact?",
+      "answer": "It's an estimate. It uses in-network prices and where you stand today. Your actual cost depends on the care you get, and the EOB after your visit shows the final amount.",
+      "keywords": [
+        "exact",
+        "accurate",
+        "estimate",
+        "final"
+      ]
+    }
+  ]
+}

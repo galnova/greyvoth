@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Account Overview | Tornado Health</title>
+  <meta name="description" content="Contact details, address, who is covered, communication preferences and sign-in security. A portfolio demo with made-up data.">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css"
+        integrity="sha384-AGSGRaBRodcsy1n0F2zMm+LfXuZry/ZJ6nfio36UgMuNBs/AOC8ciJ7py4SgkpoY" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/solid.min.css"
+        integrity="sha384-H/BU8KfYKZ0VK4RJyclToSd6x8TmMY4/Rym2YtHXnGQOUZAoLIYIaOxkIfyTAuVh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/portal.css">
+  <link rel="preload" href="partials/header.html" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="partials/footer.html" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="data/member.json" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="data/account.json" as="fetch" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+  <script src="js/portal.js" defer></script>
+</head>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100" data-page="account">
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 z-3 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
+
+  <!-- Header: one copy in partials/header.html, loaded here by js/portal.js -->
+  <div class="shell-header" data-include="partials/header.html"></div>
+
+  <!-- Main ============================================================== -->
+  <main class="flex-grow-1" id="main" tabindex="-1">
+    <!-- Page band: no family switcher (the account is the subscriber's); chips jump to each section -->
+    <header class="greeting-band">
+      <div class="container-xl py-3 py-md-4">
+        <h1 class="mb-2 mb-md-3">Account overview</h1>
+        <ul class="band-chips list-unstyled d-flex flex-md-wrap gap-2" aria-label="On this page">
+          <li><a class="status-chip" href="#details-title"><i class="fa-solid fa-user text-primary" aria-hidden="true"></i><span>Your details</span></a></li>
+          <li><a class="status-chip" href="#covered-title"><i class="fa-solid fa-users text-primary" aria-hidden="true"></i><span>Who's covered</span></a></li>
+          <li><a class="status-chip" href="#preferences-title"><i class="fa-solid fa-bell text-primary" aria-hidden="true"></i><span>Preferences</span></a></li>
+          <li><a class="status-chip" href="#security-title"><i class="fa-solid fa-lock text-primary" aria-hidden="true"></i><span>Sign-in and security</span></a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="container-xl pt-4 pb-5">
+      <p class="visually-hidden" role="status" id="live-status"></p>
+      <div class="notice notice-danger mb-4" role="alert" id="load-error" hidden>
+        <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span>We couldn't load your information. Refresh the page to try again.</span>
+      </div>
+
+      <!-- Written with the account's current details, so nothing shifts while the data loads. Contact info and the
+           address are edited in place; changes made here are remembered in this browser (demo). -->
+      <div class="vstack gap-4">
+        <!-- Your details: contact info on the left, the address in a tinted panel on the right -->
+        <section class="card" aria-labelledby="details-title">
+          <div class="card-body p-4">
+            <h2 class="mb-3" id="details-title">Your details</h2>
+            <div class="row g-4">
+              <div class="col-lg-7">
+                <div class="section-head mb-3">
+                  <h3 class="acct-subtitle mb-0" id="contact-title">Contact info</h3>
+                  <button class="btn btn-link link-icon px-0" type="button" data-edit-btn="contact"><i class="fa-solid fa-pen" aria-hidden="true"></i>Edit<span class="visually-hidden"> contact info</span></button>
+                </div>
+                <dl class="acct-dl" data-view="contact">
+                  <div><dt>Name</dt><dd data-field="acctName">Roy Kent</dd></div>
+                  <div><dt>Date of birth</dt><dd data-field="acctDob">Apr 12, 1981</dd></div>
+                  <div><dt>Member ID</dt><dd data-field="acctMemberId">THK 482910573 01</dd></div>
+                  <div><dt>Email</dt><dd data-field="acctEmail">roy.kent@example.com</dd></div>
+                  <div><dt>Mobile phone</dt><dd data-field="acctPhone">(313) 555-0142</dd></div>
+                  <div><dt>Language for calls and letters</dt><dd data-field="acctLanguage">English</dd></div>
+                </dl>
+                <form data-edit="contact" aria-labelledby="contact-title" novalidate hidden>
+                  <div class="row g-3 mb-3">
+                    <div class="col-sm-6">
+                      <label class="form-label small fw-semibold" for="acct-email">Email</label>
+                      <input class="form-control" type="email" id="acct-email" autocomplete="email">
+                      <p class="small text-danger-emphasis fw-semibold mt-2 mb-0" id="acct-email-error" hidden></p>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label small fw-semibold" for="acct-phone">Mobile phone</label>
+                      <input class="form-control" type="tel" id="acct-phone" autocomplete="tel" inputmode="tel">
+                      <p class="small text-danger-emphasis fw-semibold mt-2 mb-0" id="acct-phone-error" hidden></p>
+                    </div>
+                    <div class="col-sm-6">
+                      <label class="form-label small fw-semibold" for="acct-language">Language for calls and letters</label>
+                      <select class="form-select" id="acct-language">
+                        <option>English</option>
+                        <option>Español</option>
+                        <option>Tiếng Việt</option>
+                        <option>中文</option>
+                        <option>العربية</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-primary px-4" type="submit">Save</button>
+                    <button class="btn btn-outline-primary px-4" type="button" data-cancel>Cancel</button>
+                  </div>
+                </form>
+                <p class="status-line small mb-0" role="status" data-saved="contact"></p>
+              </div>
+              <div class="col-lg-5">
+                <div class="tint-panel h-100 p-4">
+                  <div class="section-head mb-3">
+                    <h3 class="acct-subtitle mb-0" id="addresses-title">Home and mailing address</h3>
+                    <button class="btn btn-link link-icon px-0" type="button" data-edit-btn="address"><i class="fa-solid fa-pen" aria-hidden="true"></i>Edit<span class="visually-hidden"> address</span></button>
+                  </div>
+                  <div data-view="address">
+                    <p class="fw-semibold mb-2"><span data-field="addrLine1">1428 Elm Street</span><br><span data-field="addrLine2">Detroit, MI 48201</span></p>
+                    <p class="small text-body-secondary mb-0">New ID cards and mailed letters go here.</p>
+                  </div>
+                  <form data-edit="address" aria-labelledby="addresses-title" novalidate hidden>
+                    <div class="row g-3 mb-3">
+                      <div class="col-12">
+                        <label class="form-label small fw-semibold" for="addr-street">Street address</label>
+                        <input class="form-control" type="text" id="addr-street" autocomplete="address-line1">
+                        <p class="small text-danger-emphasis fw-semibold mt-2 mb-0" id="addr-street-error" hidden></p>
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label small fw-semibold" for="addr-unit">Apartment or unit (optional)</label>
+                        <input class="form-control" type="text" id="addr-unit" autocomplete="address-line2">
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label small fw-semibold" for="addr-city">City</label>
+                        <input class="form-control" type="text" id="addr-city" autocomplete="address-level2">
+                        <p class="small text-danger-emphasis fw-semibold mt-2 mb-0" id="addr-city-error" hidden></p>
+                      </div>
+                      <div class="col-5">
+                        <label class="form-label small fw-semibold" for="addr-state">State</label>
+                        <input class="form-control" type="text" id="addr-state" autocomplete="address-level1" maxlength="2">
+                        <p class="small text-danger-emphasis fw-semibold mt-2 mb-0" id="addr-state-error" hidden></p>
+                      </div>
+                      <div class="col-7">
+                        <label class="form-label small fw-semibold" for="addr-zip">ZIP code</label>
+                        <input class="form-control" type="text" id="addr-zip" autocomplete="postal-code" inputmode="numeric" maxlength="5">
+                        <p class="small text-danger-emphasis fw-semibold mt-2 mb-0" id="addr-zip-error" hidden></p>
+                      </div>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                      <button class="btn btn-primary px-4" type="submit">Save</button>
+                      <button class="btn btn-outline-primary px-4" type="button" data-cancel>Cancel</button>
+                    </div>
+                  </form>
+                  <p class="status-line small mb-0" role="status" data-saved="address"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Who's covered: the plan, then one tile per person (member IDs match their ID cards) -->
+        <section class="card" aria-labelledby="covered-title">
+          <div class="card-body p-4">
+            <div class="section-head mb-1">
+              <h2 class="mb-0" id="covered-title">Who's covered</h2>
+              <a class="tap-target link-icon" href="idcards.html">ID cards<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <p class="small text-body-secondary mb-3"><span data-field="planName">Tornado Gold PPO</span> · Group <span data-field="acctGroup">TH-04127</span> · Through <span data-field="acctEmployer">Northwind Logistics</span> · <span data-field="acctPlanYear">Jan 1 to Dec 31, 2027</span></p>
+            <ul class="list-unstyled row row-cols-1 row-cols-md-3 g-3 mb-0" data-list="covered">
+              <li class="col"><div class="person-tile"><span class="avatar" aria-hidden="true">RK</span><div><p class="fw-semibold mb-0">Roy Kent</p><p class="small text-body-secondary mb-1">You · Subscriber</p><p class="small mb-0">Member ID THK 482910573 01</p><p class="small text-body-secondary mb-0">Born Apr 12, 1981</p></div></div></li>
+              <li class="col"><div class="person-tile"><span class="avatar" aria-hidden="true">KK</span><div><p class="fw-semibold mb-0">Keeley Kent</p><p class="small text-body-secondary mb-1">Spouse</p><p class="small mb-0">Member ID THK 482910573 02</p><p class="small text-body-secondary mb-0">Born Sep 30, 1983</p></div></div></li>
+              <li class="col"><div class="person-tile"><span class="avatar" aria-hidden="true">LK</span><div><p class="fw-semibold mb-0">Leo Kent</p><p class="small text-body-secondary mb-1">Son, age 9</p><p class="small mb-0">Member ID THK 482910573 03</p><p class="small text-body-secondary mb-0">Born Jun 5, 2018</p></div></div></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Communication preferences: switches that save as they change -->
+        <section class="card" aria-labelledby="preferences-title">
+          <div class="card-body p-4">
+            <h2 class="mb-1" id="preferences-title">Communication preferences</h2>
+            <p class="small text-body-secondary mb-4">How we keep in touch. Changes save as you go. We always send what the law requires, like coverage notices.</p>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              <div class="col"><div class="form-check form-switch pref"><input class="form-check-input" type="checkbox" role="switch" id="pref-paperless" data-pref="paperless" aria-describedby="pref-paperless-hint" checked><label class="form-check-label fw-semibold" for="pref-paperless">Paperless EOBs and letters</label><p class="small text-body-secondary mb-0" id="pref-paperless-hint">Read them here instead of getting them by mail.</p></div></div>
+              <div class="col"><div class="form-check form-switch pref"><input class="form-check-input" type="checkbox" role="switch" id="pref-email-claims" data-pref="emailClaims" aria-describedby="pref-email-claims-hint" checked><label class="form-check-label fw-semibold" for="pref-email-claims">Email me when a claim is processed</label><p class="small text-body-secondary mb-0" id="pref-email-claims-hint">To <span data-field="acctEmail">roy.kent@example.com</span>.</p></div></div>
+              <div class="col"><div class="form-check form-switch pref"><input class="form-check-input" type="checkbox" role="switch" id="pref-email-messages" data-pref="emailMessages" aria-describedby="pref-email-messages-hint" checked><label class="form-check-label fw-semibold" for="pref-email-messages">Email me when we reply to a message</label><p class="small text-body-secondary mb-0" id="pref-email-messages-hint">The message itself stays in the Message Center.</p></div></div>
+              <div class="col"><div class="form-check form-switch pref"><input class="form-check-input" type="checkbox" role="switch" id="pref-text-urgent" data-pref="textUrgent" aria-describedby="pref-text-urgent-hint" checked><label class="form-check-label fw-semibold" for="pref-text-urgent">Text me urgent updates</label><p class="small text-body-secondary mb-0" id="pref-text-urgent-hint">Approvals, and claims that need something from you. To <span class="text-nowrap" data-field="acctPhone">(313) 555-0142</span>.</p></div></div>
+              <div class="col"><div class="form-check form-switch pref"><input class="form-check-input" type="checkbox" role="switch" id="pref-text-reminders" data-pref="textReminders" aria-describedby="pref-text-reminders-hint"><label class="form-check-label fw-semibold" for="pref-text-reminders">Text me reminders</label><p class="small text-body-secondary mb-0" id="pref-text-reminders-hint">Wellness visits, refills and appointments.</p></div></div>
+              <div class="col"><div class="form-check form-switch pref"><input class="form-check-input" type="checkbox" role="switch" id="pref-news" data-pref="news" aria-describedby="pref-news-hint"><label class="form-check-label fw-semibold" for="pref-news">Program news and health tips</label><p class="small text-body-secondary mb-0" id="pref-news-hint">About once a month, by email.</p></div></div>
+            </div>
+            <p class="status-line small mb-0" role="status" data-saved="prefs"></p>
+          </div>
+        </section>
+
+        <!-- Sign-in and security: one row each, with its action on the right (under the text on phones) -->
+        <section class="card" aria-labelledby="security-title">
+          <div class="card-body p-4">
+            <h2 class="mb-1" id="security-title">Sign-in and security</h2>
+            <p class="small text-body-secondary mb-3">Keep your health information safe.</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item action-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-key"></i></span><div><p class="fw-semibold mb-0">Password</p><p class="small text-body-secondary mb-0">Last changed <span data-field="pwChanged">Sep 3, 2027</span>.</p></div><a class="link-icon row-action" href="#">Change password<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+              <li class="list-group-item action-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></span><div><p class="fw-semibold mb-0 d-flex flex-wrap align-items-center gap-2">Two-step verification <span class="badge badge-success"><span>On</span></span></p><p class="small text-body-secondary mb-0">We text a code to <span class="text-nowrap">(•••) •••-<span data-field="acctPhoneLast4">0142</span></span> when you sign in on a new device.</p></div><a class="link-icon row-action" href="#">Manage<span class="visually-hidden"> two-step verification</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+              <li class="list-group-item action-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-laptop"></i></span><div><p class="fw-semibold mb-0">Signed-in devices</p><p class="small text-body-secondary mb-0" data-field="deviceCount">This device and 2 others.</p></div><button class="btn btn-outline-primary btn-sm row-action" type="button" data-signout-others>Sign out of other devices</button></li>
+            </ul>
+            <p class="status-line small mb-0" role="status" data-saved="security" tabindex="-1"></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer, bottom nav, More sheet, AI Chat and dialogs: one copy in partials/footer.html, loaded here by js/portal.js -->
+  <div data-include="partials/footer.html"></div>
+</body>
+</html>

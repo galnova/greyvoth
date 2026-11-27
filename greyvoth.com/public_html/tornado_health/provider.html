@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Provider | Tornado Health</title>
+  <meta name="description" content="An in-network provider: what they do, what you pay, where they are, and how to book a visit. A portfolio demo with made-up data.">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css"
+        integrity="sha384-AGSGRaBRodcsy1n0F2zMm+LfXuZry/ZJ6nfio36UgMuNBs/AOC8ciJ7py4SgkpoY" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/solid.min.css"
+        integrity="sha384-H/BU8KfYKZ0VK4RJyclToSd6x8TmMY4/Rym2YtHXnGQOUZAoLIYIaOxkIfyTAuVh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/portal.css">
+  <link rel="preload" href="partials/header.html" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="partials/footer.html" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="data/member.json" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="data/findcare.json" as="fetch" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+  <script src="js/portal.js" defer></script>
+</head>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100" data-page="provider">
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 z-3 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
+
+  <!-- Header: one copy in partials/header.html, loaded here by js/portal.js -->
+  <div class="shell-header" data-include="partials/header.html"></div>
+
+  <!-- Main ============================================================== -->
+  <main class="flex-grow-1" id="main" tabindex="-1">
+    <!-- Page band: breadcrumb back to Find care, then who this is (provider.html?id=p-patel) -->
+    <header class="greeting-band">
+      <div class="container-xl py-3 py-md-4">
+        <nav class="band-crumbs mb-2" aria-label="Breadcrumb">
+          <ol class="list-unstyled d-flex flex-wrap align-items-center gap-2 mb-0">
+            <li><a href="find-care.html">Find care</a></li>
+            <li aria-current="page" data-field="crumbCurrent">Provider</li>
+          </ol>
+        </nav>
+        <h1 class="mb-2" data-field="pageTitle">Provider details</h1>
+        <p class="band-facts mb-0" data-field="providerFacts">&nbsp;</p>
+      </div>
+    </header>
+
+    <!-- data-loading: everything here comes from the provider, so it stays hidden (keeping its place) until it's filled in -->
+    <div class="container-xl py-4" data-loading aria-busy="true">
+      <p class="visually-hidden" role="status" id="live-status"></p>
+      <div class="notice notice-danger mb-4" role="alert" id="load-error" hidden>
+        <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span>We couldn't load your information. Refresh the page to try again.</span>
+      </div>
+      <div class="notice notice-warning mb-4" role="alert" id="provider-missing" hidden>
+        <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span>We couldn't find that provider. <a href="find-care.html">Search Find care</a> to look them up.</span>
+      </div>
+
+      <div class="row g-4" data-provider>
+        <div class="col-lg-8 vstack gap-4">
+          <section class="card" aria-labelledby="about-title">
+            <div class="card-body p-4">
+              <div class="d-flex flex-wrap align-items-center gap-2 mb-3" data-list="provider-badges"></div>
+              <h2 class="mb-2" id="about-title">About</h2>
+              <p class="mb-4 measure" data-field="providerAbout"></p>
+              <dl class="acct-dl">
+                <div><dt>Specialty</dt><dd data-field="providerSpecialty"></dd></div>
+                <div><dt>Languages</dt><dd data-field="providerLanguages"></dd></div>
+                <div><dt>Visits</dt><dd data-field="providerVisits"></dd></div>
+                <div><dt>Hospital</dt><dd data-field="providerHospital"></dd></div>
+              </dl>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="pay-title">
+            <div class="card-body p-4">
+              <h2 class="mb-3" id="pay-title">What you'll pay</h2>
+              <div class="d-flex flex-wrap align-items-baseline column-gap-3 mb-2">
+                <p class="stat-value mb-0" data-field="providerCost"></p>
+                <p class="small text-body-secondary mb-0">a visit, in network</p>
+              </div>
+              <p class="small text-body-secondary mb-0 measure">Your copay is the same whether or not you've met your deductible. Tests, X-rays or procedures during the visit may cost more. <a href="estimate.html">Estimate a cost</a>.</p>
+            </div>
+          </section>
+
+          <section class="card" aria-labelledby="location-title">
+            <div class="card-body p-4">
+              <h2 class="mb-3" id="location-title">Location and hours</h2>
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <p class="fw-semibold mb-1" data-field="providerPractice"></p>
+                  <p class="mb-1" data-field="providerAddress"></p>
+                  <p class="small text-body-secondary mb-2" data-field="providerDistance"></p>
+                  <p class="mb-2"><a class="help-phone" href="#" data-provider-phone></a></p>
+                  <a class="link-icon" href="#">Get directions<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                </div>
+                <div class="col-md-6">
+                  <p class="small fw-semibold text-body-secondary mb-1">Hours</p>
+                  <ul class="list-unstyled mb-0" data-list="provider-hours"></ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Booking: a request form (or why there isn't one), in view while the details scroll -->
+        <div class="col-lg-4">
+          <section class="card side-sticky" aria-labelledby="book-title">
+            <div class="card-body p-4" data-book></div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer, bottom nav, More sheet, AI Chat and dialogs: one copy in partials/footer.html, loaded here by js/portal.js -->
+  <div data-include="partials/footer.html"></div>
+</body>
+</html>

@@ -1,0 +1,178 @@
+  <!-- Header: logo, primary nav with megamenus, divider, account menu. The only copy: js/portal.js loads it into every page.
+       Edit the navigation here. Which section is current comes from the page's h1: each megamenu button lists the
+       headings of its pages in data-pages, separated by | (a heading that starts with one of them is a match). -->
+  <header class="site-header sticky-top">
+    <div class="container-xl header-bar d-flex align-items-center gap-3">
+      <a class="site-logo tap-target me-auto" href="index.html" aria-label="Tornado Health home">
+        <svg aria-hidden="true" focusable="false"><use href="assets/logo.svg#logo"></use></svg>
+      </a>
+
+      <nav class="primary-nav d-none d-lg-block" aria-label="Primary">
+        <ul class="nav flex-nowrap align-items-center gap-1">
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-pages="Coverage|ID Cards|Approval details" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Coverage</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta tint-panel p-4 h-100">
+                      <p class="fw-bold mb-1">Coverage overview</p>
+                      <p class="small text-body-secondary mb-3">See what your plan covers and what you've spent.</p>
+                      <a class="dropdown-item menu-cta" href="coverage.html">Go to coverage overview <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                      <div class="col-sm-6">
+                        <p class="mega-group-title" id="nav-coverage-your-benefits">Your benefits</p>
+                        <ul class="list-unstyled mb-0" aria-labelledby="nav-coverage-your-benefits">
+                          <li><a class="dropdown-item mega-link" href="coverage.html#medical">Medical</a></li><li><a class="dropdown-item mega-link" href="coverage.html#rx">Rx</a></li><li><a class="dropdown-item mega-link" href="coverage.html#dental">Dental</a></li><li><a class="dropdown-item mega-link" href="coverage.html#vision">Vision</a></li><li><a class="dropdown-item mega-link" href="coverage.html#fsa-title">Spending Accounts</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6">
+                        <p class="mega-group-title" id="nav-coverage-your-plan">Your plan</p>
+                        <ul class="list-unstyled mb-0" aria-labelledby="nav-coverage-your-plan">
+                          <li><a class="dropdown-item mega-link" href="idcards.html">ID Cards</a></li><li><a class="dropdown-item mega-link" href="#">Who's Covered</a></li><li><a class="dropdown-item mega-link" href="#">Coordination of Benefits</a></li><li><a class="dropdown-item mega-link" href="coverage.html#auths-title">Referrals &amp; Prior Auths</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-pages="Claims Overview|Claim details|Explanation of Benefits|Start an appeal" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Claims</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta tint-panel p-4 h-100">
+                      <p class="fw-bold mb-1">Claim summary</p>
+                      <p class="small text-body-secondary mb-3">Track every claim and what you owe.</p>
+                      <a class="dropdown-item menu-cta" href="claims.html">Go to claim summary <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                      <div class="col-sm-6">
+                        <p class="mega-group-title" id="nav-claims-claims">Claims</p>
+                        <ul class="list-unstyled mb-0" aria-labelledby="nav-claims-claims">
+                          <li><a class="dropdown-item mega-link" href="claims.html?status=Processed">EOBs (Explanation of Benefits)</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-pages="Find care|Provider details|Behavioral health|Estimate your cost" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Find Care</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta tint-panel p-4 h-100">
+                      <p class="fw-bold mb-1">Care Decisions</p>
+                      <p class="small text-body-secondary mb-3">Not sure where to go? Compare a doctor, urgent care, video visit or the ER.</p>
+                      <a class="dropdown-item menu-cta" href="find-care.html">Go to care decisions <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                      <div class="col-sm-6">
+                        <p class="mega-group-title" id="nav-find-care-find-care">Find care</p>
+                        <ul class="list-unstyled mb-0" aria-labelledby="nav-find-care-find-care">
+                          <li><a class="dropdown-item mega-link" href="find-care.html#find-title">Find a Doctor</a></li><li><a class="dropdown-item mega-link" href="behavioral-health.html">Behavioral Health Support</a></li><li><a class="dropdown-item mega-link" href="find-care.html#second-title">Get a Second Opinion</a></li><li><a class="dropdown-item mega-link" href="estimate.html">Estimate Your Cost</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-pages="Programs &amp; Services" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Programs &amp; Services</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta tint-panel p-4 h-100">
+                      <p class="fw-bold mb-1">Programs overview</p>
+                      <p class="small text-body-secondary mb-3">Programs and perks that come with your plan.</p>
+                      <a class="dropdown-item menu-cta" href="programs.html">Go to programs overview <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                      <div class="col-sm-6">
+                        <p class="mega-group-title" id="nav-programs-and-services-programs">Programs</p>
+                        <ul class="list-unstyled mb-0" aria-labelledby="nav-programs-and-services-programs">
+                          <li><a class="dropdown-item mega-link" href="programs.html#wellbeing-title">Health Care &amp; Well-Being</a></li><li><a class="dropdown-item mega-link" href="programs.html#rewards-title">Rewards &amp; Perks</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item dropdown position-static">
+            <button class="nav-link px-2 dropdown-toggle" type="button" data-pages="Help center" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">Support</button>
+            <div class="dropdown-menu mega-menu">
+              <div class="container-xl py-4">
+                <div class="row g-4">
+                  <div class="col-lg-4">
+                    <div class="mega-cta tint-panel p-4 h-100">
+                      <p class="fw-bold mb-1">Help center</p>
+                      <p class="small text-body-secondary mb-3">Answers, guides and ways to reach us.</p>
+                      <a class="dropdown-item menu-cta" href="help.html">Go to help center <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="row g-4">
+                      <div class="col-sm-6">
+                        <p class="mega-group-title" id="nav-support-get-help">Get help</p>
+                        <ul class="list-unstyled mb-0" aria-labelledby="nav-support-get-help">
+                          <li><a class="dropdown-item mega-link" href="help.html#contact-title">Contact Us</a></li><li><a class="dropdown-item mega-link" href="help.html#faq-title">FAQ</a></li><li><button class="dropdown-item mega-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#assistant" aria-controls="assistant" aria-haspopup="dialog">AI Chat</button></li><li><a class="dropdown-item mega-link" href="#">Website Feedback</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6">
+                        <p class="mega-group-title" id="nav-support-forms">Forms</p>
+                        <ul class="list-unstyled mb-0" aria-labelledby="nav-support-forms">
+                          <li><a class="dropdown-item mega-link" href="help.html#forms-title">All Forms</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <span class="nav-divider d-none d-lg-block" aria-hidden="true"></span>
+
+      <!-- Account: a small dropdown, not a megamenu -->
+      <div class="dropdown">
+        <button class="account-link tap-target dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span class="avatar-wrap" aria-hidden="true"><span class="avatar" data-field="initials">RK</span><span class="avatar-count" data-field="alertTotal" data-hide-zero>5</span></span>
+          <span class="account-label">My Account</span>
+          <span class="visually-hidden"><span data-field="alertTotal">5</span> new</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end account-menu">
+          <li><a class="dropdown-item" href="messages.html#messages"><i class="fa-solid fa-envelope fa-fw" aria-hidden="true"></i>Messages<span class="badge bg-primary ms-auto" data-hide-zero><span data-field="msgCount">2</span><span class="visually-hidden"> unread</span></span></a></li>
+          <li><a class="dropdown-item" href="messages.html#notifications"><i class="fa-solid fa-bell fa-fw" aria-hidden="true"></i>Notifications<span class="badge bg-primary ms-auto" data-hide-zero><span data-field="noteCount">3</span><span class="visually-hidden"> new</span></span></a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li class="px-2 py-1"><a class="dropdown-item menu-cta" href="account.html">Account overview <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></li>
+          <li><a class="dropdown-item" href="account.html#addresses-title"><i class="fa-solid fa-location-dot fa-fw" aria-hidden="true"></i>Addresses</a></li>
+          <li><a class="dropdown-item" href="account.html#preferences-title"><i class="fa-solid fa-sliders fa-fw" aria-hidden="true"></i>Other options</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#logout-modal"><i class="fa-solid fa-right-from-bracket fa-fw" aria-hidden="true"></i>Log out</button></li>
+        </ul>
+      </div>
+    </div>
+  </header>
