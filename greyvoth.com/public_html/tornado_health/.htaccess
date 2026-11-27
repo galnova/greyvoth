@@ -1,0 +1,3 @@
+# Tornado Health demo: show the portal's own page for missing addresses.
+# 404.html sets <base href="/tornado_health/"> so its styles and scripts load from any depth.
+ErrorDocument 404 /tornado_health/404.html

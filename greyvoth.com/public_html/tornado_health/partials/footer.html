@@ -1,0 +1,103 @@
+  <!-- Footer, bottom nav, More sheet, AI Chat, log out dialog, placeholder message. The only copy: js/portal.js loads it
+       into every page. Bottom-bar tabs list the h1 headings of their pages in data-pages, like the megamenu buttons. -->
+  <footer class="border-top bg-body py-4">
+    <div class="container-xl px-4">
+      <nav aria-label="Footer">
+        <ul class="list-unstyled d-flex flex-wrap column-gap-4 row-gap-1 mb-2">
+          <li><a class="tap-target" href="help.html">Help &amp; contact</a></li>
+          <li><a class="tap-target" href="accessibility.html">Accessibility statement</a></li>
+          <li><a class="tap-target" href="#">Privacy</a></li>
+          <li><a class="tap-target" href="#">Language assistance</a></li>
+          <li><a class="tap-target" href="#">Nondiscrimination notice</a></li>
+        </ul>
+      </nav>
+      <div class="d-flex flex-wrap align-items-center column-gap-4">
+        <p class="small text-body-secondary mb-0">Tornado Health <span data-field="year">2026</span></p>
+        <!-- Demo only: forget what was done here (read messages, orders, saved settings) and start the story over -->
+        <button class="btn btn-link link-icon tap-target small px-0" type="button" data-reset-demo><i class="fa-solid fa-rotate-left" aria-hidden="true"></i>Reset demo</button>
+        <!-- The design system behind the demo (for the portfolio) -->
+        <a class="link-icon tap-target small" href="components.html"><i class="fa-solid fa-swatchbook" aria-hidden="true"></i>Components</a>
+        <a class="link-icon tap-target small" href="case-study.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Case study</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bottom nav (below 992px; hidden above, so only one nav landmark is exposed) -->
+  <nav class="bottom-nav d-lg-none" aria-label="Mobile">
+    <ul class="list-unstyled mb-0">
+      <li><a href="index.html" data-pages="Welcome back"><i class="fa-solid fa-house" aria-hidden="true"></i>Home</a></li>
+      <li><a href="coverage.html" data-pages="Coverage|Approval details"><i class="fa-solid fa-shield-heart" aria-hidden="true"></i>Coverage</a></li>
+      <li><a href="claims.html" data-pages="Claims Overview|Claim details|Explanation of Benefits|Start an appeal"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i>Claims</a></li>
+      <li><a href="idcards.html" data-pages="ID Cards"><i class="fa-solid fa-id-card" aria-hidden="true"></i>ID Card</a></li>
+      <li><button type="button" data-pages="Find care|Provider details|Behavioral health|Estimate your cost|Programs &amp; Services|Help center" data-bs-toggle="offcanvas" data-bs-target="#more-sheet" aria-controls="more-sheet" aria-haspopup="dialog"><i class="fa-solid fa-ellipsis" aria-hidden="true"></i>More</button></li>
+    </ul>
+  </nav>
+
+  <!-- More sheet -->
+  <div class="offcanvas offcanvas-bottom more-sheet" role="dialog" tabindex="-1" id="more-sheet" aria-labelledby="more-title">
+    <div class="sheet-handle mx-auto mt-2" aria-hidden="true"></div>
+    <div class="offcanvas-header pb-2">
+      <h2 class="offcanvas-title" id="more-title">More</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-0">
+      <nav aria-label="More">
+        <!-- More links: filled in by js/portal.js from the megamenus in header.html (overview first, minus the bottom bar) -->
+      </nav>
+    </div>
+  </div>
+
+  <!-- AI Chat -->
+  <button class="btn btn-primary chat-fab d-inline-flex align-items-center justify-content-center" type="button"
+          data-bs-toggle="offcanvas" data-bs-target="#assistant" aria-controls="assistant" aria-haspopup="dialog" aria-label="Open AI Chat">
+    <i class="fa-solid fa-comment fa-lg" aria-hidden="true"></i>
+  </button>
+
+  <div class="offcanvas offcanvas-end chat-panel" role="dialog" tabindex="-1" id="assistant" aria-labelledby="assistant-title">
+    <div class="offcanvas-header border-bottom">
+      <h2 class="offcanvas-title d-flex align-items-center gap-2" id="assistant-title">
+        AI Chat <span class="badge bg-primary-subtle text-primary-emphasis"><span>SuperCharged</span></span>
+      </h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close AI Chat"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column gap-3">
+      <p class="notice notice-info mb-0"><i class="fa-solid fa-circle-info" aria-hidden="true"></i><span>This is a demo. AI Chat answers with made-up data and can't give medical advice.</span></p>
+      <div class="chat-log flex-grow-1 vstack gap-3" role="log" aria-live="polite" aria-label="Conversation" tabindex="0" data-list="chat">
+        <p class="chat-bubble p-3 mb-0"><span class="visually-hidden">AI Chat: </span>Hi Roy. Ask a question or pick one below.</p>
+      </div>
+      <div class="d-flex flex-wrap gap-2" role="group" aria-label="Suggested questions" data-list="prompts"></div>
+    </div>
+    <form class="border-top p-3" id="chat-form" autocomplete="off">
+      <label class="visually-hidden" for="chat-input">Type your question</label>
+      <div class="chat-field">
+        <input class="form-control" id="chat-input" type="text" placeholder="Type your question" maxlength="200">
+        <button class="chat-send" type="submit" aria-label="Send question"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Log out confirmation: confirm, then the sign-in page (signin.html?signed-out) says you're signed out -->
+  <div class="modal fade" id="logout-modal" role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="logout-title">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body p-4">
+          <h2 class="mb-2" id="logout-title">Log out of Tornado Health?</h2>
+          <p class="text-body-secondary mb-4">You'll need to sign in again to see your claims, ID card and messages.</p>
+          <div class="d-flex flex-column flex-sm-row gap-2">
+            <button class="btn btn-primary" type="button" id="logout-confirm">Log out</button>
+            <button class="btn btn-outline-primary" type="button" data-bs-dismiss="modal">Stay signed in</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Placeholder links (href="#") show this instead of going nowhere -->
+  <div class="toast-stack position-fixed start-50 translate-middle-x p-3" role="status" aria-live="polite">
+    <div class="toast demo-toast" id="demo-toast">
+      <div class="d-flex align-items-center">
+        <p class="toast-body mb-0" id="demo-toast-msg"></p>
+        <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="toast" aria-label="Close message"></button>
+      </div>
+    </div>
+  </div>

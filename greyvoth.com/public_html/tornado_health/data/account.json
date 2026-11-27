@@ -1,0 +1,75 @@
+{
+  "_note": "Synthetic demo data. Tornado Health, Northwind Logistics and the Kent family are fictional; 555-01xx numbers and example.com are reserved for examples.",
+  "employer": "Northwind Logistics",
+  "people": {
+    "roy": {
+      "dob": "1981-04-12"
+    },
+    "keeley": {
+      "dob": "1983-09-30"
+    },
+    "leo": {
+      "dob": "2018-06-05"
+    }
+  },
+  "contact": {
+    "email": "roy.kent@example.com",
+    "phone": "(313) 555-0142",
+    "language": "English"
+  },
+  "address": {
+    "street": "1428 Elm Street",
+    "unit": "",
+    "city": "Detroit",
+    "state": "MI",
+    "zip": "48201"
+  },
+  "preferences": {
+    "paperless": true,
+    "emailClaims": true,
+    "emailMessages": true,
+    "textUrgent": true,
+    "textReminders": false,
+    "news": false
+  },
+  "security": {
+    "passwordChanged": "2027-09-03",
+    "twoStep": true,
+    "otherDevices": 2
+  },
+  "assistant": [
+    {
+      "prompt": "How do I change my address?",
+      "answer": "Choose Edit next to Home and mailing address on this page, then Save. New ID cards and mailed letters go to the new address right away.",
+      "keywords": [
+        "address",
+        "move",
+        "moved",
+        "mailing"
+      ]
+    },
+    {
+      "prompt": "How do I go paperless?",
+      "answer": "Turn on Paperless EOBs and letters under Communication preferences. You'll read them in the portal instead of getting them by mail. Notices the law requires may still be mailed.",
+      "keywords": [
+        "paperless",
+        "mail",
+        "paper",
+        "letters",
+        "eob"
+      ]
+    },
+    {
+      "prompt": "Can I add a family member?",
+      "answer": "Changes to who's covered go through your employer's benefits team, usually during open enrollment or within 30 days of a life event like a birth or marriage. Once they're added, they appear here with their own member ID.",
+      "keywords": [
+        "add",
+        "family",
+        "baby",
+        "spouse",
+        "dependent",
+        "enroll"
+      ]
+    }
+  ]
+}

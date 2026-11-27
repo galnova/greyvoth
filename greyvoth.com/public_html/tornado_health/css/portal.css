@@ -12,7 +12,6 @@
   --th-purple-50:  #f5f2fb;
   --th-purple-100: #ebe4f7;
   --th-purple-200: #d5c8ee;
-  --th-purple-300: #b7a2e0;
   --th-purple-400: #9478cd;
   --th-purple-500: #7354b5;
   --th-purple-600: #5a3d98;
@@ -33,6 +32,11 @@
   --th-warning-600: #8a4b00;  --th-warning-50: #fdf0dc;
   --th-danger-600:  #b42318;  --th-danger-50:  #fdecea;
   --th-info-600:    #1d5c9e;  --th-info-50:    #e6f0fb;
+  /* Notice backgrounds: each status color at 25% on white */
+  --th-success-tint: color-mix(in srgb, var(--th-success-600) 25%, var(--th-white));
+  --th-warning-tint: color-mix(in srgb, var(--th-warning-600) 25%, var(--th-white));
+  --th-danger-tint:  color-mix(in srgb, var(--th-danger-600) 25%, var(--th-white));
+  --th-info-tint:    color-mix(in srgb, var(--th-info-600) 25%, var(--th-white));
 
   /* Type: system stack, fluid scale */
   --th-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -65,6 +69,7 @@
   --th-header-h: 4rem;
   --th-bottomnav-h: 4.25rem;
   --th-target: 3rem;          /* 48px minimum touch target */
+  --th-page-gutter: 1.5rem;   /* side padding of every page container: header, bands, content, footer */
   --th-control-sm: 2rem;      /* family switcher (32px) */
   --th-control-md: 2.5rem;    /* small light button on the band (40px) */
   --th-chat-size: 3.5rem;
@@ -79,6 +84,7 @@
   --th-primary:       var(--th-purple-800);
   --th-primary-hover: var(--th-purple-900);
   --th-on-primary:    var(--th-white);
+  --th-on-primary-line: color-mix(in srgb, var(--th-white) 22%, transparent);  /* hairlines on the purple */
   --th-primary-tint:  var(--th-purple-50);
   --th-focus:         var(--th-purple-600);
   --th-track:         var(--th-purple-200);
@@ -126,7 +132,8 @@ h1, h2, h3 { font-weight: 700; line-height: 1.25; }
 h1 { font-size: var(--th-fs-h1); letter-spacing: -.015em; }
 h2 { font-size: var(--th-fs-h2); scroll-margin-top: calc(var(--th-header-h) + 1rem); }   /* in-page jumps land below the sticky header */
 h3 { font-size: var(--th-fs-h3); }
-.text-measure { max-width: var(--th-measure); }
+/* Page containers: 24px on each side (Bootstrap's default is 12px) */
+.container-xl { --bs-gutter-x: calc(var(--th-page-gutter) * 2); }
 
 /* One focus style everywhere. Bootstrap parts that remove the outline
    (.btn, .nav-link, .btn-close, .dropdown-item, .form-control) get it back here. */
@@ -151,6 +158,13 @@ h3 { font-size: var(--th-fs-h3); }
 }
 .link-icon:hover,
 .link-icon:focus-visible { color: var(--th-primary-hover); text-decoration: none; }
+/* Headings, notices and other text the script moves focus to (tabindex="-1": not in the tab order, not controls) get no
+   ring: focus goes there so screen readers continue from the right place, not because it's something to operate. */
+:is(h1, h2, h3, p, main, section)[tabindex="-1"]:focus-visible { outline: none; }
+/* The arrow is drawn centered on capital letters; link text is mostly lowercase, which reads lower. Nudged down to sit
+   between the two (measured: 2px above the lowercase middle before), so it looks centered on the words. */
+.link-icon > .fa-arrow-right,
+.link-icon > .fa-arrow-left { transform: translateY(.075em); }
 
 /* Standalone links and close buttons get a full 48px tap size */
 .tap-target { display: inline-flex; align-items: center; justify-content: center; min-width: var(--th-target); min-height: var(--th-target); }
@@ -161,6 +175,9 @@ h3 { font-size: var(--th-fs-h3); }
 /* Buttons: Bootstrap hard-codes its button colors, so map them to tokens once */
 .btn { --bs-btn-font-weight: 600; min-height: var(--th-target); }
 .btn-primary {
+  --bs-btn-disabled-color: var(--th-on-primary);   /* disabled: the brand purple, faded (Bootstrap's is blue) */
+  --bs-btn-disabled-bg: var(--th-primary);
+  --bs-btn-disabled-border-color: var(--th-primary);
   --bs-btn-color: var(--th-on-primary);
   --bs-btn-bg: var(--th-primary);
   --bs-btn-border-color: var(--th-primary);
@@ -172,6 +189,8 @@ h3 { font-size: var(--th-fs-h3); }
   --bs-btn-active-border-color: var(--th-primary-hover);
 }
 .btn-outline-primary {
+  --bs-btn-disabled-color: var(--th-primary);
+  --bs-btn-disabled-border-color: var(--th-primary);
   --bs-btn-color: var(--th-primary);
   --bs-btn-border-color: var(--th-primary);
   --bs-btn-hover-color: var(--th-primary);
@@ -184,6 +203,8 @@ h3 { font-size: var(--th-fs-h3); }
 
 /* Header: one slim row */
 .site-header { background: var(--th-white); box-shadow: var(--th-shadow-1); }
+/* The header's placeholder (until js/portal.js loads partials/header.html): same height, so the page doesn't shift */
+.shell-header { height: var(--th-header-h); background: var(--th-white); box-shadow: var(--th-shadow-1); }
 .header-bar { min-height: var(--th-header-h); }
 .site-logo { color: var(--th-primary); }
 .site-logo svg { display: block; width: 10rem; height: auto; aspect-ratio: 230 / 44; }
@@ -230,7 +251,8 @@ h3 { font-size: var(--th-fs-h3); }
   --bs-dropdown-link-active-bg: var(--th-primary-tint);
   --bs-dropdown-link-active-color: var(--th-primary);
 }
-.mega-cta { background: var(--th-primary-tint); border-radius: var(--th-radius-md); }
+/* A tinted panel: the menus' call-to-action box, Programs' "What you get", the account address */
+.tint-panel { border-radius: var(--th-radius-md); background: var(--th-primary-tint); }
 /* Group titles: megamenus and the mobile More sheet share one look */
 .mega-group-title,
 .more-group-title { margin-bottom: .25rem; font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bs-secondary-color); }
@@ -307,7 +329,9 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 
 /* Greeting band: the page's one slim, dark moment. Same height as before; white chips sit on it. */
 .greeting-band { --bs-heading-color: var(--th-white); background: var(--th-primary); color: var(--th-white); }
-.greeting-meta { color: var(--th-purple-200); font-size: var(--th-fs-sm); font-weight: 600; }
+.greeting-meta,
+.band-crumbs,
+.band-facts { color: var(--th-purple-200); font-size: var(--th-fs-sm); font-weight: 600; }
 .meta-divider { width: 1px; height: 1rem; align-self: center; background: var(--th-purple-400); }
 /* Band chips: one row on phones that scrolls sideways (the second chip peeks in); they wrap from 768px */
 /* A scroller clips what sits outside it, so 5px of padding (offset back with a negative margin) leaves room
@@ -319,12 +343,13 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   .meta-date { order: 1; flex-basis: 100%; }
   /* Run the scrolling chips to the screen edge (no right inset where they're cut off);
      the spacer lets the last chip stop at the page's 12px edge when scrolled to the end */
-  .band-chips { margin-right: -.75rem; padding-right: 0; scroll-padding-inline: .75rem; }  /* a chip scrolled into view keeps room for its ring */
-  .band-chips::after { content: ""; flex: none; width: .25rem; }
+  .band-chips { margin-right: calc(var(--th-page-gutter) * -1); padding-right: 0; scroll-padding-inline: var(--th-page-gutter); }  /* a chip scrolled into view keeps room for its ring */
+  .band-chips::after { content: ""; flex: none; width: calc(var(--th-page-gutter) - .5rem); }  /* plus the .5rem gap: the last chip stops at the page gutter */
 }
 /* Plain facts (not links) sit as text in the meta line, so only links look like chips */
 .status-note { display: inline-flex; align-items: center; gap: .5rem; }
-.greeting-band :focus-visible { outline-color: var(--th-white); }
+.greeting-band :focus-visible,
+.dark-band :focus-visible { outline-color: var(--th-white); }
 
 /* Family member switcher (in the band's meta line) */
 .member-switch { display: inline-flex; align-items: center; gap: .375rem; min-height: var(--th-control-sm); padding: 0 .625rem; border: 0; border-radius: var(--th-radius-sm); background: var(--th-purple-700); color: var(--th-white); font-weight: 600; }
@@ -367,6 +392,19 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .badge-danger { background: var(--th-danger-600); color: var(--th-white); }
 .badge-info { background: var(--th-info-600); color: var(--th-white); }
 
+/* Notices (info, success, warning, danger): the status color at 25% behind dark body text, with a status-colored icon.
+   Body text, not the status color, so every tone passes 4.5:1. No border. */
+.notice { display: flex; align-items: baseline; gap: .5rem; padding: .75rem 1rem; border-radius: var(--th-radius-md); color: var(--bs-body-color); font-size: var(--th-fs-sm); font-weight: 600; }
+.notice > .fa-solid { flex: none; }
+.notice-info { background: var(--th-info-tint); }
+.notice-info > .fa-solid { color: var(--th-info-600); }
+.notice-success { background: var(--th-success-tint); }
+.notice-success > .fa-solid { color: var(--th-success-600); }
+.notice-warning { background: var(--th-warning-tint); }
+.notice-warning > .fa-solid { color: var(--th-warning-600); }
+.notice-danger { background: var(--th-danger-tint); }
+.notice-danger > .fa-solid { color: var(--th-danger-600); }
+
 /* Section card heading row */
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; }
 /* 48px hit areas that shouldn't add visible height: the hit area overlaps the padding around it */
@@ -397,10 +435,140 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .claim-row { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 1rem; row-gap: .25rem; }
 .claim-row > :first-child { grid-row: span 2; }   /* phones: info left, amount over status right */
 .claim-amount { font-variant-numeric: tabular-nums; font-weight: 700; }
+/* Claims page: the service links to its details; underline only on hover so the list stays calm */
+/* Each claim on the Claims page is its own card (white, 12px radius, card shadow) */
+.claim-card { padding: 1rem 1.25rem; border-radius: var(--th-radius-md); background: var(--th-white); box-shadow: var(--th-shadow-card); }
+.claim-link { font-weight: 600; text-decoration: none; }
+.claim-link:hover,
+.care-phone:hover,
+.help-phone:hover { text-decoration: underline; }
+.eob-steps { padding-left: 1.25rem; }
+
+/* Find Care: search results, care options, the 24/7 phone line */
+.provider-row { display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 1rem; }
+.care-option { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 1rem; }
+.care-option .icon-chip { background: var(--th-primary-tint); color: var(--th-primary); }
+/* Compare your options (Find Care): a purple-100 card. Rows go transparent, lines a deeper lavender,
+   and the icon tiles turn white so they still stand out on the tint. */
+.options-card { background: var(--th-purple-100); }
+.options-card .list-group { --bs-list-group-bg: transparent; --bs-list-group-border-color: var(--th-purple-200); }
+.options-card .care-option .icon-chip { background: var(--th-white); }
+.care-option-title,
+.program-title { font-size: var(--th-fs-base); font-weight: 600; }
+.care-cost { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.care-phone { font-size: var(--th-fs-h3); font-weight: 700; text-decoration: none; font-variant-numeric: tabular-nums; }
+/* Small inline action under a list item: at least a 24px tall target (WCAG 2.5.8) */
+.book-link { display: inline-flex; align-items: center; min-height: 1.5rem; }
+
+/* Programs: icon tiles, rows, checklists, rewards */
+/* Never bigger than the Tornado Health logo (about 31px tall on desktop, 28px on phones) */
+.program-art { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: var(--th-radius-sm); background: var(--th-primary-tint); color: var(--th-primary); font-size: var(--th-fs-sm); }  /* program icon tile, logo-sized */
+.eyebrow,
+.cost-table thead th { font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bs-secondary-color); }
+.check-list { padding: 0; list-style: none; }
+.check-list li { display: flex; align-items: baseline; gap: .5rem; }
+.check-list li + li { margin-top: .375rem; }
+.check-list .fa-check { color: var(--th-success-600); }
+/* An icon tile beside its heading, on one row; everything below runs full width (no empty column under the icon) */
+.icon-heading,
+.perk { display: flex; align-items: center; gap: .75rem; }
+.earn-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.earn-row .fa-circle { color: var(--th-track); }
+.earn-row.is-done .fa-circle-check { color: var(--th-success-600); }
+.earn-points { font-weight: 700; font-variant-numeric: tabular-nums; }
+.program-join { padding-inline: 1.5rem; }  /* the cards' Join button: the same 24px sides as Enroll */
+.perk .icon-chip { background: var(--th-primary-tint); color: var(--th-primary); }
+.perk-label { color: var(--bs-secondary-color); font-size: var(--th-fs-sm); }
+/* Dark band (Rewards on Programs, Forms on the Help center): full-width brand purple between the white sections. White text, lavender secondary text,
+   a white meter on a mid-purple track, white checks, faint white lines, and a white focus ring. */
+.dark-band {
+  --bs-heading-color: var(--th-white);
+  --bs-secondary-color: var(--th-purple-200);
+  --bs-border-color-translucent: var(--th-on-primary-line);
+  --th-track: var(--th-purple-600);
+  background: var(--th-primary);
+  color: var(--th-white);
+}
+.dark-band .list-group { --bs-list-group-bg: transparent; --bs-list-group-color: var(--th-white); --bs-list-group-border-color: var(--th-on-primary-line); }
+.dark-band a { color: var(--th-white); }
+.dark-band .meter::-webkit-progress-value { background: var(--th-white); }
+.dark-band .meter::-moz-progress-bar { background: var(--th-white); }
+.dark-band .earn-row.is-done .fa-circle-check { color: var(--th-white); }
+.dark-band .earn-row .fa-circle { color: var(--th-purple-400); }
+/* Rewards on desktop: a thin line between points and ways to earn, with room on both sides */
+@media (min-width: 768px) {
+  .rewards-split { --bs-gutter-x: 3rem; }
+  .rewards-earn { border-left: 1px solid var(--bs-border-color-translucent); }
+}
+.perk-value { font-weight: 700; }
+
+/* Band on pages about one thing (claim details, EOB): breadcrumb and a line of facts instead of the switcher */
+.band-crumbs a { color: var(--th-white); }
+.band-crumbs li + li::before { content: "\203A"; margin-right: .5rem; color: var(--th-purple-200); }  /* › */
+/* Phones: the facts line usually wraps, so it holds two lines from the start (nothing below it moves when it fills in) */
+@media (max-width: 767.98px) { .band-facts { min-height: 3em; } }
+/* Pages about one claim (data-loading): nearly everything comes from the claim's data, and its size varies by claim,
+   so the content stays invisible (keeping its place) over a card-shaped placeholder until it's filled in, then appears
+   all at once in its final layout. Content that wasn't visible doesn't count as moving, so nothing shifts. The area is at
+   least a screen tall meanwhile, so the footer stays out of view. portal.js removes data-loading after rendering. */
+[data-loading] { position: relative; min-height: 100vh; }
+[data-loading] > :not(#load-error) { visibility: hidden; }
+[data-loading]::before {
+  content: "";
+  position: absolute;
+  inset: 1.5rem calc(var(--bs-gutter-x) * .5) auto;
+}
+/* The placeholder card itself (also .loading-card, for the components page) */
+[data-loading]::before,
+.loading-card {
+  height: 18rem;
+  border-radius: var(--th-radius-lg);
+  background:
+    linear-gradient(var(--th-neutral-200), var(--th-neutral-200)) 1.5rem 1.75rem / 45% 1rem no-repeat,
+    linear-gradient(var(--th-neutral-200), var(--th-neutral-200)) 1.5rem 3.75rem / 75% .75rem no-repeat,
+    linear-gradient(var(--th-neutral-200), var(--th-neutral-200)) 1.5rem 5.25rem / 60% .75rem no-repeat,
+    linear-gradient(var(--th-neutral-200), var(--th-neutral-200)) 1.5rem 6.75rem / 30% .75rem no-repeat,
+    var(--th-white);
+  box-shadow: var(--th-shadow-card);
+}
+
+/* Claim timeline: a dot per step on a thin rail; done = green check, current = brand purple, next = track */
+.timeline-step { position: relative; display: flex; gap: .75rem; padding-bottom: 1.25rem; }
+.timeline-step:last-child { padding-bottom: 0; }
+.timeline-step:not(:last-child)::before { content: ""; position: absolute; top: 1.75rem; bottom: .25rem; left: .75rem; width: 2px; margin-left: -1px; background: var(--th-track); }
+.timeline-dot { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: var(--th-radius-round); background: var(--th-track); color: var(--th-white); font-size: var(--th-fs-2xs); }
+.is-done .timeline-dot { background: var(--th-success-600); }
+.is-current .timeline-dot { background: var(--th-primary); box-shadow: 0 0 0 4px var(--th-primary-tint); }
+
+/* Amount tables (claim service lines, EOB): every money column reads the same; "You owe" stands out */
+.cost-table.amount-table tbody td:nth-child(n) { color: var(--bs-body-color); font-size: inherit; font-weight: 400; }  /* beats .cost-table's per-column rules */
+.cost-table.amount-table tbody td:last-child,
+.amount-table tfoot > tr > * { font-weight: 700; }
+.amount-table td { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.amount-table tfoot > tr > * { padding: .75rem 1rem 0 0; border-bottom: 0; }
+
+/* EOB statement */
+.eob-facts dt { font-size: var(--th-fs-xs); font-weight: 600; color: var(--bs-secondary-color); }
+.eob-facts dd { font-weight: 600; }
+@media print {
+  /* Only the statement prints */
+  [data-page="eob"] .site-header,
+  [data-page="eob"] .greeting-band,
+  [data-page="eob"] footer,
+  [data-page="eob"] .bottom-nav,
+  [data-page="eob"] .toast-stack { display: none; }
+  [data-page="eob"] .chat-fab,
+  [data-page="eob"] .eob-actions { visibility: hidden; }
+  [data-page="eob"] .eob-doc { box-shadow: none; }
+}
+.eob-steps li + li { margin-top: .5rem; }
 
 /* Coverage: benefit lists (what you pay), people and approvals rows */
 .benefit-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding-block: .625rem; }
 .benefit-row + .benefit-row { border-top: 1px solid var(--bs-border-color-translucent); }
+/* First and last rows sit flush, so the card's own 24px is the only space at its top and bottom */
+.benefit-row:first-child { padding-top: 0; }
+.benefit-row:last-child { padding-bottom: 0; }
 .benefit-row dt { font-weight: 400; }
 .benefit-row dd { margin: 0; font-weight: 600; text-align: end; font-variant-numeric: tabular-nums; }
 .benefit-note { display: block; font-size: var(--th-fs-sm); color: var(--bs-secondary-color); }
@@ -428,17 +596,20 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   white-space: nowrap;
 }
 .page-tabs .nav-link:hover { background: var(--th-primary-tint); color: var(--th-primary); }
-.page-tabs .nav-link.active { background: var(--th-primary); color: var(--th-on-primary); }
+.page-tabs .nav-link.active,
+.page-tabs .btn-check:checked + .nav-link { background: var(--th-primary); color: var(--th-on-primary); }
+/* The same bar as a radio-group filter (Claims): labels are the targets; the focus ring follows the radio */
+.page-tabs label.nav-link { cursor: pointer; }
+.page-tabs .btn-check:focus-visible + .nav-link { outline: 3px solid var(--th-focus); outline-offset: 2px; }
 
 /* Cost tables (Coverage tabs): service, what you pay, limits */
 .cost-table { --bs-table-border-color: var(--bs-border-color-translucent); }
-.cost-table thead th { font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bs-secondary-color); }
 .cost-table th,
 .cost-table td { padding: .75rem 1rem .75rem 0; vertical-align: top; }
 .cost-table tbody th { font-weight: 400; }
 .cost-table tbody td:nth-child(2) { font-weight: 600; font-variant-numeric: tabular-nums; }
 .cost-table tbody td:nth-child(3) { color: var(--bs-secondary-color); font-size: var(--th-fs-sm); }
-.cost-table tbody tr:last-child > * { border-bottom: 0; }
+.cost-table tbody tr:last-child > * { border-bottom: 0; padding-bottom: 0; }
 
 /* Progress meter: native <progress>, styled for both engines */
 .meter {
@@ -463,17 +634,338 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .id-card dt { font-size: var(--th-fs-xs); font-weight: 400; opacity: .85; }
 .id-card dd { font-weight: 700; font-variant-numeric: tabular-nums; }
 
+/* ID Cards page: the card at its actual size, 3.375 x 2.125 in (85.6 x 54mm; 324 x 204 CSS px), everywhere a
+   screen is at least that wide; only narrower screens shrink it, keeping the shape. Front and back stack in one spot.
+   Text is sized from the card's width (container units), so it stays in proportion; if text is zoomed, the card
+   grows taller instead of clipping. The face that's turned away is inert. */
+.idc { width: 3.375in; max-width: 100%; container-type: inline-size; perspective: 1600px; }
+.idc-inner { display: grid; transform-style: preserve-3d; cursor: pointer; }  /* clicking the card turns it over too */
+.idc.is-flipped .idc-inner { transform: rotateY(180deg); }
+.idc-face {
+  grid-area: 1 / 1;
+  width: 100%;  /* a definite width: otherwise a face that grows taller widens to keep the ratio */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 85.6 / 53.98;
+  padding: 5cqi 5.5cqi;
+  border-radius: min(3.5cqi, var(--th-radius-lg));
+  font-size: clamp(.625rem, 3.4cqi, 1.125rem);  /* 11px at actual size, as on a printed card */
+  line-height: 1.25;
+  box-shadow: var(--th-shadow-2);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+.idc dl, .idc p { margin: 0; }
+.idc dt { font-size: .8em; font-weight: 400; opacity: .85; }
+.idc dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+/* Front: brand purple, a different step per card so they never get mixed up (medical 800, dental 600, vision 500);
+   the logo is never bigger than the header's */
+.idc-front { background: var(--th-primary); color: var(--th-on-primary); }
+.idc-front.idc-dental { background: var(--th-purple-600); }
+.idc-front.idc-vision { background: var(--th-purple-500); }
+.idc-top,
+.idc-contacts > div { display: flex; align-items: center; justify-content: space-between; gap: 1em; }
+.idc-logo { display: block; width: min(34cqi, 10rem); height: auto; aspect-ratio: 230 / 44; color: currentColor; }
+.idc-kind { display: inline-flex; align-items: center; gap: .45em; font-size: .85em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.idc .idc-plan { font-size: 1.15em; font-weight: 700; margin: .6em 0 .55em; }
+.idc-who, .idc-fields { display: flex; flex-wrap: wrap; column-gap: 1.75em; row-gap: .4em; }
+.idc-who dd { font-size: 1.1em; }
+.idc .idc-fields { margin-top: .5em; padding-bottom: .7em; }
+/* What you pay: four columns along the bottom, under a faint line */
+.idc .idc-costs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5em; margin-top: auto; padding-top: .6em; border-top: 1px solid var(--th-on-primary-line); }
+/* Back: light lavender, dark text; phone numbers are call links with a 24px tall target */
+.idc-back { background: var(--th-purple-50); color: var(--th-neutral-900); transform: rotateY(180deg); }
+.idc-back dt { opacity: 1; color: var(--th-neutral-600); font-size: .85em; }
+.idc-contacts a { display: inline-flex; align-items: center; min-height: 24px; color: var(--th-primary); }
+.idc .idc-mail { font-size: .85em; margin-top: .6em; }
+.idc .idc-fine { font-size: .8em; color: var(--th-neutral-600); margin-top: auto; padding-top: .6em; }
+/* Placeholder while the data loads: same shape, so nothing shifts */
+.idc-skeleton { display: block; width: 3.375in; max-width: 100%; aspect-ratio: 85.6 / 53.98; border-radius: var(--th-radius-lg); }
+/* Flip, print and order under the card */
+.idc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin-top: 1.5rem; }  /* 20px apart: all three fit on one row under an actual-size card */
+/* Order a card: a tinted panel that opens under the actions */
+.idc-order { background: var(--th-primary-tint); border-radius: var(--th-radius-md); padding: 1.25rem; margin-top: 1.25rem; }
+.idc-order-area > .notice { margin-top: 1.25rem; }
+/* Phones: the Open card button stretches over the whole card, so tapping the card opens the full-screen view */
+.idc-open { gap: .5rem; }
+/* Phones and 1200px up: no white box around each card, so the card fits at its actual size
+   (327px of room on a 375px phone; three across from 1200px) */
+@media (max-width: 767.98px), (min-width: 1200px) {
+  .idc-section { --bs-card-bg: transparent; box-shadow: none; }  /* its padding comes off in the markup: p-0 p-md-4 p-xl-0 */
+}
+/* 768-1199px (where three real-size cards don't fit across): one card per row, so none sits alone with empty
+   space beside it. The ID card on the left; heading, who it's for, actions and the order panel beside it. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .idc-section > .card-body { display: grid; grid-template-columns: 3.375in minmax(0, 1fr); grid-template-rows: auto auto auto 1fr; column-gap: 2rem; align-items: start; }
+  .idc-section [data-idc-slot] { display: contents; }
+  .idc-section .idc,
+  .idc-section .idc-skeleton { grid-column: 1; grid-row: 1 / -1; }
+  .idc-section h2,
+  .idc-section [data-idc-for],
+  .idc-section .idc-actions,
+  .idc-section .idc-order-area { grid-column: 2; }
+  .idc-section .idc-actions { margin-top: .5rem; }
+}
+/* Full-screen view (phones): the card fills the width, centered, with the actions in a grid below */
+.idc-modal .modal-body { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1.5rem max(.5rem, min(var(--th-page-gutter), (100vw - 3.375in) / 2)); }
+.idc-modal .idc-actions,
+.idc-modal .idc-order-area { width: 3.375in; max-width: 100%; }  /* buttons and the order panel line up with the card's edges */
+.idc-modal .idc-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.idc-modal .idc-actions > .idc-flip { grid-column: 1 / -1; }
+.idc-modal .idc-actions > .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: var(--th-target); }
+/* Print happens in a hidden frame holding just the card, front and back, at real size */
+.idc-print-frame { position: fixed; inset: auto auto 0 0; width: 0; height: 0; border: 0; }  /* 0 x 0, not display:none, which some browsers print blank */
+.idc-print-doc { background: var(--th-white); padding: .5in; }
+.idc-print-doc .idc { width: 3.375in; margin-bottom: .25in; break-inside: avoid; }
+.idc-print-doc .idc-face { font-size: 8pt; box-shadow: none; transform: none; }
+
+/* Message Center ---------------------------------------------------------------- */
+/* Unread count inside a page tab: a small solid pill; it turns white on the open (filled) tab */
+.tab-count { display: inline-flex; align-items: center; justify-content: center; min-width: 1.375rem; height: 1.375rem; padding: 0 .375rem 1.5px; margin-left: .5rem; border-radius: var(--th-radius-pill); background: var(--th-primary); color: var(--th-on-primary); font-size: var(--th-fs-2xs); font-weight: 700; }  /* the digit sits optically centered */
+.page-tabs .nav-link.active .tab-count { background: var(--th-white); color: var(--th-primary); }
+/* Inbox rows run edge to edge of the card: dot, sender and date; subject; one line of the latest message */
+.msg-list { margin-inline: -1.5rem; }
+.msg-row {
+  display: grid;
+  grid-template-columns: .5rem minmax(0, 1fr) auto;
+  column-gap: .75rem;
+  row-gap: .125rem;
+  padding: .875rem 1.5rem;
+  color: var(--bs-body-color);
+  text-decoration: none;
+}
+.msg-list > li + li > .msg-row { box-shadow: inset 0 1px 0 var(--bs-border-color-translucent); }  /* a hairline between rows */
+.msg-row:hover { background: var(--th-primary-tint); color: var(--bs-body-color); }
+.msg-row[aria-current] { background: var(--th-purple-100); }  /* the open conversation: a solid tint */
+.msg-dot { display: inline-block; width: .5rem; height: .5rem; border-radius: var(--th-radius-round); }
+.msg-row .msg-dot { align-self: center; }
+.is-unread .msg-dot { background: var(--th-primary); }
+.msg-from { font-weight: 600; }
+.msg-date { font-size: var(--th-fs-xs); color: var(--th-neutral-600); }  /* neutral-600 stays AA on the hover and open tints */
+.msg-subject,
+.msg-snippet { grid-column: 2 / -1; overflow: hidden; font-size: var(--th-fs-sm); text-overflow: ellipsis; white-space: nowrap; }  /* one line each, so every row is the same height */
+.msg-snippet { color: var(--th-neutral-600); }
+.msg-row.is-unread .msg-from,
+.msg-row.is-unread .msg-subject { font-weight: 700; }
+/* A conversation: each message is a tinted panel; yours on the brand tint, ours on gray (no chat bubbles) */
+.msg-thread > li + li { margin-top: 1rem; }
+.msg { padding: 1.25rem; border-radius: var(--th-radius-md); background: var(--th-neutral-50); }
+.msg-mine { background: var(--th-primary-tint); }
+.msg-head { display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem; }
+.msg-name { font-weight: 600; }
+.msg-time { margin-left: auto; font-size: var(--th-fs-xs); color: var(--bs-secondary-color); text-align: right; }
+.avatar-plan { background: var(--th-white); color: var(--th-primary); }
+.msg-body p,
+.faq-answer p { margin-bottom: .75rem; }
+.msg-body p:last-child { margin-bottom: 0; }
+/* Attachments: white chips with a light shadow (no borders on rounded shapes) */
+.msg-attachments { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.msg-attach { display: inline-flex; align-items: center; gap: .5rem; min-height: 2.5rem; padding: .5rem .875rem; border-radius: var(--th-radius-sm); background: var(--th-white); box-shadow: var(--th-shadow-1); font-size: var(--th-fs-sm); font-weight: 600; text-decoration: none; }
+.msg-attach-size { color: var(--bs-secondary-color); font-weight: 400; }
+.msg-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: 1rem; }
+.msg-reply { margin-top: 1.5rem; padding-top: 1.5rem; box-shadow: inset 0 1px 0 var(--bs-border-color-translucent); }
+/* Desktop, nothing open: a short prompt, centered in the pane */
+.msg-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 18rem; height: 100%; text-align: center; }
+/* Below 992px the list and the conversation take turns: the list, or (with a thread open) the conversation */
+@media (max-width: 991.98px) {
+  .msg-center.is-reading .msg-list-col,
+  .msg-center:not(.is-reading) .msg-reader-col { display: none; }
+}
+/* Notifications: icon chip, title (bold with a dot when new), detail and date, and the action on the right */
+.note-group-title { margin-bottom: .25rem; color: var(--th-neutral-600); font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+/* A row with an icon chip, text and an action on the right (under the text on phones): notifications, sign-in and security */
+.action-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: .5rem 1rem; }
+.note-title .msg-dot { margin-right: .5rem; vertical-align: middle; background: var(--th-primary); }
+.action-row.is-unread .note-title { font-weight: 700; }
+.row-action { white-space: nowrap; }
+
+/* Help center ------------------------------------------------------------------- */
+/* Common questions: native disclosure rows. The whole question is the 48px target; a chevron turns when open. */
+.faq + .faq { box-shadow: inset 0 1px 0 var(--bs-border-color-translucent); }  /* a hairline between rows */
+.faq > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: var(--th-target);
+  padding: .75rem 0;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+.faq > summary::-webkit-details-marker { display: none; }
+.faq > summary:hover { color: var(--th-primary); }
+.faq > summary:focus-visible { outline: 3px solid var(--th-focus); outline-offset: 2px; border-radius: var(--th-radius-sm); }
+.faq > summary > .fa-chevron-down { flex: none; color: var(--th-primary); }
+.faq[open] > summary > .fa-chevron-down { transform: rotate(180deg); }
+.faq-body { max-width: var(--th-measure); padding-bottom: 1.25rem; }
+.faq-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-bottom: 0; }
+.faq-empty { padding: 1rem 0 .25rem; }
+.comp-example > .faq-empty { padding: 0; }  /* in an example panel: even all round */
+/* Contact and forms rows: icon chip, then the text and its action */
+.help-row { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 1rem; }
+.help-phone { font-size: var(--th-fs-h3); font-weight: 700; text-decoration: none; }
+/* Long-form text (accessibility statement): a readable measure, room between sections */
+.statement { max-width: calc(var(--th-measure) + 3rem); }
+.statement h2 { margin: 2rem 0 .75rem; }
+.statement h2:first-child { margin-top: 0; }
+.statement-list { display: grid; gap: .5rem; padding-left: 1.25rem; }
+/* A field with an error: a red outline to match its message (the focus ring stays purple) */
+.form-control[aria-invalid="true"],
+.form-select[aria-invalid="true"],
+.form-check-input[aria-invalid="true"] { border-color: var(--th-danger-600); }
+/* Checkboxes and radios: brand purple when chosen; the unchecked outline is dark enough to see (3:1 against white)
+   (switches have their own look, below) */
+.form-check-input { border-color: var(--th-neutral-500); }
+.form-check-input:checked { border-color: var(--th-primary); background-color: var(--th-primary); }
+.form-check-input:focus { border-color: var(--th-primary); box-shadow: none; }
+/* A paragraph kept to a readable line length inside a wide card */
+.measure,
+.msg-body { max-width: var(--th-measure); }
+/* Components page (components.html): example panels, labels, color swatches, shapes */
+.comp-title { margin-bottom: .75rem; color: var(--th-neutral-600); font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.comp-example { padding: 1.25rem; border-radius: var(--th-radius-md); background: var(--th-white); box-shadow: inset 0 0 0 1px var(--bs-border-color-translucent); }
+.comp-example-tint { background: var(--th-neutral-50); box-shadow: none; }
+.comp-label { margin: .5rem 0 0; color: var(--th-neutral-600); font-size: var(--th-fs-xs); }
+.comp-label code { color: var(--th-primary); }
+.comp-h1 { font-size: var(--th-fs-h1); font-weight: 700; line-height: 1.2; }
+.comp-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); gap: 1rem; }
+.comp-swatches li { display: grid; gap: .125rem; font-size: var(--th-fs-xs); }
+.comp-swatches li > span:last-child { color: var(--th-neutral-600); }
+.swatch { display: block; height: 3rem; margin-bottom: .375rem; border-radius: var(--th-radius-sm); box-shadow: inset 0 0 0 1px var(--bs-border-color-translucent); }
+.swatch[data-token="purple-50"] { background: var(--th-purple-50); }
+.swatch[data-token="purple-100"] { background: var(--th-purple-100); }
+.swatch[data-token="purple-200"] { background: var(--th-purple-200); }
+.swatch[data-token="purple-500"] { background: var(--th-purple-500); }
+.swatch[data-token="purple-600"] { background: var(--th-purple-600); }
+.swatch[data-token="purple-800"] { background: var(--th-purple-800); }
+.swatch[data-token="purple-900"] { background: var(--th-purple-900); }
+.swatch[data-token="neutral-50"] { background: var(--th-neutral-50); }
+.swatch[data-token="neutral-200"] { background: var(--th-neutral-200); }
+.swatch[data-token="neutral-600"] { background: var(--th-neutral-600); }
+.swatch[data-token="neutral-900"] { background: var(--th-neutral-900); }
+.swatch[data-token="success-600"] { background: var(--th-success-600); }
+.swatch[data-token="warning-600"] { background: var(--th-warning-600); }
+.swatch[data-token="danger-600"] { background: var(--th-danger-600); }
+.swatch[data-token="info-600"] { background: var(--th-info-600); }
+.comp-shapes { display: flex; flex-wrap: wrap; gap: 1rem; }
+.comp-shape { display: inline-flex; align-items: center; justify-content: center; width: 6.5rem; height: 5rem; background: var(--th-primary-tint); color: var(--th-primary); font-size: var(--th-fs-xs); font-weight: 600; text-align: center; }
+.comp-r-sm { border-radius: var(--th-radius-sm); }
+.comp-r-md { border-radius: var(--th-radius-md); }
+.comp-r-lg { border-radius: var(--th-radius-lg); }
+.comp-shadow-2 { background: var(--th-white); box-shadow: var(--th-shadow-2); }
+.comp-band { padding: 1.25rem; border-radius: var(--th-radius-md); }
+.comp-dark { border-radius: var(--th-radius-md); }
+.comp-toast { width: 100%; max-width: 22rem; }  /* Bootstrap's toast is a fixed 350px */
+.comp-swatches code { color: var(--th-neutral-900); }
+.comp-dialog { max-width: 30rem; }
+.comp-empty { min-height: 12rem; }
+.loading-card { border-radius: var(--th-radius-lg); }
+/* Case study and prompt log */
+.acct-dl.cs-glance { grid-template-columns: minmax(0, 1fr); }  /* one column in the narrow side card */
+.statement h3 { margin-top: 1.5rem; }
+.prompt-log > li { padding: 1.25rem 0; box-shadow: inset 0 -1px 0 var(--bs-border-color-translucent); }
+.prompt-log > li:first-child { padding-top: 0; }
+.prompt-log > li:last-child { padding-bottom: 0; box-shadow: none; }
+.prompt-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin-bottom: .5rem; color: var(--th-neutral-600); font-size: var(--th-fs-xs); }
+.prompt-num { display: inline-flex; align-items: center; justify-content: center; min-width: 1.75rem; height: 1.75rem; padding: 0 .375rem; border-radius: var(--th-radius-pill); background: var(--th-primary-tint); color: var(--th-primary); font-weight: 700; }
+.prompt-text { max-width: var(--th-measure); overflow-wrap: anywhere; white-space: pre-line; }
+.prompt-more > summary { display: inline-flex; align-items: center; min-height: 1.5rem; color: var(--th-primary); font-size: var(--th-fs-sm); font-weight: 600; cursor: pointer; }
+/* Behavioral health: the crisis line leads the page, a little larger than other notices */
+.bh-crisis { font-size: var(--th-fs-base); }
+.bh-crisis a { color: inherit; font-weight: 700; }
+/* Cost estimate: where the person stands; places as choosable rows (the chosen one a solid tint); the breakdown */
+.est-standing { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 1rem 1.25rem; border-radius: var(--th-radius-md); background: var(--th-primary-tint); }
+.est-standing dd { margin: 0; font-size: var(--th-fs-h3); font-weight: 700; font-variant-numeric: tabular-nums; }
+.est-place { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-radius: var(--th-radius-md); background: var(--th-neutral-50); cursor: pointer; }
+.est-place:hover { background: var(--th-primary-tint); }
+.est-place.is-chosen { background: var(--th-purple-100); }
+.est-place .form-check-input { width: 1.25rem; height: 1.25rem; margin: 0; }
+.est-place-cost,
+.est-breakdown td { text-align: right; font-variant-numeric: tabular-nums; }
+/* Appeal: the three steps as numbered dots (done: a green check; current: filled purple); answers as roomy choices */
+.appeal-steps { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 0 0 1.5rem; }
+.appeal-steps li { display: inline-flex; align-items: center; gap: .5rem; color: var(--th-neutral-600); font-size: var(--th-fs-sm); font-weight: 600; }
+.appeal-step-num { display: inline-flex; align-items: center; justify-content: center; width: 1.75rem; height: 1.75rem; border-radius: var(--th-radius-round); background: var(--th-neutral-200); color: var(--th-neutral-900); font-size: var(--th-fs-xs); }
+.appeal-steps .is-current { color: var(--th-primary); }
+.appeal-steps .is-current .appeal-step-num { background: var(--th-primary); color: var(--th-white); }
+.appeal-steps .is-done .appeal-step-num { background: var(--th-success-600); color: var(--th-white); }
+.appeal-choice { display: flex; gap: .75rem; margin: 0; padding: .875rem 1rem; border-radius: var(--th-radius-md); background: var(--th-neutral-50); }
+.appeal-choice .form-check-input { flex: none; float: none; width: 1.25rem; height: 1.25rem; margin: .125rem 0 0; }
+.appeal-review > div:nth-child(3) { grid-column: 1 / -1; }  /* "What happened" gets the full width */
+.appeal-review > div:nth-child(3) dd { font-weight: 400; white-space: pre-line; }
+.est-why { margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: var(--th-radius-md); background: var(--th-primary-tint); }
+.est-breakdown th { font-weight: 400; }
+.est-breakdown .is-total th,
+.est-breakdown .is-total td { font-weight: 700; }
+@media (max-width: 575.98px) { .est-standing { grid-template-columns: minmax(0, 1fr); } }
+/* Sign in (signin.html): one centered card; 48px fields; Show/Hide sits inside the password field */
+.signin-wrap { max-width: 28rem; }
+.signin-title { font-size: var(--th-fs-h1); }
+.signin-wrap .form-control,
+.signin-submit { min-height: var(--th-target); }
+.password-field { position: relative; }
+.password-field .form-control { min-height: var(--th-target); padding-right: 6.5rem; }  /* as tall as its Show button, which stays centered */
+.password-toggle { position: absolute; inset: 0 0 0 auto; gap: .375rem; padding: 0 1rem; }
+.signin-check .form-check-input { width: 1.25rem; height: 1.25rem; margin-top: .125rem; }
+
+/* Account overview ---------------------------------------------------------------- */
+.acct-subtitle { font-size: var(--th-fs-h3); scroll-margin-top: calc(var(--th-header-h) + 1rem); }  /* the menu's Addresses link lands here */
+/* Contact info: label over value, two across (one on small phones); long emails wrap instead of overflowing */
+.acct-dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: 0; }
+.acct-dl dt,
+.est-standing dt { color: var(--th-neutral-600); font-size: var(--th-fs-xs); font-weight: 400; }
+.acct-dl dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+/* Who's covered: one gray tile per person, avatar beside the details */
+.person-tile { display: flex; gap: .875rem; height: 100%; padding: 1rem; border-radius: var(--th-radius-md); background: var(--th-neutral-50); }
+.person-tile .avatar { flex: none; }
+/* Preference switches: 24px tall (a full target). Off: gray track, white knob. On: brand purple. No border; the track
+   itself has 3:1 contrast against white in both states. */
+.pref { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: .875rem; margin: 0; padding-left: 0; }
+.pref .form-check-input {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+  grid-row: 1 / span 2;
+  float: none;
+  width: 2.75rem;
+  height: 1.5rem;
+  margin: 0;
+  border: 0;
+  background-color: var(--th-neutral-500);
+  cursor: pointer;
+}
+.pref .form-check-input:checked { background-color: var(--th-primary); }
+.pref .form-check-input:focus { box-shadow: none; }
+.pref .form-check-label { cursor: pointer; }
+@media (max-width: 575.98px) {
+  .acct-dl { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 575.98px) {
+  .action-row { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
+  .row-action { grid-column: 2; justify-self: start; }
+  /* Messages: the time goes under the sender (lined up with the name), and the panels get a little more room */
+  .msg { padding: 1rem; }
+  .msg-head { flex-wrap: wrap; row-gap: 0; }
+  .msg-time { flex-basis: 100%; margin-left: 2.75rem; text-align: left; }
+}
+
 /* Status lines take no space until they have something to say */
 .status-line:not(:empty) { margin-top: 1rem; }
 
 /* Lists inside cards: rows are 16px apart; the first and last rows sit flush,
    so the card's own 24px padding is the only space at its top and bottom */
-.card .list-group-flush { --bs-list-group-item-padding-x: 0; --bs-list-group-item-padding-y: 1rem; }
-.card .list-group-flush > .list-group-item:first-child { padding-top: 0; }
-.card .list-group-flush > .list-group-item:last-child { padding-bottom: 0; }
+.card .list-group-flush,
+.dark-band .list-group-flush { --bs-list-group-item-padding-x: 0; --bs-list-group-item-padding-y: 1rem; }
+.card .list-group-flush > .list-group-item:first-child,
+.dark-band .list-group-flush > .list-group-item:first-child { padding-top: 0; }
+.card .list-group-flush > .list-group-item:last-child,
+.dark-band .list-group-flush > .list-group-item:last-child { padding-bottom: 0; }
 
 /* Find a doctor */
-.find-form .form-control { min-height: var(--th-target); }
+.find-form .form-control,
+.est-select { min-height: var(--th-target); }
 
 /* Log out dialog */
 .modal-content { border: 0; border-radius: var(--th-radius-lg); box-shadow: var(--th-shadow-3); }
@@ -523,7 +1015,9 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   background: var(--th-white);
   box-shadow: var(--th-edge-top);
 }
-.bottom-nav ul { display: grid; grid-template-columns: repeat(5, 1fr); gap: .25rem; height: var(--th-bottomnav-h); padding: .375rem; }
+.bottom-nav ul { display: flex; gap: .25rem; height: var(--th-bottomnav-h); padding: .375rem; }
+/* Each tab takes an equal share of the bar, however many there are (five today) */
+.bottom-nav li { flex: 1 1 0; min-width: 0; }
 .bottom-nav a,
 .bottom-nav button {
   display: flex;
@@ -558,6 +1052,9 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .more-group-title { padding-inline: .75rem; }
 /* The group for the section you're in: a light tint panel; the row for your exact tab turns white inside it */
 .more-group.is-current { padding-block: .5rem; border-radius: var(--th-radius-md); background: var(--th-primary-tint); }
+/* A hairline between groups, centered in the gap: never drawn on the current group's rounded panel */
+.more-group + .more-group { position: relative; margin-top: 1.5rem; }
+.more-group + .more-group::before { content: ""; position: absolute; inset: -.75rem .75rem auto; height: 1px; background: var(--bs-border-color-translucent); }
 .more-group.is-current .more-group-title { padding-top: .25rem; color: var(--th-primary); }
 .more-group.is-current .more-link[aria-current] { background: var(--th-white); }
 .more-link {
@@ -596,7 +1093,15 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
     white-space: nowrap;
   }
   .site-logo svg { width: 9rem; }
+  .program-art { width: 1.75rem; height: 1.75rem; }  /* the logo is smaller on phones: so are illustrations */
   .chat-panel { --bs-offcanvas-width: 100%; }   /* AI Chat takes the whole screen */
+}
+@media (max-width: 359.98px) {
+  /* Narrowest phones (320px): tighter still, so Vision isn't cut off */
+  .page-tabs { gap: .125rem; }
+  .page-tabs .nav-link { padding: 0 .25rem; }
+  /* ID card full-screen view: Print and Order stack under Show back, so no label wraps */
+  .idc-modal .idc-actions { grid-template-columns: 1fr; }
 }
 
 /* Below 992px the bottom nav takes over from the header nav */
@@ -614,6 +1119,8 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 
 /* Desktop: AI Chat floats above the chat button instead of running full height */
 @media (min-width: 992px) {
+  /* A side column that stays in view while a long main column scrolls (Claims) */
+  .side-sticky { position: sticky; top: calc(var(--th-header-h) + 1.5rem); }
   .offcanvas-end.chat-panel {
     top: auto;
     right: 1rem;
@@ -641,11 +1148,27 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   .bottom-nav { transition: transform 200ms var(--th-ease-out); }
   .chat-fab { transition: background-color 150ms var(--th-ease-out), color 150ms var(--th-ease-out), transform 200ms var(--th-ease-out); }
 
+  /* Programs page only: icons react once when their card (or a perk) is hovered or reached by keyboard.
+     Font Awesome's own keyframes (fontawesome.min.css); one play, never a loop. */
+  [data-page="programs"] .card:hover .program-art > .fa-solid,
+  [data-page="programs"] .card:focus-within .program-art > .fa-solid { animation: fa-bounce 900ms var(--th-ease-out) 1; }
+  [data-page="programs"] .perk:hover .icon-chip > .fa-solid { animation: fa-beat 700ms var(--th-ease-out) 1; }
+
+  /* ID card turns over */
+  .idc-inner { transition: transform 600ms var(--th-ease-out); }
+
+  /* Loading placeholders pulse, with Bootstrap 5's own animation (placeholder-glow), as do card-shaped placeholders.
+     Off under reduced motion: Bootstrap doesn't turn it off itself. */
+  .placeholder,
+  [data-loading]::before,
+  .loading-card { animation: placeholder-glow 2s ease-in-out infinite; }
+
   /* Menus drop in */
   .dropdown-menu.show { animation: th-drop-in 180ms var(--th-ease-out); }
 
-  /* Loaded content fades in over its placeholder (placeholders match its size, so nothing shifts) */
-  [data-list]:not([aria-busy]) > * { animation: th-fade-in 300ms var(--th-ease-out) both; }
+  /* Loaded content fades in over its placeholder (placeholders match its size, so nothing shifts).
+     Once only: a list drawn again (opening a message, switching family member) just updates. */
+  [data-list]:not([aria-busy]):not([data-settled]) > * { animation: th-fade-in 300ms var(--th-ease-out) both; }
 }
 @keyframes th-drop-in { from { opacity: 0; transform: translateY(-4px); } }
 @keyframes th-fade-in { from { opacity: 0; } }

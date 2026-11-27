@@ -71,58 +71,6 @@
       "short": "Free · book by Dec 31"
     }
   ],
-  "claims": [
-    {
-      "id": "c-1042",
-      "service": "Physical therapy",
-      "provider": "Richmond Physical Therapy",
-      "date": "2027-11-12",
-      "youOwe": 35,
-      "status": "Needs info",
-      "tone": "warning",
-      "patient": "roy"
-    },
-    {
-      "id": "c-1040",
-      "patient": "keeley",
-      "service": "Dental cleaning",
-      "provider": "Bright Smile Dental",
-      "date": "2027-11-09",
-      "youOwe": 0,
-      "status": "Processed",
-      "tone": "success"
-    },
-    {
-      "id": "c-1037",
-      "service": "Office visit",
-      "provider": "Dr. Aisha Patel",
-      "date": "2027-11-05",
-      "youOwe": 25,
-      "status": "Processed",
-      "tone": "success",
-      "patient": "roy"
-    },
-    {
-      "id": "c-1033",
-      "patient": "leo",
-      "service": "Urgent care visit",
-      "provider": "Tornado Urgent Care Midtown",
-      "date": "2027-10-30",
-      "youOwe": 50,
-      "status": "Processed",
-      "tone": "success"
-    },
-    {
-      "id": "c-1029",
-      "service": "Lab work",
-      "provider": "Nelson Lab",
-      "date": "2027-10-28",
-      "youOwe": 0,
-      "status": "Processed",
-      "tone": "success",
-      "patient": "roy"
-    }
-  ],
   "recommendations": [
     {
       "id": "knee-care",
@@ -198,8 +146,15 @@
   ],
   "assistantFallback": "I'm a demo, so I only know a few topics. Try asking about your deductible, urgent care, your prior authorization or your ID card.",
   "inbox": {
-    "messages": 2,
-    "notifications": 3
+    "messages": [
+      "t-1",
+      "t-2"
+    ],
+    "notifications": [
+      "n-1",
+      "n-2",
+      "n-3"
+    ]
   },
   "family": [
     {
@@ -207,21 +162,24 @@
       "firstName": "Roy",
       "lastName": "Kent",
       "initials": "RK",
-      "relation": "You"
+      "relation": "You",
+      "isChild": false
     },
     {
       "id": "keeley",
       "firstName": "Keeley",
       "lastName": "Kent",
       "initials": "KK",
-      "relation": "Spouse"
+      "relation": "Spouse",
+      "isChild": false
     },
     {
       "id": "leo",
       "firstName": "Leo",
       "lastName": "Kent",
       "initials": "LK",
-      "relation": "Son, age 9"
+      "relation": "Son, age 9",
+      "isChild": true
     }
   ]
 }

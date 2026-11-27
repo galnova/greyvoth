@@ -1,0 +1,41 @@
+{
+  "_note": "Synthetic demo data. Tornado Health and its phone numbers (555-01xx) are fictional. 988 and 911 are the real US crisis and emergency numbers.",
+  "assistant": [
+    {
+      "prompt": "I need to talk to someone now",
+      "answer": "Call the behavioral health line at 1-800-555-0130. A licensed counselor answers 24/7, and it's free. If you're in crisis or thinking about suicide, call or text 988. In an emergency, call 911.",
+      "keywords": [
+        "talk",
+        "now",
+        "someone",
+        "crisis",
+        "help",
+        "counselor"
+      ]
+    },
+    {
+      "prompt": "Is therapy covered?",
+      "answer": "Yes. Therapy and psychiatry visits are a $25 copay in network, in person or by video, with no referral needed. Your first 5 counseling sessions through the Mental well-being program are free.",
+      "keywords": [
+        "therapy",
+        "covered",
+        "cost",
+        "copay",
+        "psychiatrist",
+        "counseling"
+      ]
+    },
+    {
+      "prompt": "Will my employer know?",
+      "answer": "No. We don't share your behavioral health care with your employer, and adults on your plan can't see each other's visits or claims.",
+      "keywords": [
+        "employer",
+        "private",
+        "privacy",
+        "know",
+        "confidential",
+        "share"
+      ]
+    }
+  ]
+}

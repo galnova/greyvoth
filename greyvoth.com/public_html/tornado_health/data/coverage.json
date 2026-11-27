@@ -1,12 +1,27 @@
 {
   "_note": "Synthetic demo data for the Coverage page. Tornado Health and its members are fictional.",
   "costs": {
-    "individual": { "deductible": 1500, "outOfPocket": 4000 },
-    "family": { "deductible": 3000, "outOfPocket": 8000 },
+    "individual": {
+      "deductible": 1500,
+      "outOfPocket": 4000
+    },
+    "family": {
+      "deductible": 3000,
+      "outOfPocket": 8000
+    },
     "spent": {
-      "roy": { "deductible": 640, "outOfPocket": 910 },
-      "keeley": { "deductible": 120, "outOfPocket": 180 },
-      "leo": { "deductible": 50, "outOfPocket": 95 }
+      "roy": {
+        "deductible": 640,
+        "outOfPocket": 910
+      },
+      "keeley": {
+        "deductible": 120,
+        "outOfPocket": 180
+      },
+      "leo": {
+        "deductible": 50,
+        "outOfPocket": 95
+      }
     }
   },
   "fsa": {
@@ -15,20 +30,40 @@
     "useBy": "2027-12-31"
   },
   "limitsUsed": {
-    "physical-therapy": { "roy": 4 },
+    "physical-therapy": {
+      "roy": 4
+    },
     "chiropractic": {},
     "skilled-nursing": {}
   },
   "dental": {
-    "deductible": 50,
     "yearlyMax": 1500,
-    "used": { "roy": 0, "keeley": 180, "leo": 95 }
+    "used": {
+      "roy": 0,
+      "keeley": 180,
+      "leo": 95
+    }
   },
   "vision": {
     "nextAvailable": {
-      "roy": { "exam": "2028-03-14", "frames": null, "lenses": "2028-03-14", "contacts": null },
-      "keeley": { "exam": null, "frames": null, "lenses": null, "contacts": null },
-      "leo": { "exam": "2027-12-08", "frames": "2028-12-08", "lenses": "2027-12-08", "contacts": null }
+      "roy": {
+        "exam": "2028-03-14",
+        "frames": null,
+        "lenses": "2028-03-14",
+        "contacts": null
+      },
+      "keeley": {
+        "exam": null,
+        "frames": null,
+        "lenses": null,
+        "contacts": null
+      },
+      "leo": {
+        "exam": "2027-12-08",
+        "frames": "2028-12-08",
+        "lenses": "2027-12-08",
+        "contacts": null
+      }
     }
   },
   "auths": [
@@ -37,48 +72,160 @@
       "title": "Knee MRI",
       "detail": "Prior auth · Dr. Patel · Decision by Dec 2",
       "status": "In review",
-      "tone": "info"
+      "tone": "info",
+      "id": "a-mri",
+      "kind": "Prior authorization",
+      "service": "MRI of the right knee, without contrast",
+      "requestedBy": "Dr. Aisha Patel",
+      "where": "Richmond Imaging",
+      "requested": "2027-11-18",
+      "decisionBy": "2027-12-02",
+      "reference": "PA-2027-118204",
+      "estimate": "knee-mri",
+      "reason": "Knee pain for 3 months that hasn't improved with physical therapy.",
+      "headline": "In review: a decision by Dec 2",
+      "next": "A nurse reviewer is checking the request against your plan's guidelines. You and Dr. Patel's office will hear by Dec 2. If it's approved, you can book the MRI right away.",
+      "steps": [
+        {
+          "label": "Requested by Dr. Patel",
+          "date": "2027-11-18",
+          "state": "done"
+        },
+        {
+          "label": "Nurse review",
+          "note": "Started Nov 19",
+          "state": "current"
+        },
+        {
+          "label": "Decision",
+          "note": "By Dec 2",
+          "state": "next"
+        }
+      ]
     },
     {
       "patient": "roy",
       "title": "Physical therapy, 12 visits",
       "detail": "Prior auth · Approved Oct 30 · 4 of 12 used",
       "status": "Approved",
-      "tone": "success"
+      "tone": "success",
+      "id": "a-pt",
+      "kind": "Prior authorization",
+      "service": "Physical therapy for the right knee, up to 12 visits",
+      "requestedBy": "Dr. Priya Nair",
+      "where": "Richmond Physical Therapy",
+      "whereShort": "Richmond Physical Therapy",
+      "provider": "p-rpt",
+      "requested": "2027-10-24",
+      "validTo": "2028-01-31",
+      "reference": "PA-2027-104377",
+      "visits": {
+        "used": 4,
+        "total": 12
+      },
+      "reason": "Knee strain; physical therapy to restore strength and movement.",
+      "headline": "Approved for 12 visits",
+      "next": "You're approved for 12 physical therapy visits through Jan 31, 2028, and you've used 4. If you need more, your physical therapist can ask for more visits before you run out.",
+      "steps": [
+        {
+          "label": "Requested by Dr. Nair",
+          "date": "2027-10-24",
+          "state": "done"
+        },
+        {
+          "label": "Nurse review",
+          "date": "2027-10-27",
+          "state": "done"
+        },
+        {
+          "label": "Approved",
+          "date": "2027-10-30",
+          "state": "done"
+        }
+      ]
     },
     {
       "patient": "keeley",
       "title": "Dermatology referral",
       "detail": "Referral · Dr. Owens · Good through Mar 31",
       "status": "Approved",
-      "tone": "success"
+      "tone": "success",
+      "id": "a-derm",
+      "kind": "Referral",
+      "service": "Dr. Lena Owens, Clear Skin Dermatology",
+      "requestedBy": "Dr. James Okafor",
+      "where": "Clear Skin Dermatology",
+      "whereShort": "Dr. Owens",
+      "provider": "p-owens",
+      "requested": "2027-09-28",
+      "validTo": "2028-03-31",
+      "reference": "RF-2027-093310",
+      "reason": "Ongoing skin irritation that needs a specialist's care.",
+      "headline": "Approved through Mar 31, 2028",
+      "next": "Keeley can see Dr. Owens through Mar 31, 2028. Your PPO doesn't need referrals for specialists, but this one keeps both doctors on the same page.",
+      "steps": [
+        {
+          "label": "Referred by Dr. Okafor",
+          "date": "2027-09-28",
+          "state": "done"
+        },
+        {
+          "label": "Approved",
+          "date": "2027-09-29",
+          "state": "done"
+        }
+      ]
     }
   ],
   "assistant": [
     {
       "prompt": "How close am I to my deductible?",
       "answer": "You've paid $640 of your $1,500 deductible, so you have $860 to go. As a family you've paid $810 of $3,000. Once the family reaches $3,000, everyone's deductible is met.",
-      "keywords": ["deductible", "close", "met"]
+      "keywords": [
+        "deductible",
+        "close",
+        "met"
+      ]
     },
     {
       "prompt": "What's my specialist copay?",
       "answer": "A specialist visit is a $50 copay in network. Your PPO plan doesn't need a referral to see a specialist.",
-      "keywords": ["specialist", "copay", "referral"]
+      "keywords": [
+        "specialist",
+        "copay",
+        "referral"
+      ]
     },
     {
       "prompt": "How much is left in my FSA?",
       "answer": "You have $420 left of the $1,200 you set aside. Use it by Dec 31, 2027. Money you don't use doesn't carry over.",
-      "keywords": ["fsa", "flexible spending", "spending account"]
+      "keywords": [
+        "fsa",
+        "flexible spending",
+        "spending account"
+      ]
     },
     {
       "prompt": "Does my plan cover glasses?",
       "answer": "Yes, through Tornado Vision. You get a $150 allowance for frames every 24 months, and lenses are a $25 copay once a year. Your eye exam is a $10 copay once a year.",
-      "keywords": ["glasses", "frames", "lenses", "contacts", "vision", "eye"]
+      "keywords": [
+        "glasses",
+        "frames",
+        "lenses",
+        "contacts",
+        "vision",
+        "eye"
+      ]
     },
     {
       "prompt": "What does an MRI cost me?",
       "answer": "Imaging like an MRI is 20% after your deductible, and it needs prior auth. You have $860 to go on your deductible, so you'd pay the in-network price until you reach it, then 20%. Your knee MRI request is still in review.",
-      "keywords": ["mri", "imaging", "ct", "scan"]
+      "keywords": [
+        "mri",
+        "imaging",
+        "ct",
+        "scan"
+      ]
     }
   ]
 }

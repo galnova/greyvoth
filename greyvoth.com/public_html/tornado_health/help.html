@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Help Center | Tornado Health</title>
+  <meta name="description" content="Answers to common questions, ways to reach the health plan, and forms. A portfolio demo with made-up data.">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="light">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/fontawesome.min.css"
+        integrity="sha384-AGSGRaBRodcsy1n0F2zMm+LfXuZry/ZJ6nfio36UgMuNBs/AOC8ciJ7py4SgkpoY" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/solid.min.css"
+        integrity="sha384-H/BU8KfYKZ0VK4RJyclToSd6x8TmMY4/Rym2YtHXnGQOUZAoLIYIaOxkIfyTAuVh" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/portal.css">
+  <link rel="preload" href="partials/header.html" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="partials/footer.html" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="data/member.json" as="fetch" crossorigin="anonymous">
+  <link rel="preload" href="data/help.json" as="fetch" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+  <script src="js/portal.js" defer></script>
+</head>
+<body class="bg-body-tertiary d-flex flex-column min-vh-100" data-page="help">
+  <a class="visually-hidden-focusable position-absolute top-0 start-0 z-3 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
+
+  <!-- Header: one copy in partials/header.html, loaded here by js/portal.js -->
+  <div class="shell-header" data-include="partials/header.html"></div>
+
+  <!-- Main ============================================================== -->
+  <main class="flex-grow-1" id="main" tabindex="-1">
+    <!-- Page band: no family switcher (help is for the whole account); chips jump to contact and forms on phones -->
+    <header class="greeting-band">
+      <div class="container-xl py-3 py-md-4">
+        <h1 class="mb-2 mb-md-3">Help center</h1>
+        <ul class="band-chips list-unstyled d-flex flex-md-wrap gap-2" aria-label="On this page">
+          <li><a class="status-chip" href="#contact-title"><i class="fa-solid fa-headset text-primary" aria-hidden="true"></i><span>Contact us</span></a></li>
+          <li><a class="status-chip" href="#forms-title"><i class="fa-solid fa-file-lines text-primary" aria-hidden="true"></i><span>Forms</span></a></li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="container-xl pt-4 pb-5">
+      <p class="visually-hidden" role="status" id="live-status"></p>
+      <div class="notice notice-danger mb-4" role="alert" id="load-error" hidden>
+        <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span>We couldn't load your information. Refresh the page to try again.</span>
+      </div>
+
+      <!-- One full-width column: search (the page's one focus), topics, common questions, forms, then ways to reach us.
+           All written into the page, so it loads without shifting and works before the script runs; the script only filters. -->
+      <div class="vstack gap-4">
+        <section class="card" aria-labelledby="help-search-title">
+          <div class="card-body p-4">
+            <h2 class="mb-1" id="help-search-title">How can we help?</h2>
+            <p class="small text-body-secondary mb-3">Search common questions, or pick a topic below.</p>
+            <form class="find-form" id="help-search" role="search" aria-labelledby="help-search-title" novalidate>
+              <label class="form-label small fw-semibold" for="help-q">Search answers</label>
+              <div class="d-flex gap-2">
+                <input class="form-control" type="search" id="help-q" name="q" autocomplete="off" aria-describedby="help-popular-title">
+                <button class="btn btn-primary px-4 d-inline-flex align-items-center gap-2 flex-shrink-0" type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>Search</button>
+              </div>
+            </form>
+            <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+              <p class="small text-body-secondary mb-0" id="help-popular-title">Popular:</p>
+              <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0" aria-labelledby="help-popular-title"><li><button class="btn btn-outline-primary btn-sm chip-btn" type="button" data-help-query="lost card">Lost ID card</button></li><li><button class="btn btn-outline-primary btn-sm chip-btn" type="button" data-help-query="form">Claim needs a form</button></li><li><button class="btn btn-outline-primary btn-sm chip-btn" type="button" data-help-query="90 day">90-day supply</button></li><li><button class="btn btn-outline-primary btn-sm chip-btn" type="button" data-help-query="after hours">After-hours care</button></li></ul>
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="faq-title">
+          <!-- Topics: the same radio-group bar as the claim filters -->
+          <div class="page-tabs nav mb-4" role="radiogroup" aria-label="Topic">
+      <input class="btn-check" type="radio" name="help-topic" id="topic-all" value="all" checked>
+      <label class="nav-link" for="topic-all">All</label>
+      <input class="btn-check" type="radio" name="help-topic" id="topic-claims" value="claims">
+      <label class="nav-link" for="topic-claims">Claims</label>
+      <input class="btn-check" type="radio" name="help-topic" id="topic-coverage" value="coverage">
+      <label class="nav-link" for="topic-coverage">Coverage</label>
+      <input class="btn-check" type="radio" name="help-topic" id="topic-idcards" value="idcards">
+      <label class="nav-link" for="topic-idcards">ID cards</label>
+      <input class="btn-check" type="radio" name="help-topic" id="topic-pharmacy" value="pharmacy">
+      <label class="nav-link" for="topic-pharmacy">Pharmacy</label>
+      <input class="btn-check" type="radio" name="help-topic" id="topic-care" value="care">
+      <label class="nav-link" for="topic-care">Find care</label>
+      <input class="btn-check" type="radio" name="help-topic" id="topic-account" value="account">
+      <label class="nav-link" for="topic-account">Account</label>
+          </div>
+          <div class="card">
+            <div class="card-body p-4">
+              <h2 class="mb-1" id="faq-title" tabindex="-1">Common questions</h2>
+              <p class="small text-body-secondary mb-2" id="faq-count">15 questions</p>
+              <div class="faq-list">
+              <details class="faq" id="faq-owe" data-topic="claims" data-keywords="bill cost charge pay balance">
+                <summary><span>Why do I owe money on a claim?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Until you meet your deductible ($1,500 a person this year), you pay the plan's price for most care. After that you pay a copay or a share of the cost (coinsurance) until you reach the out-of-pocket maximum.</p>
+                    <p>Each claim's details show what the provider billed, what the plan paid, and why you owe what you do.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="claims.html">See your claims<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-eob" data-topic="claims" data-keywords="explanation of benefits statement">
+                <summary><span>What's an EOB, and is it a bill?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>An Explanation of Benefits (EOB) shows how we processed a claim: what was billed, what we paid and what you may owe. It isn't a bill. Your provider sends the bill, and it should match the "You owe" amount on the EOB.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="claims.html?status=Processed">See processed claims<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-needs-info" data-topic="claims" data-keywords="form upload accident missing pending">
+                <summary><span>A claim needs more information. What do I do?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>We'll tell you exactly what's missing, often a form like the accident form. Upload it from the claim, or reply to our message with a photo of it. Once we have it, we finish the claim within 5 business days.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="claim-detail.html?id=c-1042">Open the claim that needs a form<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-claim-time" data-topic="claims" data-keywords="status processing wait slow">
+                <summary><span>How long does a claim take?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Most claims are done within 30 days of when your provider sends them, many much sooner. You can follow each step (received, in review, processed) on the claim.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="claims.html">See your claims<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-deductible" data-topic="coverage" data-keywords="oop maximum limit met">
+                <summary><span>What's the difference between my deductible and out-of-pocket max?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Your deductible ($1,500 a person) is what you pay before the plan pays more for most care. Your out-of-pocket maximum ($4,000 a person) is the most you'll pay in a year for covered, in-network care. After that, covered care is $0.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="coverage.html">See where you stand<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-referral" data-topic="coverage" data-keywords="specialist referral copay">
+                <summary><span>Do I need a referral to see a specialist?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>No. Your PPO plan doesn't need referrals. An in-network specialist visit is a $50 copay. Some tests and procedures need approval first (a prior authorization); your doctor's office asks for it.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="coverage.html#medical">See what you pay<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-prior-auth" data-topic="coverage" data-keywords="approval preapproval mri surgery">
+                <summary><span>What is a prior authorization?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Some care, like an MRI or a planned surgery, needs our approval before you get it. Your doctor sends the request, a nurse reviewer looks at it, and you both hear back, usually within 14 days.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="coverage.html#auths-title">See your approvals<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-lost-card" data-topic="idcards" data-keywords="lost stolen replace new order plastic">
+                <summary><span>I lost my ID card. What do I do?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Your digital ID card works everywhere a plastic one does, so you can keep getting care. To get a new plastic card, choose Order a card under the card. It arrives in 7 to 10 days.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="idcards.html">Go to ID cards<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-family-cards" data-topic="idcards" data-keywords="family spouse child kids member id">
+                <summary><span>Does everyone on my plan get their own card?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Yes. Everyone on your plan has their own medical, dental and vision card with their own member ID. Use Viewing on the ID cards page to see each person's cards.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="idcards.html">Go to ID cards<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-pharmacy-card" data-topic="pharmacy" data-keywords="rx prescription bin pcn">
+                <summary><span>Which card do I use at the pharmacy?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Use your medical card. The Rx BIN, PCN and group on the front tell the pharmacy how to bill your plan.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="idcards.html">Show your medical card<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-90-day" data-topic="pharmacy" data-keywords="refill mail order 90 day supply">
+                <summary><span>Can I get a 90-day supply of my medicine?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Yes, for medicines you take every day. Ask your doctor for a 90-day prescription, then fill it at the pharmacy or have it mailed to you with the mail order form.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="#forms-title">Get the mail order form<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-where-to-go" data-topic="care" data-keywords="urgent care er emergency video visit after hours weekend">
+                <summary><span>My doctor's office is closed. Where should I go?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>For colds, rashes and refills, a video visit is $0 and open 24/7. For sprains, cuts and fevers, urgent care is $50. For chest pain, trouble breathing or severe injuries, go to the emergency room ($250) or call 911.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="find-care.html#options-title">Compare your options<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-in-network" data-topic="care" data-keywords="network provider search doctor">
+                <summary><span>How do I know if a doctor is in network?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Search for them on Find care. Every result there is in network for your plan. Care outside the network costs more, so check before you book.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="find-care.html">Find a doctor<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-address" data-topic="account" data-keywords="address move mail update">
+                <summary><span>How do I change my address?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Go to Addresses in My Account. New ID cards and mailed letters go to the address there, so update it before you order a card.</p>
+                  </div>
+                  <p class="faq-links"><a class="link-icon" href="account.html#addresses-title">Update your address<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></p>
+                </div>
+              </details>
+              <details class="faq" id="faq-privacy" data-topic="account" data-keywords="privacy private secure who can see spouse">
+                <summary><span>Who can see my claims and messages?</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+                <div class="faq-body">
+                  <div class="faq-answer">
+                    <p>Only you, and the Tornado Health team helping you. Adults on your plan sign in with their own account. You can see your children's information until they turn 18.</p>
+                  </div>
+                </div>
+              </details>
+              </div>
+              <div class="faq-empty" id="faq-empty" hidden>
+                <p class="fw-semibold mb-1">No answers for "<span data-field="helpQuery"></span>"</p>
+                <p class="small text-body-secondary mb-3">Try fewer or different words, pick All topics, or ask us directly.</p>
+                <a class="link-icon" href="messages.html?new=1#messages">Send us a message<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- Forms: a full-width dark band (the same pattern as Rewards on Programs) that breaks up the white -->
+    <section class="dark-band" aria-labelledby="forms-title">
+      <div class="container-xl py-5">
+        <h2 class="mb-1" id="forms-title">Forms</h2>
+        <p class="small text-body-secondary mb-4">PDFs to print or fill in. Send them back by secure message.</p>
+        <ul class="list-unstyled row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-0">
+          <li class="col help-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-file-pdf"></i></span><div><a class="fw-semibold" href="#">Accident form<span class="visually-hidden"> (PDF, 84 KB)</span></a><p class="small text-body-secondary mb-0">When a claim asks whether an injury was an accident.</p><p class="small text-body-secondary mb-0" aria-hidden="true">PDF · 84 KB</p></div></li>
+          <li class="col help-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-file-pdf"></i></span><div><a class="fw-semibold" href="#">Medical claim form<span class="visually-hidden"> (PDF, 112 KB)</span></a><p class="small text-body-secondary mb-0">To get paid back for care you paid for yourself.</p><p class="small text-body-secondary mb-0" aria-hidden="true">PDF · 112 KB</p></div></li>
+          <li class="col help-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-file-pdf"></i></span><div><a class="fw-semibold" href="#">Appeal request<span class="visually-hidden"> (PDF, 96 KB)</span></a><p class="small text-body-secondary mb-0">To ask us to look again at a denied claim or approval.</p><p class="small text-body-secondary mb-0" aria-hidden="true">PDF · 96 KB</p></div></li>
+          <li class="col help-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-file-pdf"></i></span><div><a class="fw-semibold" href="#">Mail order prescription form<span class="visually-hidden"> (PDF, 78 KB)</span></a><p class="small text-body-secondary mb-0">To have 90-day supplies mailed to your home.</p><p class="small text-body-secondary mb-0" aria-hidden="true">PDF · 78 KB</p></div></li>
+          <li class="col help-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-file-pdf"></i></span><div><a class="fw-semibold" href="#">Permission to share health information<span class="visually-hidden"> (PDF, 70 KB)</span></a><p class="small text-body-secondary mb-0">To let someone else talk with us about your care.</p><p class="small text-body-secondary mb-0" aria-hidden="true">PDF · 70 KB</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="container-xl py-5">
+      <div class="vstack gap-4">
+        <section class="card" aria-labelledby="contact-title">
+          <div class="card-body p-4">
+            <h2 class="mb-1" id="contact-title">Contact us</h2>
+            <p class="small text-body-secondary mb-4">Real people, and answers any time.</p>
+            <ul class="list-unstyled row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4 mb-0">
+              <li class="col help-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span><div><p class="fw-semibold mb-0">Send a secure message</p><p class="small text-body-secondary mb-1">We reply within 1 business day.</p><a class="link-icon" href="messages.html?new=1#messages">Message us<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></li>
+              <li class="col help-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-phone"></i></span><div><p class="fw-semibold mb-0">Call Member services</p><p class="mb-0"><a class="help-phone" href="tel:+18005550142">1-800-555-0142</a></p><p class="small text-body-secondary mb-0">Mon to Fri, 8 am to 8 pm ET. TTY 711.</p></div></li>
+              <li class="col help-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-user-nurse"></i></span><div><p class="fw-semibold mb-0">Nurse line, 24/7</p><p class="mb-0"><a class="help-phone" href="tel:+18005550177">1-800-555-0177</a></p><p class="small text-body-secondary mb-0">Free advice from a registered nurse, any time.</p></div></li>
+              <li class="col help-row"><span class="icon-chip bg-primary-subtle text-primary-emphasis" aria-hidden="true"><i class="fa-solid fa-comment-dots"></i></span><div><p class="fw-semibold mb-0">Ask AI Chat</p><p class="small text-body-secondary mb-1">Quick answers about your plan, any time.</p><button class="btn btn-link link-icon px-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#assistant" aria-controls="assistant" aria-haspopup="dialog">Start a chat<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div></li>
+            </ul>
+            <p class="notice notice-danger small mt-4 mb-0"><i class="fa-solid fa-truck-medical" aria-hidden="true"></i><span>In an emergency, call 911. In a mental health crisis, call or text 988.</span></p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer, bottom nav, More sheet, AI Chat and dialogs: one copy in partials/footer.html, loaded here by js/portal.js -->
+  <div data-include="partials/footer.html"></div>
+</body>
+</html>

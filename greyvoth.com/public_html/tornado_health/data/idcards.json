@@ -1,0 +1,203 @@
+{
+  "_note": "Synthetic demo data. Tornado Health, its plans and phone numbers (555-01xx) are fictional.",
+  "mailingAddress": "1428 Elm Street, Detroit, MI 48201",
+  "cards": [
+    {
+      "type": "medical",
+      "label": "Medical",
+      "icon": "fa-stethoscope",
+      "plan": "Tornado Gold PPO",
+      "idPrefix": "THK",
+      "useAt": "for the doctor and pharmacy.",
+      "fields": [
+        {
+          "label": "Group",
+          "value": "TH-04127"
+        },
+        {
+          "label": "Rx BIN",
+          "value": "610279"
+        },
+        {
+          "label": "Rx PCN",
+          "value": "THRX"
+        },
+        {
+          "label": "Rx GRP",
+          "value": "TH-RX-88"
+        }
+      ],
+      "costs": [
+        {
+          "label": "Primary care",
+          "value": "$25"
+        },
+        {
+          "label": "Specialist",
+          "value": "$50"
+        },
+        {
+          "label": "Urgent care",
+          "value": "$50"
+        },
+        {
+          "label": "ER",
+          "value": "$250"
+        }
+      ],
+      "contacts": [
+        {
+          "label": "Member services",
+          "phone": "1-800-555-0142"
+        },
+        {
+          "label": "Nurse line, 24/7",
+          "phone": "1-800-555-0177"
+        },
+        {
+          "label": "Providers",
+          "phone": "1-800-555-0160"
+        },
+        {
+          "label": "Pharmacy help",
+          "phone": "1-800-555-0188"
+        }
+      ],
+      "claimsTo": "Tornado Health Claims, PO Box 4127, Detroit, MI 48201",
+      "effective": "2027-01-01"
+    },
+    {
+      "type": "dental",
+      "label": "Dental",
+      "icon": "fa-tooth",
+      "plan": "Tornado Dental PPO",
+      "idPrefix": "THD",
+      "useAt": "for the dentist.",
+      "fields": [
+        {
+          "label": "Group",
+          "value": "TH-D-0412"
+        },
+        {
+          "label": "Network",
+          "value": "Dental PPO"
+        }
+      ],
+      "costs": [
+        {
+          "label": "Cleanings",
+          "value": "$0"
+        },
+        {
+          "label": "Fillings",
+          "value": "20%"
+        },
+        {
+          "label": "Crowns",
+          "value": "50%"
+        },
+        {
+          "label": "Yearly max",
+          "value": "$1,500"
+        }
+      ],
+      "contacts": [
+        {
+          "label": "Member services",
+          "phone": "1-800-555-0142"
+        },
+        {
+          "label": "Dentists",
+          "phone": "1-800-555-0165"
+        }
+      ],
+      "claimsTo": "Tornado Dental Claims, PO Box 4128, Detroit, MI 48201",
+      "effective": "2027-01-01"
+    },
+    {
+      "type": "vision",
+      "label": "Vision",
+      "icon": "fa-eye",
+      "plan": "Tornado Vision",
+      "idPrefix": "THV",
+      "useAt": "for the eye doctor.",
+      "fields": [
+        {
+          "label": "Group",
+          "value": "TH-V-0412"
+        },
+        {
+          "label": "Network",
+          "value": "Vision PPO"
+        }
+      ],
+      "costs": [
+        {
+          "label": "Eye exam",
+          "value": "$10"
+        },
+        {
+          "label": "Lenses",
+          "value": "$25"
+        },
+        {
+          "label": "Frames",
+          "value": "$150 off"
+        },
+        {
+          "label": "Contacts",
+          "value": "$150 off"
+        }
+      ],
+      "contacts": [
+        {
+          "label": "Member services",
+          "phone": "1-800-555-0142"
+        },
+        {
+          "label": "Eye doctors",
+          "phone": "1-800-555-0166"
+        }
+      ],
+      "claimsTo": "Tornado Vision Claims, PO Box 4129, Detroit, MI 48201",
+      "effective": "2027-01-01"
+    }
+  ],
+  "assistant": [
+    {
+      "prompt": "I lost my card. What do I do?",
+      "answer": "Your digital card works everywhere a plastic one does, so you can keep getting care. To get a new plastic card, choose Order a card under the card. It arrives in 7 to 10 days.",
+      "keywords": [
+        "lost",
+        "lose",
+        "stolen",
+        "replace",
+        "new card",
+        "order"
+      ]
+    },
+    {
+      "prompt": "Which card do I use at the pharmacy?",
+      "answer": "Use your medical card. The Rx BIN, PCN and group on the front tell the pharmacy how to bill your plan.",
+      "keywords": [
+        "pharmacy",
+        "rx",
+        "prescription",
+        "bin",
+        "pcn"
+      ]
+    },
+    {
+      "prompt": "Does each family member have a card?",
+      "answer": "Yes. Everyone on your plan has their own medical, dental and vision card with their own member ID. Use Viewing at the top to see each person's cards.",
+      "keywords": [
+        "family",
+        "each",
+        "spouse",
+        "child",
+        "kids",
+        "member id"
+      ]
+    }
+  ]
+}

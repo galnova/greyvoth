@@ -1,0 +1,198 @@
+{
+  "_note": "Synthetic demo data for the Programs & Services page. Programs, rewards and Tornado Health are fictional.",
+  "programs": [
+    {
+      "id": "knee",
+      "title": "Knee care program",
+      "line": "Exercises, a physical therapist coach and progress check-ins for knee pain.",
+      "meta": "Free · 8 weeks · Video and app",
+      "for": "adult",
+      "icon": "fa-person-walking"
+    },
+    {
+      "id": "coach",
+      "title": "Health coaching",
+      "line": "Weekly calls with a coach on eating, activity or stress. Your goals, your pace.",
+      "meta": "Free · 12 weeks · Phone",
+      "for": "adult",
+      "icon": "fa-comments"
+    },
+    {
+      "id": "tobacco",
+      "title": "Quit tobacco",
+      "line": "A quit plan, a coach and nicotine patches or gum at no cost.",
+      "meta": "Free · 12 weeks · Phone and app",
+      "for": "adult",
+      "icon": "fa-ban-smoking"
+    },
+    {
+      "id": "pregnancy",
+      "title": "Healthy pregnancy",
+      "line": "A nurse to call any time, a checklist for each trimester and a free breast pump.",
+      "meta": "Free · Through 3 months after birth",
+      "for": "adult",
+      "icon": "fa-person-pregnant"
+    },
+    {
+      "id": "diabetes",
+      "title": "Diabetes prevention",
+      "line": "A small group program that lowers your risk of type 2 diabetes.",
+      "meta": "Free · 12 months · Online group",
+      "for": "adult",
+      "icon": "fa-droplet"
+    },
+    {
+      "id": "mind",
+      "title": "Mental well-being",
+      "line": "Guided exercises for stress, sleep and mood, plus 5 free sessions with a counselor.",
+      "meta": "Free · Any time · App",
+      "for": "all",
+      "icon": "fa-brain"
+    },
+    {
+      "id": "kids",
+      "title": "Kids' healthy habits",
+      "line": "Games and family challenges for moving more, eating well and screen time.",
+      "meta": "Free · For ages 6 to 12 · App",
+      "for": "child",
+      "icon": "fa-child-reaching"
+    },
+    {
+      "id": "sleep",
+      "title": "Sleep better",
+      "line": "A 6-week program that helps you fall asleep faster and wake up rested.",
+      "meta": "Free · 6 weeks · App",
+      "for": "adult",
+      "icon": "fa-moon"
+    }
+  ],
+  "recommended": {
+    "roy": {
+      "program": "knee",
+      "why": "Because you've had physical therapy this year",
+      "includes": [
+        "A physical therapist coach by video",
+        "Exercises that fit 15 minutes a day",
+        "Progress check-ins you can share with Dr. Nair"
+      ]
+    },
+    "keeley": {
+      "program": "sleep",
+      "why": "Members using Mental well-being often add this",
+      "includes": [
+        "A 6-week plan built around your schedule",
+        "Short nightly lessons in the app",
+        "Works alongside Mental well-being"
+      ]
+    },
+    "leo": {
+      "program": "kids",
+      "why": "Made for kids Leo's age",
+      "includes": [
+        "Family challenges you do together",
+        "Games that reward moving more",
+        "Tips for parents each week"
+      ]
+    }
+  },
+  "enrolled": {
+    "keeley": [
+      "mind"
+    ]
+  },
+  "rewards": {
+    "points": 1250,
+    "goal": 2000,
+    "goalLabel": "a $50 gift card",
+    "earn": [
+      {
+        "label": "Annual physical",
+        "points": 500,
+        "done": true
+      },
+      {
+        "label": "Health assessment",
+        "points": 250,
+        "done": true
+      },
+      {
+        "label": "Dental cleaning",
+        "points": 250,
+        "done": true
+      },
+      {
+        "label": "Flu shot",
+        "points": 250,
+        "done": false
+      },
+      {
+        "label": "Finish a program",
+        "points": 500,
+        "done": false
+      }
+    ]
+  },
+  "perks": [
+    {
+      "label": "Gym memberships",
+      "value": "Up to 30% off",
+      "icon": "fa-dumbbell"
+    },
+    {
+      "label": "Fitness trackers",
+      "value": "20% off",
+      "icon": "fa-heart-pulse"
+    },
+    {
+      "label": "LASIK",
+      "value": "15% off",
+      "icon": "fa-eye"
+    },
+    {
+      "label": "Healthy meal kits",
+      "value": "$40 off",
+      "icon": "fa-utensils"
+    }
+  ],
+  "assistant": [
+    {
+      "prompt": "Which program fits me?",
+      "answer": "Based on your physical therapy this year, the Knee care program is a good fit: a PT coach by video and 15 minutes of exercises a day. It's free and takes 8 weeks.",
+      "keywords": [
+        "which program",
+        "fits me",
+        "recommend"
+      ]
+    },
+    {
+      "prompt": "Do programs cost anything?",
+      "answer": "No. Every program here is free with your plan, and joining never changes your coverage or what you pay.",
+      "keywords": [
+        "cost",
+        "free",
+        "price",
+        "pay"
+      ]
+    },
+    {
+      "prompt": "How do I earn reward points?",
+      "answer": "You earn points for healthy steps: 500 for an annual physical, 250 each for a health assessment, a dental cleaning and a flu shot, and 500 for finishing a program. You have 1,250 points; 750 more gets you a $50 gift card.",
+      "keywords": [
+        "points",
+        "rewards",
+        "earn",
+        "gift card"
+      ]
+    },
+    {
+      "prompt": "Is my information private?",
+      "answer": "Yes. Programs are voluntary and confidential. Your coach doesn't share details with your employer, and joining never affects your coverage.",
+      "keywords": [
+        "private",
+        "privacy",
+        "employer",
+        "confidential"
+      ]
+    }
+  ]
+}
