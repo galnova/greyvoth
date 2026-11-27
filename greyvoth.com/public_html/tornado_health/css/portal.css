@@ -120,6 +120,7 @@
   --bs-info-text-emphasis:    var(--th-info-600);     --bs-info-bg-subtle:    var(--th-info-50);
 
   --bs-border-radius: var(--th-radius-sm);
+  --bs-border-radius-sm: var(--th-radius-sm);
   --bs-border-radius-lg: var(--th-radius-md);
   --bs-border-radius-xl: var(--th-radius-lg);
   --bs-box-shadow-sm: var(--th-shadow-1);
@@ -130,23 +131,32 @@
 /* 3. Base ------------------------------------------------------------------ */
 h1, h2, h3 { font-weight: 700; line-height: 1.25; }
 h1 { font-size: var(--th-fs-h1); letter-spacing: -.015em; }
-h2 { font-size: var(--th-fs-h2); scroll-margin-top: calc(var(--th-header-h) + 1rem); }   /* in-page jumps land below the sticky header */
+h2 { font-size: var(--th-fs-h2); }
+/* Whatever is scrolled to (a focused control, an in-page link, a heading the script moves to) lands clear of the
+   sticky header; below 992px also clear of the bottom bar and chat button (section 5). WCAG 2.4.11. */
+html { scroll-padding-top: calc(var(--th-header-h) + 1rem); }
 h3 { font-size: var(--th-fs-h3); }
 /* Page containers: 24px on each side (Bootstrap's default is 12px) */
 .container-xl { --bs-gutter-x: calc(var(--th-page-gutter) * 2); }
 
-/* One focus style everywhere. Bootstrap parts that remove the outline
-   (.btn, .nav-link, .btn-close, .dropdown-item, .form-control) get it back here. */
+/* One focus style everywhere. Bootstrap parts that remove the outline (buttons, nav links, close buttons, menu items,
+   fields, selects, checkboxes, radios, switches, and the radio-group tab bar) get it back here. */
 :focus-visible,
 .btn:focus-visible,
 .nav-link:focus-visible,
 .btn-close:focus-visible,
 .dropdown-item:focus-visible,
-.form-control:focus {
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus-visible,
+.page-tabs .btn-check:focus-visible + .nav-link {
   outline: 3px solid var(--th-focus);
   outline-offset: 2px;
   box-shadow: none;
 }
+/* Fields keep their gray outline while focused (Bootstrap turns it light blue); the ring shows focus */
+.form-control:focus,
+.form-select:focus { border-color: var(--bs-border-color); }
 
 /* Links and link-buttons that carry an icon: icon centered with the text, never underlined */
 .link-icon {
@@ -169,6 +179,10 @@ h3 { font-size: var(--th-fs-h3); }
 /* Standalone links and close buttons get a full 48px tap size */
 .tap-target { display: inline-flex; align-items: center; justify-content: center; min-width: var(--th-target); min-height: var(--th-target); }
 .btn-close { min-width: var(--th-target); min-height: var(--th-target); }
+/* Dismiss X at the end of a row (For you): the icon lines up with the card's right edge; the 48px target reaches left */
+.dismiss-btn { justify-content: flex-end; }
+/* Skip to main content: when focused, above the sticky header (1020), the bars and the menus */
+.skip-link { z-index: 1100; }
 
 /* 4. Components ------------------------------------------------------------ */
 
@@ -237,7 +251,7 @@ h3 { font-size: var(--th-fs-h3); }
 }
 
 /* Menus (megamenus, account, family): no outline, raised, tinted hover */
-.dropdown-menu { --bs-dropdown-link-hover-bg: var(--th-primary-tint); border: 0; box-shadow: var(--th-shadow-2); }
+.dropdown-menu { --bs-dropdown-link-hover-bg: var(--th-primary-tint); --bs-dropdown-link-active-bg: var(--th-primary-tint); --bs-dropdown-link-active-color: var(--th-primary); border: 0; box-shadow: var(--th-shadow-2); }
 
 /* Megamenu: full-width panel under the header, one per primary item */
 .mega-menu,
@@ -248,8 +262,6 @@ h3 { font-size: var(--th-fs-h3); }
   width: 100%;
   margin: 0;
   border-radius: 0;
-  --bs-dropdown-link-active-bg: var(--th-primary-tint);
-  --bs-dropdown-link-active-color: var(--th-primary);
 }
 /* A tinted panel: the menus' call-to-action box, Programs' "What you get", the account address */
 .tint-panel { border-radius: var(--th-radius-md); background: var(--th-primary-tint); }
@@ -395,7 +407,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 /* Notices (info, success, warning, danger): the status color at 25% behind dark body text, with a status-colored icon.
    Body text, not the status color, so every tone passes 4.5:1. No border. */
 .notice { display: flex; align-items: baseline; gap: .5rem; padding: .75rem 1rem; border-radius: var(--th-radius-md); color: var(--bs-body-color); font-size: var(--th-fs-sm); font-weight: 600; }
-.notice > .fa-solid { flex: none; }
+.notice > .fa-solid { flex: none; width: 1.25em; text-align: center; }  /* a fixed width: the text wraps the same before and after the icon font loads */
 .notice-info { background: var(--th-info-tint); }
 .notice-info > .fa-solid { color: var(--th-info-600); }
 .notice-success { background: var(--th-success-tint); }
@@ -437,17 +449,17 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .claim-amount { font-variant-numeric: tabular-nums; font-weight: 700; }
 /* Claims page: the service links to its details; underline only on hover so the list stays calm */
 /* Each claim on the Claims page is its own card (white, 12px radius, card shadow) */
-.claim-card { padding: 1rem 1.25rem; border-radius: var(--th-radius-md); background: var(--th-white); box-shadow: var(--th-shadow-card); }
+.claim-card { padding: 1rem; border-radius: var(--th-radius-md); background: var(--th-white); box-shadow: var(--th-shadow-card); }
 .claim-link { font-weight: 600; text-decoration: none; }
 .claim-link:hover,
-.care-phone:hover,
 .help-phone:hover { text-decoration: underline; }
 .eob-steps { padding-left: 1.25rem; }
 
-/* Find Care: search results, care options, the 24/7 phone line */
+/* Find Care: search results and care options */
 .provider-row { display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 1rem; }
 .care-option { display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 1rem; }
-.care-option .icon-chip { background: var(--th-primary-tint); color: var(--th-primary); }
+.care-option .icon-chip,
+.perk .icon-chip { background: var(--th-primary-tint); color: var(--th-primary); }
 /* Compare your options (Find Care): a purple-100 card. Rows go transparent, lines a deeper lavender,
    and the icon tiles turn white so they still stand out on the tint. */
 .options-card { background: var(--th-purple-100); }
@@ -456,7 +468,6 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .care-option-title,
 .program-title { font-size: var(--th-fs-base); font-weight: 600; }
 .care-cost { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.care-phone { font-size: var(--th-fs-h3); font-weight: 700; text-decoration: none; font-variant-numeric: tabular-nums; }
 /* Small inline action under a list item: at least a 24px tall target (WCAG 2.5.8) */
 .book-link { display: inline-flex; align-items: center; min-height: 1.5rem; }
 
@@ -464,7 +475,8 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 /* Never bigger than the Tornado Health logo (about 31px tall on desktop, 28px on phones) */
 .program-art { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: var(--th-radius-sm); background: var(--th-primary-tint); color: var(--th-primary); font-size: var(--th-fs-sm); }  /* program icon tile, logo-sized */
 .eyebrow,
-.cost-table thead th { font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bs-secondary-color); }
+.cost-table thead th,
+.cs-table thead th { font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--bs-secondary-color); }
 .check-list { padding: 0; list-style: none; }
 .check-list li { display: flex; align-items: baseline; gap: .5rem; }
 .check-list li + li { margin-top: .375rem; }
@@ -477,7 +489,6 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .earn-row.is-done .fa-circle-check { color: var(--th-success-600); }
 .earn-points { font-weight: 700; font-variant-numeric: tabular-nums; }
 .program-join { padding-inline: 1.5rem; }  /* the cards' Join button: the same 24px sides as Enroll */
-.perk .icon-chip { background: var(--th-primary-tint); color: var(--th-primary); }
 .perk-label { color: var(--bs-secondary-color); font-size: var(--th-fs-sm); }
 /* Dark band (Rewards on Programs, Forms on the Help center): full-width brand purple between the white sections. White text, lavender secondary text,
    a white meter on a mid-purple track, white checks, faint white lines, and a white focus ring. */
@@ -533,7 +544,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 }
 
 /* Claim timeline: a dot per step on a thin rail; done = green check, current = brand purple, next = track */
-.timeline-step { position: relative; display: flex; gap: .75rem; padding-bottom: 1.25rem; }
+.timeline-step { position: relative; display: flex; gap: .75rem; padding-bottom: 1rem; }
 .timeline-step:last-child { padding-bottom: 0; }
 .timeline-step:not(:last-child)::before { content: ""; position: absolute; top: 1.75rem; bottom: .25rem; left: .75rem; width: 2px; margin-left: -1px; background: var(--th-track); }
 .timeline-dot { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 1.5rem; height: 1.5rem; border-radius: var(--th-radius-round); background: var(--th-track); color: var(--th-white); font-size: var(--th-fs-2xs); }
@@ -583,7 +594,6 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   border-radius: var(--th-radius-lg);
   background: var(--th-white);
   box-shadow: var(--th-shadow-card);
-  scroll-margin-top: calc(var(--th-header-h) + 1rem);
 }
 .page-tabs .nav-link {
   display: flex;
@@ -598,14 +608,14 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .page-tabs .nav-link:hover { background: var(--th-primary-tint); color: var(--th-primary); }
 .page-tabs .nav-link.active,
 .page-tabs .btn-check:checked + .nav-link { background: var(--th-primary); color: var(--th-on-primary); }
-/* The same bar as a radio-group filter (Claims): labels are the targets; the focus ring follows the radio */
-.page-tabs label.nav-link { cursor: pointer; }
-.page-tabs .btn-check:focus-visible + .nav-link { outline: 3px solid var(--th-focus); outline-offset: 2px; }
+/* The same bar as a radio-group filter (Claims): labels are the targets */
+.page-tabs label.nav-link { cursor: pointer; }  /* the focus ring follows the radio (section 3) */
 
 /* Cost tables (Coverage tabs): service, what you pay, limits */
-.cost-table { --bs-table-border-color: var(--bs-border-color-translucent); }
 .cost-table th,
-.cost-table td { padding: .75rem 1rem .75rem 0; vertical-align: top; }
+.cost-table td,
+.cs-table th,
+.cs-table td { padding: .75rem 1rem .75rem 0; vertical-align: top; }
 .cost-table tbody th { font-weight: 400; }
 .cost-table tbody td:nth-child(2) { font-weight: 600; font-variant-numeric: tabular-nums; }
 .cost-table tbody td:nth-child(3) { color: var(--bs-secondary-color); font-size: var(--th-fs-sm); }
@@ -687,10 +697,17 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 /* Flip, print and order under the card */
 .idc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin-top: 1.5rem; }  /* 20px apart: all three fit on one row under an actual-size card */
 /* Order a card: a tinted panel that opens under the actions */
-.idc-order { background: var(--th-primary-tint); border-radius: var(--th-radius-md); padding: 1.25rem; margin-top: 1.25rem; }
-.idc-order-area > .notice { margin-top: 1.25rem; }
+.idc-order { padding: 1rem; margin-top: 1rem; }  /* with .tint-panel */
+.idc-order-area > .notice { margin-top: 1rem; }
 /* Phones: the Open card button stretches over the whole card, so tapping the card opens the full-screen view */
 .idc-open { gap: .5rem; }
+/* Phones: the card centered in the space, with its Open card button (and their placeholders) the same width under it */
+@media (max-width: 767.98px) {
+  .idc-section .idc,
+  .idc-section .idc-skeleton,
+  .idc-section .idc-open,
+  .idc-section [data-idc-slot] > .btn { max-width: min(100%, 3.375in); margin-inline: auto; }
+}
 /* Phones and 1200px up: no white box around each card, so the card fits at its actual size
    (327px of room on a 375px phone; three across from 1200px) */
 @media (max-width: 767.98px), (min-width: 1200px) {
@@ -715,7 +732,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .idc-modal .idc-order-area { width: 3.375in; max-width: 100%; }  /* buttons and the order panel line up with the card's edges */
 .idc-modal .idc-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
 .idc-modal .idc-actions > .idc-flip { grid-column: 1 / -1; }
-.idc-modal .idc-actions > .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: var(--th-target); }
+.idc-modal .idc-actions > .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; }
 /* Print happens in a hidden frame holding just the card, front and back, at real size */
 .idc-print-frame { position: fixed; inset: auto auto 0 0; width: 0; height: 0; border: 0; }  /* 0 x 0, not display:none, which some browsers print blank */
 .idc-print-doc { background: var(--th-white); padding: .5in; }
@@ -752,7 +769,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .msg-row.is-unread .msg-subject { font-weight: 700; }
 /* A conversation: each message is a tinted panel; yours on the brand tint, ours on gray (no chat bubbles) */
 .msg-thread > li + li { margin-top: 1rem; }
-.msg { padding: 1.25rem; border-radius: var(--th-radius-md); background: var(--th-neutral-50); }
+.msg { padding: 1rem; border-radius: var(--th-radius-md); background: var(--th-neutral-50); }
 .msg-mine { background: var(--th-primary-tint); }
 .msg-head { display: flex; align-items: center; gap: .75rem; margin-bottom: .75rem; }
 .msg-name { font-weight: 600; }
@@ -796,18 +813,22 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
   list-style: none;
   cursor: pointer;
 }
-.faq > summary::-webkit-details-marker { display: none; }
+.faq > summary::-webkit-details-marker,
+.cs-code > summary::-webkit-details-marker { display: none; }
 .faq > summary:hover { color: var(--th-primary); }
-.faq > summary:focus-visible { outline: 3px solid var(--th-focus); outline-offset: 2px; border-radius: var(--th-radius-sm); }
-.faq > summary > .fa-chevron-down { flex: none; color: var(--th-primary); }
-.faq[open] > summary > .fa-chevron-down { transform: rotate(180deg); }
-.faq-body { max-width: var(--th-measure); padding-bottom: 1.25rem; }
+.faq > summary:focus-visible { border-radius: var(--th-radius-sm); }  /* the ring itself: section 3 */
+.faq > summary > .fa-chevron-down,
+.cs-code > summary > .fa-chevron-down { flex: none; color: var(--th-primary); }
+.faq[open] > summary > .fa-chevron-down,
+.cs-code[open] > summary > .fa-chevron-down { transform: rotate(180deg); }
+.faq-body { max-width: var(--th-measure); padding-bottom: 1rem; }
 .faq-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-bottom: 0; }
 .faq-empty { padding: 1rem 0 .25rem; }
 .comp-example > .faq-empty { padding: 0; }  /* in an example panel: even all round */
 /* Contact and forms rows: icon chip, then the text and its action */
 .help-row { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 1rem; }
-.help-phone { font-size: var(--th-fs-h3); font-weight: 700; text-decoration: none; }
+/* A phone line to call (Help center, Find Care, Behavioral health) */
+.help-phone { font-size: var(--th-fs-h3); font-weight: 700; text-decoration: none; font-variant-numeric: tabular-nums; }
 /* Long-form text (accessibility statement): a readable measure, room between sections */
 .statement { max-width: calc(var(--th-measure) + 3rem); }
 .statement h2 { margin: 2rem 0 .75rem; }
@@ -827,7 +848,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .msg-body { max-width: var(--th-measure); }
 /* Components page (components.html): example panels, labels, color swatches, shapes */
 .comp-title { margin-bottom: .75rem; color: var(--th-neutral-600); font-size: var(--th-fs-xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.comp-example { padding: 1.25rem; border-radius: var(--th-radius-md); background: var(--th-white); box-shadow: inset 0 0 0 1px var(--bs-border-color-translucent); }
+.comp-example { padding: 1rem; border-radius: var(--th-radius-md); background: var(--th-white); box-shadow: var(--th-shadow-1); }
 .comp-example-tint { background: var(--th-neutral-50); box-shadow: none; }
 .comp-label { margin: .5rem 0 0; color: var(--th-neutral-600); font-size: var(--th-fs-xs); }
 .comp-label code { color: var(--th-primary); }
@@ -857,17 +878,30 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .comp-r-md { border-radius: var(--th-radius-md); }
 .comp-r-lg { border-radius: var(--th-radius-lg); }
 .comp-shadow-2 { background: var(--th-white); box-shadow: var(--th-shadow-2); }
-.comp-band { padding: 1.25rem; border-radius: var(--th-radius-md); }
+.comp-band { padding: 1rem; border-radius: var(--th-radius-md); }
 .comp-dark { border-radius: var(--th-radius-md); }
 .comp-toast { width: 100%; max-width: 22rem; }  /* Bootstrap's toast is a fixed 350px */
 .comp-swatches code { color: var(--th-neutral-900); }
 .comp-dialog { max-width: 30rem; }
 .comp-empty { min-height: 12rem; }
-.loading-card { border-radius: var(--th-radius-lg); }
 /* Case study and prompt log */
 .acct-dl.cs-glance { grid-template-columns: minmax(0, 1fr); }  /* one column in the narrow side card */
+/* How it was tested: one row per check, its result as a badge, then how and where */
+.cs-tests { margin-bottom: 1.5rem; }
+/* Taking it to production: plain tables that wrap (no sideways scroll); code folded, scrolling inside its own box */
+.cs-table { margin-bottom: 1.5rem; font-size: var(--th-fs-sm); }
+.cs-table th, .cs-table td { overflow-wrap: anywhere; }  /* padding: with .cost-table's */
+.cs-table tbody th { font-weight: 600; }
+.cs-table code, .cs-tests code { color: var(--th-primary); }
+.cs-code { border-radius: var(--th-radius-md); background: var(--th-neutral-50); }
+.cs-code > summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: var(--th-target); padding: .75rem 1rem; list-style: none; cursor: pointer; }
+.cs-code > summary:focus-visible { border-radius: var(--th-radius-md); }  /* marker and chevron: with the Help center's questions */
+.cs-code pre { margin: 0; padding: 0 1rem 1rem; overflow-x: auto; font-size: var(--th-fs-xs); line-height: 1.6; }
+.cs-code pre code { color: var(--th-neutral-900); }
+.cs-test { padding: 1rem 0; box-shadow: inset 0 -1px 0 var(--bs-border-color-translucent); }
+.cs-test-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .25rem 1rem; margin-bottom: .25rem; }
 .statement h3 { margin-top: 1.5rem; }
-.prompt-log > li { padding: 1.25rem 0; box-shadow: inset 0 -1px 0 var(--bs-border-color-translucent); }
+.prompt-log > li { padding: 1rem 0; box-shadow: inset 0 -1px 0 var(--bs-border-color-translucent); }
 .prompt-log > li:first-child { padding-top: 0; }
 .prompt-log > li:last-child { padding-bottom: 0; box-shadow: none; }
 .prompt-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .75rem; margin-bottom: .5rem; color: var(--th-neutral-600); font-size: var(--th-fs-xs); }
@@ -878,9 +912,9 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .bh-crisis { font-size: var(--th-fs-base); }
 .bh-crisis a { color: inherit; font-weight: 700; }
 /* Cost estimate: where the person stands; places as choosable rows (the chosen one a solid tint); the breakdown */
-.est-standing { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 1rem 1.25rem; border-radius: var(--th-radius-md); background: var(--th-primary-tint); }
+.est-standing { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; padding: 1rem; }  /* with .tint-panel */
 .est-standing dd { margin: 0; font-size: var(--th-fs-h3); font-weight: 700; font-variant-numeric: tabular-nums; }
-.est-place { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem; padding: 1rem 1.25rem; border-radius: var(--th-radius-md); background: var(--th-neutral-50); cursor: pointer; }
+.est-place { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem; padding: 1rem; border-radius: var(--th-radius-md); background: var(--th-neutral-50); cursor: pointer; }
 .est-place:hover { background: var(--th-primary-tint); }
 .est-place.is-chosen { background: var(--th-purple-100); }
 .est-place .form-check-input { width: 1.25rem; height: 1.25rem; margin: 0; }
@@ -897,7 +931,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .appeal-choice .form-check-input { flex: none; float: none; width: 1.25rem; height: 1.25rem; margin: .125rem 0 0; }
 .appeal-review > div:nth-child(3) { grid-column: 1 / -1; }  /* "What happened" gets the full width */
 .appeal-review > div:nth-child(3) dd { font-weight: 400; white-space: pre-line; }
-.est-why { margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: var(--th-radius-md); background: var(--th-primary-tint); }
+.est-why { margin-top: 1.5rem; padding: 1rem; }  /* with .tint-panel */
 .est-breakdown th { font-weight: 400; }
 .est-breakdown .is-total th,
 .est-breakdown .is-total td { font-weight: 700; }
@@ -905,15 +939,14 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 /* Sign in (signin.html): one centered card; 48px fields; Show/Hide sits inside the password field */
 .signin-wrap { max-width: 28rem; }
 .signin-title { font-size: var(--th-fs-h1); }
-.signin-wrap .form-control,
-.signin-submit { min-height: var(--th-target); }
+.signin-wrap .form-control { min-height: var(--th-target); }
 .password-field { position: relative; }
 .password-field .form-control { min-height: var(--th-target); padding-right: 6.5rem; }  /* as tall as its Show button, which stays centered */
 .password-toggle { position: absolute; inset: 0 0 0 auto; gap: .375rem; padding: 0 1rem; }
 .signin-check .form-check-input { width: 1.25rem; height: 1.25rem; margin-top: .125rem; }
 
 /* Account overview ---------------------------------------------------------------- */
-.acct-subtitle { font-size: var(--th-fs-h3); scroll-margin-top: calc(var(--th-header-h) + 1rem); }  /* the menu's Addresses link lands here */
+.acct-subtitle { font-size: var(--th-fs-h3); }
 /* Contact info: label over value, two across (one on small phones); long emails wrap instead of overflowing */
 .acct-dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 1.5rem; margin: 0; }
 .acct-dl dt,
@@ -941,18 +974,25 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .pref .form-check-label { cursor: pointer; }
 @media (max-width: 575.98px) {
   .acct-dl { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 575.98px) {
   .action-row { grid-template-columns: auto minmax(0, 1fr); align-items: start; }
   .row-action { grid-column: 2; justify-self: start; }
-  /* Messages: the time goes under the sender (lined up with the name), and the panels get a little more room */
-  .msg { padding: 1rem; }
+  /* Messages: the time goes under the sender (lined up with the name) */
   .msg-head { flex-wrap: wrap; row-gap: 0; }
   .msg-time { flex-basis: 100%; margin-left: 2.75rem; text-align: left; }
 }
 
 /* Status lines take no space until they have something to say */
 .status-line:not(:empty) { margin-top: 1rem; }
+
+/* Row dividers in lists and tables: the light line (neutral-200). Bootstrap uses --bs-border-color, which here is
+   the darker field outline. Cards and bands that set their own line color still win. */
+.list-group { --bs-list-group-border-color: var(--bs-border-color-translucent); }
+.table { --bs-table-border-color: var(--bs-border-color-translucent); }
+/* The same for Bootstrap's border utilities on the footer and AI Chat; the chat field keeps its outline */
+footer.border-top,
+.chat-panel .border-top,
+.chat-panel .border-bottom { --bs-border-color: var(--bs-border-color-translucent); }
+.chat-panel .form-control { --bs-border-color: var(--th-neutral-500); }
 
 /* Lists inside cards: rows are 16px apart; the first and last rows sit flush,
    so the card's own 24px padding is the only space at its top and bottom */
@@ -1046,7 +1086,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 .nav-tucked .toast-stack { bottom: env(safe-area-inset-bottom); }
 
 /* More sheet: the full site menu for phones, grouped like the megamenus; scrolls inside past 85% of the screen */
-.more-sheet { --bs-offcanvas-height: auto; border-radius: var(--th-radius-lg) var(--th-radius-lg) 0 0; padding-bottom: env(safe-area-inset-bottom); }
+.more-sheet { --bs-offcanvas-height: auto; --bs-offcanvas-border-width: 0; border-radius: var(--th-radius-lg) var(--th-radius-lg) 0 0; padding-bottom: env(safe-area-inset-bottom); }
 .sheet-handle { width: 2.5rem; height: .25rem; border-radius: var(--th-radius-pill); background: var(--bs-border-color-translucent); }
 .offcanvas-bottom.more-sheet { max-height: 85vh; } /* beats Bootstrap's max-height: 100% */
 .more-group-title { padding-inline: .75rem; }
@@ -1107,6 +1147,7 @@ a.status-chip:hover { background: var(--th-primary-tint); color: var(--th-primar
 /* Below 992px the bottom nav takes over from the header nav */
 @media (max-width: 991.98px) {
   body { padding-bottom: calc(var(--th-bottomnav-h) + var(--th-chat-size) + 2rem + env(safe-area-inset-bottom)); }
+  html { scroll-padding-bottom: calc(var(--th-bottomnav-h) + var(--th-chat-size) + 2rem + env(safe-area-inset-bottom)); }
   .chat-fab { bottom: calc(var(--th-bottomnav-h) + 1rem + env(safe-area-inset-bottom)); }
   .toast-stack { bottom: calc(var(--th-bottomnav-h) + env(safe-area-inset-bottom)); }
 }

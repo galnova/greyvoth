@@ -1,6 +1,5 @@
 {
   "_note": "Synthetic demo data. Tornado Health, its plans and phone numbers (555-01xx) are fictional.",
-  "mailingAddress": "1428 Elm Street, Detroit, MI 48201",
   "cards": [
     {
       "type": "medical",

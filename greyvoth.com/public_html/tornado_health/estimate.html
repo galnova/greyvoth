@@ -28,7 +28,7 @@
   <script src="js/portal.js" defer></script>
 </head>
 <body class="bg-body-tertiary d-flex flex-column min-vh-100" data-page="estimate">
-  <a class="visually-hidden-focusable position-absolute top-0 start-0 z-3 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
+  <a class="skip-link visually-hidden-focusable position-absolute top-0 start-0 m-2 px-3 py-2 bg-body rounded shadow" href="#main">Skip to main content</a>
 
   <!-- Header: one copy in partials/header.html, loaded here by js/portal.js -->
   <div class="shell-header" data-include="partials/header.html"></div>
@@ -53,7 +53,6 @@
 
     <!-- data-loading: the estimate depends on the data, so it stays hidden (keeping its place) until it's worked out -->
     <div class="container-xl pt-4 pb-5" data-loading aria-busy="true">
-      <p class="visually-hidden" role="status" id="live-status"></p>
       <div class="notice notice-danger mb-4" role="alert" id="load-error" hidden>
         <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span>We couldn't load your information. Refresh the page to try again.</span>
       </div>
@@ -69,7 +68,7 @@
                 <select class="form-select est-select" id="est-service"></select>
               </div>
               <div class="col-md-6">
-                <dl class="est-standing mb-0">
+                <dl class="est-standing tint-panel mb-0">
                   <div><dt>Deductible left for <span data-field="estName">Roy</span></dt><dd data-field="estDedLeft">$860</dd></div>
                   <div><dt>Left before the out-of-pocket max</dt><dd data-field="estOopLeft">$3,090</dd></div>
                 </dl>
@@ -90,7 +89,7 @@
                   <div class="vstack gap-2" data-list="est-places"></div>
                 </fieldset>
                 <div class="flex-grow-1" aria-hidden="true"></div>
-                <div class="est-why">
+                <div class="est-why tint-panel">
                   <h3 class="small fw-semibold mb-1">Why prices differ</h3>
                   <p class="small text-body-secondary mb-0">Each place agrees its own price with us. Until your deductible is met, you pay that price, so where you go can change your cost by hundreds of dollars. After that, you pay a 20% share of it.</p>
                 </div>
@@ -99,7 +98,7 @@
           </div>
           <!-- The answer: in view while the places scroll -->
           <div class="col-lg-5">
-            <section class="card side-sticky est-result" aria-labelledby="est-result-title">
+            <section class="card side-sticky" aria-labelledby="est-result-title">
               <div class="card-body p-4">
                 <h2 class="mb-1" id="est-result-title">Your estimate</h2>
                 <p class="small text-body-secondary mb-2" data-field="estWhere"></p>

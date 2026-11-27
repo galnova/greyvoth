@@ -13,9 +13,21 @@
     },
     "rx": {
       "bin": "610279",
-      "pcn": "THRX",
-      "group": "TH-RX-88"
+      "pcn": "THRX"
     }
+  },
+  "today": "2027-11-24",
+  "contact": {
+    "email": "roy.kent@example.com",
+    "phone": "(313) 555-0142",
+    "language": "English"
+  },
+  "address": {
+    "street": "1428 Elm Street",
+    "unit": "",
+    "city": "Detroit",
+    "state": "MI",
+    "zip": "48201"
   },
   "plan": {
     "deductible": {
@@ -29,10 +41,8 @@
   },
   "attention": [
     {
-      "id": "claim-needs-info",
       "icon": "fa-circle-exclamation",
       "tone": "warning",
-      "status": "Needs info",
       "title": "Send one form to finish your physical therapy claim",
       "detail": "Richmond Physical Therapy, Nov 12. We need the accident form before we can pay this claim. You may owe $35.",
       "action": {
@@ -43,10 +53,8 @@
       "short": "Upload the accident form"
     },
     {
-      "id": "prior-auth-mri",
       "icon": "fa-clock",
       "tone": "info",
-      "status": "In review",
       "title": "Knee MRI approval in review",
       "detail": "Dr. Patel sent the request on Nov 18. We expect a decision by Dec 2. You don't need to do anything yet.",
       "action": {
@@ -57,10 +65,8 @@
       "short": "Decision by Dec 2"
     },
     {
-      "id": "wellness-visit",
       "icon": "fa-calendar-check",
       "tone": "success",
-      "status": "Covered at $0",
       "title": "Wellness visit due",
       "detail": "It's free with your plan. Book a visit before Dec 31.",
       "action": {
@@ -74,34 +80,25 @@
   "recommendations": [
     {
       "id": "knee-care",
-      "icon": "fa-person-walking",
       "title": "Knee care program",
-      "summary": "Free coaching and home exercises to help your knee heal.",
       "why": "You've had physical therapy visits this year.",
       "action": {
-        "label": "Learn more",
         "href": "#"
       }
     },
     {
       "id": "virtual-care",
-      "icon": "fa-video",
       "title": "Video visits for $0",
-      "summary": "See a doctor from home, day or night.",
       "why": "Your plan covers video visits at no cost.",
       "action": {
-        "label": "Start a visit",
         "href": "#"
       }
     },
     {
       "id": "mail-order",
-      "icon": "fa-prescription-bottle-medical",
       "title": "Save with 90-day mail order",
-      "summary": "Get 3 months of your medicine delivered at once.",
       "why": "You refill a prescription every month. You could save about $60 a year.",
       "action": {
-        "label": "See savings",
         "href": "#"
       }
     }
